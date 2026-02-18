@@ -1,0 +1,289 @@
+import { StyleSheet } from 'react-native';
+
+export const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#FAFAFA',
+  },
+  header: {
+    paddingHorizontal: 16,
+    paddingTop: 16,
+    paddingBottom: 8,
+  },
+  titleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: '700',
+    color: '#1A1A1A',
+  },
+  subtitle: {
+    fontSize: 14,
+    color: '#666666',
+    marginTop: 2,
+  },
+  scrollView: {
+    flex: 1,
+  },
+  section: {
+    marginHorizontal: 16,
+    marginVertical: 8,
+  },
+  goalsRow: {
+    flexDirection: 'row',
+    marginHorizontal: 16,
+    marginVertical: 8,
+    gap: 12,
+  },
+  goalSection: {
+    flex: 1,
+  },
+  sectionTitleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: 8,
+  },
+  sectionTitleInRow: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#1A1A1A',
+  },
+  sectionTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#1A1A1A',
+    marginBottom: 8,
+  },
+  card: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 16,
+    padding: 16,
+  },
+  toggleRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  toggleLabel: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#1A1A1A',
+  },
+  toggleDescription: {
+    fontSize: 13,
+    color: '#666666',
+    marginTop: 2,
+  },
+  divider: {
+    height: 1,
+    backgroundColor: '#EEEEEE',
+    marginVertical: 16,
+  },
+  timeLabel: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#666666',
+    marginBottom: 12,
+  },
+  timeInputRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 12,
+  },
+  timeInputGroup: {
+    alignItems: 'center',
+  },
+  timeInput: {
+    backgroundColor: '#F5F5F5',
+    borderRadius: 12,
+    padding: 16,
+    fontSize: 24,
+    fontWeight: '700',
+    color: '#1A1A1A',
+    textAlign: 'center',
+    width: 80,
+  },
+  timeInputLabel: {
+    fontSize: 11,
+    color: '#999999',
+    marginTop: 4,
+  },
+  timeSeparator: {
+    fontSize: 32,
+    fontWeight: '700',
+    color: '#1A1A1A',
+    marginHorizontal: 8,
+  },
+  presetTimes: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: 16,
+  },
+  presetGoals: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    gap: 8,
+    marginTop: 12,
+  },
+  presetLabel: {
+    fontSize: 13,
+    color: '#666666',
+    marginRight: 4,
+  },
+  presetButton: {
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 16,
+    backgroundColor: '#F5F5F5',
+  },
+  presetButtonActive: {
+    backgroundColor: '#FF7B00',
+  },
+  presetButtonText: {
+    fontSize: 13,
+    color: '#666666',
+  },
+  presetButtonTextActive: {
+    color: '#FFFFFF',
+    fontWeight: '600',
+  },
+  saveButton: {
+    backgroundColor: '#FF7B00',
+    paddingVertical: 12,
+    borderRadius: 10,
+    alignItems: 'center',
+    marginTop: 8,
+  },
+  saveButtonText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#FFFFFF',
+  },
+  currentSetting: {
+    fontSize: 13,
+    color: '#666666',
+    textAlign: 'center',
+    marginTop: 12,
+  },
+  testButton: {
+    backgroundColor: '#F5F5F5',
+    paddingVertical: 12,
+    borderRadius: 10,
+    alignItems: 'center',
+    marginTop: 12,
+  },
+  testButtonContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  testButtonText: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#666666',
+  },
+  inputRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  goalInput: {
+    flex: 1,
+    backgroundColor: '#F5F5F5',
+    borderRadius: 12,
+    padding: 16,
+    fontSize: 24,
+    fontWeight: '700',
+    color: '#1A1A1A',
+    textAlign: 'center',
+  },
+  goalUnit: {
+    fontSize: 16,
+    color: '#666666',
+    marginLeft: 12,
+  },
+  goalInputCompact: {
+    flex: 1,
+    backgroundColor: '#F5F5F5',
+    borderRadius: 10,
+    padding: 12,
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#1A1A1A',
+    textAlign: 'center',
+  },
+  goalUnitSmall: {
+    fontSize: 14,
+    color: '#666666',
+    marginLeft: 8,
+  },
+  saveButtonSmall: {
+    backgroundColor: '#FF7B00',
+    paddingVertical: 10,
+    borderRadius: 8,
+    alignItems: 'center',
+    marginTop: 8,
+  },
+  saveButtonTextSmall: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#FFFFFF',
+  },
+  currentSettingSmall: {
+    fontSize: 12,
+    color: '#666666',
+    textAlign: 'center',
+    marginTop: 8,
+  },
+  weightGoalDescription: {
+    fontSize: 14,
+    color: '#666666',
+    marginBottom: 16,
+    textAlign: 'center',
+  },
+  goalDescription: {
+    fontSize: 13,
+    color: '#888888',
+    marginBottom: 12,
+  },
+  aboutTitleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: 8,
+  },
+  aboutText: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#1A1A1A',
+  },
+  aboutDescription: {
+    fontSize: 14,
+    color: '#666666',
+    lineHeight: 20,
+    marginBottom: 16,
+  },
+  features: {
+    gap: 8,
+    marginBottom: 16,
+  },
+  featureRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  featureItem: {
+    fontSize: 14,
+    color: '#444444',
+  },
+  version: {
+    fontSize: 12,
+    color: '#999999',
+    textAlign: 'center',
+  },
+});

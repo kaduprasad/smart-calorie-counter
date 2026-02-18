@@ -6,4 +6,5 @@ export { SearchBar } from './SearchBar';
 export { CategoryFilter } from './CategoryFilter';
 export { WeightInput } from './WeightInput';
 export { WeightChart } from './WeightChart';
+export { ExerciseInput } from './ExerciseInput';
 export { AnimatedIcon, Icons } from './AnimatedIcon';

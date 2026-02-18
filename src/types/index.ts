@@ -76,6 +76,7 @@ export interface AppSettings {
     minute: number;
   };
   dailyCalorieGoal: number;
+  exerciseCalorieGoal: number; // daily exercise calorie burn goal
   weightGoal?: number; // target weight in kg
 }
 
@@ -91,4 +92,28 @@ export interface CategoryInfo {
   id: FoodCategory;
   name: string;
   icon: string;
+}
+
+// Exercise types
+export type ExerciseType = 
+  | 'running'
+  | 'walking'
+  | 'cycling'
+  | 'hiking'
+  | 'badminton'
+  | 'table_tennis'
+  | 'swimming';
+
+export type TimeUnit = 'minutes' | 'hours';
+
+// Exercise entry for tracking
+export interface ExerciseEntry {
+  id: string;
+  date: string; // YYYY-MM-DD format
+  exerciseType: ExerciseType;
+  duration: number; // in minutes
+  distance?: number; // in km, for distance-based exercises
+  caloriesBurnt: number;
+  isCaloriesOverridden: boolean;
+  timestamp: number;
 }
