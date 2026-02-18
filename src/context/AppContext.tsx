@@ -48,6 +48,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     notificationEnabled: true,
     notificationTime: { hour: 22, minute: 0 },
     dailyCalorieGoal: 2000,
+    exerciseCalorieGoal: 300,
   });
   const [recentFoods, setRecentFoods] = useState<FoodItem[]>([]);
   const [allLogs, setAllLogs] = useState<{ [date: string]: DailyLog }>({});

@@ -3,7 +3,6 @@ import {
   View,
   Text,
   FlatList,
-  StyleSheet,
   SafeAreaView,
   TouchableOpacity,
   ScrollView,
@@ -13,6 +12,7 @@ import { useApp } from '../context/AppContext';
 import { getWeeklySummary, formatDate, getTodayDate } from '../services/storage';
 import { DailyLog } from '../types';
 import { WeightChart } from '../components';
+import { styles } from './styles/historyScreenStyles';
 
 export const HistoryScreen: React.FC = () => {
   const { allLogs, settings, setSelectedDate } = useApp();
@@ -96,24 +96,29 @@ export const HistoryScreen: React.FC = () => {
     );
   };
 
-  const renderListHeader = () => (
+  const renderListHeader = () => {
+    const goalLinePercent = (settings.dailyCalorieGoal / maxCalories) * 100;
+    const barHeight = 100; // height of barWrapper
+    const goalLineBottom = (goalLinePercent / 100) * barHeight;
+    
+    return (
     <>
       <View style={styles.weeklySection}>
         <Text style={styles.sectionTitle}>This Week</Text>
-        <View style={styles.goalLine}>
-          <View style={[styles.goalIndicator, { bottom: `${(settings.dailyCalorieGoal / maxCalories) * 100}%` }]} />
-          <Text style={[styles.goalText, { bottom: `${(settings.dailyCalorieGoal / maxCalories) * 100}%` }]}>
+        <View style={styles.chartArea}>
+          <View style={[styles.goalIndicator, { bottom: goalLineBottom }]} />
+          <Text style={[styles.goalText, { bottom: goalLineBottom + 2 }]}>
             {settings.dailyCalorieGoal} goal
           </Text>
+          <FlatList
+            data={weeklySummary}
+            keyExtractor={(item) => item.date}
+            renderItem={renderWeeklyBar}
+            horizontal
+            scrollEnabled={false}
+            contentContainerStyle={styles.weeklyChart}
+          />
         </View>
-        <FlatList
-          data={weeklySummary}
-          keyExtractor={(item) => item.date}
-          renderItem={renderWeeklyBar}
-          horizontal
-          scrollEnabled={false}
-          contentContainerStyle={styles.weeklyChart}
-        />
       </View>
 
       <View style={styles.statsRow}>
@@ -142,7 +147,7 @@ export const HistoryScreen: React.FC = () => {
 
       <Text style={[styles.sectionTitle, styles.allEntriesTitle]}>All Entries</Text>
     </>
-  );
+  )};
 
   return (
     <SafeAreaView style={styles.container}>
@@ -171,200 +176,3 @@ export const HistoryScreen: React.FC = () => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#FAFAFA',
-  },
-  header: {
-    paddingHorizontal: 16,
-    paddingTop: 16,
-    paddingBottom: 8,
-  },
-  titleRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: '700',
-    color: '#1A1A1A',
-  },
-  subtitle: {
-    fontSize: 14,
-    color: '#666666',
-    marginTop: 2,
-  },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#1A1A1A',
-    paddingHorizontal: 16,
-    marginBottom: 12,
-  },
-  allEntriesTitle: {
-    marginTop: 8,
-  },
-  weeklySection: {
-    backgroundColor: '#FFFFFF',
-    margin: 16,
-    padding: 16,
-    borderRadius: 16,
-    position: 'relative',
-  },
-  weeklyChart: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'flex-end',
-    height: 120,
-    paddingTop: 20,
-  },
-  goalLine: {
-    position: 'absolute',
-    left: 16,
-    right: 16,
-    height: 120,
-    top: 56,
-  },
-  goalIndicator: {
-    position: 'absolute',
-    left: 0,
-    right: 40,
-    height: 1,
-    backgroundColor: '#FF7B00',
-    opacity: 0.3,
-  },
-  goalText: {
-    position: 'absolute',
-    right: 0,
-    fontSize: 10,
-    color: '#FF7B00',
-    transform: [{ translateY: -6 }],
-  },
-  barContainer: {
-    alignItems: 'center',
-    flex: 1,
-    marginHorizontal: 4,
-  },
-  barWrapper: {
-    width: 24,
-    height: 80,
-    backgroundColor: '#F0F0F0',
-    borderRadius: 12,
-    justifyContent: 'flex-end',
-    overflow: 'hidden',
-  },
-  bar: {
-    width: '100%',
-    backgroundColor: '#FF7B00',
-    borderRadius: 12,
-  },
-  barOverGoal: {
-    backgroundColor: '#FF4444',
-  },
-  barUnderGoal: {
-    backgroundColor: '#4CAF50',
-  },
-  barCalories: {
-    fontSize: 10,
-    fontWeight: '600',
-    color: '#666666',
-    marginBottom: 4,
-  },
-  barCaloriesEmpty: {
-    color: '#CCCCCC',
-  },
-  barDay: {
-    fontSize: 12,
-    color: '#666666',
-    marginTop: 4,
-  },
-  barDayToday: {
-    color: '#FF7B00',
-    fontWeight: '600',
-  },
-  statsRow: {
-    flexDirection: 'row',
-    paddingHorizontal: 16,
-    gap: 8,
-    marginBottom: 16,
-  },
-  statCard: {
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-    padding: 16,
-    borderRadius: 12,
-    alignItems: 'center',
-  },
-  statValue: {
-    fontSize: 20,
-    fontWeight: '700',
-    color: '#FF7B00',
-  },
-  statLabel: {
-    fontSize: 12,
-    color: '#666666',
-    marginTop: 4,
-  },
-  historySection: {
-    flex: 1,
-  },
-  logList: {
-    paddingHorizontal: 16,
-    paddingBottom: 24,
-  },
-  logItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-    padding: 16,
-    borderRadius: 12,
-    marginBottom: 8,
-  },
-  logInfo: {
-    flex: 1,
-  },
-  logDate: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#1A1A1A',
-  },
-  logEntries: {
-    fontSize: 13,
-    color: '#666666',
-    marginTop: 2,
-  },
-  logCalories: {
-    alignItems: 'flex-end',
-  },
-  logCalorieValue: {
-    fontSize: 18,
-    fontWeight: '700',
-    color: '#FF7B00',
-  },
-  logCalorieLabel: {
-    fontSize: 12,
-    color: '#999999',
-  },
-  overGoal: {
-    color: '#FF4444',
-  },
-  emptyState: {
-    alignItems: 'center',
-    paddingVertical: 48,
-  },
-  emptyText: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#666666',
-    marginTop: 16,
-  },
-  emptySubtext: {
-    fontSize: 14,
-    color: '#999999',
-    marginTop: 4,
-  },
-});

@@ -1,11 +1,16 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { DailyLog, FoodItem, AppSettings, FoodLogEntry, WeightEntry } from '../types';
+import { DailyLog, FoodItem, AppSettings, FoodLogEntry, WeightEntry, ExerciseEntry } from '../types';
+import { getLocalDateString, getTodayDate, formatDate } from '../utils/utils';
+
+// Re-export utility functions for backward compatibility
+export { getLocalDateString, getTodayDate, formatDate };
 
 const KEYS = {
   DAILY_LOGS: 'daily_logs',
   CUSTOM_FOODS: 'custom_foods',
   SETTINGS: 'app_settings',
   WEIGHT_ENTRIES: 'weight_entries',
+  EXERCISE_ENTRIES: 'exercise_entries',
 };
 
 const DEFAULT_SETTINGS: AppSettings = {
@@ -15,32 +20,8 @@ const DEFAULT_SETTINGS: AppSettings = {
     minute: 0,
   },
   dailyCalorieGoal: 2000,
+  exerciseCalorieGoal: 300,
   weightGoal: undefined,
-};
-
-// Helper to get date in YYYY-MM-DD format using local timezone
-export const getLocalDateString = (date: Date = new Date()): string => {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-  return `${year}-${month}-${day}`;
-};
-
-// Helper to get today's date in YYYY-MM-DD format (local timezone)
-export const getTodayDate = (): string => {
-  return getLocalDateString();
-};
-
-// Format date for display
-export const formatDate = (dateString: string): string => {
-  const date = new Date(dateString);
-  const options: Intl.DateTimeFormatOptions = {
-    weekday: 'short',
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  };
-  return date.toLocaleDateString('en-IN', options);
 };
 
 // Daily Logs Storage
@@ -333,5 +314,72 @@ export const getWeightHistory = async (period: WeightPeriod): Promise<WeightEntr
   } catch (error) {
     console.error('Error getting weight history:', error);
     return [];
+  }
+};
+
+// Exercise Entries Storage
+export const getAllExerciseEntries = async (): Promise<{ [date: string]: ExerciseEntry[] }> => {
+  try {
+    const data = await AsyncStorage.getItem(KEYS.EXERCISE_ENTRIES);
+    return data ? JSON.parse(data) : {};
+  } catch (error) {
+    console.error('Error getting exercise entries:', error);
+    return {};
+  }
+};
+
+export const getExerciseEntries = async (date: string): Promise<ExerciseEntry[]> => {
+  try {
+    const allEntries = await getAllExerciseEntries();
+    return allEntries[date] || [];
+  } catch (error) {
+    console.error('Error getting exercise entries:', error);
+    return [];
+  }
+};
+
+export const saveExerciseEntry = async (entry: ExerciseEntry): Promise<void> => {
+  try {
+    const allEntries = await getAllExerciseEntries();
+    if (!allEntries[entry.date]) {
+      allEntries[entry.date] = [];
+    }
+    // Check if updating existing entry
+    const existingIndex = allEntries[entry.date].findIndex(e => e.id === entry.id);
+    if (existingIndex !== -1) {
+      allEntries[entry.date][existingIndex] = entry;
+    } else {
+      allEntries[entry.date].push(entry);
+    }
+    await AsyncStorage.setItem(KEYS.EXERCISE_ENTRIES, JSON.stringify(allEntries));
+  } catch (error) {
+    console.error('Error saving exercise entry:', error);
+    throw error;
+  }
+};
+
+export const deleteExerciseEntry = async (date: string, entryId: string): Promise<void> => {
+  try {
+    const allEntries = await getAllExerciseEntries();
+    if (allEntries[date]) {
+      allEntries[date] = allEntries[date].filter(e => e.id !== entryId);
+      if (allEntries[date].length === 0) {
+        delete allEntries[date];
+      }
+      await AsyncStorage.setItem(KEYS.EXERCISE_ENTRIES, JSON.stringify(allEntries));
+    }
+  } catch (error) {
+    console.error('Error deleting exercise entry:', error);
+    throw error;
+  }
+};
+
+export const getTodayExerciseCalories = async (date: string): Promise<number> => {
+  try {
+    const entries = await getExerciseEntries(date);
+    return entries.reduce((sum, entry) => sum + entry.caloriesBurnt, 0);
+  } catch (error) {
+    console.error('Error getting today exercise calories:', error);
+    return 0;
   }
 };

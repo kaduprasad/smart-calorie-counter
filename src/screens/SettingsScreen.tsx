@@ -4,7 +4,6 @@ import {
   Text,
   Switch,
   TouchableOpacity,
-  StyleSheet,
   SafeAreaView,
   ScrollView,
   TextInput,
@@ -14,6 +13,7 @@ import {
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useApp } from '../context/AppContext';
 import { sendTestNotification, getScheduledNotifications } from '../services/notifications';
+import { styles } from './styles/settingsScreenStyles';
 
 export const SettingsScreen: React.FC = () => {
   const { settings, updateSettings } = useApp();
@@ -22,6 +22,7 @@ export const SettingsScreen: React.FC = () => {
   const [hour, setHour] = useState(settings.notificationTime.hour.toString());
   const [minute, setMinute] = useState(settings.notificationTime.minute.toString().padStart(2, '0'));
   const [calorieGoal, setCalorieGoal] = useState(settings.dailyCalorieGoal.toString());
+  const [exerciseGoal, setExerciseGoal] = useState(settings.exerciseCalorieGoal.toString());
   const [weightGoal, setWeightGoal] = useState(settings.weightGoal?.toString() || '');
   const [scheduledCount, setScheduledCount] = useState(0);
 
@@ -80,6 +81,22 @@ export const SettingsScreen: React.FC = () => {
     });
 
     Alert.alert('Success', `Daily calorie goal set to ${goalNum}`);
+  };
+
+  const handleSaveExerciseGoal = async () => {
+    const goalNum = parseInt(exerciseGoal);
+
+    if (isNaN(goalNum) || goalNum < 0 || goalNum > 5000) {
+      Alert.alert('Invalid Goal', 'Please enter a goal between 0 and 5000 calories');
+      return;
+    }
+
+    await updateSettings({
+      ...settings,
+      exerciseCalorieGoal: goalNum,
+    });
+
+    Alert.alert('Success', `Daily exercise goal set to ${goalNum} cal`);
   };
 
   const handleSaveWeightGoal = async () => {
@@ -143,7 +160,7 @@ export const SettingsScreen: React.FC = () => {
           <View style={styles.goalSection}>
             <View style={styles.sectionTitleRow}>
               <MaterialCommunityIcons name="target" size={18} color="#FF7B00" />
-              <Text style={styles.sectionTitle}> Calorie Goal</Text>
+              <Text style={styles.sectionTitleInRow}>Calorie Goal</Text>
             </View>
             <View style={styles.card}>
               <View style={styles.inputRow}>
@@ -162,27 +179,6 @@ export const SettingsScreen: React.FC = () => {
               >
                 <Text style={styles.saveButtonTextSmall}>Save</Text>
               </TouchableOpacity>
-              <View style={styles.presetGoalsCompact}>
-                {[1500, 1800, 2000, 2500].map((goal) => (
-                  <TouchableOpacity
-                    key={goal}
-                    style={[
-                      styles.presetButtonSmall,
-                      parseInt(calorieGoal) === goal && styles.presetButtonActive,
-                    ]}
-                    onPress={() => setCalorieGoal(goal.toString())}
-                  >
-                    <Text
-                      style={[
-                        styles.presetButtonTextSmall,
-                        parseInt(calorieGoal) === goal && styles.presetButtonTextActive,
-                      ]}
-                    >
-                      {goal}
-                    </Text>
-                  </TouchableOpacity>
-                ))}
-              </View>
               <Text style={styles.currentSettingSmall}>
                 Target: {settings.dailyCalorieGoal} cal
               </Text>
@@ -193,7 +189,7 @@ export const SettingsScreen: React.FC = () => {
           <View style={styles.goalSection}>
             <View style={styles.sectionTitleRow}>
               <MaterialCommunityIcons name="scale-bathroom" size={18} color="#FF7B00" />
-              <Text style={styles.sectionTitle}> Weight Goal</Text>
+              <Text style={styles.sectionTitleInRow}>Weight Goal</Text>
             </View>
             <View style={styles.card}>
               <View style={styles.inputRow}>
@@ -226,11 +222,43 @@ export const SettingsScreen: React.FC = () => {
           </View>
         </View>
 
+        {/* Exercise Goal - Full width below */}
+        <View style={styles.section}>
+          <View style={styles.sectionTitleRow}>
+            <MaterialCommunityIcons name="run-fast" size={18} color="#4CAF50" />
+            <Text style={styles.sectionTitleInRow}>Exercise Goal</Text>
+          </View>
+          <View style={styles.card}>
+            <Text style={styles.goalDescription}>
+              Daily calorie burn target from workouts
+            </Text>
+            <View style={styles.inputRow}>
+              <TextInput
+                style={[styles.goalInputCompact, { flex: 1 }]}
+                value={exerciseGoal}
+                onChangeText={setExerciseGoal}
+                keyboardType="number-pad"
+                placeholder="300"
+              />
+              <Text style={styles.goalUnitSmall}>cal</Text>
+              <TouchableOpacity
+                style={[styles.saveButtonSmall, { marginLeft: 12, marginTop: 0 }]}
+                onPress={handleSaveExerciseGoal}
+              >
+                <Text style={styles.saveButtonTextSmall}>Save</Text>
+              </TouchableOpacity>
+            </View>
+            <Text style={styles.currentSettingSmall}>
+              Target: {settings.exerciseCalorieGoal} cal/day
+            </Text>
+          </View>
+        </View>
+
         {/* Daily Reminder */}
         <View style={styles.section}>
           <View style={styles.sectionTitleRow}>
             <Ionicons name="notifications" size={18} color="#FF7B00" />
-            <Text style={styles.sectionTitle}> Daily Reminder</Text>
+            <Text style={styles.sectionTitleInRow}>Daily Reminder</Text>
           </View>
           <View style={styles.card}>
             <View style={styles.toggleRow}>
@@ -338,12 +366,12 @@ export const SettingsScreen: React.FC = () => {
         <View style={styles.section}>
           <View style={styles.sectionTitleRow}>
             <Ionicons name="information-circle" size={18} color="#FF7B00" />
-            <Text style={styles.sectionTitle}> About</Text>
+            <Text style={styles.sectionTitleInRow}>About</Text>
           </View>
           <View style={styles.card}>
             <View style={styles.aboutTitleRow}>
               <Ionicons name="restaurant" size={20} color="#FF7B00" />
-              <Text style={styles.aboutText}> Maharashtrian Calorie Counter</Text>
+              <Text style={styles.aboutText}>Maharashtrian Calorie Counter</Text>
             </View>
             <Text style={styles.aboutDescription}>
               Track your daily food intake with a comprehensive database of traditional Maharashtrian vegetarian dishes.
@@ -351,23 +379,23 @@ export const SettingsScreen: React.FC = () => {
             <View style={styles.features}>
               <View style={styles.featureRow}>
                 <Ionicons name="checkmark-circle" size={16} color="#4CAF50" />
-                <Text style={styles.featureItem}> 100+ Maharashtrian food items</Text>
+                <Text style={styles.featureItem}>100+ Maharashtrian food items</Text>
               </View>
               <View style={styles.featureRow}>
                 <Ionicons name="checkmark-circle" size={16} color="#4CAF50" />
-                <Text style={styles.featureItem}> Custom dish creation</Text>
+                <Text style={styles.featureItem}>Custom dish creation</Text>
               </View>
               <View style={styles.featureRow}>
                 <Ionicons name="checkmark-circle" size={16} color="#4CAF50" />
-                <Text style={styles.featureItem}> Daily calorie tracking</Text>
+                <Text style={styles.featureItem}>Daily calorie tracking</Text>
               </View>
               <View style={styles.featureRow}>
                 <Ionicons name="checkmark-circle" size={16} color="#4CAF50" />
-                <Text style={styles.featureItem}> History & statistics</Text>
+                <Text style={styles.featureItem}>History & statistics</Text>
               </View>
               <View style={styles.featureRow}>
                 <Ionicons name="checkmark-circle" size={16} color="#4CAF50" />
-                <Text style={styles.featureItem}> Configurable reminders</Text>
+                <Text style={styles.featureItem}>Configurable reminders</Text>
               </View>
             </View>
             <Text style={styles.version}>Version 1.0.0</Text>
@@ -377,295 +405,3 @@ export const SettingsScreen: React.FC = () => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#FAFAFA',
-  },
-  header: {
-    paddingHorizontal: 16,
-    paddingTop: 16,
-    paddingBottom: 8,
-  },
-  titleRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: '700',
-    color: '#1A1A1A',
-  },
-  subtitle: {
-    fontSize: 14,
-    color: '#666666',
-    marginTop: 2,
-  },
-  scrollView: {
-    flex: 1,
-  },
-  section: {
-    marginHorizontal: 16,
-    marginVertical: 8,
-  },
-  goalsRow: {
-    flexDirection: 'row',
-    marginHorizontal: 16,
-    marginVertical: 8,
-    gap: 12,
-  },
-  goalSection: {
-    flex: 1,
-  },
-  sectionTitleRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 8,
-  },
-  sectionTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#1A1A1A',
-    marginBottom: 8,
-  },
-  card: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 16,
-    padding: 16,
-  },
-  toggleRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  toggleLabel: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#1A1A1A',
-  },
-  toggleDescription: {
-    fontSize: 13,
-    color: '#666666',
-    marginTop: 2,
-  },
-  divider: {
-    height: 1,
-    backgroundColor: '#EEEEEE',
-    marginVertical: 16,
-  },
-  timeLabel: {
-    fontSize: 14,
-    fontWeight: '500',
-    color: '#666666',
-    marginBottom: 12,
-  },
-  timeInputRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 12,
-  },
-  timeInputGroup: {
-    alignItems: 'center',
-  },
-  timeInput: {
-    backgroundColor: '#F5F5F5',
-    borderRadius: 12,
-    padding: 16,
-    fontSize: 24,
-    fontWeight: '700',
-    color: '#1A1A1A',
-    textAlign: 'center',
-    width: 80,
-  },
-  timeInputLabel: {
-    fontSize: 11,
-    color: '#999999',
-    marginTop: 4,
-  },
-  timeSeparator: {
-    fontSize: 32,
-    fontWeight: '700',
-    color: '#1A1A1A',
-    marginHorizontal: 8,
-  },
-  presetTimes: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    gap: 8,
-    marginBottom: 16,
-  },
-  presetGoals: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    gap: 8,
-    marginTop: 12,
-  },
-  presetLabel: {
-    fontSize: 13,
-    color: '#666666',
-    marginRight: 4,
-  },
-  presetButton: {
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 16,
-    backgroundColor: '#F5F5F5',
-  },
-  presetButtonActive: {
-    backgroundColor: '#FF7B00',
-  },
-  presetButtonText: {
-    fontSize: 13,
-    color: '#666666',
-  },
-  presetButtonTextActive: {
-    color: '#FFFFFF',
-    fontWeight: '600',
-  },
-  saveButton: {
-    backgroundColor: '#FF7B00',
-    paddingVertical: 12,
-    borderRadius: 10,
-    alignItems: 'center',
-    marginTop: 8,
-  },
-  saveButtonText: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#FFFFFF',
-  },
-  currentSetting: {
-    fontSize: 13,
-    color: '#666666',
-    textAlign: 'center',
-    marginTop: 12,
-  },
-  testButton: {
-    backgroundColor: '#F5F5F5',
-    paddingVertical: 12,
-    borderRadius: 10,
-    alignItems: 'center',
-    marginTop: 12,
-  },
-  testButtonContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  testButtonText: {
-    fontSize: 14,
-    fontWeight: '500',
-    color: '#666666',
-  },
-  inputRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  goalInput: {
-    flex: 1,
-    backgroundColor: '#F5F5F5',
-    borderRadius: 12,
-    padding: 16,
-    fontSize: 24,
-    fontWeight: '700',
-    color: '#1A1A1A',
-    textAlign: 'center',
-  },
-  goalUnit: {
-    fontSize: 16,
-    color: '#666666',
-    marginLeft: 12,
-  },
-  goalInputCompact: {
-    flex: 1,
-    backgroundColor: '#F5F5F5',
-    borderRadius: 10,
-    padding: 12,
-    fontSize: 20,
-    fontWeight: '700',
-    color: '#1A1A1A',
-    textAlign: 'center',
-  },
-  goalUnitSmall: {
-    fontSize: 14,
-    color: '#666666',
-    marginLeft: 8,
-  },
-  saveButtonSmall: {
-    backgroundColor: '#FF7B00',
-    paddingVertical: 10,
-    borderRadius: 8,
-    alignItems: 'center',
-    marginTop: 8,
-  },
-  saveButtonTextSmall: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#FFFFFF',
-  },
-  presetGoalsCompact: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    gap: 6,
-    marginTop: 10,
-  },
-  presetButtonSmall: {
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 12,
-    backgroundColor: '#F5F5F5',
-  },
-  presetButtonTextSmall: {
-    fontSize: 11,
-    color: '#666666',
-  },
-  currentSettingSmall: {
-    fontSize: 12,
-    color: '#666666',
-    textAlign: 'center',
-    marginTop: 8,
-  },
-  weightGoalDescription: {
-    fontSize: 14,
-    color: '#666666',
-    marginBottom: 16,
-    textAlign: 'center',
-  },
-  aboutTitleRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 8,
-  },
-  aboutText: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#1A1A1A',
-  },
-  aboutDescription: {
-    fontSize: 14,
-    color: '#666666',
-    lineHeight: 20,
-    marginBottom: 16,
-  },
-  features: {
-    gap: 8,
-    marginBottom: 16,
-  },
-  featureRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  featureItem: {
-    fontSize: 14,
-    color: '#444444',
-  },
-  version: {
-    fontSize: 12,
-    color: '#999999',
-    textAlign: 'center',
-  },
-});
