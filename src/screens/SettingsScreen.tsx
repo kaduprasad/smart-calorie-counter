@@ -371,7 +371,7 @@ export const SettingsScreen: React.FC = () => {
           <View style={styles.card}>
             <View style={styles.aboutTitleRow}>
               <Ionicons name="restaurant" size={20} color="#FF7B00" />
-              <Text style={styles.aboutText}>Maharashtrian Calorie Counter</Text>
+              <Text style={styles.aboutText}>Smart Calorie Tracker</Text>
             </View>
             <Text style={styles.aboutDescription}>
               Track your daily food intake with a comprehensive database of traditional Maharashtrian vegetarian dishes.

@@ -1,8 +1,8 @@
-import * as Notifications from 'expo-notifications';
-import * as Device from 'expo-device';
-import { Platform } from 'react-native';
-import { AppSettings } from '../types';
-import { getSettings, getTodayDate, getDailyLog } from './storage';
+import * as Notifications from "expo-notifications";
+import * as Device from "expo-device";
+import { Platform } from "react-native";
+import { AppSettings } from "../types";
+import { getSettings, getTodayDate, getDailyLog } from "./storage";
 
 // Configure notification handling
 Notifications.setNotificationHandler({
@@ -17,36 +17,38 @@ Notifications.setNotificationHandler({
 
 export const requestNotificationPermissions = async (): Promise<boolean> => {
   if (!Device.isDevice) {
-    console.log('Must use physical device for notifications');
+    console.log("Must use physical device for notifications");
     return false;
   }
 
   const { status: existingStatus } = await Notifications.getPermissionsAsync();
   let finalStatus = existingStatus;
 
-  if (existingStatus !== 'granted') {
+  if (existingStatus !== "granted") {
     const { status } = await Notifications.requestPermissionsAsync();
     finalStatus = status;
   }
 
-  if (finalStatus !== 'granted') {
-    console.log('Notification permission not granted');
+  if (finalStatus !== "granted") {
+    console.log("Notification permission not granted");
     return false;
   }
 
-  if (Platform.OS === 'android') {
-    await Notifications.setNotificationChannelAsync('daily-reminder', {
-      name: 'Daily Reminder',
+  if (Platform.OS === "android") {
+    await Notifications.setNotificationChannelAsync("daily-reminder", {
+      name: "Daily Reminder",
       importance: Notifications.AndroidImportance.HIGH,
       vibrationPattern: [0, 250, 250, 250],
-      lightColor: '#FF7B00',
+      lightColor: "#FF7B00",
     });
   }
 
   return true;
 };
 
-export const scheduleDailyReminder = async (settings: AppSettings): Promise<string | null> => {
+export const scheduleDailyReminder = async (
+  settings: AppSettings,
+): Promise<string | null> => {
   try {
     // Cancel existing notifications first
     await cancelAllNotifications();
@@ -72,18 +74,18 @@ export const scheduleDailyReminder = async (settings: AppSettings): Promise<stri
 
     const notificationId = await Notifications.scheduleNotificationAsync({
       content: {
-        title: '🍽️ Log Your Meals!',
+        title: "🍽️ Log Your Meals!",
         body: `आज आपण किती कॅलरी घेतल्या ते नोंदवा! (Today's intake: ${todayCalories} cal)`,
-        data: { type: 'daily-reminder' },
+        data: { type: "daily-reminder" },
         sound: true,
       },
       trigger,
     });
 
-    console.log('Notification scheduled:', notificationId);
+    console.log("Notification scheduled:", notificationId);
     return notificationId;
   } catch (error) {
-    console.error('Error scheduling notification:', error);
+    console.error("Error scheduling notification:", error);
     return null;
   }
 };
@@ -91,9 +93,9 @@ export const scheduleDailyReminder = async (settings: AppSettings): Promise<stri
 export const cancelAllNotifications = async (): Promise<void> => {
   try {
     await Notifications.cancelAllScheduledNotificationsAsync();
-    console.log('All notifications cancelled');
+    console.log("All notifications cancelled");
   } catch (error) {
-    console.error('Error cancelling notifications:', error);
+    console.error("Error cancelling notifications:", error);
   }
 };
 
@@ -101,7 +103,7 @@ export const getScheduledNotifications = async () => {
   try {
     return await Notifications.getAllScheduledNotificationsAsync();
   } catch (error) {
-    console.error('Error getting scheduled notifications:', error);
+    console.error("Error getting scheduled notifications:", error);
     return [];
   }
 };
@@ -115,9 +117,9 @@ export const sendTestNotification = async (): Promise<void> => {
 
   await Notifications.scheduleNotificationAsync({
     content: {
-      title: '🍽️ Test Notification',
-      body: 'This is a test notification for the Calorie Counter app!',
-      data: { type: 'test' },
+      title: "🍽️ Test Notification",
+      body: "This is a test notification for the Smart Calorie Tracker app!",
+      data: { type: "test" },
     },
     trigger: null, // Send immediately
   });
@@ -125,15 +127,21 @@ export const sendTestNotification = async (): Promise<void> => {
 
 // Setup notification listener
 export const setupNotificationListener = (
-  onNotificationReceived: (notification: Notifications.Notification) => void
+  onNotificationReceived: (notification: Notifications.Notification) => void,
 ) => {
-  const subscription = Notifications.addNotificationReceivedListener(onNotificationReceived);
+  const subscription = Notifications.addNotificationReceivedListener(
+    onNotificationReceived,
+  );
   return () => subscription.remove();
 };
 
 export const setupNotificationResponseListener = (
-  onNotificationResponse: (response: Notifications.NotificationResponse) => void
+  onNotificationResponse: (
+    response: Notifications.NotificationResponse,
+  ) => void,
 ) => {
-  const subscription = Notifications.addNotificationResponseReceivedListener(onNotificationResponse);
+  const subscription = Notifications.addNotificationResponseReceivedListener(
+    onNotificationResponse,
+  );
   return () => subscription.remove();
 };
