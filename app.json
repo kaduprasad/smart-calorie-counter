@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Calorie Tracker - Maharashtrian",
-    "slug": "smart-calorie-tracker-and-counter",
+    "slug": "smart-calorie-counter",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
