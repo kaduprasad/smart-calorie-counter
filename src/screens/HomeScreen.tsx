@@ -112,9 +112,9 @@ export const HomeScreen: React.FC = () => {
       <View style={styles.header}>
         <View style={styles.titleRow}>
           <MaterialCommunityIcons name="food-apple" size={28} color="#FF7B00" />
-          <Text style={styles.title}>Calorie Counter</Text>
+          <Text style={styles.title}>Calorie Tracker</Text>
         </View>
-        <Text style={styles.subtitle}>Maharashtrian Food Tracker</Text>
+        <Text style={styles.subtitle}>Exercise & Maharashtrian Food Calorie Tracker</Text>
       </View>
 
       <View style={styles.dateSelector}>
