@@ -48,8 +48,9 @@ export const CalorieSummary: React.FC<CalorieSummaryProps> = ({
   const endAngle = 360; // Right side (0° = 360°)
   const totalArcAngle = 180;
 
-  // Calculate fill percentage (capped at 120% for visual)
-  const maxDisplayedCal = goal * 1.2;
+  // Calculate fill percentage (capped at 100% for visual)
+  // Max displayed is 2000 or 120% of goal, whichever is larger
+  const maxDisplayedCal = Math.max(2000, goal * 1.2);
   const fillPercentage = Math.min((netCalories / maxDisplayedCal) * 100, 100);
   const targetPercentage = (goal / maxDisplayedCal) * 100;
 

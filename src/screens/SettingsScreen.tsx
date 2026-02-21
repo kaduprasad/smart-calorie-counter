@@ -160,11 +160,13 @@ export const SettingsScreen: React.FC = () => {
         <View style={styles.goalsRow}>
           {/* Daily Calorie Goal */}
           <View style={styles.goalSection}>
-            <View style={styles.sectionTitleRow}>
-              <MaterialCommunityIcons name="target" size={18} color="#FF7B00" />
-              <Text style={styles.sectionTitleInRow}>Calorie Goal</Text>
-            </View>
             <View style={styles.card}>
+              <View style={styles.cardHeader}>
+                <View style={styles.cardIconContainer}>
+                  <MaterialCommunityIcons name="target" size={20} color="#FF7B00" />
+                </View>
+                <Text style={styles.cardTitle}>Calorie Goal</Text>
+              </View>
               <View style={styles.inputRow}>
                 <TextInput
                   style={styles.goalInputCompact}
@@ -189,11 +191,13 @@ export const SettingsScreen: React.FC = () => {
 
           {/* Weight Goal */}
           <View style={styles.goalSection}>
-            <View style={styles.sectionTitleRow}>
-              <MaterialCommunityIcons name="scale-bathroom" size={18} color="#FF7B00" />
-              <Text style={styles.sectionTitleInRow}>Weight Goal</Text>
-            </View>
             <View style={styles.card}>
+              <View style={styles.cardHeader}>
+                <View style={styles.cardIconContainer}>
+                  <MaterialCommunityIcons name="scale-bathroom" size={20} color="#FF7B00" />
+                </View>
+                <Text style={styles.cardTitle}>Weight Goal</Text>
+              </View>
               <View style={styles.inputRow}>
                 <TextInput
                   style={styles.goalInputCompact}
@@ -226,18 +230,20 @@ export const SettingsScreen: React.FC = () => {
 
         {/* Exercise Goal - Full width below */}
         <View style={styles.section}>
-          <View style={styles.sectionTitleRow}>
-            <MaterialCommunityIcons name="run-fast" size={18} color="#4CAF50" />
-            <Text style={styles.sectionTitleInRow}>Exercise Goal</Text>
-          </View>
           <View style={styles.card}>
+            <View style={styles.cardHeader}>
+              <View style={[styles.cardIconContainer, { backgroundColor: '#E8F5E9' }]}>
+                <MaterialCommunityIcons name="run-fast" size={20} color="#4CAF50" />
+              </View>
+              <Text style={styles.cardTitle}>Exercise Goal</Text>
+            </View>
             <Text style={styles.goalDescription}>
               Daily calorie burn target from workouts
             </Text>
             <View style={styles.inputRow}>
               <TextInput
                 style={[
-                  styles.goalInputCompact,
+                  styles.exerciseGoalInputCompact,
                   exerciseInputFocused && styles.goalInputFocusedGreen,
                 ]}
                 value={exerciseGoal}
@@ -268,11 +274,13 @@ export const SettingsScreen: React.FC = () => {
 
         {/* Daily Reminder */}
         <View style={styles.section}>
-          <View style={styles.sectionTitleRow}>
-            <Ionicons name="notifications" size={18} color="#FF7B00" />
-            <Text style={styles.sectionTitleInRow}>Daily Reminder</Text>
-          </View>
           <View style={styles.card}>
+            <View style={styles.cardHeader}>
+              <View style={styles.cardIconContainer}>
+                <Ionicons name="notifications" size={20} color="#FF7B00" />
+              </View>
+              <Text style={styles.cardTitle}>Daily Reminder</Text>
+            </View>
             <View style={styles.toggleRow}>
               <View>
                 <Text style={styles.toggleLabel}>Enable Notifications</Text>
