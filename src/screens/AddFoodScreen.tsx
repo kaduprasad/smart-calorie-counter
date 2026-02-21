@@ -3,13 +3,13 @@ import {
   View,
   Text,
   FlatList,
-  SafeAreaView,
   TouchableOpacity,
   ActivityIndicator,
   Alert,
   Image,
   Pressable,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useApp } from '../context/AppContext';
@@ -164,7 +164,7 @@ export const AddFoodScreen: React.FC = () => {
   const showRecentSection = showRecent && !searchQuery && !selectedCategory && recentFoods.length > 0;
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
           <Ionicons name="arrow-back" size={20} color="#FF7B00" />
