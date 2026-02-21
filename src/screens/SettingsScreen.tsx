@@ -4,12 +4,12 @@ import {
   Text,
   Switch,
   TouchableOpacity,
-  SafeAreaView,
   ScrollView,
   TextInput,
   Alert,
   Platform,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useApp } from '../context/AppContext';
 import { sendTestNotification, getScheduledNotifications } from '../services/notifications';
@@ -145,7 +145,7 @@ export const SettingsScreen: React.FC = () => {
   ];
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['top']}>
       <View style={styles.header}>
         <View style={styles.titleRow}>
           <Ionicons name="settings" size={28} color="#FF7B00" />
@@ -235,20 +235,20 @@ export const SettingsScreen: React.FC = () => {
             </Text>
             <View style={styles.inputRow}>
               <TextInput
-                style={[styles.goalInputCompact, { flex: 1 }]}
+                style={styles.goalInputCompact}
                 value={exerciseGoal}
                 onChangeText={setExerciseGoal}
                 keyboardType="number-pad"
                 placeholder="300"
               />
               <Text style={styles.goalUnitSmall}>cal</Text>
-              <TouchableOpacity
-                style={[styles.saveButtonSmall, { marginLeft: 12, marginTop: 0 }]}
-                onPress={handleSaveExerciseGoal}
-              >
-                <Text style={styles.saveButtonTextSmall}>Save</Text>
-              </TouchableOpacity>
             </View>
+            <TouchableOpacity
+              style={styles.saveButtonSmall}
+              onPress={handleSaveExerciseGoal}
+            >
+              <Text style={styles.saveButtonTextSmall}>Save</Text>
+            </TouchableOpacity>
             <Text style={styles.currentSettingSmall}>
               Target: {settings.exerciseCalorieGoal} cal/day
             </Text>

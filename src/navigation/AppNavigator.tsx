@@ -2,8 +2,9 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, Platform } from 'react-native';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
   HomeScreen,
   AddFoodScreen,
@@ -37,61 +38,72 @@ const TabIcon: React.FC<{ iconName: IconName; focused: boolean; label: string }>
   <View style={styles.tabIconContainer}>
     <Ionicons 
       name={focused ? iconName : `${iconName}-outline` as any} 
-      size={24} 
+      size={22} 
       color={focused ? '#FF7B00' : '#999999'} 
     />
-    <Text style={[styles.tabLabel, focused && styles.tabLabelActive]}>
+    <Text style={[styles.tabLabel, focused && styles.tabLabelActive]} numberOfLines={1}>
       {label}
     </Text>
   </View>
 );
 
-const MainTabs: React.FC = () => (
-  <Tab.Navigator
-    screenOptions={{
-      headerShown: false,
-      tabBarStyle: styles.tabBar,
-      tabBarShowLabel: false,
-    }}
-  >
-    <Tab.Screen
-      name="Home"
-      component={HomeScreen}
-      options={{
-        tabBarIcon: ({ focused }) => (
-          <TabIcon iconName="home" focused={focused} label="Home" />
-        ),
+const MainTabs: React.FC = () => {
+  const insets = useSafeAreaInsets();
+  
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {
+          backgroundColor: '#FFFFFF',
+          borderTopWidth: 1,
+          borderTopColor: '#F0F0F0',
+          height: 56 + Math.max(insets.bottom, 8),
+          paddingBottom: Math.max(insets.bottom, 8),
+          paddingTop: 6,
+        },
+        tabBarShowLabel: false,
       }}
-    />
-    <Tab.Screen
-      name="History"
-      component={HistoryScreen}
-      options={{
-        tabBarIcon: ({ focused }) => (
-          <TabIcon iconName="stats-chart" focused={focused} label="History" />
-        ),
-      }}
-    />
-    <Tab.Screen
-      name="Custom"
-      component={CustomDishScreen}
-      options={{
-        tabBarIcon: ({ focused }) => (
-          <TabIcon iconName="star" focused={focused} label="Custom" />
-        ),
-      }}
-    />
-    <Tab.Screen
-      name="Settings"
-      component={SettingsScreen}
-      options={{
-        tabBarIcon: ({ focused }) => (
-          <TabIcon iconName="settings" focused={focused} label="Settings" />
-        ),
-      }}
-    />
-  </Tab.Navigator>
-);
+    >
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <TabIcon iconName="home" focused={focused} label="Home" />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="History"
+        component={HistoryScreen}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <TabIcon iconName="stats-chart" focused={focused} label="History" />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Custom"
+        component={CustomDishScreen}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <TabIcon iconName="star" focused={focused} label="Custom" />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Settings"
+        component={SettingsScreen}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <TabIcon iconName="settings" focused={focused} label="Setti..." />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+};
 
 export const AppNavigator: React.FC = () => (
   <NavigationContainer>
@@ -110,20 +122,13 @@ export const AppNavigator: React.FC = () => (
 );
 
 const styles = StyleSheet.create({
-  tabBar: {
-    backgroundColor: '#FFFFFF',
-    borderTopWidth: 1,
-    borderTopColor: '#F0F0F0',
-    height: 70,
-    paddingBottom: 8,
-    paddingTop: 8,
-  },
   tabIconContainer: {
     alignItems: 'center',
     justifyContent: 'center',
+    minWidth: 50,
   },
   tabLabel: {
-    fontSize: 11,
+    fontSize: 10,
     color: '#999999',
     fontWeight: '500',
     marginTop: 2,

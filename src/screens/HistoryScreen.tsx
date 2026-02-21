@@ -3,10 +3,10 @@ import {
   View,
   Text,
   FlatList,
-  SafeAreaView,
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useApp } from '../context/AppContext';
 import { getWeeklySummary, formatDate, getTodayDate } from '../services/storage';
@@ -150,7 +150,7 @@ export const HistoryScreen: React.FC = () => {
   )};
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['top']}>
       <View style={styles.header}>
         <View style={styles.titleRow}>
           <Ionicons name="stats-chart" size={28} color="#FF7B00" />
