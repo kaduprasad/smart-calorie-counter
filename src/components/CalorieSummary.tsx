@@ -1,20 +1,16 @@
 import React from "react";
-import { View, Text, StyleSheet, Dimensions } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import Svg, {
-  Circle,
-  G,
   Path,
   Line,
   Text as SvgText,
-  Rect,
 } from "react-native-svg";
 import {
   MaterialCommunityIcons,
   Ionicons,
   FontAwesome5,
 } from "@expo/vector-icons";
-
-const { width: SCREEN_WIDTH } = Dimensions.get("window");
+import { ProgressScale } from "../common";
 
 interface CalorieSummaryProps {
   consumed: number;
@@ -110,44 +106,13 @@ export const CalorieSummary: React.FC<CalorieSummaryProps> = ({
 
   const meterColor = getMeterColor();
 
-  // Card scale dimensions (responsive)
-  const cardWidth = (SCREEN_WIDTH - 44) / 2; // Account for container padding and gap
-  const scaleWidth = cardWidth - 36; // Padding on both sides
-  const scaleHeight = 70;
-  const barHeight = 22;
-  const barY = 18;
-  const labelY = 58;
-
-  // Scale bar positioning (using actual width)
-  const barPadding = 85;
-  const barWidth = scaleWidth - barPadding * 2;
-
-  // Food scale - max 2000 calories
-  const foodScaleMax = 2000;
-  const foodTargetPosition = (goal / foodScaleMax) * 100;
-  const foodFillPercentage = Math.min(
-    (roundedConsumed / foodScaleMax) * 100,
-    100,
-  );
+  // Food scale colors
   const isFoodOverTarget = roundedConsumed > goal;
   const foodColor = isFoodOverTarget ? "#EF4444" : "#F59E0B";
 
-  // Exercise scale - max based on goal * 1.5 or 500 minimum
-  const exerciseScaleMax = Math.max(exerciseGoal * 1.5, 500);
-  const exerciseTargetPosition = (exerciseGoal / exerciseScaleMax) * 100;
-  const exerciseFillPercentage = Math.min(
-    (roundedExercise / exerciseScaleMax) * 100,
-    100,
-  );
+  // Exercise scale colors
   const isExerciseOverTarget = roundedExercise >= exerciseGoal;
   const exerciseColor = isExerciseOverTarget ? "#10B981" : "#60A5FA"; // Green when reached, Blue when not
-
-  // Food and exercise progress (for backward compat)
-  const foodPercentage = Math.min((roundedConsumed / goal) * 100, 100);
-  const exercisePercentage = Math.min(
-    (roundedExercise / exerciseGoal) * 100,
-    100,
-  );
 
   return (
     <View style={styles.container}>
@@ -268,75 +233,11 @@ export const CalorieSummary: React.FC<CalorieSummaryProps> = ({
           </View>
 
           {/* Food Scale with Target Marker */}
-          <View style={styles.scaleContainer}>
-            <Svg width={scaleWidth} height={scaleHeight}>
-              {/* Background track */}
-              <Rect
-                x={barPadding}
-                y={barY}
-                width={barWidth}
-                height={barHeight}
-                rx={barHeight / 2}
-                fill="#E5E7EB"
-              />
-
-              {/* Filled portion */}
-              <Rect
-                x={barPadding}
-                y={barY}
-                width={Math.max(0, (foodFillPercentage / 100) * barWidth)}
-                height={barHeight}
-                rx={barHeight / 2}
-                fill={foodColor}
-              />
-
-              {/* Target marker line */}
-              <Line
-                x1={barPadding + (foodTargetPosition / 100) * barWidth}
-                y1={10}
-                x2={barPadding + (foodTargetPosition / 100) * barWidth}
-                y2={barY + barHeight + 8}
-                stroke="#4e5867"
-                strokeWidth={2}
-                strokeLinecap="round"
-              />
-
-              {/* Target marker triangle */}
-              <Path
-                d={`M${barPadding + (foodTargetPosition / 100) * barWidth - 7} 2 L${barPadding + (foodTargetPosition / 100) * barWidth + 7} 2 L${barPadding + (foodTargetPosition / 100) * barWidth} 12 Z`}
-                fill="#4e5867"
-              />
-
-              {/* Scale labels */}
-              <SvgText
-                x={barPadding + 2}
-                y={labelY}
-                fontSize={12}
-                fill="#9CA3AF"
-              >
-                0
-              </SvgText>
-              <SvgText
-                x={barPadding + (foodTargetPosition / 100) * barWidth}
-                y={labelY}
-                fontSize={12}
-                fill="#374151"
-                fontWeight="700"
-                textAnchor="middle"
-              >
-                {goal}
-              </SvgText>
-              <SvgText
-                x={scaleWidth - barPadding}
-                y={labelY}
-                fontSize={12}
-                fill="#9CA3AF"
-                textAnchor="end"
-              >
-                {foodScaleMax}
-              </SvgText>
-            </Svg>
-          </View>
+          <ProgressScale
+            value={roundedConsumed}
+            max={goal}
+            fillColor={foodColor}
+          />
 
           <Text style={[styles.scaleStatus, { color: foodColor }]}>
             {isFoodOverTarget
@@ -364,70 +265,11 @@ export const CalorieSummary: React.FC<CalorieSummaryProps> = ({
           </View>
 
           {/* Exercise Scale with Target Marker */}
-          <View style={styles.scaleContainer}>
-            <Svg width={scaleWidth} height={scaleHeight}>
-              {/* Background track */}
-              <Rect
-                x={barPadding}
-                y={barY}
-                width={barWidth}
-                height={barHeight}
-                rx={barHeight / 2}
-                fill="#E5E7EB"
-              />
-
-              {/* Filled portion */}
-              <Rect
-                x={barPadding}
-                y={barY}
-                width={Math.max(0, (exerciseFillPercentage / 100) * barWidth)}
-                height={barHeight}
-                rx={barHeight / 2}
-                fill={exerciseColor}
-              />
-
-              {/* Target marker line */}
-              <Line
-                x1={barPadding + (exerciseTargetPosition / 100) * barWidth}
-                y1={10}
-                x2={barPadding + (exerciseTargetPosition / 100) * barWidth}
-                y2={barY + barHeight + 8}
-                stroke="#4e5867"
-                strokeWidth={2}
-                strokeLinecap="round"
-              />
-
-              {/* Target marker triangle */}
-              <Path
-                d={`M${barPadding + (exerciseTargetPosition / 100) * barWidth - 7} 2 L${barPadding + (exerciseTargetPosition / 100) * barWidth + 7} 2 L${barPadding + (exerciseTargetPosition / 100) * barWidth} 12 Z`}
-                fill="#4e5867"
-              />
-
-              {/* Scale labels */}
-              <SvgText x={barPadding + 2} y={labelY} fontSize={12} fill="#9CA3AF">
-                0
-              </SvgText>
-              <SvgText
-                x={barPadding + (exerciseTargetPosition / 100) * barWidth}
-                y={labelY}
-                fontSize={12}
-                fill="#374151"
-                fontWeight="700"
-                textAnchor="middle"
-              >
-                {exerciseGoal}
-              </SvgText>
-              <SvgText
-                x={scaleWidth - barPadding}
-                y={labelY}
-                fontSize={12}
-                fill="#9CA3AF"
-                textAnchor="end"
-              >
-                {Math.round(exerciseScaleMax)}
-              </SvgText>
-            </Svg>
-          </View>
+          <ProgressScale
+            value={roundedExercise}
+            max={exerciseGoal}
+            fillColor={exerciseColor}
+          />
 
           <Text style={[styles.scaleStatus, { color: exerciseColor }]}>
             {isExerciseOverTarget
@@ -545,17 +387,15 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   cardsContainer: {
-    flexDirection: "row",
+    flexDirection: "column",
     paddingHorizontal: 14,
-    gap: 14,
+    gap: 12,
     marginTop: 12,
   },
   card: {
-    flex: 1,
     backgroundColor: "#F9FAFB",
     borderRadius: 16,
     padding: 18,
-    minWidth: 0, // Allow flex shrinking
   },
   cardHeader: {
     flexDirection: "row",
@@ -589,11 +429,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "#6B7280",
     marginTop: -2,
-  },
-  scaleContainer: {
-    marginTop: 12,
-    marginBottom: 8,
-    alignItems: "center",
   },
   scaleStatus: {
     fontSize: 14,
