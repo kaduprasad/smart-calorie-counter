@@ -117,3 +117,22 @@ export interface ExerciseEntry {
   isCaloriesOverridden: boolean;
   timestamp: number;
 }
+
+// User profile data for personalization
+export interface UserData {
+  initialWeight?: number; // in kg - first recorded weight
+  initialWeightDate?: string; // YYYY-MM-DD when initial weight was set
+  currentWeight?: number; // in kg - latest weight
+  currentWeightDate?: string; // YYYY-MM-DD when current weight was updated
+  height?: number; // in cm
+  gender?: 'male' | 'female';
+  dateOfBirth?: string; // YYYY-MM-DD
+  activityLevel?: 'sedentary' | 'lightly_active' | 'moderately_active' | 'very_active' | 'extra_active';
+}
+
+// BMI calculation result
+export interface BMIResult {
+  bmi: number;
+  category: 'underweight' | 'normal' | 'overweight' | 'obese';
+  healthyWeightRange: { min: number; max: number };
+}

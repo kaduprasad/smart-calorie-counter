@@ -8,3 +8,4 @@ export { WeightInput } from './WeightInput';
 export { WeightChart } from './WeightChart';
 export { ExerciseInput } from './ExerciseInput';
 export { AnimatedIcon, Icons } from './AnimatedIcon';
+export { BMICalculator } from './BMICalculator';

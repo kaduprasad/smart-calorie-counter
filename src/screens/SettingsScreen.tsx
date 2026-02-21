@@ -14,6 +14,7 @@ import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useApp } from '../context/AppContext';
 import { sendTestNotification, getScheduledNotifications } from '../services/notifications';
 import { styles } from './styles/settingsScreenStyles';
+import { BMICalculator } from '../components';
 
 export const SettingsScreen: React.FC = () => {
   const { settings, updateSettings } = useApp();
@@ -252,6 +253,11 @@ export const SettingsScreen: React.FC = () => {
               Target: {settings.exerciseCalorieGoal} cal/day
             </Text>
           </View>
+        </View>
+
+        {/* BMI Calculator Section */}
+        <View style={styles.section}>
+          <BMICalculator />
         </View>
 
         {/* Daily Reminder */}
