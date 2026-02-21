@@ -115,7 +115,7 @@ export const HistoryScreen: React.FC = () => {
             keyExtractor={(item) => item.date}
             renderItem={renderWeeklyBar}
             horizontal
-            scrollEnabled={false}
+            showsHorizontalScrollIndicator={false}
             contentContainerStyle={styles.weeklyChart}
           />
         </View>

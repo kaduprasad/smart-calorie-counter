@@ -216,6 +216,12 @@ export const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#1A1A1A',
     textAlign: 'center',
+    borderWidth: 2,
+    borderColor: 'transparent',
+  },
+  goalInputFocusedGreen: {
+    borderColor: '#4CAF50',
+    backgroundColor: '#FFFFFF',
   },
   goalUnitSmall: {
     fontSize: 14,
@@ -224,6 +230,13 @@ export const styles = StyleSheet.create({
   },
   saveButtonSmall: {
     backgroundColor: '#FF7B00',
+    paddingVertical: 10,
+    borderRadius: 8,
+    alignItems: 'center',
+    marginTop: 8,
+  },
+  saveButtonGreen: {
+    backgroundColor: '#4CAF50',
     paddingVertical: 10,
     borderRadius: 8,
     alignItems: 'center',
