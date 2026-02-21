@@ -24,6 +24,7 @@ export const SettingsScreen: React.FC = () => {
   const [minute, setMinute] = useState(settings.notificationTime.minute.toString().padStart(2, '0'));
   const [calorieGoal, setCalorieGoal] = useState(settings.dailyCalorieGoal.toString());
   const [exerciseGoal, setExerciseGoal] = useState(settings.exerciseCalorieGoal.toString());
+  const [exerciseInputFocused, setExerciseInputFocused] = useState(false);
   const [weightGoal, setWeightGoal] = useState(settings.weightGoal?.toString() || '');
   const [scheduledCount, setScheduledCount] = useState(0);
 
@@ -235,16 +236,21 @@ export const SettingsScreen: React.FC = () => {
             </Text>
             <View style={styles.inputRow}>
               <TextInput
-                style={styles.goalInputCompact}
+                style={[
+                  styles.goalInputCompact,
+                  exerciseInputFocused && styles.goalInputFocusedGreen,
+                ]}
                 value={exerciseGoal}
                 onChangeText={setExerciseGoal}
+                onFocus={() => setExerciseInputFocused(true)}
+                onBlur={() => setExerciseInputFocused(false)}
                 keyboardType="number-pad"
                 placeholder="300"
               />
               <Text style={styles.goalUnitSmall}>cal</Text>
             </View>
             <TouchableOpacity
-              style={styles.saveButtonSmall}
+              style={styles.saveButtonGreen}
               onPress={handleSaveExerciseGoal}
             >
               <Text style={styles.saveButtonTextSmall}>Save</Text>
