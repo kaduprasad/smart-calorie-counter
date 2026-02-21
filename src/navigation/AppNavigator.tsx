@@ -2,8 +2,8 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Text, View, StyleSheet, Platform } from 'react-native';
-import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Text, View, StyleSheet } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
   HomeScreen,
@@ -13,8 +13,8 @@ import {
   SettingsScreen,
 } from '../screens';
 
-type RootStackParamList = {
-  MainTabs: undefined;
+type HomeStackParamList = {
+  HomeMain: undefined;
   AddFood: undefined;
 };
 
@@ -25,7 +25,7 @@ type TabParamList = {
   Settings: undefined;
 };
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const HomeStack = createNativeStackNavigator<HomeStackParamList>();
 const Tab = createBottomTabNavigator<TabParamList>();
 
 type IconName = 'home' | 'stats-chart' | 'star' | 'settings';
@@ -45,6 +45,14 @@ const TabIcon: React.FC<{ iconName: IconName; focused: boolean; label: string }>
       {label}
     </Text>
   </View>
+);
+
+// Home stack with AddFood nested inside
+const HomeStackNavigator: React.FC = () => (
+  <HomeStack.Navigator screenOptions={{ headerShown: false }}>
+    <HomeStack.Screen name="HomeMain" component={HomeScreen} />
+    <HomeStack.Screen name="AddFood" component={AddFoodScreen} />
+  </HomeStack.Navigator>
 );
 
 const MainTabs: React.FC = () => {
@@ -67,7 +75,7 @@ const MainTabs: React.FC = () => {
     >
       <Tab.Screen
         name="Home"
-        component={HomeScreen}
+        component={HomeStackNavigator}
         options={{
           tabBarIcon: ({ focused }) => (
             <TabIcon iconName="home" focused={focused} label="Home" />
@@ -97,7 +105,7 @@ const MainTabs: React.FC = () => {
         component={SettingsScreen}
         options={{
           tabBarIcon: ({ focused }) => (
-            <TabIcon iconName="settings" focused={focused} label="Setti..." />
+            <TabIcon iconName="settings" focused={focused} label="Settings" />
           ),
         }}
       />
@@ -107,17 +115,7 @@ const MainTabs: React.FC = () => {
 
 export const AppNavigator: React.FC = () => (
   <NavigationContainer>
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="MainTabs" component={MainTabs} />
-      <Stack.Screen
-        name="AddFood"
-        component={AddFoodScreen}
-        options={{
-          presentation: 'modal',
-          animation: 'slide_from_bottom',
-        }}
-      />
-    </Stack.Navigator>
+    <MainTabs />
   </NavigationContainer>
 );
 
@@ -125,7 +123,7 @@ const styles = StyleSheet.create({
   tabIconContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    minWidth: 50,
+    minWidth: 60,
   },
   tabLabel: {
     fontSize: 10,

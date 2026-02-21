@@ -316,7 +316,7 @@ export const maharashtrianFoods: FoodItem[] = [
   {
     id: 'ghevda-kalvan',
     name: 'Ghevda Kalvan (French Beans Curry)',
-    nameMarathi: 'घेवडा कळवण',
+    nameMarathi: 'घेवडा कालवण',
     category: 'dal',
     caloriesPerUnit: 140,
     unit: 'cup',
@@ -326,7 +326,7 @@ export const maharashtrianFoods: FoodItem[] = [
   {
     id: 'rajma-curry',
     name: 'Rajma Curry (Kidney Beans)',
-    nameMarathi: 'राजमा कळवण',
+    nameMarathi: 'राजमा कालवण',
     category: 'dal',
     caloriesPerUnit: 180,
     unit: 'cup',
@@ -336,7 +336,7 @@ export const maharashtrianFoods: FoodItem[] = [
   {
     id: 'masur-curry',
     name: 'Masur Curry (Red Lentils)',
-    nameMarathi: 'मसूर कळवण',
+    nameMarathi: 'मसूर कालवण',
     category: 'dal',
     caloriesPerUnit: 160,
     unit: 'cup',
@@ -346,7 +346,7 @@ export const maharashtrianFoods: FoodItem[] = [
   {
     id: 'pavta-kalvan',
     name: 'Pavta Kalvan (Broad Beans)',
-    nameMarathi: 'पावटा कळवण',
+    nameMarathi: 'पावटा कालवण',
     category: 'dal',
     caloriesPerUnit: 150,
     unit: 'cup',
@@ -356,7 +356,7 @@ export const maharashtrianFoods: FoodItem[] = [
   {
     id: 'pavta-batata-kalvan',
     name: 'Pavta Batata Kalvan',
-    nameMarathi: 'पावटा बटाटा कळवण',
+    nameMarathi: 'पावटा बटाटा कालवण',
     category: 'dal',
     caloriesPerUnit: 180,
     unit: 'cup',
@@ -366,7 +366,7 @@ export const maharashtrianFoods: FoodItem[] = [
   {
     id: 'ghevda-batata-kalvan',
     name: 'Ghevda Batata Kalvan',
-    nameMarathi: 'घेवडा बटाटा कळवण',
+    nameMarathi: 'घेवडा बटाटा कालवण',
     category: 'dal',
     caloriesPerUnit: 170,
     unit: 'cup',
@@ -376,7 +376,7 @@ export const maharashtrianFoods: FoodItem[] = [
   {
     id: 'kala-ghevda-kalvan',
     name: 'Kala Ghevda Kalvan (Black Eyed Peas)',
-    nameMarathi: 'काळा घेवडा कळवण',
+    nameMarathi: 'काळा घेवडा कालवण',
     category: 'dal',
     caloriesPerUnit: 175,
     unit: 'cup',
@@ -386,7 +386,7 @@ export const maharashtrianFoods: FoodItem[] = [
   {
     id: 'vatana-kalvan',
     name: 'Vatana Kalvan / Amti',
-    nameMarathi: 'वाटाणा कळवण',
+    nameMarathi: 'वाटाणा कालवण',
     category: 'dal',
     caloriesPerUnit: 160,
     unit: 'cup',
@@ -406,7 +406,7 @@ export const maharashtrianFoods: FoodItem[] = [
   {
     id: 'harbara-kalvan',
     name: 'Harbara Kalvan (Black Chickpeas)',
-    nameMarathi: 'हरबरा कळवण',
+    nameMarathi: 'हरबरा कालवण',
     category: 'dal',
     caloriesPerUnit: 185,
     unit: 'cup',
@@ -416,7 +416,7 @@ export const maharashtrianFoods: FoodItem[] = [
   {
     id: 'chavli-kalvan',
     name: 'Chavli Kalvan (Long Beans)',
-    nameMarathi: 'चवळी कळवण',
+    nameMarathi: 'चवळी कालवण',
     category: 'dal',
     caloriesPerUnit: 145,
     unit: 'cup',
@@ -428,7 +428,7 @@ export const maharashtrianFoods: FoodItem[] = [
   {
     id: 'batata-bhaji',
     name: 'Batata Bhaji (Dry)',
-    nameMarathi: 'बटाटा भाजी (सुकी)',
+    nameMarathi: 'बटाटा भाजी',
     category: 'vegetables',
     caloriesPerUnit: 150,
     unit: 'serving',
@@ -1322,26 +1322,6 @@ export const maharashtrianFoods: FoodItem[] = [
     searchKeywords: ['anjeer', 'anjir', 'dried anjir'],
   },
   {
-    id: 'apricots-dried',
-    name: 'Dried Apricots',
-    nameMarathi: 'सुकी जर्दाळू',
-    category: 'snacks',
-    caloriesPerUnit: 50,
-    unit: 'serving (5 pcs)',
-    unitWeight: 20,
-    searchKeywords: ['jardalu', 'khubani', 'dried apricot'],
-  },
-  {
-    id: 'mixed-nuts',
-    name: 'Mixed Nuts',
-    nameMarathi: 'मिक्स ड्राय फ्रूट्स',
-    category: 'snacks',
-    caloriesPerUnit: 90,
-    unit: 'serving (10 pcs)',
-    unitWeight: 15,
-    searchKeywords: ['dry fruits mix', 'trail mix', 'mixed dry fruits'],
-  },
-  {
     id: 'fox-nuts',
     name: 'Fox Nuts (Makhana)',
     nameMarathi: 'मखाणे',
@@ -1350,16 +1330,6 @@ export const maharashtrianFoods: FoodItem[] = [
     unit: 'serving (10 pcs)',
     unitWeight: 10,
     searchKeywords: ['makhana', 'phool makhana', 'lotus seeds', 'upvas snack'],
-  },
-  {
-    id: 'fox-nuts-roasted',
-    name: 'Roasted Makhana (Ghee)',
-    nameMarathi: 'भाजलेले मखाणे',
-    category: 'snacks',
-    caloriesPerUnit: 50,
-    unit: 'serving (10 pcs)',
-    unitWeight: 10,
-    searchKeywords: ['bhajlele makhana', 'masala makhana', 'roasted fox nuts'],
   },
   {
     id: 'bakarwadi',
@@ -1447,9 +1417,9 @@ export const maharashtrianFoods: FoodItem[] = [
     name: 'Farsan Mixture',
     nameMarathi: 'फरसाण मिक्स',
     category: 'snacks',
-    caloriesPerUnit: 160,
+    caloriesPerUnit: 560,
     unit: 'serving',
-    unitWeight: 30,
+    unitWeight: 100,
     searchKeywords: ['namkeen mixture', 'bombay mix', 'diwali faral'],
   },
 
