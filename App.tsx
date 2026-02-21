@@ -1,16 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AppProvider, useApp } from './src/context/AppContext';
 import { AppNavigator } from './src/navigation/AppNavigator';
+import { SplashScreen } from './src/components';
 import {
   setupNotificationListener,
   setupNotificationResponseListener,
 } from './src/services/notifications';
 
+const MIN_SPLASH_DURATION = 2000; // Minimum time to show splash screen (ms)
+
 const AppContent: React.FC = () => {
-  const { isLoading } = useApp();
+  const { isLoading: isDataLoading } = useApp();
+  const [showSplash, setShowSplash] = useState(true);
+  const [splashTimerDone, setSplashTimerDone] = useState(false);
 
   useEffect(() => {
     // Setup notification listeners
@@ -22,19 +26,31 @@ const AppContent: React.FC = () => {
       console.log('Notification response:', response);
     });
 
+    // Minimum splash duration timer
+    const timer = setTimeout(() => {
+      setSplashTimerDone(true);
+    }, MIN_SPLASH_DURATION);
+
     return () => {
       unsubscribeReceived();
       unsubscribeResponse();
+      clearTimeout(timer);
     };
   }, []);
 
-  if (isLoading) {
-    return (
-      <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#FF7B00" />
-        <Text style={styles.loadingText}>Loading...</Text>
-      </View>
-    );
+  // Hide splash when both data is loaded AND minimum time has passed
+  useEffect(() => {
+    if (!isDataLoading && splashTimerDone) {
+      // Small delay for smooth transition
+      const hideTimer = setTimeout(() => {
+        setShowSplash(false);
+      }, 300);
+      return () => clearTimeout(hideTimer);
+    }
+  }, [isDataLoading, splashTimerDone]);
+
+  if (showSplash) {
+    return <SplashScreen />;
   }
 
   return (
@@ -54,17 +70,3 @@ export default function App() {
     </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  loadingContainer: {
-    flex: 1,
-    backgroundColor: '#FAFAFA',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  loadingText: {
-    marginTop: 16,
-    fontSize: 16,
-    color: '#666666',
-  },
-});
