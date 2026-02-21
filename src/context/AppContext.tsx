@@ -41,10 +41,14 @@ interface AppContextType {
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
+// Cache for initial load to prevent redundant data fetching
+let cachedSettings: AppSettings | null = null;
+let cachedCustomFoods: FoodItem[] | null = null;
+
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [todayLog, setTodayLog] = useState<DailyLog | null>(null);
-  const [customFoods, setCustomFoods] = useState<FoodItem[]>([]);
-  const [settings, setSettings] = useState<AppSettings>({
+  const [customFoods, setCustomFoods] = useState<FoodItem[]>(cachedCustomFoods || []);
+  const [settings, setSettings] = useState<AppSettings>(cachedSettings || {
     notificationEnabled: true,
     notificationTime: { hour: 22, minute: 0 },
     dailyCalorieGoal: 2000,
@@ -54,29 +58,51 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [allLogs, setAllLogs] = useState<{ [date: string]: DailyLog }>({});
   const [isLoading, setIsLoading] = useState(true);
   const [selectedDate, setSelectedDate] = useState(getTodayDate());
+  const hasInitialLoad = React.useRef(false);
 
   // Combine default foods with custom foods
   const allFoods = [...maharashtrianFoods, ...customFoods];
 
   const loadData = useCallback(async () => {
-    setIsLoading(true);
+    // Only show loading on initial load or date change
+    const isInitialLoad = !hasInitialLoad.current;
+    if (isInitialLoad) {
+      setIsLoading(true);
+    }
+
     try {
-      const [log, customs, appSettings, recent, logs] = await Promise.all([
-        getDailyLog(selectedDate),
-        getCustomFoods(),
-        getSettings(),
-        getRecentFoods(),
-        getAllDailyLogs(),
-      ]);
+      // For initial load, fetch everything in parallel
+      if (isInitialLoad) {
+        const [log, customs, appSettings, recent, logs] = await Promise.all([
+          getDailyLog(selectedDate),
+          getCustomFoods(),
+          getSettings(),
+          getRecentFoods(),
+          getAllDailyLogs(),
+        ]);
 
-      setTodayLog(log);
-      setCustomFoods(customs);
-      setSettings(appSettings);
-      setRecentFoods(recent);
-      setAllLogs(logs);
+        setTodayLog(log);
+        setCustomFoods(customs);
+        setSettings(appSettings);
+        setRecentFoods(recent);
+        setAllLogs(logs);
 
-      // Schedule notification
-      await scheduleDailyReminder(appSettings);
+        // Cache settings and custom foods for faster subsequent opens
+        cachedSettings = appSettings;
+        cachedCustomFoods = customs;
+
+        // Schedule notification
+        await scheduleDailyReminder(appSettings);
+        hasInitialLoad.current = true;
+      } else {
+        // For date changes, only fetch what's needed
+        const [log, logs] = await Promise.all([
+          getDailyLog(selectedDate),
+          getAllDailyLogs(),
+        ]);
+        setTodayLog(log);
+        setAllLogs(logs);
+      }
     } catch (error) {
       console.error('Error loading data:', error);
     } finally {
