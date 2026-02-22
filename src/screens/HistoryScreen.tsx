@@ -46,18 +46,24 @@ export const HistoryScreen: React.FC = () => {
   };
 
   // Calculate weekly calorie deficit/surplus
+  // Only consider days with meaningful data (at least 1000 calories logged)
+  const MIN_CALORIES_FOR_VALID_DAY = 1000;
+  
   const calculateWeeklyStats = () => {
     const tdee = calculateTDEE(userData);
     if (tdee === 0 || weeklySummary.length === 0) return null;
 
-    // Get this week's total calories consumed
-    const weeklyCaloriesConsumed = weeklySummary.reduce((sum, day) => sum + day.calories, 0);
-    const daysWithData = weeklySummary.filter(d => d.calories > 0).length;
+    // Only consider days where user logged at least 1000 calories
+    const validDays = weeklySummary.filter(d => d.calories >= MIN_CALORIES_FOR_VALID_DAY);
+    const daysConsidered = validDays.length;
     
-    if (daysWithData === 0) return null;
+    if (daysConsidered === 0) return null;
 
-    // Calculate expected calories for the week (TDEE × 7)
-    const weeklyCaloriesNeeded = tdee * 7;
+    // Get calories consumed only from valid days
+    const weeklyCaloriesConsumed = validDays.reduce((sum, day) => sum + day.calories, 0);
+    
+    // Calculate expected calories only for the days considered (TDEE × valid days)
+    const weeklyCaloriesNeeded = tdee * daysConsidered;
     
     // Deficit is negative (eating less), surplus is positive (eating more)
     const weeklyDeficit = weeklyCaloriesConsumed - weeklyCaloriesNeeded;
@@ -72,6 +78,7 @@ export const HistoryScreen: React.FC = () => {
       deficit: weeklyDeficit,
       weightChange: weightChange,
       isDeficit: weeklyDeficit < 0,
+      daysConsidered,
     };
   };
 
@@ -281,6 +288,11 @@ export const HistoryScreen: React.FC = () => {
               )}
             </Pressable>
           </View>
+          
+          {/* Days Considered Info */}
+          <Text style={styles.daysConsideredText}>
+            Based on {weeklyStats.daysConsidered} day{weeklyStats.daysConsidered !== 1 ? 's' : ''} with 1000+ cal logged
+          </Text>
         </View>
       )}
 

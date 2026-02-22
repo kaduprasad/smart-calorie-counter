@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   View,
   Text,
@@ -11,10 +11,8 @@ import { UserData, BMIResult } from '../types';
 import {
   getUserData,
   updateHeight,
-  updateWeight,
   calculateBMI,
   getBMICategoryInfo,
-  getWeightChange,
 } from '../services/userDataService';
 import { styles } from './styles/bmiCalculatorStyles';
 
@@ -25,29 +23,30 @@ interface BMICalculatorProps {
 export const BMICalculator: React.FC<BMICalculatorProps> = ({ onDataUpdate }) => {
   const [userData, setUserData] = useState<UserData>({});
   const [heightInput, setHeightInput] = useState('');
-  const [weightInput, setWeightInput] = useState('');
-  const [bmiResult, setBmiResult] = useState<BMIResult | null>(null);
+  const [weightInput, setWeightInput] = useState(''); // Temporary weight for BMI calculation only
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     loadUserData();
   }, []);
 
-  useEffect(() => {
-    // Calculate BMI whenever userData changes
-    if (userData.height && userData.currentWeight) {
-      const result = calculateBMI(userData.height, userData.currentWeight);
-      setBmiResult(result);
-    } else {
-      setBmiResult(null);
+  // Calculate BMI from input fields (not from saved data)
+  const bmiResult = useMemo(() => {
+    const height = parseFloat(heightInput);
+    const weight = parseFloat(weightInput);
+    
+    if (height && weight && height >= 50 && height <= 300 && weight >= 20 && weight <= 500) {
+      return calculateBMI(height, weight);
     }
-  }, [userData]);
+    return null;
+  }, [heightInput, weightInput]);
 
   const loadUserData = async () => {
     try {
       const data = await getUserData();
       setUserData(data);
       setHeightInput(data.height?.toString() || '');
+      // Pre-fill weight input with current weight for reference
       setWeightInput(data.currentWeight?.toString() || '');
     } catch (error) {
       console.error('Error loading user data:', error);
@@ -74,30 +73,27 @@ export const BMICalculator: React.FC<BMICalculatorProps> = ({ onDataUpdate }) =>
     }
   };
 
-  const handleSaveWeight = async () => {
-    const weight = parseFloat(weightInput);
-
-    if (isNaN(weight) || weight < 20 || weight > 500) {
-      Alert.alert('Invalid Weight', 'Please enter weight between 20 and 500 kg');
-      return;
+  // Calculate weight change: Profile weight (from settings) vs BMI input weight
+  const getWeightProgress = () => {
+    const profileWeight = userData.currentWeight;
+    const bmiInputWeight = parseFloat(weightInput);
+    
+    if (!profileWeight || isNaN(bmiInputWeight) || bmiInputWeight <= 0) {
+      return null;
     }
-
-    try {
-      const updated = await updateWeight(weight);
-      setUserData(updated);
-      onDataUpdate?.(updated);
-
-      if (!userData.initialWeight) {
-        Alert.alert('Success', `Initial weight set: ${weight} kg`);
-      } else {
-        Alert.alert('Success', `Weight updated: ${weight} kg`);
-      }
-    } catch (error) {
-      Alert.alert('Error', 'Failed to save weight');
-    }
+    
+    const change = Math.round((bmiInputWeight - profileWeight) * 10) / 10;
+    const percentage = Math.round((change / profileWeight) * 1000) / 10;
+    
+    return {
+      profileWeight,
+      bmiInputWeight,
+      change,
+      percentage,
+    };
   };
 
-  const weightChange = getWeightChange(userData);
+  const weightProgress = getWeightProgress();
   const categoryInfo = bmiResult ? getBMICategoryInfo(bmiResult.category) : null;
 
   // Calculate BMI position on scale (BMI 15-40 range for display)
@@ -158,15 +154,15 @@ export const BMICalculator: React.FC<BMICalculatorProps> = ({ onDataUpdate }) =>
           )}
         </View>
 
-        {/* Weight Input */}
+        {/* Weight Input - For BMI calculation only, not saved */}
         <View style={styles.inputGroup}>
           <View style={styles.inputLabelRow}>
             <MaterialCommunityIcons name="scale-bathroom" size={18} color="#6B7280" />
-            <Text style={styles.inputLabel}>Weight</Text>
+            <Text style={styles.inputLabel}>Weight (for BMI)</Text>
           </View>
           <View style={styles.inputRow}>
             <TextInput
-              style={styles.input}
+              style={[styles.input, { flex: 1 }]}
               value={weightInput}
               onChangeText={(text) => {
                 const filtered = text.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
@@ -177,55 +173,47 @@ export const BMICalculator: React.FC<BMICalculatorProps> = ({ onDataUpdate }) =>
               placeholderTextColor="#9CA3AF"
             />
             <Text style={styles.unit}>kg</Text>
-            <TouchableOpacity
-              style={styles.saveButton}
-              onPress={handleSaveWeight}
-            >
-              <Text style={styles.saveButtonText}>Save</Text>
-            </TouchableOpacity>
           </View>
-          {userData.currentWeight && (
-            <Text style={styles.savedValue}>Current: {userData.currentWeight} kg</Text>
-          )}
+          <Text style={styles.savedValue}>
+            Enter weight to calculate BMI (not saved)
+          </Text>
         </View>
       </View>
 
-      {/* Weight Progress */}
-      {weightChange && (
+      {/* Weight Progress - Compare Profile weight vs BMI input weight */}
+      {weightProgress && (
         <View style={styles.weightProgressSection}>
           <Text style={styles.progressTitle}>Weight Progress</Text>
           <View style={styles.weightProgressRow}>
             <View style={styles.weightStat}>
-              <Text style={styles.weightStatLabel}>Initial</Text>
-              <Text style={styles.weightStatValue}>{userData.initialWeight} kg</Text>
-              {userData.initialWeightDate && (
-                <Text style={styles.weightStatDate}>{userData.initialWeightDate}</Text>
+              <Text style={styles.weightStatLabel}>Profile</Text>
+              <Text style={styles.weightStatValue}>{weightProgress.profileWeight} kg</Text>
+              {userData.currentWeightDate && (
+                <Text style={styles.weightStatDate}>{userData.currentWeightDate}</Text>
               )}
             </View>
             <View style={styles.weightChangeStat}>
               <Ionicons
-                name={weightChange.change >= 0 ? 'arrow-up' : 'arrow-down'}
+                name={weightProgress.change >= 0 ? 'arrow-up' : 'arrow-down'}
                 size={20}
-                color={weightChange.change >= 0 ? '#EF4444' : '#10B981'}
+                color={weightProgress.change >= 0 ? '#EF4444' : '#10B981'}
               />
               <Text
                 style={[
                   styles.weightChangeValue,
-                  { color: weightChange.change >= 0 ? '#EF4444' : '#10B981' },
+                  { color: weightProgress.change >= 0 ? '#EF4444' : '#10B981' },
                 ]}
               >
-                {weightChange.change > 0 ? '+' : ''}{weightChange.change} kg
+                {weightProgress.change > 0 ? '+' : ''}{weightProgress.change} kg
               </Text>
               <Text style={styles.weightChangePercent}>
-                ({weightChange.percentage > 0 ? '+' : ''}{weightChange.percentage}%)
+                ({weightProgress.percentage > 0 ? '+' : ''}{weightProgress.percentage}%)
               </Text>
             </View>
             <View style={styles.weightStat}>
               <Text style={styles.weightStatLabel}>Current</Text>
-              <Text style={styles.weightStatValue}>{userData.currentWeight} kg</Text>
-              {userData.currentWeightDate && (
-                <Text style={styles.weightStatDate}>{userData.currentWeightDate}</Text>
-              )}
+              <Text style={styles.weightStatValue}>{weightProgress.bmiInputWeight} kg</Text>
+              <Text style={styles.weightStatDate}>from input</Text>
             </View>
           </View>
         </View>
@@ -266,12 +254,13 @@ export const BMICalculator: React.FC<BMICalculatorProps> = ({ onDataUpdate }) =>
                 <View style={styles.bmiIndicatorTriangle} />
               </View>
             </View>
+            {/* Labels positioned to match zone boundaries */}
             <View style={styles.bmiLabels}>
-              <Text style={styles.bmiLabel}>15</Text>
-              <Text style={styles.bmiLabel}>18.5</Text>
-              <Text style={styles.bmiLabel}>25</Text>
-              <Text style={styles.bmiLabel}>30</Text>
-              <Text style={styles.bmiLabel}>40</Text>
+              <Text style={[styles.bmiLabel, { position: 'absolute', left: 0 }]}>15</Text>
+              <Text style={[styles.bmiLabel, { position: 'absolute', left: '14%', marginLeft: -8 }]}>18.5</Text>
+              <Text style={[styles.bmiLabel, { position: 'absolute', left: '40%', marginLeft: -6 }]}>25</Text>
+              <Text style={[styles.bmiLabel, { position: 'absolute', left: '60%', marginLeft: -6 }]}>30</Text>
+              <Text style={[styles.bmiLabel, { position: 'absolute', right: 0 }]}>40</Text>
             </View>
           </View>
 

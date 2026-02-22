@@ -263,6 +263,13 @@ export const styles = StyleSheet.create({
     marginTop: 4,
     textAlign: 'center',
   },
+  daysConsideredText: {
+    fontSize: 11,
+    color: '#9CA3AF',
+    textAlign: 'center',
+    marginTop: 12,
+    fontStyle: 'italic',
+  },
   tooltip: {
     position: 'absolute',
     top: -80,
