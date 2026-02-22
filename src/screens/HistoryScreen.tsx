@@ -5,27 +5,77 @@ import {
   FlatList,
   TouchableOpacity,
   ScrollView,
+  Pressable,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useApp } from '../context/AppContext';
 import { getWeeklySummary, formatDate, getTodayDate } from '../services/storage';
-import { DailyLog } from '../types';
-import { WeightChart } from '../components';
+import { DailyLog, UserData } from '../types';
+import { WeightChart, calculateTDEE } from '../components';
+import { getUserData } from '../services/userDataService';
 import { styles } from './styles/historyScreenStyles';
 
 export const HistoryScreen: React.FC = () => {
   const { allLogs, settings, setSelectedDate } = useApp();
   const [weeklySummary, setWeeklySummary] = useState<{ date: string; calories: number }[]>([]);
+  const [userData, setUserData] = useState<UserData>({});
+  const [showDeficitTooltip, setShowDeficitTooltip] = useState(false);
+  const [showWeightTooltip, setShowWeightTooltip] = useState(false);
+
+  // Check if today is Sunday (0 = Sunday)
+  const isSunday = new Date().getDay() === 0;
 
   useEffect(() => {
     loadWeeklySummary();
+    loadUserData();
   }, [allLogs]);
 
   const loadWeeklySummary = async () => {
     const summary = await getWeeklySummary();
     setWeeklySummary(summary);
   };
+
+  const loadUserData = async () => {
+    try {
+      const data = await getUserData();
+      setUserData(data);
+    } catch (error) {
+      console.error('Error loading user data:', error);
+    }
+  };
+
+  // Calculate weekly calorie deficit/surplus
+  const calculateWeeklyStats = () => {
+    const tdee = calculateTDEE(userData);
+    if (tdee === 0 || weeklySummary.length === 0) return null;
+
+    // Get this week's total calories consumed
+    const weeklyCaloriesConsumed = weeklySummary.reduce((sum, day) => sum + day.calories, 0);
+    const daysWithData = weeklySummary.filter(d => d.calories > 0).length;
+    
+    if (daysWithData === 0) return null;
+
+    // Calculate expected calories for the week (TDEE × 7)
+    const weeklyCaloriesNeeded = tdee * 7;
+    
+    // Deficit is negative (eating less), surplus is positive (eating more)
+    const weeklyDeficit = weeklyCaloriesConsumed - weeklyCaloriesNeeded;
+    
+    // 7700 calories = approximately 1 kg of body weight
+    const weightChange = weeklyDeficit / 7700;
+
+    return {
+      tdee,
+      weeklyCaloriesConsumed,
+      weeklyCaloriesNeeded,
+      deficit: weeklyDeficit,
+      weightChange: weightChange,
+      isDeficit: weeklyDeficit < 0,
+    };
+  };
+
+  const weeklyStats = calculateWeeklyStats();
 
   const sortedLogs = Object.values(allLogs).sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
@@ -86,7 +136,7 @@ export const HistoryScreen: React.FC = () => {
         </View>
         <View style={styles.logCalories}>
           <Text style={[styles.logCalorieValue, isOverGoal && styles.overGoal]}>
-            {item.totalCalories}
+            {Math.round(item.totalCalories)}
           </Text>
           <Text style={styles.logCalorieLabel}>
             {percentage}% of goal
@@ -142,6 +192,97 @@ export const HistoryScreen: React.FC = () => {
           <Text style={styles.statLabel}>Under Goal</Text>
         </View>
       </View>
+
+      {/* Weekly Statistics - Only shown on Sunday */}
+      {isSunday && weeklyStats && (
+        <View style={styles.weeklyStatsSection}>
+          <Text style={styles.weeklyStatsTitle}>
+            <MaterialCommunityIcons name="calendar-week" size={18} color="#FF7B00" />
+            {' '}Weekly Summary
+          </Text>
+          
+          <View style={styles.weeklyStatsRow}>
+            {/* Calorie Deficit/Surplus Card */}
+            <Pressable 
+              style={[
+                styles.weeklyStatCard,
+                weeklyStats.isDeficit ? styles.deficitCard : styles.surplusCard
+              ]}
+              onPress={() => setShowDeficitTooltip(!showDeficitTooltip)}
+            >
+              <View style={styles.weeklyStatHeader}>
+                <MaterialCommunityIcons 
+                  name={weeklyStats.isDeficit ? 'trending-down' : 'trending-up'} 
+                  size={20} 
+                  color={weeklyStats.isDeficit ? '#059669' : '#DC2626'} 
+                />
+                <Ionicons 
+                  name="information-circle-outline" 
+                  size={16} 
+                  color="#6B7280" 
+                />
+              </View>
+              <Text style={[
+                styles.weeklyStatValue,
+                weeklyStats.isDeficit ? styles.deficitValue : styles.surplusValue
+              ]}>
+                {Math.abs(Math.round(weeklyStats.deficit))}
+              </Text>
+              <Text style={styles.weeklyStatLabel}>
+                cal {weeklyStats.isDeficit ? 'deficit' : 'surplus'}
+              </Text>
+              {showDeficitTooltip && (
+                <View style={styles.tooltip}>
+                  <Text style={styles.tooltipText}>
+                    Based on your TDEE ({weeklyStats.tdee} cal/day) vs average daily intake.
+                    {'\n'}Weekly need: {Math.round(weeklyStats.weeklyCaloriesNeeded)} cal
+                    {'\n'}You consumed: {Math.round(weeklyStats.weeklyCaloriesConsumed)} cal
+                  </Text>
+                </View>
+              )}
+            </Pressable>
+
+            {/* Weight Change Card */}
+            <Pressable 
+              style={[
+                styles.weeklyStatCard,
+                weeklyStats.isDeficit ? styles.weightLossCard : styles.weightGainCard
+              ]}
+              onPress={() => setShowWeightTooltip(!showWeightTooltip)}
+            >
+              <View style={styles.weeklyStatHeader}>
+                <MaterialCommunityIcons 
+                  name="scale-bathroom" 
+                  size={20} 
+                  color={weeklyStats.isDeficit ? '#059669' : '#DC2626'} 
+                />
+                <Ionicons 
+                  name="information-circle-outline" 
+                  size={16} 
+                  color="#6B7280" 
+                />
+              </View>
+              <Text style={[
+                styles.weeklyStatValue,
+                weeklyStats.isDeficit ? styles.deficitValue : styles.surplusValue
+              ]}>
+                {Math.abs(weeklyStats.weightChange).toFixed(2)}
+              </Text>
+              <Text style={styles.weeklyStatLabel}>
+                kg {weeklyStats.isDeficit ? 'loss' : 'gain'}
+              </Text>
+              {showWeightTooltip && (
+                <View style={styles.tooltip}>
+                  <Text style={styles.tooltipText}>
+                    Estimated based on calorie {weeklyStats.isDeficit ? 'deficit' : 'surplus'}.
+                    {'\n'}~7700 cal = 1 kg body weight
+                  </Text>
+                </View>
+              )}
+            </Pressable>
+          </View>
+        </View>
+      )}
 
       <WeightChart weightGoal={settings.weightGoal} />
 
