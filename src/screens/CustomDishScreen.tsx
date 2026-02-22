@@ -12,6 +12,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useApp } from '../context/AppContext';
 import { FoodItem, FoodUnit } from '../types';
+import { NumericInput } from '../components/NumericInput';
 import { styles } from './styles/customDishScreenStyles';
 
 const unitOptions: { value: FoodUnit; label: string }[] = [
@@ -157,24 +158,24 @@ export const CustomDishScreen: React.FC = () => {
 
             <View style={styles.inputGroup}>
               <Text style={styles.label}>Calories per Unit *</Text>
-              <TextInput
+              <NumericInput
                 style={styles.input}
                 value={calories}
                 onChangeText={setCalories}
                 placeholder="e.g., 150"
-                keyboardType="number-pad"
+                allowDecimal={false}
                 placeholderTextColor="#999"
               />
             </View>
 
             <View style={styles.inputGroup}>
               <Text style={styles.label}>Weight per Unit (grams, optional)</Text>
-              <TextInput
+              <NumericInput
                 style={styles.input}
                 value={weight}
                 onChangeText={setWeight}
                 placeholder="e.g., 100"
-                keyboardType="number-pad"
+                allowDecimal={false}
                 placeholderTextColor="#999"
               />
             </View>

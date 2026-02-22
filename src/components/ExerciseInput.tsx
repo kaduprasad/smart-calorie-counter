@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback } from 'react';
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   StyleSheet,
   Modal,
@@ -12,6 +11,7 @@ import {
   Alert,
 } from 'react-native';
 import { Ionicons, MaterialCommunityIcons, FontAwesome5 } from '@expo/vector-icons';
+import { NumericInput } from './NumericInput';
 import { ExerciseEntry, ExerciseType, TimeUnit } from '../types';
 import { EXERCISE_DATA, EXERCISE_TYPES, DEFAULT_BODY_WEIGHT } from '../data/exercises';
 import { calculateCaloriesBurnt, estimateDistanceFromDuration } from '../services/exerciseService';
@@ -331,11 +331,12 @@ export const ExerciseInput: React.FC<ExerciseInputProps> = ({ date, onExerciseSa
               <Text style={styles.fieldLabel}>Duration</Text>
               <View style={styles.inputRow}>
                 <View style={styles.durationInputContainer}>
-                  <TextInput
+                  <NumericInput
                     style={styles.durationInput}
                     value={duration}
                     onChangeText={setDuration}
-                    keyboardType="decimal-pad"
+                    allowDecimal={true}
+                    maxDecimalPlaces={1}
                     placeholder="30"
                     placeholderTextColor="#AAAAAA"
                   />
@@ -382,14 +383,15 @@ export const ExerciseInput: React.FC<ExerciseInputProps> = ({ date, onExerciseSa
                   <Text style={styles.fieldLabel}>Distance (km)</Text>
                   <View style={styles.distanceInputContainer}>
                     <Ionicons name="location-outline" size={20} color="#888" style={styles.distanceIcon} />
-                    <TextInput
+                    <NumericInput
                       style={styles.distanceInput}
                       value={distance}
                       onChangeText={(text) => {
                         setDistance(text);
                         setIsDistanceManuallyEdited(true);
                       }}
-                      keyboardType="decimal-pad"
+                      allowDecimal={true}
+                      maxDecimalPlaces={2}
                       placeholder="Auto-estimated"
                       placeholderTextColor="#AAAAAA"
                     />
@@ -433,11 +435,11 @@ export const ExerciseInput: React.FC<ExerciseInputProps> = ({ date, onExerciseSa
 
                 {isCaloriesOverridden && (
                   <View style={styles.customCaloriesContainer}>
-                    <TextInput
+                    <NumericInput
                       style={styles.customCaloriesInput}
                       value={customCalories}
                       onChangeText={setCustomCalories}
-                      keyboardType="number-pad"
+                      allowDecimal={false}
                       placeholder="Enter calories"
                       placeholderTextColor="#AAAAAA"
                     />

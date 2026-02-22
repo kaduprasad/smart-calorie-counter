@@ -2,12 +2,12 @@ import React, { useReducer, useEffect, useCallback } from 'react';
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   Alert,
   StyleSheet,
 } from 'react-native';
 import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
+import { NumericInput } from './NumericInput';
 import { UserData } from '../types';
 import { getUserData, saveUserData } from '../services/userDataService';
 import { getLocalDateString } from '../utils/utils';
@@ -379,11 +379,11 @@ export const UserInfoSection: React.FC<UserInfoSectionProps> = ({ onDataUpdate }
       <View style={styles.section}>
         <Text style={styles.sectionLabel}>Age</Text>
         <View style={styles.ageRow}>
-          <TextInput
+          <NumericInput
             style={styles.ageInput}
             value={ageInput}
             onChangeText={handleAgeChange}
-            keyboardType="number-pad"
+            allowDecimal={false}
             placeholder="25"
             placeholderTextColor="#BBBBBB"
             maxLength={3}
@@ -397,11 +397,12 @@ export const UserInfoSection: React.FC<UserInfoSectionProps> = ({ onDataUpdate }
         <View style={styles.measurementsRow}>
           <View style={styles.measurementField}>
             <Text style={styles.sectionLabel}>Height (cm)</Text>
-            <TextInput
+            <NumericInput
               style={styles.measurementInput}
               value={heightInput}
               onChangeText={handleHeightChange}
-              keyboardType="decimal-pad"
+              allowDecimal={true}
+              maxDecimalPlaces={1}
               placeholder="170"
               placeholderTextColor="#BBBBBB"
               maxLength={5}
@@ -409,11 +410,12 @@ export const UserInfoSection: React.FC<UserInfoSectionProps> = ({ onDataUpdate }
           </View>
           <View style={styles.measurementField}>
             <Text style={styles.sectionLabel}>Weight (kg)</Text>
-            <TextInput
+            <NumericInput
               style={styles.measurementInput}
               value={weightInput}
               onChangeText={handleWeightChange}
-              keyboardType="decimal-pad"
+              allowDecimal={true}
+              maxDecimalPlaces={1}
               placeholder="70"
               placeholderTextColor="#BBBBBB"
               maxLength={5}
