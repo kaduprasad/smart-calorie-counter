@@ -1,43 +1,42 @@
-# 🍽️ Smart Calorie Tracker - Maharashtrian Food & Exercise Counter
+# 🍽️ Smart Calorie Tracker - Indian Food & Exercise Counter
 
-A comprehensive React Native app for tracking your daily calorie intake, exercise burn, and net calories with a focus on traditional Maharashtrian vegetarian cuisine.
+A comprehensive React Native app for tracking daily calorie intake, exercise burn, and net calories with a focus on Indian cuisine including Maharashtrian, Konkani, Vidarbha, and North Indian dishes.
 
 ## Features
 
 ### 📊 Smart Calorie Dashboard
-- **Net Calorie Tracking**: View your net calories (Food Consumed - Exercise Burned)
+- **Net Calorie Tracking**: View net calories (Food Consumed - Exercise Burned)
 - **Speedometer Gauge**: Visual semicircle gauge showing daily progress
 - **Color-coded Status**: Blue (under 80%), Green (80-100%), Red (over goal)
 - **Food & Exercise Cards**: Separate tracking with scale bars and target markers
 
+### 🧮 BMR & TDEE Calculator
+- **Personalized Goals**: Enter height, weight, age, and gender
+- **Activity Levels**: Sedentary, Light, Moderate, Active, Very Active
+- **Mifflin-St Jeor Formula**: Accurate BMR calculation
+- **TDEE Display**: See your daily calorie needs based on activity
+
 ### 🏃 Exercise Tracking
 - **30+ Exercise Types**: Walking, Running, Cycling, Yoga, Swimming, and more
-- **Intensity Levels**: Light, Moderate, Vigorous options for accurate calorie calculation
-- **Duration-based Logging**: Track exercise by minutes with automatic calorie calculation
-- **Exercise Goals**: Set and track daily exercise burn targets
-- **Quick Add**: Fast exercise logging from the home screen
+- **Intensity Levels**: Light, Moderate, Vigorous options
+- **Duration-based Logging**: Track by minutes with automatic calorie calculation
+- **Exercise Goals**: Set and track daily burn targets
 
-### 🍲 100+ Maharashtrian Food Items
-Comprehensive database including:
-- **Breads**: Chapati, Bhakri (Jowar, Bajra, Nachni), Thalipeeth, Puran Poli
-- **Rice dishes**: Varan Bhat, Masale Bhat, Khichdi
-- **Dal & Curries**: Amti, Matki Usal, Vatana Usal, Kadhi
-- **Vegetables**: Various bhajis (Batata, Vangi, Bhendi, Methi, etc.)
-- **Snacks**: Pohe, Misal, Vada Pav, Sabudana Khichdi
-- **Sweets**: Modak, Shrikhand, Puran Poli
-- And many more!
+### 🍲 330+ Indian Food Items
+Comprehensive database across 15 categories:
 
-### 📈 Progress Tracking
-- **Daily Summary**: Food consumed, calories burned, and net calories
-- **Visual Scales**: Progress bars with target markers for food and exercise
-- **History & Statistics**: Track your progress with weekly charts
-- **Goal Management**: Set calorie intake and exercise burn goals
+**Traditional Maharashtrian**: Pohe, Misal, Vada Pav, Thalipeeth, Puran Poli, Modak, Shrikhand
+
+**Street Food**: Samosa, Pani Puri, Sev Puri, Dahi Vada, Ragda Pattice, Dabeli, Bhel Puri
+
+**North Indian Main Course**: Dal Makhani, Paneer Butter Masala, Naan varieties, Chole Bhature
 
 ### ⚙️ Additional Features
-- **Food Search & Categories**: Easily search and filter foods by category
-- **Quantity Tracking**: Add foods with precise quantities (0.5, 1, 1.5, 2, 3, etc.)
+- **Smart Search**: Search by name, Marathi name, or keywords
+- **15 Categories**: Breads, Rice, Dal, Vegetables, Snacks, Chaat, Non-Veg, Main Course, Sweets, Beverages, Dairy, Fruits, Chutneys, Pickles, Custom
+- **Quantity Tracking**: Precise quantities (0.5, 1, 1.5, 2, 3, etc.)
 - **Custom Dishes**: Create your own dishes with custom calorie counts
-- **Daily Reminders**: Configurable notifications to remind you to log your meals
+- **Daily Reminders**: Configurable meal logging notifications
 
 ## Getting Started
 
@@ -75,35 +74,29 @@ src/
 │   ├── FoodLogItem.tsx
 │   ├── QuantitySelector.tsx
 │   ├── CalorieSummary.tsx    # Dashboard with speedometer & cards
+│   ├── UserInfoSection.tsx   # BMR/TDEE calculator with user profile
 │   ├── SearchBar.tsx
 │   └── CategoryFilter.tsx
 ├── context/           # React Context for state management
 │   └── AppContext.tsx
 ├── data/              # Food & Exercise databases
-│   ├── foods.ts       # Maharashtrian food items
+│   ├── foods.ts       # 330+ Indian food items with regional cuisines
 │   └── exercises.ts   # Exercise types with calorie data
 ├── navigation/        # App navigation
 │   └── AppNavigator.tsx
 ├── screens/           # App screens
 │   ├── HomeScreen.tsx
 │   ├── AddFoodScreen.tsx
-│   ├── AddExerciseScreen.tsx  # Exercise logging
+│   ├── AddExerciseScreen.tsx
 │   ├── HistoryScreen.tsx
 │   ├── CustomDishScreen.tsx
 │   └── SettingsScreen.tsx
 ├── screens/styles/    # Separated style files
-│   ├── homeScreenStyles.ts
-│   ├── addFoodScreenStyles.ts
-│   ├── settingsScreenStyles.ts
-│   ├── historyScreenStyles.ts
-│   └── customDishScreenStyles.ts
 ├── services/          # Business logic
-│   ├── storage.ts     # Async storage operations
+│   ├── storage.ts
 │   └── notifications.ts
 ├── utils/             # Utility functions
-│   └── utils.ts       # Date helpers
 └── types/             # TypeScript types
-    └── index.ts
 ```
 
 ## Usage
@@ -144,90 +137,39 @@ src/
 ### Setting Goals
 
 1. Go to **Settings**
-2. Set your daily calorie goal (default: 1600)
-3. Set your daily exercise goal (default: 300 calories)
-4. Configure notification reminders
+2. Enter your profile (gender, age, height, weight)
+3. Select your activity level for TDEE calculation
+4. Set daily calorie and exercise goals
+5. Configure notification reminders
 
 ### Viewing History
 
 1. Go to the **History** tab
 2. View weekly calorie chart
-3. See your daily averages and statistics
-4. Tap on a day to view details
+3. See daily averages and statistics
 
 ## Customization
 
-### Adding More Food Items
+### Adding Food Items
 
-Edit `src/data/foods.ts` to add more food items to the database:
+Edit `src/data/foods.ts` - available categories: `breads`, `rice`, `dal`, `vegetables`, `snacks`, `chaat`, `nonveg`, `maincourse`, `sweets`, `beverages`, `dairy`, `fruits`, `chutneys`, `pickles`, `custom`
 
 ```typescript
 {
   id: 'new-food-id',
   name: 'Food Name',
   nameMarathi: 'मराठी नाव',
-  category: 'vegetables',
+  category: 'nonveg', // or any category above
   caloriesPerUnit: 100,
   unit: 'serving',
-  unitWeight: 100, // grams
+  unitWeight: 100,
+  searchKeywords: ['alternate', 'names'],
 }
-```
-
-### Adding More Exercises
-
-Edit `src/data/exercises.ts` to add more exercise types:
-
-```typescript
-{
-  id: 'new-exercise-id',
-  name: 'Exercise Name',
-  category: 'cardio',
-  caloriesPerMinute: {
-    light: 5,
-    moderate: 8,
-    vigorous: 12,
-  },
-  icon: 'fitness-outline',
-}
-```
-
-### Changing Default Settings
-
-Edit `src/services/storage.ts` to modify default settings:
-
-```typescript
-const DEFAULT_SETTINGS: AppSettings = {
-  notificationEnabled: true,
-  notificationTime: {
-    hour: 22,  // 10 PM
-    minute: 0,
-  },
-  dailyCalorieGoal: 1600,
-  dailyExerciseGoal: 300,
-};
-```
-
-## Building for Production
-
-### Android
-
-```bash
-npx expo build:android
-# or
-eas build --platform android
-```
-
-### iOS
-
-```bash
-npx expo build:ios
-# or
-eas build --platform ios
 ```
 
 ## Tech Stack
 
-- **React Native** with **Expo**
+- **React Native** with **Expo SDK 54**
 - **TypeScript** for type safety
 - **React Navigation** for navigation
 - **AsyncStorage** for local data persistence
@@ -237,10 +179,6 @@ eas build --platform ios
 
 MIT License
 
-## Contributing
-
-Contributions are welcome! Please feel free to add more Maharashtrian food items or improve the app.
-
 ---
 
-Made with ❤️ for Maharashtrian food lovers
+Made with ❤️ for Indian food lovers
