@@ -5,7 +5,6 @@ import {
   Switch,
   TouchableOpacity,
   ScrollView,
-  TextInput,
   Alert,
   Platform,
 } from 'react-native';
@@ -13,6 +12,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useApp } from '../context/AppContext';
 import { sendTestNotification, getScheduledNotifications } from '../services/notifications';
+import { NumericInput } from '../components/NumericInput';
 import { styles } from './styles/settingsScreenStyles';
 import { UserInfoSection } from '../components';
 
@@ -168,11 +168,11 @@ export const SettingsScreen: React.FC = () => {
                 <Text style={styles.cardTitle}>Calorie Goal</Text>
               </View>
               <View style={styles.inputRow}>
-                <TextInput
+                <NumericInput
                   style={styles.goalInputCompact}
                   value={calorieGoal}
                   onChangeText={setCalorieGoal}
-                  keyboardType="number-pad"
+                  allowDecimal={false}
                   placeholder="2000"
                 />
                 <Text style={styles.goalUnitSmall}>cal</Text>
@@ -199,14 +199,12 @@ export const SettingsScreen: React.FC = () => {
                 <Text style={styles.cardTitle}>Weight Goal</Text>
               </View>
               <View style={styles.inputRow}>
-                <TextInput
+                <NumericInput
                   style={styles.goalInputCompact}
                   value={weightGoal}
-                  onChangeText={(text) => {
-                    const filtered = text.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
-                    setWeightGoal(filtered);
-                  }}
-                  keyboardType="decimal-pad"
+                  onChangeText={setWeightGoal}
+                  allowDecimal={true}
+                  maxDecimalPlaces={1}
                   placeholder="70"
                 />
                 <Text style={styles.goalUnitSmall}>kg</Text>
@@ -241,7 +239,7 @@ export const SettingsScreen: React.FC = () => {
               Daily calorie burn target from workouts
             </Text>
             <View style={styles.inputRow}>
-              <TextInput
+              <NumericInput
                 style={[
                   styles.exerciseGoalInputCompact,
                   exerciseInputFocused && styles.goalInputFocusedGreen,
@@ -250,7 +248,7 @@ export const SettingsScreen: React.FC = () => {
                 onChangeText={setExerciseGoal}
                 onFocus={() => setExerciseInputFocused(true)}
                 onBlur={() => setExerciseInputFocused(false)}
-                keyboardType="number-pad"
+                allowDecimal={false}
                 placeholder="300"
               />
               <Text style={styles.goalUnitSmall}>cal</Text>
@@ -303,11 +301,11 @@ export const SettingsScreen: React.FC = () => {
                 <Text style={styles.timeLabel}>Reminder Time</Text>
                 <View style={styles.timeInputRow}>
                   <View style={styles.timeInputGroup}>
-                    <TextInput
+                    <NumericInput
                       style={styles.timeInput}
                       value={hour}
                       onChangeText={setHour}
-                      keyboardType="number-pad"
+                      allowDecimal={false}
                       maxLength={2}
                       placeholder="22"
                     />
@@ -315,11 +313,11 @@ export const SettingsScreen: React.FC = () => {
                   </View>
                   <Text style={styles.timeSeparator}>:</Text>
                   <View style={styles.timeInputGroup}>
-                    <TextInput
+                    <NumericInput
                       style={styles.timeInput}
                       value={minute}
                       onChangeText={setMinute}
-                      keyboardType="number-pad"
+                      allowDecimal={false}
                       maxLength={2}
                       placeholder="00"
                     />

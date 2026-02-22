@@ -2,11 +2,11 @@ import React, { useState, useEffect, useMemo } from 'react';
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   Alert,
 } from 'react-native';
 import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
+import { NumericInput } from './NumericInput';
 import { UserData, BMIResult } from '../types';
 import {
   getUserData,
@@ -133,11 +133,12 @@ export const BMICalculator: React.FC<BMICalculatorProps> = ({ onDataUpdate }) =>
             <Text style={styles.inputLabel}>Height</Text>
           </View>
           <View style={styles.inputRow}>
-            <TextInput
+            <NumericInput
               style={styles.input}
               value={heightInput}
               onChangeText={setHeightInput}
-              keyboardType="decimal-pad"
+              allowDecimal={true}
+              maxDecimalPlaces={1}
               placeholder="170"
               placeholderTextColor="#9CA3AF"
             />
@@ -161,14 +162,12 @@ export const BMICalculator: React.FC<BMICalculatorProps> = ({ onDataUpdate }) =>
             <Text style={styles.inputLabel}>Weight (for BMI)</Text>
           </View>
           <View style={styles.inputRow}>
-            <TextInput
+            <NumericInput
               style={[styles.input, { flex: 1 }]}
               value={weightInput}
-              onChangeText={(text) => {
-                const filtered = text.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
-                setWeightInput(filtered);
-              }}
-              keyboardType="decimal-pad"
+              onChangeText={setWeightInput}
+              allowDecimal={true}
+              maxDecimalPlaces={1}
               placeholder="70"
               placeholderTextColor="#9CA3AF"
             />

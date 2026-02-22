@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, TextInput, StyleSheet, Modal } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Modal } from 'react-native';
 import { FoodItem } from '../types';
 import { getUnitLabel } from '../data/foods';
+import { NumericInput } from './NumericInput';
 
 interface QuantitySelectorProps {
   visible: boolean;
@@ -81,11 +82,12 @@ export const QuantitySelector: React.FC<QuantitySelectorProps> = ({
             </TouchableOpacity>
 
             <View style={styles.quantityInputContainer}>
-              <TextInput
+              <NumericInput
                 style={styles.quantityInput}
                 value={quantity}
                 onChangeText={setQuantity}
-                keyboardType="decimal-pad"
+                allowDecimal={true}
+                maxDecimalPlaces={2}
                 selectTextOnFocus
               />
               <Text style={styles.unitText}>

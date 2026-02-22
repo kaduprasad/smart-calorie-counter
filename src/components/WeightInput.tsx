@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   StyleSheet,
   Modal,
   Pressable,
 } from 'react-native';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { NumericInput } from './NumericInput';
 import { WeightEntry } from '../types';
 import { getWeightEntry, saveWeightEntry, getTodayDate } from '../services/storage';
 
@@ -110,11 +110,12 @@ export const WeightInput: React.FC<WeightInputProps> = ({ date, onWeightSaved })
             </Text>
             
             <View style={styles.inputContainer}>
-              <TextInput
+              <NumericInput
                 style={styles.input}
                 value={inputWeight}
                 onChangeText={setInputWeight}
-                keyboardType="decimal-pad"
+                allowDecimal={true}
+                maxDecimalPlaces={1}
                 placeholder="70.5"
                 placeholderTextColor="#AAAAAA"
                 autoFocus
