@@ -114,7 +114,7 @@ export const HomeScreen: React.FC = () => {
           <MaterialCommunityIcons name="food-apple" size={28} color="#FF7B00" />
           <Text style={styles.title}>Calorie Tracker</Text>
         </View>
-        <Text style={styles.subtitle}>Exercise & Maharashtrian Food Calorie Tracker</Text>
+        <Text style={styles.subtitle}>Exercise & Food Calorie Tracker</Text>
       </View>
 
       <View style={styles.dateSelector}>

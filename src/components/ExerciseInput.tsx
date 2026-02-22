@@ -43,7 +43,7 @@ export const ExerciseInput: React.FC<ExerciseInputProps> = ({ date, onExerciseSa
   const [userWeight, setUserWeight] = useState(70); // Default weight in kg
 
   // Form state
-  const [selectedType, setSelectedType] = useState<ExerciseType>('running');
+  const [selectedType, setSelectedType] = useState<ExerciseType>('walking');
   const [duration, setDuration] = useState('');
   const [timeUnit, setTimeUnit] = useState<TimeUnit>('minutes');
   const [distance, setDistance] = useState('');
@@ -118,7 +118,7 @@ export const ExerciseInput: React.FC<ExerciseInputProps> = ({ date, onExerciseSa
   }, [selectedType]);
 
   const resetForm = () => {
-    setSelectedType('running');
+    setSelectedType('walking');
     setDuration('');
     setTimeUnit('minutes');
     setDistance('');

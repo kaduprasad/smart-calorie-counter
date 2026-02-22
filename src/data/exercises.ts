@@ -71,17 +71,33 @@ export const EXERCISE_DATA: Record<ExerciseType, ExerciseDataItem> = {
     met: 6.0, // moderate effort
     hasDistance: false,
   },
+  basketball: {
+    name: 'Basketball',
+    icon: 'basketball',
+    iconType: 'MaterialCommunityIcons',
+    met: 6.5, // recreational play
+    hasDistance: false,
+  },
+  mixed: {
+    name: 'Mixed',
+    icon: 'dumbbell',
+    iconType: 'MaterialCommunityIcons',
+    met: 5.0, // general workout
+    hasDistance: false,
+  },
 };
 
 // List of all exercise types for iteration
 export const EXERCISE_TYPES: ExerciseType[] = [
-  'running',
   'walking',
+  'running',
   'cycling',
   'hiking',
   'badminton',
   'table_tennis',
   'swimming',
+  'basketball',
+  'mixed',
 ];
 
 // Default body weight for calorie calculations (in kg)
