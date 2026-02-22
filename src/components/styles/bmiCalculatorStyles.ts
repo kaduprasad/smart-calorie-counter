@@ -226,10 +226,9 @@ export const styles = StyleSheet.create({
     borderTopColor: "#1F2937",
   },
   bmiLabels: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    position: "relative",
+    height: 16,
     marginTop: 4,
-    paddingHorizontal: 2,
   },
   bmiLabel: {
     fontSize: 10,

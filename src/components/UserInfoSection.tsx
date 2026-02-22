@@ -10,6 +10,7 @@ import {
 import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import { UserData } from '../types';
 import { getUserData, saveUserData } from '../services/userDataService';
+import { getLocalDateString } from '../utils/utils';
 
 interface UserInfoSectionProps {
   onDataUpdate?: (userData: UserData) => void;
@@ -241,9 +242,20 @@ export const UserInfoSection: React.FC<UserInfoSectionProps> = ({ onDataUpdate }
         data.height = parseFloat(heightInput);
       }
 
-      // Update weight
+      // Update weight - handle initial vs current weight with dates
       if (weightInput) {
-        data.currentWeight = parseFloat(weightInput);
+        const weight = parseFloat(weightInput);
+        const today = getLocalDateString(new Date());
+        
+        // If no initial weight exists, set it as the starting point
+        if (!data.initialWeight) {
+          data.initialWeight = weight;
+          data.initialWeightDate = today;
+        }
+        
+        // Always update current weight
+        data.currentWeight = weight;
+        data.currentWeightDate = today;
       }
       
       // Update activity level
