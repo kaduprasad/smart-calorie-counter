@@ -10,6 +10,7 @@ import {
   AddFoodScreen,
   HistoryScreen,
   CustomDishScreen,
+  HealthScreen,
   SettingsScreen,
 } from '../screens';
 
@@ -22,13 +23,14 @@ type TabParamList = {
   Home: undefined;
   History: undefined;
   Custom: undefined;
+  Health: undefined;
   Settings: undefined;
 };
 
 const HomeStack = createNativeStackNavigator<HomeStackParamList>();
 const Tab = createBottomTabNavigator<TabParamList>();
 
-type IconName = 'home' | 'stats-chart' | 'star' | 'settings';
+type IconName = 'home' | 'stats-chart' | 'star' | 'heart' | 'settings';
 
 const TabIcon: React.FC<{ iconName: IconName; focused: boolean; label: string }> = ({
   iconName,
@@ -97,6 +99,15 @@ const MainTabs: React.FC = () => {
         options={{
           tabBarIcon: ({ focused }) => (
             <TabIcon iconName="star" focused={focused} label="Custom" />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Health"
+        component={HealthScreen}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <TabIcon iconName="heart" focused={focused} label="Health" />
           ),
         }}
       />

@@ -197,4 +197,85 @@ export const styles = StyleSheet.create({
     color: '#999999',
     marginTop: 4,
   },
+  weeklyStatsSection: {
+    marginHorizontal: 16,
+    marginTop: 16,
+    marginBottom: 8,
+  },
+  weeklyStatsTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#1A1A1A',
+    marginBottom: 12,
+  },
+  weeklyStatsRow: {
+    flexDirection: 'row',
+    gap: 12,
+  },
+  weeklyStatCard: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+    padding: 16,
+    borderRadius: 12,
+    alignItems: 'center',
+    position: 'relative',
+  },
+  deficitCard: {
+    backgroundColor: '#ECFDF5',
+    borderWidth: 1,
+    borderColor: '#A7F3D0',
+  },
+  surplusCard: {
+    backgroundColor: '#FEF2F2',
+    borderWidth: 1,
+    borderColor: '#FECACA',
+  },
+  weightLossCard: {
+    backgroundColor: '#ECFDF5',
+    borderWidth: 1,
+    borderColor: '#A7F3D0',
+  },
+  weightGainCard: {
+    backgroundColor: '#FEF2F2',
+    borderWidth: 1,
+    borderColor: '#FECACA',
+  },
+  weeklyStatHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+    marginBottom: 8,
+  },
+  weeklyStatValue: {
+    fontSize: 24,
+    fontWeight: '700',
+  },
+  deficitValue: {
+    color: '#059669',
+  },
+  surplusValue: {
+    color: '#DC2626',
+  },
+  weeklyStatLabel: {
+    fontSize: 12,
+    color: '#6B7280',
+    marginTop: 4,
+    textAlign: 'center',
+  },
+  tooltip: {
+    position: 'absolute',
+    top: -80,
+    left: 0,
+    right: 0,
+    backgroundColor: '#1F2937',
+    padding: 10,
+    borderRadius: 8,
+    zIndex: 100,
+  },
+  tooltipText: {
+    fontSize: 11,
+    color: '#FFFFFF',
+    lineHeight: 16,
+  },
 });

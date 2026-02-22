@@ -14,7 +14,7 @@ import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useApp } from '../context/AppContext';
 import { sendTestNotification, getScheduledNotifications } from '../services/notifications';
 import { styles } from './styles/settingsScreenStyles';
-import { BMICalculator } from '../components';
+import { UserInfoSection } from '../components';
 
 export const SettingsScreen: React.FC = () => {
   const { settings, updateSettings } = useApp();
@@ -267,9 +267,9 @@ export const SettingsScreen: React.FC = () => {
           </View>
         </View>
 
-        {/* BMI Calculator Section */}
+        {/* User Profile Section */}
         <View style={styles.section}>
-          <BMICalculator />
+          <UserInfoSection />
         </View>
 
         {/* Daily Reminder */}
