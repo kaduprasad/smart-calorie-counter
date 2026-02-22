@@ -394,20 +394,32 @@ export const SettingsScreen: React.FC = () => {
               <Text style={styles.aboutText}>Smart Calorie Tracker</Text>
             </View>
             <Text style={styles.aboutDescription}>
-              Track your daily food intake with a comprehensive database of traditional Maharashtrian vegetarian dishes.
+              Track your daily food intake with a comprehensive database of Indian dishes including Maharashtrian, Konkani, Vidarbha, and North Indian cuisines.
             </Text>
             <View style={styles.features}>
               <View style={styles.featureRow}>
                 <Ionicons name="checkmark-circle" size={16} color="#4CAF50" />
-                <Text style={styles.featureItem}>100+ Maharashtrian food items</Text>
+                <Text style={styles.featureItem}>330+ Indian food items</Text>
               </View>
               <View style={styles.featureRow}>
                 <Ionicons name="checkmark-circle" size={16} color="#4CAF50" />
-                <Text style={styles.featureItem}>Custom dish creation</Text>
+                <Text style={styles.featureItem}>15 food categories</Text>
               </View>
               <View style={styles.featureRow}>
                 <Ionicons name="checkmark-circle" size={16} color="#4CAF50" />
-                <Text style={styles.featureItem}>Daily calorie tracking</Text>
+                <Text style={styles.featureItem}>BMR & TDEE calculator</Text>
+              </View>
+              <View style={styles.featureRow}>
+                <Ionicons name="checkmark-circle" size={16} color="#4CAF50" />
+                <Text style={styles.featureItem}>Exercise tracking (30+ types)</Text>
+              </View>
+              <View style={styles.featureRow}>
+                <Ionicons name="checkmark-circle" size={16} color="#4CAF50" />
+                <Text style={styles.featureItem}>Net calorie tracking</Text>
+              </View>
+              <View style={styles.featureRow}>
+                <Ionicons name="checkmark-circle" size={16} color="#4CAF50" />
+                <Text style={styles.featureItem}>Visual speedometer gauge</Text>
               </View>
               <View style={styles.featureRow}>
                 <Ionicons name="checkmark-circle" size={16} color="#4CAF50" />
@@ -415,7 +427,11 @@ export const SettingsScreen: React.FC = () => {
               </View>
               <View style={styles.featureRow}>
                 <Ionicons name="checkmark-circle" size={16} color="#4CAF50" />
-                <Text style={styles.featureItem}>Configurable reminders</Text>
+                <Text style={styles.featureItem}>Custom dish creation</Text>
+              </View>
+              <View style={styles.featureRow}>
+                <Ionicons name="checkmark-circle" size={16} color="#4CAF50" />
+                <Text style={styles.featureItem}>Daily reminders</Text>
               </View>
             </View>
             <Text style={styles.version}>Version 1.0.0</Text>
