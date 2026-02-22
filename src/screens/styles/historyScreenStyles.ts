@@ -130,11 +130,13 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '700',
     color: '#FF7B00',
+    textAlign: 'center',
   },
   statLabel: {
     fontSize: 12,
     color: '#666666',
     marginTop: 4,
+    textAlign: 'center',
   },
   historySection: {
     flex: 1,

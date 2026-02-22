@@ -96,13 +96,15 @@ export interface CategoryInfo {
 
 // Exercise types
 export type ExerciseType = 
-  | 'running'
   | 'walking'
+  | 'running'
   | 'cycling'
   | 'hiking'
   | 'badminton'
   | 'table_tennis'
-  | 'swimming';
+  | 'swimming'
+  | 'basketball'
+  | 'mixed';
 
 export type TimeUnit = 'minutes' | 'hours';
 
