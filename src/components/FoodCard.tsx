@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Pressable, StyleSheet } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { FoodItem } from '../types';
 import { getUnitLabel } from '../data/foods';
 
@@ -54,6 +55,11 @@ interface FoodCardProps {
   onPress: () => void;
   onQuickAdd?: (food: FoodItem, quantity: number) => void;
   showCalories?: boolean;
+  // Selection mode props
+  isSelectionMode?: boolean;
+  isSelected?: boolean;
+  selectedQuantity?: number;
+  onSelect?: (food: FoodItem, quantity?: number) => void;
 }
 
 // Quick Add Button component with hover support
@@ -88,29 +94,67 @@ const QuickAddButton: React.FC<{
   );
 };
 
-export const FoodCard: React.FC<FoodCardProps> = ({ food, onPress, onQuickAdd, showCalories = true }) => {
-  const [selectedQty, setSelectedQty] = useState<number | null>(null);
+export const FoodCard: React.FC<FoodCardProps> = ({ 
+  food, 
+  onPress, 
+  onQuickAdd, 
+  showCalories = true,
+  isSelectionMode = false,
+  isSelected = false,
+  selectedQuantity,
+  onSelect,
+}) => {
+  const [animatingQty, setAnimatingQty] = useState<number | null>(null);
   const [isHovered, setIsHovered] = useState(false);
-  const showQuickAdd = supportsQuickAdd(food) && onQuickAdd;
+  // Show quick add for supported foods - works with both direct add and multi-select
+  const showQuickAdd = supportsQuickAdd(food) && (onQuickAdd || onSelect);
 
   const handleQuickSelect = (qty: number) => {
-    setSelectedQty(qty);
-    // Small delay to show selection then add
+    setAnimatingQty(qty);
+    // Small delay to show press animation
     setTimeout(() => {
-      if (onQuickAdd) {
+      if (onSelect) {
+        // Add/update in multi-select cart with specified quantity
+        onSelect(food, qty);
+      } else if (onQuickAdd) {
         onQuickAdd(food, qty);
       }
-      setSelectedQty(null);
+      setAnimatingQty(null);
     }, 150);
   };
 
+  const handlePress = () => {
+    // Always call onSelect if available (auto multi-select)
+    if (onSelect) {
+      onSelect(food);
+    } else {
+      onPress();
+    }
+  };
+
+  // Determine which quick add button is "active" (matches cart quantity)
+  const activeQty = isSelected ? selectedQuantity : null;
+
   return (
     <Pressable
-      style={[styles.container, isHovered && styles.containerHovered]}
-      onPress={onPress}
+      style={[
+        styles.container, 
+        isHovered && styles.containerHovered,
+        isSelected && styles.containerSelected,
+      ]}
+      onPress={handlePress}
       onHoverIn={() => setIsHovered(true)}
       onHoverOut={() => setIsHovered(false)}
     >
+      {/* Selection Checkbox - top right corner */}
+      {onSelect && (
+        <View style={[styles.checkbox, isSelected && styles.checkboxSelected]}>
+          {isSelected && (
+            <Ionicons name="checkmark" size={12} color="#FFFFFF" />
+          )}
+        </View>
+      )}
+      
       <View style={styles.content}>
         <View style={styles.info}>
           <Text style={styles.name}>{food.name}</Text>
@@ -134,14 +178,14 @@ export const FoodCard: React.FC<FoodCardProps> = ({ food, onPress, onQuickAdd, s
       {showQuickAdd && (
         <View style={styles.quickAddSection}>
           <Text style={styles.quickAddLabel}>
-            Quick add ({getUnitLabel(food.unit, 2)}):
+            {isSelected ? `Selected: ${selectedQuantity ?? 1} ${getUnitLabel(food.unit, selectedQuantity ?? 1)}` : `Quick add (${getUnitLabel(food.unit, 2)}):`}
           </Text>
           <View style={styles.quickAddButtons}>
             {QUICK_QUANTITIES.map((qty) => (
               <QuickAddButton
                 key={qty}
                 qty={qty}
-                isSelected={selectedQty === qty}
+                isSelected={animatingQty === qty || (activeQty === qty && animatingQty === null)}
                 onPress={() => handleQuickSelect(qty)}
               />
             ))}
@@ -170,6 +214,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
+    position: 'relative',
   },
   containerHovered: {
     backgroundColor: '#FFF8F0',
@@ -177,6 +222,29 @@ const styles = StyleSheet.create({
     borderColor: '#FFB366',
     shadowOpacity: 0.15,
     elevation: 5,
+  },
+  containerSelected: {
+    backgroundColor: '#FFF0E6',
+    borderWidth: 2,
+    borderColor: '#FF7B00',
+  },
+  checkbox: {
+    position: 'absolute',
+    top: 8,
+    right: 8,
+    width: 20,
+    height: 20,
+    borderRadius: 4,
+    borderWidth: 2,
+    borderColor: '#DDDDDD',
+    backgroundColor: '#FFFFFF',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 10,
+  },
+  checkboxSelected: {
+    backgroundColor: '#FF7B00',
+    borderColor: '#FF7B00',
   },
   content: {
     flexDirection: 'row',

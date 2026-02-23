@@ -1,8 +1,9 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import {
   View,
   Text,
   FlatList,
+  ScrollView,
   TouchableOpacity,
   ActivityIndicator,
   Alert,
@@ -13,7 +14,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useApp } from '../context/AppContext';
-import { FoodCard, SearchBar, CategoryFilter, QuantitySelector, supportsQuickAdd } from '../components';
+import { FoodCard, SearchBar, CategoryFilter, supportsQuickAdd, FoodSelectionCart, SelectedFood } from '../components';
 import { categories, getUnitLabel } from '../data/foods';
 import { FoodItem, FoodCategory } from '../types';
 import { 
@@ -59,13 +60,24 @@ export const AddFoodScreen: React.FC = () => {
 
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<FoodCategory | null>(null);
-  const [selectedFood, setSelectedFood] = useState<FoodItem | null>(null);
   const [showRecent, setShowRecent] = useState(true);
+  
+  // Multi-select state (always enabled)
+  const [selectedFoods, setSelectedFoods] = useState<SelectedFood[]>([]);
   
   // Online search state
   const [isSearchingOnline, setIsSearchingOnline] = useState(false);
   const [onlineResults, setOnlineResults] = useState<OnlineSearchResult[]>([]);
   const [showOnlineResults, setShowOnlineResults] = useState(false);
+
+  // Pair recent foods into groups of 2 for stacked vertical display
+  const recentFoodPairs = useMemo(() => {
+    const pairs: FoodItem[][] = [];
+    for (let i = 0; i < recentFoods.length; i += 2) {
+      pairs.push(recentFoods.slice(i, i + 2));
+    }
+    return pairs;
+  }, [recentFoods]);
 
   const filteredFoods = useMemo(() => {
     let foods = allFoods;
@@ -89,23 +101,65 @@ export const AddFoodScreen: React.FC = () => {
     return foods;
   }, [allFoods, selectedCategory, searchQuery]);
 
-  const handleFoodSelect = (food: FoodItem) => {
-    setSelectedFood(food);
-  };
+  // Multi-select handler - auto adds to selection
+  const handleSelectFood = useCallback((food: FoodItem, quantity?: number) => {
+    setSelectedFoods(prev => {
+      const exists = prev.find(item => item.food.id === food.id);
+      if (exists) {
+        if (quantity !== undefined) {
+          // Update quantity if specified (quick add while already selected)
+          return prev.map(item =>
+            item.food.id === food.id ? { ...item, quantity } : item
+          );
+        }
+        // Remove from selection if no quantity specified (toggle)
+        return prev.filter(item => item.food.id !== food.id);
+      } else {
+        // Add to selection with specified quantity or default of 1
+        return [...prev, { food, quantity: quantity ?? 1 }];
+      }
+    });
+  }, []);
 
-  const handleAddFood = async (quantity: number) => {
-    if (selectedFood) {
-      await addFood(selectedFood, quantity);
-      setSelectedFood(null);
-      navigation.goBack();
+  const handleUpdateSelectedQuantity = useCallback((foodId: string, quantity: number) => {
+    setSelectedFoods(prev =>
+      prev.map(item =>
+        item.food.id === foodId ? { ...item, quantity } : item
+      )
+    );
+  }, []);
+
+  const handleRemoveFromSelection = useCallback((foodId: string) => {
+    setSelectedFoods(prev => prev.filter(item => item.food.id !== foodId));
+  }, []);
+
+  const handleAddAllSelected = useCallback(async () => {
+    if (selectedFoods.length === 0) return;
+
+    // Add all selected foods
+    for (const item of selectedFoods) {
+      await addFood(item.food, item.quantity);
     }
-  };
 
-  // Quick add handler - directly adds food without modal
-  const handleQuickAdd = async (food: FoodItem, quantity: number) => {
-    await addFood(food, quantity);
+    // Clear selection and navigate back
+    setSelectedFoods([]);
     navigation.goBack();
-  };
+  }, [selectedFoods, addFood, navigation]);
+
+  const handleClearSelection = useCallback(() => {
+    setSelectedFoods([]);
+  }, []);
+
+  // Check if a food is selected
+  const isFoodSelected = useCallback((foodId: string) => {
+    return selectedFoods.some(item => item.food.id === foodId);
+  }, [selectedFoods]);
+
+  // Get current quantity for a selected food (used to highlight quick add buttons)
+  const getSelectedQuantity = useCallback((foodId: string): number | undefined => {
+    const item = selectedFoods.find(item => item.food.id === foodId);
+    return item?.quantity;
+  }, [selectedFoods]);
 
   // Search for food online when not found locally
   const handleSearchOnline = async () => {
@@ -153,7 +207,7 @@ export const AddFoodScreen: React.FC = () => {
           onPress: async () => {
             const foodItem = convertToFoodItem(result);
             await createCustomFood(foodItem);
-            setSelectedFood(foodItem);
+            handleSelectFood(foodItem);
             setShowOnlineResults(false);
           },
         },
@@ -192,67 +246,6 @@ export const AddFoodScreen: React.FC = () => {
           setShowRecent(false);
         }}
       />
-
-      {showRecentSection && (
-        <View style={styles.recentSection}>
-          <Text style={styles.sectionTitle}>⏰ Recent Foods</Text>
-          <FlatList
-            horizontal
-            data={recentFoods}
-            keyExtractor={(item) => `recent-${item.id}`}
-            showsHorizontalScrollIndicator={false}
-            renderItem={({ item }) => (
-              <View style={styles.recentItem}>
-                <TouchableOpacity onPress={() => handleFoodSelect(item)}>
-                  <Text style={styles.recentName} numberOfLines={1}>
-                    {item.name}
-                  </Text>
-                  <Text style={styles.recentCalories}>
-                    {item.caloriesPerUnit} cal
-                  </Text>
-                </TouchableOpacity>
-                {supportsQuickAdd(item) && (
-                  <View style={styles.recentQuickAdd}>
-                    <Text style={styles.recentQuickAddLabel}>
-                      ({getUnitLabel(item.unit, 2)}):
-                    </Text>
-                    <View style={styles.recentQuickAddButtons}>
-                      {[1, 1.5, 2, 2.5, 3].map((qty) => (
-                        <RecentQuickButton
-                          key={qty}
-                          qty={qty}
-                          onPress={() => handleQuickAdd(item, qty)}
-                        />
-                      ))}
-                    </View>
-                  </View>
-                )}
-              </View>
-            )}
-            contentContainerStyle={styles.recentList}
-          />
-        </View>
-      )}
-
-      <View style={styles.listHeader}>
-        <View style={styles.sectionTitleRow}>
-          {showOnlineResults && (
-            <Ionicons name="globe-outline" size={18} color="#FF7B00" style={{ marginRight: 6 }} />
-          )}
-          <Text style={styles.sectionTitle}>
-            {showOnlineResults 
-              ? 'Online Results'
-              : selectedCategory
-              ? categories.find(c => c.id === selectedCategory)?.name || 'Foods'
-              : searchQuery
-              ? 'Search Results'
-              : 'All Foods'}
-          </Text>
-        </View>
-        <Text style={styles.resultCount}>
-          {showOnlineResults ? onlineResults.length : filteredFoods.length} items
-        </Text>
-      </View>
 
       {/* Online Results Section */}
       {showOnlineResults ? (
@@ -322,18 +315,97 @@ export const AddFoodScreen: React.FC = () => {
         </View>
       ) : (
         <FlatList
+          style={{ flex: 1 }}
           data={filteredFoods}
           keyExtractor={(item) => item.id}
           numColumns={2}
           renderItem={({ item }) => (
             <FoodCard 
               food={item} 
-              onPress={() => handleFoodSelect(item)}
-              onQuickAdd={handleQuickAdd}
+              onPress={() => {}} // Not used when onSelect is provided
+              isSelected={isFoodSelected(item.id)}
+              selectedQuantity={getSelectedQuantity(item.id)}
+              onSelect={handleSelectFood}
             />
           )}
           contentContainerStyle={styles.list}
           columnWrapperStyle={styles.row}
+          ListHeaderComponent={
+            <>
+              {/* Multi-select Cart */}
+              {selectedFoods.length > 0 && (
+                <FoodSelectionCart
+                  selectedFoods={selectedFoods}
+                  onUpdateQuantity={handleUpdateSelectedQuantity}
+                  onRemoveFood={handleRemoveFromSelection}
+                  onAddAll={handleAddAllSelected}
+                  onClearAll={handleClearSelection}
+                />
+              )}
+
+              {showRecentSection && (
+                <View style={styles.recentSection}>
+                  <Text style={styles.sectionTitle}>⏰ Recent Foods</Text>
+                  <ScrollView
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    contentContainerStyle={styles.recentList}
+                  >
+                    {recentFoodPairs.map((pair, index) => (
+                      <View key={`recent-pair-${index}`} style={styles.recentCompactColumn}>
+                        {pair.map((item) => (
+                          <View key={`recent-${item.id}`} style={styles.recentCompactItem}>
+                            <TouchableOpacity
+                              style={styles.recentCompactRow}
+                              onPress={() => handleSelectFood(item)}
+                            >
+                              <View style={styles.recentCompactInfo}>
+                                <Text style={styles.recentCompactName} numberOfLines={1}>
+                                  {item.name}
+                                </Text>
+                                <Text style={styles.recentCompactCalories}>
+                                  {item.caloriesPerUnit} cal
+                                </Text>
+                              </View>
+                              {supportsQuickAdd(item) && (
+                                <View style={styles.recentCompactButtons}>
+                                  <Text style={styles.recentCompactUom}>
+                                    {getUnitLabel(item.unit, 2)}
+                                  </Text>
+                                  {[1, 1.5, 2, 2.5].map((qty) => (
+                                    <RecentQuickButton
+                                      key={qty}
+                                      qty={qty}
+                                      onPress={() => handleSelectFood(item, qty)}
+                                    />
+                                  ))}
+                                </View>
+                              )}
+                            </TouchableOpacity>
+                          </View>
+                        ))}
+                      </View>
+                    ))}
+                  </ScrollView>
+                </View>
+              )}
+
+              <View style={styles.listHeader}>
+                <View style={styles.sectionTitleRow}>
+                  <Text style={styles.sectionTitle}>
+                    {selectedCategory
+                      ? categories.find(c => c.id === selectedCategory)?.name || 'Foods'
+                      : searchQuery
+                      ? 'Search Results'
+                      : 'All Foods'}
+                  </Text>
+                </View>
+                <Text style={styles.resultCount}>
+                  {filteredFoods.length} items
+                </Text>
+              </View>
+            </>
+          }
           ListEmptyComponent={
             <View style={styles.emptyState}>
               <Ionicons name="search" size={48} color="#CCCCCC" />
@@ -364,13 +436,6 @@ export const AddFoodScreen: React.FC = () => {
           }
         />
       )}
-
-      <QuantitySelector
-        visible={selectedFood !== null}
-        food={selectedFood || { id: '', name: '', category: 'breads', caloriesPerUnit: 0, unit: 'piece' }}
-        onClose={() => setSelectedFood(null)}
-        onConfirm={handleAddFood}
-      />
     </SafeAreaView>
   );
 };

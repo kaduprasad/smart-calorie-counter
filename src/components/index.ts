@@ -12,3 +12,6 @@ export { BMICalculator } from './BMICalculator';
 export { UserInfoSection, calculateTDEE } from './UserInfoSection';
 export { SplashScreen } from './SplashScreen';
 export { NumericInput } from './NumericInput';
+export { IncrementButton, DecrementButton } from './IncrementDecrementButton';
+export { FoodSelectionCart, SelectedFood } from './FoodSelectionCart';
+export { ExerciseSelectionCart, SelectedExercise } from './ExerciseSelectionCart';

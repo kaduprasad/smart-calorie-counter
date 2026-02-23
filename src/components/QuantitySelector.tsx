@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Modal } from 'react-native';
 import { FoodItem } from '../types';
 import { getUnitLabel } from '../data/foods';
 import { NumericInput } from './NumericInput';
+import { IncrementButton, DecrementButton } from './IncrementDecrementButton';
 
 interface QuantitySelectorProps {
   visible: boolean;
@@ -74,12 +75,12 @@ export const QuantitySelector: React.FC<QuantitySelectorProps> = ({
           </View>
 
           <View style={styles.quantityContainer}>
-            <TouchableOpacity
-              style={styles.quantityButton}
+            <DecrementButton
               onPress={handleDecrement}
-            >
-              <Text style={styles.quantityButtonText}>−</Text>
-            </TouchableOpacity>
+              size="large"
+              color="#FF7B00"
+              variant="filled"
+            />
 
             <View style={styles.quantityInputContainer}>
               <NumericInput
@@ -98,12 +99,12 @@ export const QuantitySelector: React.FC<QuantitySelectorProps> = ({
               )}
             </View>
 
-            <TouchableOpacity
-              style={styles.quantityButton}
+            <IncrementButton
               onPress={handleIncrement}
-            >
-              <Text style={styles.quantityButtonText}>+</Text>
-            </TouchableOpacity>
+              size="large"
+              color="#FF7B00"
+              variant="filled"
+            />
           </View>
 
           <View style={styles.quickSelect}>

@@ -63,6 +63,7 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
 const styles = StyleSheet.create({
   scrollView: {
     flexGrow: 0,
+    flexShrink: 0,
   },
   container: {
     paddingHorizontal: 12,
