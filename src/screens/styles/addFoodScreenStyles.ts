@@ -28,6 +28,20 @@ export const styles = StyleSheet.create({
   placeholder: {
     width: 60,
   },
+  multiSelectButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#FFF3E6',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#FFD9B3',
+  },
+  multiSelectButtonActive: {
+    backgroundColor: '#FF7B00',
+    borderColor: '#FF7B00',
+  },
   recentSection: {
     paddingTop: 8,
   },
@@ -35,56 +49,63 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     color: '#1A1A1A',
-    paddingHorizontal: 16,
+    paddingHorizontal: 4,
     marginBottom: 8,
   },
   recentList: {
-    paddingHorizontal: 12,
+    paddingHorizontal: 0,
   },
-  recentItem: {
-    backgroundColor: '#FFFFFF',
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    borderRadius: 12,
+  recentCompactColumn: {
+    justifyContent: 'flex-start',
     marginHorizontal: 4,
-    minWidth: 100,
+    gap: 6,
+  },
+  recentCompactItem: {
+    backgroundColor: '#FFFFFF',
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderRadius: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.08,
     shadowRadius: 2,
-    elevation: 2,
+    elevation: 1,
   },
-  recentName: {
-    fontSize: 14,
+  recentCompactRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  recentCompactInfo: {
+    marginRight: 10,
+    flexShrink: 1,
+  },
+  recentCompactName: {
+    fontSize: 13,
     fontWeight: '600',
     color: '#1A1A1A',
-    marginBottom: 4,
+    marginBottom: 1,
   },
-  recentCalories: {
-    fontSize: 12,
+  recentCompactCalories: {
+    fontSize: 11,
     color: '#FF7B00',
   },
-  recentQuickAdd: {
-    marginTop: 8,
-    paddingTop: 8,
-    borderTopWidth: 1,
-    borderTopColor: '#F0F0F0',
-  },
-  recentQuickAddLabel: {
-    fontSize: 10,
-    color: '#888888',
-    marginBottom: 4,
-  },
-  recentQuickAddButtons: {
+  recentCompactButtons: {
     flexDirection: 'row',
-    gap: 4,
+    alignItems: 'center',
+    gap: 3,
+    marginLeft: 'auto',
+  },
+  recentCompactUom: {
+    fontSize: 9,
+    color: '#999999',
+    marginRight: 2,
   },
   recentQuickBtn: {
-    paddingVertical: 4,
-    paddingHorizontal: 8,
+    paddingVertical: 3,
+    paddingHorizontal: 6,
     borderRadius: 4,
     backgroundColor: '#F5F5F5',
-    minWidth: 28,
+    minWidth: 24,
     alignItems: 'center',
   },
   recentQuickBtnHovered: {
@@ -102,7 +123,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 16,
+    paddingHorizontal: 4,
     paddingVertical: 12,
   },
   sectionTitleRow: {

@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import { Ionicons, MaterialCommunityIcons, FontAwesome5 } from '@expo/vector-icons';
 import { NumericInput } from './NumericInput';
+import { ExerciseSelectionCart, SelectedExercise } from './ExerciseSelectionCart';
 import { ExerciseEntry, ExerciseType, TimeUnit } from '../types';
 import { EXERCISE_DATA, EXERCISE_TYPES, DEFAULT_BODY_WEIGHT } from '../data/exercises';
 import { calculateCaloriesBurnt, estimateDistanceFromDuration } from '../services/exerciseService';
@@ -51,6 +52,10 @@ export const ExerciseInput: React.FC<ExerciseInputProps> = ({ date, onExerciseSa
   const [estimatedCalories, setEstimatedCalories] = useState(0);
   const [customCalories, setCustomCalories] = useState('');
   const [isCaloriesOverridden, setIsCaloriesOverridden] = useState(false);
+
+  // Multi-select state
+  const [isMultiSelectMode, setIsMultiSelectMode] = useState(false);
+  const [selectedExercises, setSelectedExercises] = useState<SelectedExercise[]>([]);
 
   useEffect(() => {
     loadExercises();
@@ -128,6 +133,81 @@ export const ExerciseInput: React.FC<ExerciseInputProps> = ({ date, onExerciseSa
     setIsCaloriesOverridden(false);
     setEditingExercise(null);
   };
+
+  // Multi-select handlers
+  const handleToggleMultiSelect = useCallback(() => {
+    setIsMultiSelectMode(prev => !prev);
+    if (isMultiSelectMode) {
+      setSelectedExercises([]); // Clear when exiting multi-select mode
+    }
+  }, [isMultiSelectMode]);
+
+  const handleToggleExerciseSelection = useCallback((type: ExerciseType) => {
+    setSelectedExercises(prev => {
+      const exists = prev.find(ex => ex.type === type);
+      if (exists) {
+        // Remove from selection
+        return prev.filter(ex => ex.type !== type);
+      } else {
+        // Add with default 30 min duration
+        const defaultDuration = 30;
+        const distanceKm = EXERCISE_DATA[type].hasDistance 
+          ? estimateDistanceFromDuration(type, defaultDuration)
+          : undefined;
+        const calories = calculateCaloriesBurnt(type, defaultDuration, userWeight, distanceKm);
+        return [...prev, { 
+          type, 
+          duration: defaultDuration, 
+          distance: distanceKm,
+          calories 
+        }];
+      }
+    });
+  }, [userWeight]);
+
+  const handleUpdateSelectedExercise = useCallback((type: ExerciseType, updates: Partial<SelectedExercise>) => {
+    setSelectedExercises(prev =>
+      prev.map(ex => ex.type === type ? { ...ex, ...updates } : ex)
+    );
+  }, []);
+
+  const handleRemoveSelectedExercise = useCallback((type: ExerciseType) => {
+    setSelectedExercises(prev => prev.filter(ex => ex.type !== type));
+  }, []);
+
+  const handleAddAllExercises = useCallback(async () => {
+    if (selectedExercises.length === 0) return;
+
+    // Save all selected exercises
+    for (const exercise of selectedExercises) {
+      const entry: ExerciseEntry = {
+        id: `exercise_${Date.now()}_${exercise.type}`,
+        date,
+        exerciseType: exercise.type,
+        duration: exercise.duration,
+        distance: exercise.distance,
+        caloriesBurnt: exercise.calories,
+        isCaloriesOverridden: false,
+        timestamp: Date.now(),
+      };
+      await saveExerciseEntry(entry);
+    }
+
+    // Reload and clear
+    await loadExercises();
+    setSelectedExercises([]);
+    setIsMultiSelectMode(false);
+    setIsModalVisible(false);
+    onExerciseSaved?.();
+  }, [selectedExercises, date, loadExercises, onExerciseSaved]);
+
+  const handleClearSelectedExercises = useCallback(() => {
+    setSelectedExercises([]);
+  }, []);
+
+  const isExerciseSelected = useCallback((type: ExerciseType) => {
+    return selectedExercises.some(ex => ex.type === type);
+  }, [selectedExercises]);
 
   const openModal = (exercise?: ExerciseEntry) => {
     if (exercise) {
@@ -293,194 +373,269 @@ export const ExerciseInput: React.FC<ExerciseInputProps> = ({ date, onExerciseSa
         >
           <Pressable style={styles.modalContent} onPress={(e) => e.stopPropagation()}>
             <ScrollView showsVerticalScrollIndicator={false}>
-              <Text style={styles.modalTitle}>
-                {editingExercise ? 'Edit Workout' : 'Add Workout'}
-              </Text>
-
-              {/* Exercise Type Selection */}
-              <Text style={styles.fieldLabel}>Exercise Type</Text>
-              <View style={styles.exerciseTypeGrid}>
-                {EXERCISE_TYPES.map((type) => (
-                  <TouchableOpacity
-                    key={type}
-                    style={[
-                      styles.exerciseTypeBtn,
-                      selectedType === type && styles.exerciseTypeBtnActive,
-                    ]}
-                    onPress={() => setSelectedType(type)}
+              {/* Modal Header with Multi-Select Toggle */}
+              <View style={styles.modalHeader}>
+                <Text style={styles.modalTitle}>
+                  {editingExercise ? 'Edit Workout' : isMultiSelectMode ? 'Add Multiple Workouts' : 'Add Workout'}
+                </Text>
+                {!editingExercise && (
+                  <TouchableOpacity 
+                    style={[styles.multiSelectToggle, isMultiSelectMode && styles.multiSelectToggleActive]}
+                    onPress={handleToggleMultiSelect}
                   >
-                    <ExerciseIcon
-                      type={type}
-                      size={24}
-                      color={selectedType === type ? '#FFFFFF' : '#4CAF50'}
+                    <Ionicons 
+                      name={isMultiSelectMode ? "checkbox" : "checkbox-outline"} 
+                      size={18} 
+                      color={isMultiSelectMode ? "#FFFFFF" : "#4CAF50"} 
                     />
-                    <Text
-                      style={[
-                        styles.exerciseTypeName,
-                        selectedType === type && styles.exerciseTypeNameActive,
-                      ]}
-                      numberOfLines={1}
-                    >
-                      {EXERCISE_DATA[type].name}
+                    <Text style={[
+                      styles.multiSelectToggleText,
+                      isMultiSelectMode && styles.multiSelectToggleTextActive
+                    ]}>
+                      Multi
                     </Text>
                   </TouchableOpacity>
-                ))}
-              </View>
-
-              {/* Duration Input */}
-              <Text style={styles.fieldLabel}>Duration</Text>
-              <View style={styles.inputRow}>
-                <View style={styles.durationInputContainer}>
-                  <NumericInput
-                    style={styles.durationInput}
-                    value={duration}
-                    onChangeText={setDuration}
-                    allowDecimal={true}
-                    maxDecimalPlaces={1}
-                    placeholder="30"
-                    placeholderTextColor="#AAAAAA"
-                  />
-                </View>
-                <View style={styles.unitSelector}>
-                  <TouchableOpacity
-                    style={[
-                      styles.unitBtn,
-                      timeUnit === 'minutes' && styles.unitBtnActive,
-                    ]}
-                    onPress={() => setTimeUnit('minutes')}
-                  >
-                    <Text
-                      style={[
-                        styles.unitBtnText,
-                        timeUnit === 'minutes' && styles.unitBtnTextActive,
-                      ]}
-                    >
-                      min
-                    </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={[
-                      styles.unitBtn,
-                      timeUnit === 'hours' && styles.unitBtnActive,
-                    ]}
-                    onPress={() => setTimeUnit('hours')}
-                  >
-                    <Text
-                      style={[
-                        styles.unitBtnText,
-                        timeUnit === 'hours' && styles.unitBtnTextActive,
-                      ]}
-                    >
-                      hr
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-
-              {/* Distance Input (for distance-based exercises) */}
-              {EXERCISE_DATA[selectedType].hasDistance && (
-                <>
-                  <Text style={styles.fieldLabel}>Distance (km)</Text>
-                  <View style={styles.distanceInputContainer}>
-                    <Ionicons name="location-outline" size={20} color="#888" style={styles.distanceIcon} />
-                    <NumericInput
-                      style={styles.distanceInput}
-                      value={distance}
-                      onChangeText={(text) => {
-                        setDistance(text);
-                        setIsDistanceManuallyEdited(true);
-                      }}
-                      allowDecimal={true}
-                      maxDecimalPlaces={2}
-                      placeholder="Auto-estimated"
-                      placeholderTextColor="#AAAAAA"
-                    />
-                    <Text style={styles.distanceUnit}>km</Text>
-                  </View>
-                  <Text style={styles.fieldHint}>
-                    Distance is auto-estimated based on duration. Edit to override.
-                  </Text>
-                </>
-              )}
-
-              {/* Calories Burnt */}
-              <Text style={styles.fieldLabel}>Calories Burnt</Text>
-              <View style={styles.caloriesSection}>
-                <View style={styles.estimatedCaloriesBox}>
-                  <MaterialCommunityIcons name="fire" size={24} color="#FF5722" />
-                  <View style={styles.caloriesTextContainer}>
-                    <Text style={styles.estimatedCaloriesLabel}>Estimated</Text>
-                    <Text style={styles.estimatedCaloriesValue}>
-                      {estimatedCalories} kcal
-                    </Text>
-                  </View>
-                </View>
-                
-                <TouchableOpacity
-                  style={styles.overrideToggle}
-                  onPress={() => {
-                    setIsCaloriesOverridden(!isCaloriesOverridden);
-                    if (!isCaloriesOverridden) {
-                      setCustomCalories(estimatedCalories.toString());
-                    }
-                  }}
-                >
-                  <Ionicons
-                    name={isCaloriesOverridden ? 'checkbox' : 'square-outline'}
-                    size={20}
-                    color="#4CAF50"
-                  />
-                  <Text style={styles.overrideToggleText}>Override</Text>
-                </TouchableOpacity>
-
-                {isCaloriesOverridden && (
-                  <View style={styles.customCaloriesContainer}>
-                    <NumericInput
-                      style={styles.customCaloriesInput}
-                      value={customCalories}
-                      onChangeText={setCustomCalories}
-                      allowDecimal={false}
-                      placeholder="Enter calories"
-                      placeholderTextColor="#AAAAAA"
-                    />
-                    <Text style={styles.customCaloriesUnit}>kcal</Text>
-                  </View>
                 )}
               </View>
 
-              {/* Met Info */}
-              <View style={styles.metInfoBox}>
-                <Ionicons name="information-circle-outline" size={16} color="#888" />
-                <Text style={styles.metInfoText}>
-                  Based on MET value of {EXERCISE_DATA[selectedType].met} for {EXERCISE_DATA[selectedType].name.toLowerCase()}
-                  {' '}and 70kg body weight
-                </Text>
+              {/* Multi-Select Cart - Shows selected exercises */}
+              {isMultiSelectMode && (
+                <ExerciseSelectionCart
+                  selectedExercises={selectedExercises}
+                  userWeight={userWeight}
+                  onUpdateExercise={handleUpdateSelectedExercise}
+                  onRemoveExercise={handleRemoveSelectedExercise}
+                  onAddAll={handleAddAllExercises}
+                  onClearAll={handleClearSelectedExercises}
+                />
+              )}
+
+              {/* Exercise Type Selection */}
+              <Text style={styles.fieldLabel}>
+                {isMultiSelectMode ? 'Tap to select exercises' : 'Exercise Type'}
+              </Text>
+              <View style={styles.exerciseTypeGrid}>
+                {EXERCISE_TYPES.map((type) => {
+                  const isSelectedInMulti = isMultiSelectMode && isExerciseSelected(type);
+                  const isSelectedSingle = !isMultiSelectMode && selectedType === type;
+                  const isActive = isSelectedInMulti || isSelectedSingle;
+                  
+                  return (
+                    <TouchableOpacity
+                      key={type}
+                      style={[
+                        styles.exerciseTypeBtn,
+                        isActive && styles.exerciseTypeBtnActive,
+                      ]}
+                      onPress={() => {
+                        if (isMultiSelectMode) {
+                          handleToggleExerciseSelection(type);
+                        } else {
+                          setSelectedType(type);
+                        }
+                      }}
+                    >
+                      {isMultiSelectMode && (
+                        <View style={[styles.exerciseCheckbox, isSelectedInMulti && styles.exerciseCheckboxSelected]}>
+                          {isSelectedInMulti && (
+                            <Ionicons name="checkmark" size={12} color="#FFFFFF" />
+                          )}
+                        </View>
+                      )}
+                      <ExerciseIcon
+                        type={type}
+                        size={24}
+                        color={isActive ? '#FFFFFF' : '#4CAF50'}
+                      />
+                      <Text
+                        style={[
+                          styles.exerciseTypeName,
+                          isActive && styles.exerciseTypeNameActive,
+                        ]}
+                        numberOfLines={1}
+                      >
+                        {EXERCISE_DATA[type].name}
+                      </Text>
+                    </TouchableOpacity>
+                  );
+                })}
               </View>
 
-              {/* Action Buttons */}
-              <View style={styles.modalButtons}>
-                <TouchableOpacity
-                  style={styles.cancelButton}
-                  onPress={() => {
-                    setIsModalVisible(false);
-                    resetForm();
-                  }}
-                >
-                  <Text style={styles.cancelButtonText}>Cancel</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={[
-                    styles.saveButton,
-                    (!duration || parseFloat(duration) <= 0) && styles.saveButtonDisabled,
-                  ]}
-                  onPress={handleSave}
-                  disabled={!duration || parseFloat(duration) <= 0}
-                >
-                  <Text style={styles.saveButtonText}>
-                    {editingExercise ? 'Update' : 'Save'}
-                  </Text>
-                </TouchableOpacity>
-              </View>
+              {/* Single Exercise Form - Hidden in Multi-Select Mode */}
+              {!isMultiSelectMode && (
+                <>
+                  {/* Duration Input */}
+                  <Text style={styles.fieldLabel}>Duration</Text>
+                  <View style={styles.inputRow}>
+                    <View style={styles.durationInputContainer}>
+                      <NumericInput
+                        style={styles.durationInput}
+                        value={duration}
+                        onChangeText={setDuration}
+                        allowDecimal={true}
+                        maxDecimalPlaces={1}
+                        placeholder="30"
+                        placeholderTextColor="#AAAAAA"
+                      />
+                    </View>
+                    <View style={styles.unitSelector}>
+                      <TouchableOpacity
+                        style={[
+                          styles.unitBtn,
+                          timeUnit === 'minutes' && styles.unitBtnActive,
+                        ]}
+                        onPress={() => setTimeUnit('minutes')}
+                      >
+                        <Text
+                          style={[
+                            styles.unitBtnText,
+                            timeUnit === 'minutes' && styles.unitBtnTextActive,
+                          ]}
+                        >
+                          min
+                        </Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        style={[
+                          styles.unitBtn,
+                          timeUnit === 'hours' && styles.unitBtnActive,
+                        ]}
+                        onPress={() => setTimeUnit('hours')}
+                      >
+                        <Text
+                          style={[
+                            styles.unitBtnText,
+                            timeUnit === 'hours' && styles.unitBtnTextActive,
+                          ]}
+                        >
+                          hr
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+
+                  {/* Distance Input (for distance-based exercises) */}
+                  {EXERCISE_DATA[selectedType].hasDistance && (
+                    <>
+                      <Text style={styles.fieldLabel}>Distance (km)</Text>
+                      <View style={styles.distanceInputContainer}>
+                        <Ionicons name="location-outline" size={20} color="#888" style={styles.distanceIcon} />
+                        <NumericInput
+                          style={styles.distanceInput}
+                          value={distance}
+                          onChangeText={(text) => {
+                            setDistance(text);
+                            setIsDistanceManuallyEdited(true);
+                          }}
+                          allowDecimal={true}
+                          maxDecimalPlaces={2}
+                          placeholder="Auto-estimated"
+                          placeholderTextColor="#AAAAAA"
+                        />
+                        <Text style={styles.distanceUnit}>km</Text>
+                      </View>
+                      <Text style={styles.fieldHint}>
+                        Distance is auto-estimated based on duration. Edit to override.
+                      </Text>
+                    </>
+                  )}
+
+                  {/* Calories Burnt */}
+                  <Text style={styles.fieldLabel}>Calories Burnt</Text>
+                  <View style={styles.caloriesSection}>
+                    <View style={styles.estimatedCaloriesBox}>
+                      <MaterialCommunityIcons name="fire" size={24} color="#FF5722" />
+                      <View style={styles.caloriesTextContainer}>
+                        <Text style={styles.estimatedCaloriesLabel}>Estimated</Text>
+                        <Text style={styles.estimatedCaloriesValue}>
+                          {estimatedCalories} kcal
+                        </Text>
+                      </View>
+                    </View>
+                    
+                    <TouchableOpacity
+                      style={styles.overrideToggle}
+                      onPress={() => {
+                        setIsCaloriesOverridden(!isCaloriesOverridden);
+                        if (!isCaloriesOverridden) {
+                          setCustomCalories(estimatedCalories.toString());
+                        }
+                      }}
+                    >
+                      <Ionicons
+                        name={isCaloriesOverridden ? 'checkbox' : 'square-outline'}
+                        size={20}
+                        color="#4CAF50"
+                      />
+                      <Text style={styles.overrideToggleText}>Override</Text>
+                    </TouchableOpacity>
+
+                    {isCaloriesOverridden && (
+                      <View style={styles.customCaloriesContainer}>
+                        <NumericInput
+                          style={styles.customCaloriesInput}
+                          value={customCalories}
+                          onChangeText={setCustomCalories}
+                          allowDecimal={false}
+                          placeholder="Enter calories"
+                          placeholderTextColor="#AAAAAA"
+                        />
+                        <Text style={styles.customCaloriesUnit}>kcal</Text>
+                      </View>
+                    )}
+                  </View>
+
+                  {/* Met Info */}
+                  <View style={styles.metInfoBox}>
+                    <Ionicons name="information-circle-outline" size={16} color="#888" />
+                    <Text style={styles.metInfoText}>
+                      Based on MET value of {EXERCISE_DATA[selectedType].met} for {EXERCISE_DATA[selectedType].name.toLowerCase()}
+                      {' '}and 70kg body weight
+                    </Text>
+                  </View>
+
+                  {/* Action Buttons */}
+                  <View style={styles.modalButtons}>
+                    <TouchableOpacity
+                      style={styles.cancelButton}
+                      onPress={() => {
+                        setIsModalVisible(false);
+                        resetForm();
+                      }}
+                    >
+                      <Text style={styles.cancelButtonText}>Cancel</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={[
+                        styles.saveButton,
+                        (!duration || parseFloat(duration) <= 0) && styles.saveButtonDisabled,
+                      ]}
+                      onPress={handleSave}
+                      disabled={!duration || parseFloat(duration) <= 0}
+                    >
+                      <Text style={styles.saveButtonText}>
+                        {editingExercise ? 'Update' : 'Save'}
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                </>
+              )}
+
+              {/* Multi-Select Mode - Cancel Button */}
+              {isMultiSelectMode && (
+                <View style={styles.modalButtons}>
+                  <TouchableOpacity
+                    style={styles.cancelButton}
+                    onPress={() => {
+                      setIsModalVisible(false);
+                      setSelectedExercises([]);
+                      setIsMultiSelectMode(false);
+                    }}
+                  >
+                    <Text style={styles.cancelButtonText}>Cancel</Text>
+                  </TouchableOpacity>
+                </View>
+              )}
             </ScrollView>
           </Pressable>
         </Pressable>
@@ -607,6 +762,50 @@ const styles = StyleSheet.create({
     color: '#1A1A1A',
     textAlign: 'center',
     marginBottom: 20,
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  multiSelectToggle: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 16,
+    backgroundColor: '#E8F5E9',
+    borderWidth: 1,
+    borderColor: '#C8E6C9',
+    gap: 4,
+  },
+  multiSelectToggleActive: {
+    backgroundColor: '#4CAF50',
+    borderColor: '#4CAF50',
+  },
+  multiSelectToggleText: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#4CAF50',
+  },
+  multiSelectToggleTextActive: {
+    color: '#FFFFFF',
+  },
+  exerciseCheckbox: {
+    width: 18,
+    height: 18,
+    borderRadius: 9,
+    borderWidth: 2,
+    borderColor: '#4CAF50',
+    backgroundColor: '#FFFFFF',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 4,
+  },
+  exerciseCheckboxSelected: {
+    backgroundColor: '#4CAF50',
+    borderColor: '#FFFFFF',
   },
   fieldLabel: {
     fontSize: 14,
