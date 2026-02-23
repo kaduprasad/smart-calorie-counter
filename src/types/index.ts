@@ -26,6 +26,7 @@ export type FoodCategory =
   | 'fruits'
   | 'chutneys'
   | 'pickles'
+  | 'breakfast'
   | 'custom';
 
 export type FoodUnit = 
