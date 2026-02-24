@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
 import { DailyLog, FoodItem, FoodLogEntry, AppSettings } from '../types';
+import { FoodIndex, getFoodIndex } from '../data/foodIndex';
 import {
   getDailyLog,
   addFoodEntry,
@@ -22,6 +23,7 @@ interface AppContextType {
   todayLog: DailyLog | null;
   customFoods: FoodItem[];
   allFoods: FoodItem[];
+  foodIndex: FoodIndex;
   settings: AppSettings;
   recentFoods: FoodItem[];
   allLogs: { [date: string]: DailyLog };
@@ -60,8 +62,14 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [selectedDate, setSelectedDate] = useState(getTodayDate());
   const hasInitialLoad = React.useRef(false);
 
-  // Combine default foods with custom foods
-  const allFoods = [...maharashtrianFoods, ...customFoods];
+  // Combine default foods with custom foods (stable ref via useMemo)
+  const allFoods = useMemo(
+    () => [...maharashtrianFoods, ...customFoods],
+    [customFoods],
+  );
+
+  // Build / return cached food index (O(n) once, then O(1) on re-renders)
+  const foodIndex = useMemo(() => getFoodIndex(allFoods), [allFoods]);
 
   const loadData = useCallback(async () => {
     // Only show loading on initial load or date change
@@ -171,6 +179,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         todayLog,
         customFoods,
         allFoods,
+        foodIndex,
         settings,
         recentFoods,
         allLogs,

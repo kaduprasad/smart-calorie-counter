@@ -29,7 +29,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 70,
     unit: 'piece',
     unitWeight: 30,
-    searchKeywords: ['roti', 'phulka', 'poli', 'fulka', 'rotli'],
+    searchKeywords: ['roti', 'phulka', 'poli', 'fulka', 'rotli', 'rotee', 'chapathi', 'chapatti'],
   },
   {
     id: 'bhakri-jowar',
@@ -39,7 +39,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 110,
     unit: 'piece',
     unitWeight: 40,
-    searchKeywords: ['jwari bhakri', 'sorghum roti', 'jowar roti'],
+    searchKeywords: ['jwari bhakri', 'sorghum roti', 'jowar roti', 'jowar ki roti', 'rotee'],
   },
   {
     id: 'bhakri-bajra',
@@ -49,7 +49,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 120,
     unit: 'piece',
     unitWeight: 45,
-    searchKeywords: ['bajri bhakri', 'pearl millet roti', 'bajra roti'],
+    searchKeywords: ['bajri bhakri', 'pearl millet roti', 'bajra roti', 'bajre ki roti', 'rotee'],
   },
   {
     id: 'bhakri-nachni',
@@ -59,7 +59,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 100,
     unit: 'piece',
     unitWeight: 40,
-    searchKeywords: ['ragi bhakri', 'finger millet roti', 'nachani'],
+    searchKeywords: ['ragi bhakri', 'finger millet roti', 'nachani', 'ragi roti', 'nachni roti', 'rotee'],
   },
   {
     id: 'thalipeeth',
@@ -69,7 +69,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 150,
     unit: 'piece',
     unitWeight: 60,
-    searchKeywords: ['thalipith', 'multigrain roti', 'bhajani thalipeeth'],
+    searchKeywords: ['thalipith', 'multigrain roti', 'bhajani thalipeeth', 'thalipeet', 'rotee'],
   },
   {
     id: 'paratha',
@@ -89,7 +89,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 250,
     unit: 'piece',
     unitWeight: 80,
-    searchKeywords: ['batata paratha', 'potato paratha', 'aalu parantha'],
+    searchKeywords: ['batata paratha', 'potato paratha', 'aalu parantha', 'aloo paratha', 'aloo ka paratha'],
   },
   {
     id: 'puri',
@@ -99,7 +99,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 90,
     unit: 'piece',
     unitWeight: 25,
-    searchKeywords: ['poori', 'luchi', 'puri bhaji'],
+    searchKeywords: ['poori', 'luchi', 'puri bhaji', 'pooree', 'puree'],
   },
   {
     id: 'puran-poli',
@@ -119,7 +119,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 100,
     unit: 'piece',
     unitWeight: 35,
-    searchKeywords: ['bun', 'ladi pav'],
+    searchKeywords: ['bun', 'ladi pav', 'paav', 'bread bun'],
   },
   {
     id: 'white-bread',
@@ -161,7 +161,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 280,
     unit: 'cup',
     unitWeight: 200,
-    searchKeywords: ['masala rice', 'spiced rice', 'masala bhat'],
+    searchKeywords: ['masala rice', 'spiced rice', 'masala bhat', 'masala chawal', 'masale chawal'],
   },
   {
     id: 'varan-bhat',
@@ -171,7 +171,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 350,
     unit: 'plate',
     unitWeight: 300,
-    searchKeywords: ['dal bhat', 'dal chawal', 'varan rice'],
+    searchKeywords: ['dal bhat', 'dal chawal', 'varan rice', 'daal chawal', 'daal bhat', 'dhal chawal'],
   },
   {
     id: 'khichdi',
@@ -181,7 +181,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 220,
     unit: 'cup',
     unitWeight: 200,
-    searchKeywords: ['khichadi', 'dal khichdi', 'moong khichdi'],
+    searchKeywords: ['khichadi', 'dal khichdi', 'moong khichdi', 'daal khichdi', 'khichri'],
   },
   {
     id: 'pulao',
@@ -201,7 +201,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 230,
     unit: 'cup',
     unitWeight: 200,
-    searchKeywords: ['tadka rice', 'tempering rice', 'fodni bhat'],
+    searchKeywords: ['tadka rice', 'tempering rice', 'fodni bhat', 'tadke wala chawal', 'fodni chawal'],
   },
   {
     id: 'fried-rice',
@@ -231,7 +231,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 350,
     unit: 'plate',
     unitWeight: 250,
-    searchKeywords: ['vegetable biryani', 'biriyani'],
+    searchKeywords: ['vegetable biryani', 'biriyani', 'briyani', 'veg biriyani'],
   },
 
   // Dal & Curries
@@ -243,7 +243,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 120,
     unit: 'bowl',
     unitWeight: 150,
-    searchKeywords: ['toor dal', 'arhar dal', 'dal', 'plain dal'],
+    searchKeywords: ['toor dal', 'arhar dal', 'dal', 'plain dal', 'daal', 'dhal', 'toor daal', 'arhar daal'],
   },
   {
     id: 'amti',
@@ -253,7 +253,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 140,
     unit: 'bowl',
     unitWeight: 150,
-    searchKeywords: ['amti dal', 'maharashtrian dal', 'spicy dal'],
+    searchKeywords: ['amti dal', 'maharashtrian dal', 'spicy dal', 'daal', 'dhal', 'amti daal'],
   },
   {
     id: 'katachi-amti',
@@ -263,7 +263,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 180,
     unit: 'bowl',
     unitWeight: 150,
-    searchKeywords: ['chana dal amti', 'harbara dal', 'kata amti'],
+    searchKeywords: ['chana dal amti', 'harbara dal', 'kata amti', 'chana daal', 'daal'],
   },
   {
     id: 'matki-usal',
@@ -273,7 +273,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 200,
     unit: 'bowl',
     unitWeight: 150,
-    searchKeywords: ['moth beans', 'matki chi usal', 'sprouted matki'],
+    searchKeywords: ['moth beans', 'matki chi usal', 'sprouted matki', 'moth ki dal', 'sabzi', 'sabji'],
   },
   {
     id: 'vatana-usal',
@@ -283,7 +283,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 180,
     unit: 'bowl',
     unitWeight: 150,
-    searchKeywords: ['matar usal', 'green peas curry', 'peas sabzi'],
+    searchKeywords: ['matar usal', 'green peas curry', 'peas sabzi', 'sabji', 'matar sabji', 'vatana sabji'],
   },
   {
     id: 'chana-usal',
@@ -293,7 +293,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 190,
     unit: 'bowl',
     unitWeight: 150,
-    searchKeywords: ['chole', 'chickpea curry', 'chhole', 'harbara usal'],
+    searchKeywords: ['chole', 'chickpea curry', 'chhole', 'harbara usal', 'chana sabzi', 'chane ki sabzi', 'sabji'],
   },
   {
     id: 'kadhi',
@@ -313,7 +313,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 80,
     unit: 'glass',
     unitWeight: 200,
-    searchKeywords: ['kokum kadhi', 'solkadhi', 'pink drink'],
+    searchKeywords: ['kokum kadhi', 'solkadhi', 'pink drink', 'sol kadi', 'kokam kadi'],
   },
 
   // Kalvans (Bean & Legume Curries)
@@ -325,7 +325,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 140,
     unit: 'cup',
     unitWeight: 150,
-    searchKeywords: ['ghevda dana', 'french beans curry', 'farasbi kalvan', 'green beans curry'],
+    searchKeywords: ['ghevda dana', 'french beans curry', 'farasbi kalvan', 'green beans curry', 'fansi ki sabzi', 'sabji'],
   },
   {
     id: 'rajma-curry',
@@ -345,7 +345,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 160,
     unit: 'cup',
     unitWeight: 150,
-    searchKeywords: ['masoor dal curry', 'red lentil curry', 'masur kalvan'],
+    searchKeywords: ['masoor dal curry', 'red lentil curry', 'masur kalvan', 'masoor daal', 'masur daal'],
   },
   {
     id: 'pavta-kalvan',
@@ -355,7 +355,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 150,
     unit: 'cup',
     unitWeight: 150,
-    searchKeywords: ['pavta bhaji', 'val kalvan', 'broad beans curry', 'sem ki sabzi'],
+    searchKeywords: ['pavta bhaji', 'val kalvan', 'broad beans curry', 'sem ki sabzi', 'sabji'],
   },
   {
     id: 'pavta-batata-kalvan',
@@ -365,7 +365,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 180,
     unit: 'cup',
     unitWeight: 150,
-    searchKeywords: ['pavta aloo curry', 'broad beans potato', 'val batata'],
+    searchKeywords: ['pavta aloo curry', 'broad beans potato', 'val batata', 'sem aloo', 'sabzi', 'sabji'],
   },
   {
     id: 'ghevda-batata-kalvan',
@@ -375,7 +375,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 170,
     unit: 'cup',
     unitWeight: 150,
-    searchKeywords: ['french beans potato curry', 'farasbi batata', 'ghevda aloo'],
+    searchKeywords: ['french beans potato curry', 'farasbi batata', 'ghevda aloo', 'fansi aloo', 'sabzi', 'sabji'],
   },
   {
     id: 'kala-ghevda-kalvan',
@@ -385,7 +385,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 175,
     unit: 'cup',
     unitWeight: 150,
-    searchKeywords: ['chawli kalvan', 'lobia curry', 'black eyed peas curry', 'alsande'],
+    searchKeywords: ['chawli kalvan', 'lobia curry', 'black eyed peas curry', 'alsande', 'lobiya sabzi', 'sabji'],
   },
   {
     id: 'vatana-kalvan',
@@ -395,7 +395,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 160,
     unit: 'cup',
     unitWeight: 150,
-    searchKeywords: ['matar curry', 'green peas curry', 'vatana amti', 'peas kalvan'],
+    searchKeywords: ['matar curry', 'green peas curry', 'vatana amti', 'peas kalvan', 'matar sabzi', 'matar ki sabzi', 'sabji'],
   },
   {
     id: 'shev-bhaji',
@@ -405,7 +405,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 200,
     unit: 'cup',
     unitWeight: 150,
-    searchKeywords: ['sev chi bhaji', 'sev sabzi', 'shev curry', 'sev tamatar'],
+    searchKeywords: ['sev chi bhaji', 'sev sabzi', 'shev curry', 'sev tamatar', 'sabji', 'sev ki sabzi'],
   },
   {
     id: 'harbara-kalvan',
@@ -415,7 +415,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 185,
     unit: 'cup',
     unitWeight: 150,
-    searchKeywords: ['kala chana curry', 'black chana', 'desi chana curry'],
+    searchKeywords: ['kala chana curry', 'black chana', 'desi chana curry', 'kala chana sabzi', 'kale chane', 'sabji'],
   },
   {
     id: 'chavli-kalvan',
@@ -425,7 +425,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 145,
     unit: 'cup',
     unitWeight: 150,
-    searchKeywords: ['long beans curry', 'yard long beans', 'chawli chi bhaji'],
+    searchKeywords: ['long beans curry', 'yard long beans', 'chawli chi bhaji', 'chawli sabzi', 'sabji'],
   },
 
   // Vegetables
@@ -437,7 +437,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 150,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['aloo bhaji', 'potato sabzi', 'sukhi batata'],
+    searchKeywords: ['aloo bhaji', 'potato sabzi', 'sukhi batata', 'sabji', 'aloo sabji', 'aloo ki sabzi'],
   },
   {
     id: 'batata-bhaji-gravy',
@@ -447,7 +447,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 180,
     unit: 'serving',
     unitWeight: 120,
-    searchKeywords: ['aloo curry', 'potato curry', 'batata rassa'],
+    searchKeywords: ['aloo curry', 'potato curry', 'batata rassa', 'sabzi', 'sabji', 'aloo rassa'],
   },
   {
     id: 'batata-bhaji-jeera',
@@ -457,7 +457,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 160,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['cumin potato', 'jeera batata'],
+    searchKeywords: ['cumin potato', 'jeera batata', 'jeera aloo', 'sabzi', 'sabji'],
   },
   {
     id: 'batata-kaap',
@@ -467,7 +467,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 200,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['fried potato', 'talli batata'],
+    searchKeywords: ['fried potato', 'talli batata', 'aloo kaap', 'aloo fry', 'sabzi', 'sabji'],
   },
   {
     id: 'vangi-bhaji',
@@ -477,7 +477,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 100,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['baingan', 'brinjal sabzi', 'eggplant', 'vangyachi bhaji'],
+    searchKeywords: ['baingan', 'brinjal sabzi', 'eggplant', 'vangyachi bhaji', 'sabji', 'baingan ki sabzi', 'baingan sabji'],
   },
   {
     id: 'bharli-vangi',
@@ -487,7 +487,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 180,
     unit: 'serving',
     unitWeight: 120,
-    searchKeywords: ['stuffed brinjal', 'bharwa baingan', 'stuffed eggplant'],
+    searchKeywords: ['stuffed brinjal', 'bharwa baingan', 'stuffed eggplant', 'sabzi', 'sabji', 'baingan bharwa'],
   },
   {
     id: 'bhendi-bhaji',
@@ -497,7 +497,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 90,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['bhindi', 'okra sabzi', 'lady finger'],
+    searchKeywords: ['bhindi', 'okra sabzi', 'lady finger', 'sabji', 'bhindi ki sabzi', 'bhindi sabji'],
   },
   {
     id: 'gobi-bhaji',
@@ -507,7 +507,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 120,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['phulgobi', 'cauliflower sabzi', 'fulavar bhaji'],
+    searchKeywords: ['phulgobi', 'cauliflower sabzi', 'fulavar bhaji', 'sabji', 'gobi ki sabzi', 'phulgobi sabji'],
   },
   {
     id: 'kobi-bhaji',
@@ -517,7 +517,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 80,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['patta gobi', 'cabbage sabzi', 'bandh gobi'],
+    searchKeywords: ['patta gobi', 'cabbage sabzi', 'bandh gobi', 'sabji', 'patta gobi sabji', 'bandh gobi sabzi'],
   },
   {
     id: 'dudhi-bhaji',
@@ -527,7 +527,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 60,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['lauki', 'ghia', 'bottle gourd sabzi'],
+    searchKeywords: ['lauki', 'ghia', 'bottle gourd sabzi', 'sabji', 'lauki sabji', 'lauki ki sabzi'],
   },
   {
     id: 'dodka-bhaji',
@@ -537,7 +537,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 50,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['turai', 'ridge gourd sabzi', 'gilki'],
+    searchKeywords: ['turai', 'ridge gourd sabzi', 'gilki', 'sabji', 'turai ki sabzi', 'tori'],
   },
   {
     id: 'karela-bhaji',
@@ -547,7 +547,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 70,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['bitter gourd sabzi', 'karele ki sabzi'],
+    searchKeywords: ['bitter gourd sabzi', 'karele ki sabzi', 'sabji', 'karela sabji'],
   },
   {
     id: 'tendli-bhaji',
@@ -557,7 +557,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 60,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['tindora', 'ivy gourd', 'kundru'],
+    searchKeywords: ['tindora', 'ivy gourd', 'kundru', 'sabzi', 'sabji', 'tindora sabzi', 'kundru ki sabzi'],
   },
   {
     id: 'ghevda-bhaji',
@@ -567,7 +567,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 70,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['french beans', 'fansi', 'string beans'],
+    searchKeywords: ['french beans', 'fansi', 'string beans', 'sabzi', 'sabji', 'fansi ki sabzi', 'beans sabzi'],
   },
   {
     id: 'methi-bhaji',
@@ -577,7 +577,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 80,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['fenugreek leaves', 'methi saag', 'methi ki sabzi'],
+    searchKeywords: ['fenugreek leaves', 'methi saag', 'methi ki sabzi', 'sabji', 'methi sabji'],
   },
   {
     id: 'palak-bhaji',
@@ -587,7 +587,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 70,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['spinach sabzi', 'palak saag', 'palak ki sabzi'],
+    searchKeywords: ['spinach sabzi', 'palak saag', 'palak ki sabzi', 'sabji', 'palak sabji'],
   },
   {
     id: 'shepu-bhaji',
@@ -597,7 +597,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 60,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['dill leaves', 'suva bhaji', 'soa bhaji'],
+    searchKeywords: ['dill leaves', 'suva bhaji', 'soa bhaji', 'sabzi', 'sabji', 'suva sabzi'],
   },
   {
     id: 'ambadi-bhaji',
@@ -607,7 +607,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 50,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['gongura', 'sorrel leaves', 'pitwaa'],
+    searchKeywords: ['gongura', 'sorrel leaves', 'pitwaa', 'sabzi', 'sabji', 'gongura sabzi'],
   },
   {
     id: 'zunka',
@@ -617,7 +617,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 180,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['jhunka', 'besan bhaji', 'gram flour dish'],
+    searchKeywords: ['jhunka', 'besan bhaji', 'gram flour dish', 'sabzi', 'sabji', 'besan sabzi'],
   },
   {
     id: 'pitla',
@@ -627,7 +627,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 160,
     unit: 'bowl',
     unitWeight: 100,
-    searchKeywords: ['pithla', 'besan kadhi', 'gram flour curry'],
+    searchKeywords: ['pithla', 'besan kadhi', 'gram flour curry', 'sabzi', 'sabji'],
   },
   // Salad & Raw Vegetables
   {
@@ -731,7 +731,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 180,
     unit: 'plate',
     unitWeight: 150,
-    searchKeywords: ['poha', 'flattened rice', 'batata pohe', 'chivda pohe'],
+    searchKeywords: ['poha', 'flattened rice', 'batata pohe', 'chivda pohe', 'pyaaz poha', 'kanda poha'],
   },
   {
     id: 'upma',
@@ -751,7 +751,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 300,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['halwa', 'sooji halwa', 'rava sheera', 'suji ka halwa'],
+    searchKeywords: ['halwa', 'sooji halwa', 'rava sheera', 'suji ka halwa', 'sheero', 'halva'],
   },
   {
     id: 'sabudana-khichdi',
@@ -791,7 +791,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 110,
     unit: 'piece',
     unitWeight: 130,
-    searchKeywords: ['shakarkand', 'sweet potato', 'meetha aloo'],
+    searchKeywords: ['shakarkand', 'sweet potato', 'meetha aloo', 'shakarkandi', 'ratalu'],
   },
   {
     id: 'batata-vada',
@@ -811,7 +811,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 350,
     unit: 'plate',
     unitWeight: 200,
-    searchKeywords: ['misal pav', 'kolhapuri misal', 'puneri misal'],
+    searchKeywords: ['misal pav', 'kolhapuri misal', 'puneri misal', 'misal paav'],
   },
   {
     id: 'vada-pav',
@@ -821,7 +821,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 290,
     unit: 'piece',
     unitWeight: 100,
-    searchKeywords: ['vadapav', 'wada pav', 'mumbai vada pav'],
+    searchKeywords: ['vadapav', 'wada pav', 'mumbai vada pav', 'vada paav', 'wada paav'],
   },
   // Chaat & Street Food (moved to chaat category)
   {
@@ -862,7 +862,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 220,
     unit: 'serving',
     unitWeight: 150,
-    searchKeywords: ['vada sambhar', 'medu vada sambar'],
+    searchKeywords: ['vada sambhar', 'medu vada sambar', 'sambhaar', 'saambar'],
   },
   {
     id: 'pav-bhaji-chaat',
@@ -872,7 +872,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 450,
     unit: 'plate',
     unitWeight: 280,
-    searchKeywords: ['pavbhaji', 'mumbai pav bhaji', 'street pav bhaji'],
+    searchKeywords: ['pavbhaji', 'mumbai pav bhaji', 'street pav bhaji', 'paav bhaji'],
   },
   {
     id: 'masala-pav',
@@ -902,7 +902,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 180,
     unit: 'plate',
     unitWeight: 90,
-    searchKeywords: ['golgappa', 'puchka', 'gupchup', 'pani puri', 'paani poori'],
+    searchKeywords: ['golgappa', 'puchka', 'gupchup', 'pani puri', 'paani poori', 'gol gappe', 'golgappe'],
   },
   {
     id: 'sev-puri',
@@ -922,7 +922,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 280,
     unit: 'plate',
     unitWeight: 120,
-    searchKeywords: ['dahipuri', 'curd puri', 'dahi batata puri'],
+    searchKeywords: ['dahipuri', 'curd puri', 'dahi batata puri', 'dahi poori'],
   },
   {
     id: 'spdp',
@@ -982,7 +982,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 450,
     unit: 'plate',
     unitWeight: 250,
-    searchKeywords: ['chana bhatura', 'punjabi chole', 'bhatura'],
+    searchKeywords: ['chana bhatura', 'punjabi chole', 'bhatura', 'chole bhatura', 'chole bature'],
   },
   {
     id: 'puri-bhaji',
@@ -992,7 +992,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 350,
     unit: 'plate',
     unitWeight: 200,
-    searchKeywords: ['poori bhaji', 'aloo puri', 'batata bhaji puri'],
+    searchKeywords: ['poori bhaji', 'aloo puri', 'batata bhaji puri', 'pooree sabzi', 'sabji'],
   },
   {
     id: 'kachori',
@@ -1002,7 +1002,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 200,
     unit: 'piece',
     unitWeight: 60,
-    searchKeywords: ['moong kachori', 'pyaaz kachori', 'dal kachori'],
+    searchKeywords: ['moong kachori', 'pyaaz kachori', 'dal kachori', 'daal kachori', 'kachodi'],
   },
   {
     id: 'dabeli',
@@ -1022,7 +1022,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 50,
     unit: 'piece',
     unitWeight: 20,
-    searchKeywords: ['pakora', 'bhajji', 'kanda bhaji', 'onion pakoda'],
+    searchKeywords: ['pakora', 'bhajji', 'kanda bhaji', 'onion pakoda', 'pyaaz pakora', 'bhajia', 'pakode'],
   },
   {
     id: 'chana-jor-garam',
@@ -1116,7 +1116,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 350,
     unit: 'serving',
     unitWeight: 150,
-    searchKeywords: ['mutton gravy', 'lamb curry', 'mutton rassa'],
+    searchKeywords: ['mutton gravy', 'lamb curry', 'mutton rassa', 'gosht', 'mutton ka salan'],
   },
   {
     id: 'mutton-rogan-josh',
@@ -1138,7 +1138,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 220,
     unit: 'serving',
     unitWeight: 150,
-    searchKeywords: ['machhi curry', 'fish gravy', 'bangda curry'],
+    searchKeywords: ['machhi curry', 'fish gravy', 'bangda curry', 'machli curry', 'machli ka salan'],
   },
   {
     id: 'fish-fry',
@@ -1148,7 +1148,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 180,
     unit: 'piece',
     unitWeight: 80,
-    searchKeywords: ['tawa fish', 'fried fish', 'machhi fry'],
+    searchKeywords: ['tawa fish', 'fried fish', 'machhi fry', 'machli fry'],
   },
   {
     id: 'pomfret-fry',
@@ -1168,7 +1168,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 200,
     unit: 'serving',
     unitWeight: 150,
-    searchKeywords: ['jhinga curry', 'shrimp curry', 'kolambi'],
+    searchKeywords: ['jhinga curry', 'shrimp curry', 'kolambi', 'jheenga curry', 'prawn masala'],
   },
   {
     id: 'prawn-fry',
@@ -1178,7 +1178,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 180,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['jhinga fry', 'fried prawns'],
+    searchKeywords: ['jhinga fry', 'fried prawns', 'jheenga fry'],
   },
   {
     id: 'surmai-curry',
@@ -1262,7 +1262,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 450,
     unit: 'plate',
     unitWeight: 300,
-    searchKeywords: ['murgh biryani', 'hyderabadi chicken biryani'],
+    searchKeywords: ['murgh biryani', 'hyderabadi chicken biryani', 'biriyani', 'briyani'],
   },
   {
     id: 'mutton-biryani',
@@ -1272,7 +1272,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 500,
     unit: 'plate',
     unitWeight: 300,
-    searchKeywords: ['gosht biryani', 'lamb biryani'],
+    searchKeywords: ['gosht biryani', 'lamb biryani', 'biriyani', 'briyani'],
   },
   {
     id: 'egg-biryani',
@@ -1282,7 +1282,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 380,
     unit: 'plate',
     unitWeight: 280,
-    searchKeywords: ['anda biryani'],
+    searchKeywords: ['anda biryani', 'biriyani', 'briyani', 'egg biriyani'],
   },
   {
     id: 'fish-biryani',
@@ -1292,7 +1292,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 420,
     unit: 'plate',
     unitWeight: 300,
-    searchKeywords: ['machhi biryani'],
+    searchKeywords: ['machhi biryani', 'biriyani', 'briyani', 'machli biryani'],
   },
   {
     id: 'prawn-biryani',
@@ -1302,7 +1302,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 400,
     unit: 'plate',
     unitWeight: 280,
-    searchKeywords: ['jhinga biryani', 'shrimp biryani'],
+    searchKeywords: ['jhinga biryani', 'shrimp biryani', 'biriyani', 'briyani'],
   },
 
   // Non-Veg - Rice Dishes
@@ -1336,7 +1336,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 280,
     unit: 'serving',
     unitWeight: 150,
-    searchKeywords: ['maa ki dal', 'black dal', 'creamy dal'],
+    searchKeywords: ['maa ki dal', 'black dal', 'creamy dal', 'daal makhani', 'dhal makhani', 'daal makhni'],
   },
   {
     id: 'dal-tadka',
@@ -1346,7 +1346,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 180,
     unit: 'serving',
     unitWeight: 150,
-    searchKeywords: ['yellow dal', 'dal fry', 'toor dal'],
+    searchKeywords: ['yellow dal', 'dal fry', 'toor dal', 'daal tadka', 'dhal tadka', 'daal fry'],
   },
   {
     id: 'paneer-butter-masala',
@@ -1386,7 +1386,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 180,
     unit: 'serving',
     unitWeight: 150,
-    searchKeywords: ['vegetable curry', 'mixed vegetables'],
+    searchKeywords: ['vegetable curry', 'mixed vegetables', 'sabzi', 'sabji', 'mix sabzi'],
   },
   {
     id: 'aloo-gobi',
@@ -1396,7 +1396,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 180,
     unit: 'serving',
     unitWeight: 150,
-    searchKeywords: ['potato cauliflower', 'batata gobi'],
+    searchKeywords: ['potato cauliflower', 'batata gobi', 'sabzi', 'sabji', 'aloo gobi sabzi'],
   },
   {
     id: 'aloo-matar',
@@ -1406,7 +1406,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 200,
     unit: 'serving',
     unitWeight: 150,
-    searchKeywords: ['potato peas', 'batata matar'],
+    searchKeywords: ['potato peas', 'batata matar', 'sabzi', 'sabji', 'aloo matar sabzi'],
   },
   {
     id: 'matar-paneer',
@@ -1436,7 +1436,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 240,
     unit: 'serving',
     unitWeight: 150,
-    searchKeywords: ['kidney beans curry', 'rajma chawal'],
+    searchKeywords: ['kidney beans curry', 'rajma chawal', 'rajma daal', 'rajma sabzi'],
   },
   {
     id: 'baingan-bharta',
@@ -1446,7 +1446,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 150,
     unit: 'serving',
     unitWeight: 150,
-    searchKeywords: ['roasted eggplant', 'vangyache bharit'],
+    searchKeywords: ['roasted eggplant', 'vangyache bharit', 'sabzi', 'sabji', 'baingan ka bharta'],
   },
   {
     id: 'dum-aloo',
@@ -1486,7 +1486,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 150,
     unit: 'serving',
     unitWeight: 150,
-    searchKeywords: ['okra masala', 'ladyfinger curry'],
+    searchKeywords: ['okra masala', 'ladyfinger curry', 'sabzi', 'sabji', 'bhindi ki sabzi'],
   },
   {
     id: 'jeera-aloo',
@@ -1496,7 +1496,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 180,
     unit: 'serving',
     unitWeight: 150,
-    searchKeywords: ['cumin potatoes', 'dry aloo'],
+    searchKeywords: ['cumin potatoes', 'dry aloo', 'sabzi', 'sabji', 'jeera aloo sabzi'],
   },
 
   // Main Course Breads
@@ -1538,7 +1538,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 120,
     unit: 'piece',
     unitWeight: 50,
-    searchKeywords: ['tandoor roti', 'whole wheat naan'],
+    searchKeywords: ['tandoor roti', 'whole wheat naan', 'rotee', 'tandoori rotee'],
   },
 
   // Main Course Rice
@@ -1550,7 +1550,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 400,
     unit: 'plate',
     unitWeight: 280,
-    searchKeywords: ['cottage cheese biryani'],
+    searchKeywords: ['cottage cheese biryani', 'biriyani', 'briyani'],
   },
   {
     id: 'veg-pulao',
@@ -1715,7 +1715,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 200,
     unit: 'serving',
     unitWeight: 150,
-    searchKeywords: ['besan patodi curry', 'varhadi patodi', 'gram flour curry'],
+    searchKeywords: ['besan patodi curry', 'varhadi patodi', 'gram flour curry', 'sabzi', 'sabji'],
   },
   {
     id: 'zunka-bhakar',
@@ -1728,14 +1728,14 @@ export const maharashtrianFoods: FoodItem[] = [
     searchKeywords: ['jhunka bhakri', 'besan zunka', 'vidarbhi zunka'],
   },
   {
-    id: 'bharli-vangi-vidarbha',
-    name: 'Bharli Vangi (Vidarbha)',
+    id: 'bharli-vangi',
+    name: 'Bharli Vangi',
     nameMarathi: 'भरली वांगी',
     category: 'vegetables',
     caloriesPerUnit: 180,
     unit: 'serving',
     unitWeight: 150,
-    searchKeywords: ['stuffed brinjal', 'varhadi vangi', 'masala eggplant'],
+    searchKeywords: ['stuffed brinjal', 'varhadi vangi', 'masala eggplant', 'sabzi', 'sabji', 'bharwa baingan'],
   },
   {
     id: 'tarri-poha',
@@ -1759,13 +1759,13 @@ export const maharashtrianFoods: FoodItem[] = [
   },
   {
     id: 'shengdana-chutney',
-    name: 'Shengdana Chutney (Vidarbha)',
+    name: 'Shengdana Chutney',
     nameMarathi: 'शेंगदाणा चटणी',
     category: 'chutneys',
     caloriesPerUnit: 80,
     unit: 'tablespoon',
     unitWeight: 20,
-    searchKeywords: ['peanut chutney', 'groundnut chutney', 'dry chutney'],
+    searchKeywords: ['peanut chutney', 'groundnut chutney', 'dry chutney', 'chatni', 'chatney', 'moongfali chutney', 'moongfali chatni', 'shengdana chatni'],
   },
   {
     id: 'aluchi-bhaji',
@@ -1775,17 +1775,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 150,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['arbi sabzi', 'taro leaves', 'vidarbhi alu'],
-  },
-  {
-    id: 'kadhi-vidarbha',
-    name: 'Kadhi (Vidarbha Style)',
-    nameMarathi: 'कढी',
-    category: 'dal',
-    caloriesPerUnit: 150,
-    unit: 'bowl',
-    unitWeight: 150,
-    searchKeywords: ['buttermilk curry', 'varhadi kadhi', 'besan kadhi'],
+    searchKeywords: ['arbi sabzi', 'taro leaves', 'vidarbhi alu', 'sabji', 'arbi ki sabzi'],
   },
   {
     id: 'wadyache-bharit',
@@ -1797,19 +1787,6 @@ export const maharashtrianFoods: FoodItem[] = [
     unitWeight: 100,
     searchKeywords: ['papad bharit', 'wadi bharta', 'vidarbhi bharit'],
   },
-
-  // Amravati Famous Veg Items
-  {
-    id: 'amravati-tarri',
-    name: 'Amravati Tarri',
-    nameMarathi: 'अमरावती तर्री',
-    category: 'vegetables',
-    caloriesPerUnit: 120,
-    unit: 'bowl',
-    unitWeight: 150,
-    searchKeywords: ['spicy curry', 'vidarbha tarri', 'amravati gravy'],
-  },
-
   {
     id: 'bhadang',
     name: 'Bhadang',
@@ -1839,7 +1816,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 180,
     unit: 'serving',
     unitWeight: 150,
-    searchKeywords: ['field beans', 'val usal', 'vidarbha usal'],
+    searchKeywords: ['field beans', 'val usal', 'vidarbha usal', 'sabzi', 'sabji', 'val ki sabzi'],
   },
 
   {
@@ -1850,7 +1827,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 160,
     unit: 'cup',
     unitWeight: 40,
-    searchKeywords: ['spicy peanuts', 'masala shing', 'amravati snack'],
+    searchKeywords: ['spicy peanuts', 'masala shing', 'amravati snack', 'moongfali', 'masala moongfali', 'masala mungfali'],
   },
   {
     id: 'khamang-dhokla',
@@ -1870,7 +1847,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 250,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['bottle gourd sweet', 'lauki halwa', 'amravati halwa'],
+    searchKeywords: ['bottle gourd sweet', 'lauki halwa', 'amravati halwa', 'halva', 'lauki ka halwa', 'dudhi ka halwa'],
   },
 
   {
@@ -1881,7 +1858,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 80,
     unit: 'piece',
     unitWeight: 30,
-    searchKeywords: ['coriander vadi', 'dhaniya vadi'],
+    searchKeywords: ['coriander vadi', 'dhaniya vadi', 'dhaniye ki vadi'],
   },
   {
     id: 'bharit',
@@ -1891,7 +1868,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 150,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['baingan bharta', 'vangyache bharit', 'roasted brinjal'],
+    searchKeywords: ['baingan bharta', 'vangyache bharit', 'roasted brinjal', 'baingan ka bharta', 'sabzi', 'sabji'],
   },
   {
     id: 'patodi',
@@ -1972,7 +1949,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 230,
     unit: 'piece',
     unitWeight: 180,
-    searchKeywords: ['kanda uttappa'],
+    searchKeywords: ['kanda uttappa', 'pyaaz uttapam', 'pyaaz uttappa', 'onion dosa'],
   },
   {
     id: 'sambar',
@@ -1982,7 +1959,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 120,
     unit: 'bowl',
     unitWeight: 150,
-    searchKeywords: ['sambhar', 'sambar vati'],
+    searchKeywords: ['sambhar', 'sambar vati', 'sambhaar', 'saambar', 'saambhar'],
   },
   {
     id: 'plain-oats',
@@ -2072,7 +2049,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 50,
     unit: 'piece',
     unitWeight: 25,
-    searchKeywords: ['onion bhaji', 'pyaz pakoda', 'kanda bhajiya'],
+    searchKeywords: ['onion bhaji', 'pyaz pakoda', 'kanda bhajiya', 'pyaaz pakora', 'pyaaz bhaji'],
   },
   {
     id: 'batata-bhaji-fried',
@@ -2224,7 +2201,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 59,
     unit: 'serving (10 pcs)',
     unitWeight: 10,
-    searchKeywords: ['bhajlele shengdane', 'roasted groundnut', 'bhuna mungfali'],
+    searchKeywords: ['bhajlele shengdane', 'roasted groundnut', 'bhuna mungfali', 'moongfali', 'shengdana'],
   },
   {
     id: 'peanuts-fried',
@@ -2234,7 +2211,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 65,
     unit: 'serving (10 pcs)',
     unitWeight: 10,
-    searchKeywords: ['talele shengdane', 'namkeen mungfali', 'salted peanuts', 'masala peanuts'],
+    searchKeywords: ['talele shengdane', 'namkeen mungfali', 'salted peanuts', 'masala peanuts', 'moongfali', 'shengdana'],
   },
   {
     id: 'almonds',
@@ -2375,7 +2352,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 35,
     unit: 'piece',
     unitWeight: 8,
-    searchKeywords: ['shakarpara', 'shakkarpara', 'sweet diamond cuts', 'diwali faral'],
+    searchKeywords: ['shakarpara', 'shakkarpara', 'sweet diamond cuts', 'diwali faral', 'shakkar pare'],
   },
   {
     id: 'shankarpali-namkeen',
@@ -2487,7 +2464,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 120,
     unit: 'piece',
     unitWeight: 30,
-    searchKeywords: ['amaranth ladoo', 'upvas ladoo', 'fasting ladoo'],
+    searchKeywords: ['amaranth ladoo', 'upvas ladoo', 'fasting ladoo', 'lado', 'laado', 'laadu', 'ladu', 'laddu', 'rajgira laddu'],
   },
   {
     id: 'shengdana-ladoo',
@@ -2497,7 +2474,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 140,
     unit: 'piece',
     unitWeight: 35,
-    searchKeywords: ['peanut ladoo', 'moongfali laddu', 'groundnut ladoo'],
+    searchKeywords: ['peanut ladoo', 'moongfali laddu', 'groundnut ladoo', 'lado', 'laado', 'laadu', 'ladu', 'moongfali lado', 'shengdana lado'],
   },
   {
     id: 'malai-pedha',
@@ -2517,7 +2494,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 130,
     unit: 'piece',
     unitWeight: 30,
-    searchKeywords: ['methi ladoo', 'fenugreek ladoo'],
+    searchKeywords: ['methi ladoo', 'fenugreek ladoo', 'lado', 'laado', 'laadu', 'ladu', 'laddu', 'methi laddu'],
   },
   {
     id: 'kajukatli',
@@ -2527,7 +2504,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 90,
     unit: 'piece',
     unitWeight: 20,
-    searchKeywords: ['kaju barfi', 'cashew katli', 'kaju burfi'],
+    searchKeywords: ['kaju barfi', 'cashew katli', 'kaju burfi', 'barfee', 'kaju barfee'],
   },
   {
     id: 'amba-barfi',
@@ -2537,6 +2514,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 85,
     unit: 'piece',
     unitWeight: 25,
+    searchKeywords: ['aam barfi', 'mango burfi', 'mango barfee', 'amba burfi'],
   },
   {
     id: 'santra-barfi',
@@ -2546,6 +2524,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 80,
     unit: 'piece',
     unitWeight: 25,
+    searchKeywords: ['orange burfi', 'santra burfi', 'orange barfee', 'nagpur barfi'],
   },
   {
     id: 'shengdana-chikki',
@@ -2555,6 +2534,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 110,
     unit: 'piece',
     unitWeight: 25,
+    searchKeywords: ['peanut chikki', 'moongfali chikki', 'gur chikki', 'groundnut chikki', 'gud chikki'],
   },
   {
     id: 'jalebi',
@@ -2574,7 +2554,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 150,
     unit: 'piece',
     unitWeight: 35,
-    searchKeywords: ['besan laddu', 'gram flour ladoo'],
+    searchKeywords: ['besan laddu', 'gram flour ladoo', 'lado', 'laado', 'laadu', 'ladu', 'besan lado'],
   },
   {
     id: 'ladoo-rava',
@@ -2584,7 +2564,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 140,
     unit: 'piece',
     unitWeight: 35,
-    searchKeywords: ['sooji ladoo', 'suji laddu', 'semolina ladoo'],
+    searchKeywords: ['sooji ladoo', 'suji laddu', 'semolina ladoo', 'lado', 'laado', 'laadu', 'ladu', 'rava lado'],
   },
   {
     id: 'ladoo-coconut',
@@ -2594,7 +2574,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 100,
     unit: 'piece',
     unitWeight: 25,
-    searchKeywords: ['nariyal ladoo', 'naral ladoo'],
+    searchKeywords: ['nariyal ladoo', 'naral ladoo', 'lado', 'laado', 'laadu', 'ladu', 'laddu', 'nariyal laddu'],
   },
   // Diwali Sweets (दिवाळी मिठाई)
   {
@@ -2625,7 +2605,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 130,
     unit: 'piece',
     unitWeight: 30,
-    searchKeywords: ['khoya barfi', 'milk barfi', 'diwali mithai'],
+    searchKeywords: ['khoya barfi', 'milk barfi', 'diwali mithai', 'burfi', 'barfee', 'mawa burfi', 'khoya burfi'],
   },
   {
     id: 'peda',
@@ -2645,7 +2625,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 200,
     unit: 'bowl',
     unitWeight: 150,
-    searchKeywords: ['payasam', 'rice kheer', 'chawal ki kheer'],
+    searchKeywords: ['payasam', 'rice kheer', 'chawal ki kheer', 'keer', 'rice keer'],
   },
   // Ganesh Chaturthi & Diwali Festival Foods (गणेश चतुर्थी & दिवाळी फराळ)
   {
@@ -2686,7 +2666,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 110,
     unit: 'piece',
     unitWeight: 25,
-    searchKeywords: ['sooji ladoo', 'suji laddu', 'semolina ladoo', 'diwali mithai'],
+    searchKeywords: ['sooji ladoo', 'suji laddu', 'semolina ladoo', 'diwali mithai', 'lado', 'laado', 'laadu', 'ladu', 'rava lado'],
   },
   {
     id: 'dink-ladoo',
@@ -2696,7 +2676,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 130,
     unit: 'piece',
     unitWeight: 25,
-    searchKeywords: ['edible gum ladoo', 'gondh laddu', 'winter ladoo'],
+    searchKeywords: ['edible gum ladoo', 'gondh laddu', 'winter ladoo', 'lado', 'laado', 'laadu', 'ladu', 'dink lado'],
   },
   {
     id: 'gulachi-poli',
@@ -2706,7 +2686,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 220,
     unit: 'piece',
     unitWeight: 70,
-    searchKeywords: ['jaggery roti', 'gul poli', 'sweet flatbread'],
+    searchKeywords: ['jaggery roti', 'gul poli', 'sweet flatbread', 'gur ki roti', 'gud poli'],
   },
   {
     id: 'tilgul',
@@ -2726,7 +2706,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 80,
     unit: 'piece',
     unitWeight: 20,
-    searchKeywords: ['sesame ladoo', 'til ke laddu', 'makar sankranti sweet'],
+    searchKeywords: ['sesame ladoo', 'til ke laddu', 'makar sankranti sweet', 'lado', 'laado', 'laadu', 'ladu', 'til lado'],
   },
   {
     id: 'sakhar-gathi',
@@ -2756,7 +2736,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 80,
     unit: 'bowl',
     unitWeight: 150,
-    searchKeywords: ['colocasia curry', 'arbi gravy', 'ganapati bhaji'],
+    searchKeywords: ['colocasia curry', 'arbi gravy', 'ganapati bhaji', 'sabzi', 'sabji', 'arbi sabzi'],
   },
   {
     id: 'naivedya-panchamrut',
@@ -2838,7 +2818,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 40,
     unit: 'glass',
     unitWeight: 250,
-    searchKeywords: ['chaas', 'mattha', 'chhas'],
+    searchKeywords: ['chaas', 'mattha', 'chhas', 'chaach', 'chhach', 'taak'],
   },
   {
     id: 'kokam-sarbat',
@@ -2898,6 +2878,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 90,
     unit: 'cup',
     unitWeight: 150,
+    searchKeywords: ['kaapi', 'doodh coffee', 'instant coffee', 'nescafe'],
   },
   {
     id: 'coffee-no-sugar',
@@ -2999,6 +2980,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 70,
     unit: 'glass',
     unitWeight: 200,
+    searchKeywords: ['toned milk', 'low fat milk', 'lite milk', 'fat free doodh'],
   },
   {
     id: 'lassi-sweet',
@@ -3008,6 +2990,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 150,
     unit: 'glass',
     unitWeight: 200,
+    searchKeywords: ['meethi lassi', 'sweet lassi', 'punjabi lassi', 'dahi lassi'],
   },
   {
     id: 'mattha',
@@ -3017,6 +3000,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 50,
     unit: 'glass',
     unitWeight: 200,
+    searchKeywords: ['chaas', 'chaach', 'taak', 'chhach', 'buttermilk', 'mattha'],
   },
   {
     id: 'whey-protein-sweet',
@@ -3259,7 +3243,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 15,
     unit: 'tablespoon',
     unitWeight: 15,
-    searchKeywords: ['dhaniya chutney', 'hari chutney', 'kothimbir chatni'],
+    searchKeywords: ['dhaniya chutney', 'hari chutney', 'kothimbir chatni', 'chatni', 'chatney', 'hari chatni', 'green chatni'],
   },
   {
     id: 'coconut-chutney',
@@ -3269,7 +3253,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 40,
     unit: 'tablespoon',
     unitWeight: 20,
-    searchKeywords: ['nariyal chutney', 'south indian chutney'],
+    searchKeywords: ['nariyal chutney', 'south indian chutney', 'chatni', 'chatney', 'nariyal chatni', 'naral chatni'],
   },
   {
     id: 'peanut-chutney',
@@ -3279,7 +3263,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 50,
     unit: 'tablespoon',
     unitWeight: 15,
-    searchKeywords: ['moongfali chutney', 'groundnut chutney'],
+    searchKeywords: ['moongfali chutney', 'groundnut chutney', 'chatni', 'chatney', 'moongfali chatni', 'shengdana chatni'],
   },
   {
     id: 'tamarind-chutney',
@@ -3289,7 +3273,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 30,
     unit: 'tablespoon',
     unitWeight: 20,
-    searchKeywords: ['imli chutney', 'meethi chutney', 'sweet chutney'],
+    searchKeywords: ['imli chutney', 'meethi chutney', 'sweet chutney', 'chatni', 'chatney', 'imli chatni', 'chinch chatni'],
   },
   {
     id: 'garlic-chutney',
@@ -3299,7 +3283,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 25,
     unit: 'tablespoon',
     unitWeight: 10,
-    searchKeywords: ['lahsun chutney', 'dry garlic chutney'],
+    searchKeywords: ['lahsun chutney', 'dry garlic chutney', 'chatni', 'chatney', 'lasun chatni', 'lahsun chatni'],
   },
   {
     id: 'thecha',
@@ -3309,7 +3293,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 20,
     unit: 'tablespoon',
     unitWeight: 15,
-    searchKeywords: ['hirvi mirchi thecha', 'green chili chutney', 'spicy thecha'],
+    searchKeywords: ['hirvi mirchi thecha', 'green chili chutney', 'spicy thecha', 'chatni', 'chatney', 'mirchi chatni'],
   },
   {
     id: 'jawas-chutney',
@@ -3319,7 +3303,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 45,
     unit: 'tablespoon',
     unitWeight: 10,
-    searchKeywords: ['alsi chutney', 'flaxseed chutney'],
+    searchKeywords: ['alsi chutney', 'flaxseed chutney', 'chatni', 'chatney', 'alsi chatni', 'jawas chatni'],
   },
 
   // Pickles
@@ -3639,7 +3623,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 300,
     unit: 'bowl',
     unitWeight: 100,
-    searchKeywords: ['carrot halwa', 'gajar ka halwa', 'gajrela'],
+    searchKeywords: ['carrot halwa', 'gajar ka halwa', 'gajrela', 'halva', 'gajar halva'],
   },
   {
     id: 'moong-dal-halwa',
@@ -3649,7 +3633,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 350,
     unit: 'bowl',
     unitWeight: 100,
-    searchKeywords: ['moong halwa'],
+    searchKeywords: ['moong halwa', 'halva', 'moong daal halwa', 'moong dal ka halwa'],
   },
   {
     id: 'rabri',
@@ -3822,7 +3806,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 85,
     unit: 'piece',
     unitWeight: 100,
-    searchKeywords: ['boiled aloo', 'batata'],
+    searchKeywords: ['boiled aloo', 'batata', 'ubla aloo', 'aloo'],
   },
   {
     id: 'sweet-potato-boiled',
@@ -3832,7 +3816,7 @@ export const maharashtrianFoods: FoodItem[] = [
     caloriesPerUnit: 115,
     unit: 'piece',
     unitWeight: 130,
-    searchKeywords: ['boiled ratalu', 'shakarkandi'],
+    searchKeywords: ['boiled ratalu', 'shakarkandi', 'ratala', 'sweet potato'],
   },
   {
     id: 'egg-boiled',

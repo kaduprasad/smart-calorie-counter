@@ -16,6 +16,7 @@ import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useApp } from '../context/AppContext';
 import { FoodCard, SearchBar, CategoryFilter, supportsQuickAdd, FoodSelectionCart, SelectedFood } from '../components';
 import { categories, getUnitLabel } from '../data/foods';
+import { searchFoods } from '../data/foodIndex';
 import { FoodItem, FoodCategory } from '../types';
 import { 
   searchFoodOnline, 
@@ -56,7 +57,7 @@ const RecentQuickButton: React.FC<{
 
 export const AddFoodScreen: React.FC = () => {
   const navigation = useNavigation();
-  const { allFoods, recentFoods, addFood, createCustomFood } = useApp();
+  const { allFoods, foodIndex, recentFoods, addFood, createCustomFood } = useApp();
 
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<FoodCategory | null>(null);
@@ -80,26 +81,8 @@ export const AddFoodScreen: React.FC = () => {
   }, [recentFoods]);
 
   const filteredFoods = useMemo(() => {
-    let foods = allFoods;
-
-    // Filter by category
-    if (selectedCategory) {
-      foods = foods.filter(f => f.category === selectedCategory);
-    }
-
-    // Filter by search query
-    if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase().trim();
-      foods = foods.filter(
-        f =>
-          f.name.toLowerCase().includes(query) ||
-          f.nameMarathi?.toLowerCase().includes(query) ||
-          f.searchKeywords?.some(keyword => keyword.toLowerCase().includes(query))
-      );
-    }
-
-    return foods;
-  }, [allFoods, selectedCategory, searchQuery]);
+    return searchFoods(foodIndex, searchQuery, selectedCategory);
+  }, [foodIndex, selectedCategory, searchQuery]);
 
   // Multi-select handler - auto adds to selection
   const handleSelectFood = useCallback((food: FoodItem, quantity?: number) => {
