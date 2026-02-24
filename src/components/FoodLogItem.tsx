@@ -20,6 +20,12 @@ export const FoodLogItem: React.FC<FoodLogItemProps> = ({ entry, onEdit, onDelet
     ['beverages', 'dairy'].includes(entry.foodItem.category);
   const weightUnit = isLiquid ? 'ml' : 'g';
 
+  // Calculate macros
+  const protein = Math.round((entry.foodItem.proteinPerUnit || 0) * entry.quantity);
+  const fat = Math.round((entry.foodItem.fatPerUnit || 0) * entry.quantity);
+  const fiber = Math.round((entry.foodItem.fiberPerUnit || 0) * entry.quantity);
+  const hasMacros = protein > 0 || fat > 0 || fiber > 0;
+
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.content} onPress={onEdit} activeOpacity={0.7}>
@@ -31,6 +37,15 @@ export const FoodLogItem: React.FC<FoodLogItemProps> = ({ entry, onEdit, onDelet
               <Text style={styles.weight}> ({totalWeight}{weightUnit})</Text>
             )}
           </Text>
+          {hasMacros && (
+            <View style={styles.macroRow}>
+              <Text style={styles.macroProtein}>P {protein}g</Text>
+              <Text style={styles.macroDot}>·</Text>
+              <Text style={styles.macroFat}>F {fat}g</Text>
+              <Text style={styles.macroDot}>·</Text>
+              <Text style={styles.macroFiber}>Fb {fiber}g</Text>
+            </View>
+          )}
         </View>
         <View style={styles.calorieContainer}>
           <Text style={styles.calorieValue}>{totalCalories}</Text>
@@ -107,5 +122,31 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: '#FF4444',
     fontWeight: '300',
+  },
+  macroRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 3,
+    gap: 2,
+  },
+  macroProtein: {
+    fontSize: 11,
+    fontWeight: '600',
+    color: '#3B82F6',
+  },
+  macroFat: {
+    fontSize: 11,
+    fontWeight: '600',
+    color: '#F59E0B',
+  },
+  macroFiber: {
+    fontSize: 11,
+    fontWeight: '600',
+    color: '#10B981',
+  },
+  macroDot: {
+    fontSize: 11,
+    color: '#D1D5DB',
+    marginHorizontal: 2,
   },
 });

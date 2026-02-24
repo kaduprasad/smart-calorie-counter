@@ -34,6 +34,8 @@ export const HomeScreen: React.FC = () => {
     refreshData,
     selectedDate,
     setSelectedDate,
+    macroTotals,
+    macroTargets,
   } = useApp();
 
   const [editingEntry, setEditingEntry] = useState<FoodLogEntry | null>(null);
@@ -155,6 +157,8 @@ export const HomeScreen: React.FC = () => {
           goal={settings.dailyCalorieGoal}
           exerciseBurnt={exerciseCalories}
           exerciseGoal={settings.exerciseCalorieGoal}
+          macroTotals={macroTotals}
+          macroTargets={macroTargets}
         />
 
         <WeightInput date={selectedDate} />

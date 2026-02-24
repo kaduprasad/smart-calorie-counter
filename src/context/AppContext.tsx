@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
-import { DailyLog, FoodItem, FoodLogEntry, AppSettings } from '../types';
+import { DailyLog, FoodItem, FoodLogEntry, AppSettings, MacroTotals, MacroTargets, UserData } from '../types';
 import { FoodIndex, getFoodIndex } from '../data/foodIndex';
 import {
   getDailyLog,
@@ -17,6 +17,8 @@ import {
 } from '../services/storage';
 import { scheduleDailyReminder } from '../services/notifications';
 import { maharashtrianFoods } from '../data/foods';
+import { getUserData } from '../services/userDataService';
+import { calculateMacroTargets } from '../utils/macroTargets';
 
 interface AppContextType {
   // State
@@ -29,6 +31,8 @@ interface AppContextType {
   allLogs: { [date: string]: DailyLog };
   isLoading: boolean;
   selectedDate: string;
+  macroTotals: MacroTotals;
+  macroTargets: MacroTargets;
 
   // Actions
   setSelectedDate: (date: string) => void;
@@ -60,6 +64,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [allLogs, setAllLogs] = useState<{ [date: string]: DailyLog }>({});
   const [isLoading, setIsLoading] = useState(true);
   const [selectedDate, setSelectedDate] = useState(getTodayDate());
+  const [macroTargets, setMacroTargets] = useState<MacroTargets>({ protein: 50, fat: 65, fiber: 25 });
   const hasInitialLoad = React.useRef(false);
 
   // Combine default foods with custom foods (stable ref via useMemo)
@@ -71,6 +76,25 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Build / return cached food index (O(n) once, then O(1) on re-renders)
   const foodIndex = useMemo(() => getFoodIndex(allFoods), [allFoods]);
 
+  // Compute macro totals from today's log entries
+  const macroTotals = useMemo<MacroTotals>(() => {
+    if (!todayLog || todayLog.entries.length === 0) {
+      return { protein: 0, fat: 0, fiber: 0 };
+    }
+    return todayLog.entries.reduce(
+      (acc, entry) => {
+        const qty = entry.quantity;
+        const food = entry.foodItem;
+        return {
+          protein: acc.protein + Math.round((food.proteinPerUnit || 0) * qty),
+          fat: acc.fat + Math.round((food.fatPerUnit || 0) * qty),
+          fiber: acc.fiber + Math.round((food.fiberPerUnit || 0) * qty),
+        };
+      },
+      { protein: 0, fat: 0, fiber: 0 },
+    );
+  }, [todayLog]);
+
   const loadData = useCallback(async () => {
     // Only show loading on initial load or date change
     const isInitialLoad = !hasInitialLoad.current;
@@ -81,12 +105,13 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     try {
       // For initial load, fetch everything in parallel
       if (isInitialLoad) {
-        const [log, customs, appSettings, recent, logs] = await Promise.all([
+        const [log, customs, appSettings, recent, logs, userData] = await Promise.all([
           getDailyLog(selectedDate),
           getCustomFoods(),
           getSettings(),
           getRecentFoods(),
           getAllDailyLogs(),
+          getUserData(),
         ]);
 
         setTodayLog(log);
@@ -94,6 +119,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         setSettings(appSettings);
         setRecentFoods(recent);
         setAllLogs(logs);
+        setMacroTargets(calculateMacroTargets(userData));
 
         // Cache settings and custom foods for faster subsequent opens
         cachedSettings = appSettings;
@@ -185,6 +211,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         allLogs,
         isLoading,
         selectedDate,
+        macroTotals,
+        macroTargets,
         setSelectedDate,
         addFood,
         removeFood,
