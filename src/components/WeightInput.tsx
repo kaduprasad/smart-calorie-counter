@@ -60,6 +60,13 @@ export const WeightInput: React.FC<WeightInputProps> = ({ date, onWeightSaved })
 
   const isToday = date === getTodayDate();
 
+  // Format date for display (e.g., "20 Feb")
+  const formatShortDate = (dateStr: string) => {
+    const d = new Date(dateStr);
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    return `${d.getDate()} ${months[d.getMonth()]}`;
+  };
+
   if (isLoading) {
     return null;
   }
@@ -78,7 +85,7 @@ export const WeightInput: React.FC<WeightInputProps> = ({ date, onWeightSaved })
         </View>
         <View style={styles.content}>
           <Text style={styles.label}>
-            {isToday ? "Today's Weight" : 'Weight'}
+            {isToday ? "Today's Weight" : `Weight ( ${formatShortDate(date)} )`}
           </Text>
           <Text style={styles.value}>
             {todayWeight ? `${todayWeight} kg` : 'Tap to add'}

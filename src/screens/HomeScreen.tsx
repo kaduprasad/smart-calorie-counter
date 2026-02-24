@@ -14,7 +14,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useApp } from '../context/AppContext';
 import { CalorieSummary, FoodLogItem, QuantitySelector, WeightInput, ExerciseInput } from '../components';
-import { formatDate, getTodayDate, getExerciseEntries } from '../services/storage';
+import { formatDate, getTodayDate, getLocalDateString, getExerciseEntries } from '../services/storage';
 import { FoodLogEntry, FoodItem } from '../types';
 import { styles } from './styles/homeScreenStyles';
 
@@ -101,11 +101,12 @@ export const HomeScreen: React.FC = () => {
   };
 
   const navigateDate = (direction: 'prev' | 'next') => {
-    const current = new Date(selectedDate);
+    const current = new Date(selectedDate + 'T00:00:00'); // parse as local time
     current.setDate(current.getDate() + (direction === 'next' ? 1 : -1));
-    
-    if (current <= new Date()) {
-      setSelectedDate(current.toISOString().split('T')[0]);
+    const targetDate = getLocalDateString(current);
+
+    if (targetDate <= getTodayDate()) {
+      setSelectedDate(targetDate);
     }
   };
 
