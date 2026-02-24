@@ -5,10 +5,27 @@ export interface FoodItem {
   nameMarathi?: string;
   category: FoodCategory;
   caloriesPerUnit: number;
+  proteinPerUnit?: number;  // grams of protein per unit
+  fatPerUnit?: number;      // grams of fat per unit
+  fiberPerUnit?: number;    // grams of fiber per unit
   unit: FoodUnit;
   unitWeight?: number; // weight in grams for one unit
   isCustom?: boolean;
   searchKeywords?: string[]; // Alternative names for search (Hindi, Marathi, English)
+}
+
+// Macronutrient totals
+export interface MacroTotals {
+  protein: number;
+  fat: number;
+  fiber: number;
+}
+
+// Recommended macro targets
+export interface MacroTargets {
+  protein: number;
+  fat: number;
+  fiber: number;
 }
 
 export type FoodCategory = 
@@ -61,6 +78,7 @@ export interface DailyLog {
   date: string; // YYYY-MM-DD format
   entries: FoodLogEntry[];
   totalCalories: number;
+  totalMacros?: MacroTotals;
 }
 
 // Custom dish created by user

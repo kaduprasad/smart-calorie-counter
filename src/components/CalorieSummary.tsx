@@ -11,6 +11,7 @@ import {
   FontAwesome5,
 } from "@expo/vector-icons";
 import { ProgressScale } from "../common";
+import { MacroTotals, MacroTargets } from "../types";
 
 interface CalorieSummaryProps {
   consumed: number;
@@ -18,6 +19,8 @@ interface CalorieSummaryProps {
   exerciseBurnt?: number;
   exerciseGoal?: number;
   date?: string;
+  macroTotals?: MacroTotals;
+  macroTargets?: MacroTargets;
 }
 
 export const CalorieSummary: React.FC<CalorieSummaryProps> = ({
@@ -26,6 +29,8 @@ export const CalorieSummary: React.FC<CalorieSummaryProps> = ({
   exerciseBurnt = 0,
   exerciseGoal = 300,
   date,
+  macroTotals,
+  macroTargets,
 }) => {
   const roundedConsumed = Math.round(consumed);
   const roundedExercise = Math.round(exerciseBurnt);
@@ -213,24 +218,32 @@ export const CalorieSummary: React.FC<CalorieSummaryProps> = ({
       <View style={styles.cardsContainer}>
         {/* Food Card */}
         <View style={styles.card}>
-          <View style={styles.cardHeader}>
-            <View
-              style={[styles.cardIconContainer, { backgroundColor: "#FEF3C7" }]}
-            >
-              <MaterialCommunityIcons
-                name="food-apple"
-                size={28}
-                color="#F59E0B"
-              />
+          <View style={styles.foodCardTopRow}>
+            <View style={styles.foodCardLeft}>
+              <View
+                style={[styles.cardIconContainer, { backgroundColor: "#FEF3C7" }]}
+              >
+                <MaterialCommunityIcons
+                  name="food-apple"
+                  size={24}
+                  color="#F59E0B"
+                />
+              </View>
+              <View>
+                <Text style={styles.cardTitle}>Food</Text>
+                <Text style={[styles.foodCardStatus, { color: foodColor }]}>
+                  {isFoodOverTarget
+                    ? `${roundedConsumed - goal} over limit`
+                    : `${goal - roundedConsumed} left`}
+                </Text>
+              </View>
             </View>
-            <Text style={styles.cardTitle}>Food</Text>
-          </View>
-
-          <View style={styles.cardBody}>
-            <Text style={[styles.cardValue, { color: foodColor }]}>
-              {roundedConsumed}
-            </Text>
-            <Text style={styles.cardSubtext}>consumed</Text>
+            <View style={styles.foodCardRight}>
+              <Text style={[styles.foodCardCalValue, { color: foodColor }]}>
+                {roundedConsumed}
+              </Text>
+              <Text style={styles.foodCardCalLabel}>consumed</Text>
+            </View>
           </View>
 
           {/* Food Scale with Target Marker */}
@@ -245,6 +258,66 @@ export const CalorieSummary: React.FC<CalorieSummaryProps> = ({
               ? `${roundedConsumed - goal} over limit`
               : `${goal - roundedConsumed} until limit`}
           </Text>
+
+          {/* Macronutrients inside Food Card */}
+          {macroTotals && macroTargets && (
+            <View style={styles.macroSection}>
+              <View style={styles.macroDivider} />
+              {/* Protein row */}
+              <View style={styles.macroRow}>
+                <View style={styles.macroRowLeft}>
+                  <MaterialCommunityIcons name="seed" size={12} color="#3B82F6" />
+                  <Text style={styles.macroRowLabel}>Protein:</Text>
+                  <Text style={[styles.macroRowPercent, { color: macroTotals.protein > macroTargets.protein ? '#EF4444' : '#3B82F6' }]}>
+                    {macroTargets.protein > 0 ? Math.round((macroTotals.protein / macroTargets.protein) * 100) : 0}%
+                  </Text>
+                </View>
+                <Text style={styles.macroRowTarget}>{macroTotals.protein}/{macroTargets.protein}g</Text>
+              </View>
+              <View style={styles.macroBarTrack}>
+                <View style={[styles.macroBarFill, {
+                  width: `${Math.min((macroTotals.protein / Math.max(macroTargets.protein, 1)) * 100, 100)}%`,
+                  backgroundColor: macroTotals.protein > macroTargets.protein ? '#EF4444' : '#3B82F6',
+                }]} />
+              </View>
+
+              {/* Fats row */}
+              <View style={[styles.macroRow, { marginTop: 14 }]}>
+                <View style={styles.macroRowLeft}>
+                  <Ionicons name="water" size={11} color="#F59E0B" />
+                  <Text style={styles.macroRowLabel}>Fats:</Text>
+                  <Text style={[styles.macroRowPercent, { color: macroTotals.fat > macroTargets.fat ? '#EF4444' : '#F59E0B' }]}>
+                    {macroTargets.fat > 0 ? Math.round((macroTotals.fat / macroTargets.fat) * 100) : 0}%
+                  </Text>
+                </View>
+                <Text style={styles.macroRowTarget}>{macroTotals.fat}/{macroTargets.fat}g</Text>
+              </View>
+              <View style={styles.macroBarTrack}>
+                <View style={[styles.macroBarFill, {
+                  width: `${Math.min((macroTotals.fat / Math.max(macroTargets.fat, 1)) * 100, 100)}%`,
+                  backgroundColor: macroTotals.fat > macroTargets.fat ? '#EF4444' : '#F59E0B',
+                }]} />
+              </View>
+
+              {/* Fiber row */}
+              <View style={[styles.macroRow, { marginTop: 14 }]}>
+                <View style={styles.macroRowLeft}>
+                  <MaterialCommunityIcons name="barley" size={12} color="#10B981" />
+                  <Text style={styles.macroRowLabel}>Fiber:</Text>
+                  <Text style={[styles.macroRowPercent, { color: macroTotals.fiber > macroTargets.fiber ? '#EF4444' : '#10B981' }]}>
+                    {macroTargets.fiber > 0 ? Math.round((macroTotals.fiber / macroTargets.fiber) * 100) : 0}%
+                  </Text>
+                </View>
+                <Text style={styles.macroRowTarget}>{macroTotals.fiber}/{macroTargets.fiber}g</Text>
+              </View>
+              <View style={styles.macroBarTrack}>
+                <View style={[styles.macroBarFill, {
+                  width: `${Math.min((macroTotals.fiber / Math.max(macroTargets.fiber, 1)) * 100, 100)}%`,
+                  backgroundColor: macroTotals.fiber > macroTargets.fiber ? '#EF4444' : '#10B981',
+                }]} />
+              </View>
+            </View>
+          )}
         </View>
 
         {/* Exercise Card */}
@@ -406,16 +479,46 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   cardIconContainer: {
-    width: 44,
-    height: 44,
+    width: 40,
+    height: 40,
     borderRadius: 12,
     justifyContent: "center",
     alignItems: "center",
   },
   cardTitle: {
     fontSize: 17,
-    fontWeight: "600",
+    fontWeight: "700",
     color: "#374151",
+  },
+  foodCardTopRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  foodCardLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 14,
+  },
+  foodCardStatus: {
+    fontSize: 11,
+    fontWeight: '600',
+    marginTop: 1,
+  },
+  foodCardRight: {
+    alignItems: 'flex-end',
+    paddingRight: 4,
+  },
+  foodCardCalValue: {
+    fontSize: 28,
+    fontWeight: '800',
+  },
+  foodCardCalLabel: {
+    fontSize: 12,
+    color: '#9CA3AF',
+    fontWeight: '500',
+    marginTop: -2,
   },
   cardBody: {
     marginBottom: 12,
@@ -471,5 +574,50 @@ const styles = StyleSheet.create({
   },
   formulaResultText: {
     fontWeight: "700",
+  },
+  macroSection: {
+    marginTop: 14,
+    paddingHorizontal: 14,
+  },
+  macroDivider: {
+    height: 1,
+    backgroundColor: '#E5E7EB',
+    marginBottom: 12,
+  },
+  macroRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 4,
+  },
+  macroRowLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+  },
+  macroRowLabel: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#374151',
+  },
+  macroRowPercent: {
+    fontSize: 12,
+    fontWeight: '700',
+  },
+  macroRowTarget: {
+    fontSize: 11,
+    color: '#9CA3AF',
+    fontWeight: '500',
+  },
+  macroBarTrack: {
+    width: '100%',
+    height: 6,
+    backgroundColor: '#E5E7EB',
+    borderRadius: 3,
+    overflow: 'hidden' as const,
+  },
+  macroBarFill: {
+    height: 6,
+    borderRadius: 3,
   },
 });

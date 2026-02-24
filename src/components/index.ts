@@ -2,6 +2,7 @@ export { FoodCard, supportsQuickAdd } from './FoodCard';
 export { FoodLogItem } from './FoodLogItem';
 export { QuantitySelector } from './QuantitySelector';
 export { CalorieSummary } from './CalorieSummary';
+export { MacroSummary } from './MacroSummary';
 export { SearchBar } from './SearchBar';
 export { CategoryFilter } from './CategoryFilter';
 export { WeightInput } from './WeightInput';
