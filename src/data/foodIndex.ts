@@ -178,36 +178,67 @@ export function searchFoods(
     entries = index.searchData;
   }
 
-  const exactMatches: FoodItem[] = [];
-  const fuzzyOnlyMatches: FoodItem[] = [];
+  const exactMatches: { food: FoodItem; score: number }[] = [];
+  const fuzzyOnlyMatches: { food: FoodItem; score: number }[] = [];
 
   for (const entry of entries) {
     // Check exact (lowered) match — all query terms must appear somewhere
-    const allExact = qTerms.every(term =>
+    const nameHit = qTerms.every(term => entry.nameLower.includes(term));
+    const marathiHit = qTerms.every(term => entry.marathiLower.includes(term));
+    const keywordHit = qTerms.every(term =>
       entry.nameLower.includes(term) ||
       entry.marathiLower.includes(term) ||
       entry.keywordsLower.some(kw => kw.includes(term))
     );
 
-    if (allExact) {
-      exactMatches.push(entry.food);
+    if (nameHit || marathiHit || keywordHit) {
+      // Score: higher = better match
+      // Name starts with query → 100, Name contains query → 80,
+      // Marathi match → 60, Keyword-only → 40
+      let score = 0;
+      if (nameHit) {
+        score = entry.nameLower.startsWith(q) ? 100
+          : entry.nameLower.includes(q) ? 80
+          : 70; // all terms present but not as single substring
+      } else if (marathiHit) {
+        score = 60;
+      } else {
+        score = 40;
+      }
+      exactMatches.push({ food: entry.food, score });
       continue;
     }
 
     // Check phonetic-normalized match
-    const allNorm = qNormTerms.every(term =>
+    const nameNormHit = qNormTerms.every(term => entry.nameNorm.includes(term));
+    const marathiNormHit = qNormTerms.every(term => entry.marathiNorm.includes(term));
+    const keywordNormHit = qNormTerms.every(term =>
       entry.nameNorm.includes(term) ||
       entry.marathiNorm.includes(term) ||
       entry.keywordsNorm.some(kw => kw.includes(term))
     );
 
-    if (allNorm) {
-      fuzzyOnlyMatches.push(entry.food);
+    if (nameNormHit || marathiNormHit || keywordNormHit) {
+      let score = 0;
+      if (nameNormHit) {
+        score = entry.nameNorm.startsWith(qNorm) ? 30 : 25;
+      } else if (marathiNormHit) {
+        score = 20;
+      } else {
+        score = 10;
+      }
+      fuzzyOnlyMatches.push({ food: entry.food, score });
     }
   }
 
-  // Exact matches first, then fuzzy-only
-  return [...exactMatches, ...fuzzyOnlyMatches];
+  // Sort each tier by score (highest first), then combine
+  exactMatches.sort((a, b) => b.score - a.score);
+  fuzzyOnlyMatches.sort((a, b) => b.score - a.score);
+
+  return [
+    ...exactMatches.map(m => m.food),
+    ...fuzzyOnlyMatches.map(m => m.food),
+  ];
 }
 
 /**
