@@ -1,4 +1,3 @@
-# MFML (Combined PDF) — Module-wise Formulas + How to Solve
 
 Source: `MFML_Combined4_boxed.pdf` (139 pages).
 
@@ -52,17 +51,18 @@ If you cannot reduce the left block to $I$, then $A^{-1}$ does not exist.
   $$\mathrm{rank}(A) = \dim(\text{row space}) = \dim(\text{col space})$$
 - If $A$ is in echelon form, the **nonzero rows** form a basis of row space; rank = number of nonzero rows.
 
-### Determinant (key properties from slides)
+### Determinant
 Elementary operations:
 1. Swap rows: $\det$ changes sign
 2. Multiply a row by $c$: $\det$ multiplies by $c$
 3. Add multiple of a row to another: $\det$ unchanged
 
 Echelon-form determinant definition used in slides:
-- Let $U$ be an echelon form of $A$ using row ops (typically swaps + row additions). If $r$ swaps were used, then
-  $$\det(A) = (-1)^r \prod_{i=1}^n u_{ii}$$
+- Let $U$ be an echelon form of $A$ using row ops (typically swaps + row additions).
+- If $r$ swaps were used, then
+  - $$\det(A) = (-1)^r \prod_{i=1}^n u_{ii}$$
 
-### How to solve typical questions (Module 1)
+### question(Module 1)
 
 **A) Solve a linear system $Ax=b$**
 1. Write augmented matrix $[A\mid b]$.
@@ -89,7 +89,7 @@ Echelon-form determinant definition used in slides:
 
 ## Module 2 — Vectors, Distance/Angle, Linear (In)dependence
 
-### Vector space basics (as used in slides)
+### Vector space basics
 - Closure under vector addition and scalar multiplication.
 - Subspace test (common): show $0\in U$, closed under $x+y$ and $\alpha x$.
 - Null space: solution set of $Ax=0$ is a subspace of $\mathbb{R}^n$.
@@ -151,7 +151,7 @@ $$|\langle u,v\rangle| \le \|u\|\,\|v\|.$$
 $$d(x,y) = \|x-y\|.$$
 With Euclidean norm: $d(x,y)=\|x-y\|_2$.
 
-### Angle between vectors (slides)
+### Angle between vectors
 For nonzero $x,y$:
 $$\cos(\theta)=\frac{\langle x,y\rangle}{\|x\|\,\|y\|},\quad \theta\in[0,\pi].$$
 With dot product, this is standard Euclidean angle.
@@ -160,22 +160,90 @@ With dot product, this is standard Euclidean angle.
 $$x\perp y \iff \langle x,y\rangle = 0.$$
 Depends on choice of inner product.
 
-### Orthogonal matrix (slides)
+### Orthogonal matrix
 A square matrix $A$ is orthogonal if
-$$A^T A = I = A A^T,\quad A^{-1}=A^T.$$
-Length preservation:
-$$\|Ax\|_2^2 = (Ax)^T(Ax)=x^T A^T A x = x^T x = \|x\|_2^2.$$
-Angle preservation (Euclidean):
-$$\frac{(Ax)^T(Ay)}{\|Ax\|\,\|Ay\|} = \frac{x^T y}{\|x\|\,\|y\|}.$$
+- $$A^T A = I = A A^T,\quad A^{-1}=A^T.$$
 
-### Gram–Schmidt orthonormalization (reconstructed; slide text was mostly images)
-Given independent $x_1,\dots,x_n$:
-- $u_1=x_1$, $e_1=u_1/\|u_1\|$
-- For $k\ge 2$:
-  $$u_k = x_k - \sum_{j=1}^{k-1} \mathrm{proj}_{e_j}(x_k),\quad \mathrm{proj}_{e_j}(x)=\langle x,e_j\rangle e_j$$
-  $$e_k = \frac{u_k}{\|u_k\|}$$
+- Length preservation:
+  - $$\|Ax\|_2^2 = (Ax)^T(Ax)=x^T A^T A x = x^T x = \|x\|_2^2.$$
+- Angle preservation (Euclidean):
+  - $$\frac{(Ax)^T(Ay)}{\|Ax\|\,\|Ay\|} = \frac{x^T y}{\|x\|\,\|y\|}.$$
 
-### How to solve typical questions (Module 2)
+### Gram–Schmidt orthonormalization
+Given linearly independent $x_1,\dots,x_n$ (standard inner product unless stated otherwise):
+
+$$
+u_1 = x_1,\quad e_1 = \frac{u_1}{\|u_1\|}.
+$$
+
+For $k\ge 2$:
+
+$$
+u_k = x_k - \sum_{j=1}^{k-1} \mathrm{proj}_{e_j}(x_k),\quad e_k = \frac{u_k}{\|u_k\|}.
+$$
+
+Projection (two equivalent “quick-use” forms):
+
+1) If $e_j$ are unit vectors (as they are in Gram–Schmidt),
+$$\mathrm{proj}_{e_j}(x) = \langle x,e_j\rangle\, e_j.$$
+
+2) General projection onto a non-unit vector $u$:
+$$\mathrm{proj}_{u}(x) = \frac{\langle x,u\rangle}{\langle u,u\rangle}\,u.$$
+
+Simple dot-product form (common in problems):
+$$u_k = x_k - \sum_{j=1}^{k-1} (x_k^T e_j)\,e_j,\quad e_k = \frac{u_k}{\|u_k\|}.$$
+
+### Symbol guide & simple examples (Module 2)
+
+| Symbol | Read as | What it means |
+|---|---|---|
+| $\mathbb{R}^n$ | "R-n" | The set of all lists of $n$ real numbers, e.g. $\mathbb{R}^3$ = all 3D points like $(1,2,3)$ |
+| $\alpha, \beta$ | "alpha, beta" | Scalar (plain number) multipliers |
+| $x^T$ | "x transpose" | Flip a column vector into a row (or vice-versa) |
+| $\sum_{i=1}^{n}$ | "sum from i=1 to n" | Add up terms: $\sum_{i=1}^{3} x_i = x_1+x_2+x_3$ |
+| $x \cdot y$ or $x^T y$ | "x dot y" | Multiply matching entries and add: $(1,2,3)\cdot(4,5,6)=1{\cdot}4+2{\cdot}5+3{\cdot}6=32$ |
+| $\langle x,y\rangle$ | "inner product of x and y" | A generalized dot product; with the plain dot product $\langle x,y\rangle = x^T y$ |
+| $\|x\|$ | "norm of x" | Length/magnitude of vector $x$ |
+| $\|x\|_2$ | "L2 norm of x" | Euclidean length: $\|(3,4)\|_2 = \sqrt{9+16}=5$ |
+| $\|x\|_1$ | "L1 norm of x" | Manhattan distance from origin: $\|(3,-4)\|_1 = 3+4 = 7$ |
+| $\perp$ | "perpendicular to" | Two vectors are at 90 degrees; their dot product is 0 |
+| $\cos\theta$ | "cosine of theta" | Ratio that tells you the angle between two vectors |
+| $\mathrm{span}\{\dots\}$ | "span of ..." | All vectors you can build by scaling and adding the given vectors |
+| $\mathrm{proj}_u(x)$ | "projection of x onto u" | The shadow of $x$ onto the line of $u$ |
+
+**Simple example — Dot product, norm, angle:**
+
+Let $x=(1,0)$ and $y=(1,1)$.
+
+$$
+x \cdot y = 1{\cdot}1 + 0{\cdot}1 = 1
+$$
+
+$$
+\|x\| = \sqrt{1^2+0^2} = 1,\quad \|y\| = \sqrt{1^2+1^2} = \sqrt{2}
+$$
+
+$$
+\cos\theta = \frac{1}{1 \cdot \sqrt{2}} = \frac{1}{\sqrt{2}} \implies \theta = 45^\circ
+$$
+
+**Simple example — Projection:**
+
+Project $y=(1,1)$ onto $x=(1,0)$:
+
+$$
+\mathrm{proj}_x(y) = \frac{y \cdot x}{x \cdot x}\,x = \frac{1}{1}\,(1,0) = (1,0)
+$$
+
+The "shadow" of $(1,1)$ onto the x-axis is $(1,0)$.
+
+**Simple example — Linear dependence:**
+
+Vectors $v_1=(1,2)$ and $v_2=(2,4)$ are **dependent** because $v_2 = 2 v_1$ (one is a scaled copy of the other — they lie on the same line).
+
+Vectors $v_1=(1,0)$ and $v_2=(0,1)$ are **independent** because neither is a multiple of the other — they point in genuinely different directions.
+
+### question(Module 2)
 
 **A) Check linear independence**
 1. Put the given vectors as columns in a matrix $A$.
@@ -195,7 +263,7 @@ Given independent $x_1,\dots,x_n$:
 
 ---
 
-## Module 3 — Matrix Decompositions (Eigen, Spectral, Cholesky, SVD)
+### Module 3 — Matrix Decompositions (Eigen, Spectral, Cholesky, SVD)
 
 ### Eigenvalues / eigenvectors
 - Eigen equation:
@@ -209,9 +277,10 @@ Triangular matrix fact from slides:
 - Eigenvalues of a triangular matrix are its diagonal entries.
 
 ### Spectral theorem (symmetric matrices)
-If $A\in\mathbb{R}^{n\times n}$ is symmetric, it has an orthonormal eigenbasis and real eigenvalues. Decomposition:
-$$A = Q\Lambda Q^T$$
-where columns of $Q$ are orthonormal eigenvectors and $\Lambda$ is diagonal of eigenvalues.
+If $A\in\mathbb{R}^{n\times n}$ is symmetric, it has an orthonormal eigenbasis and real eigenvalues.
+- Decomposition:
+ - $$A = Q\Lambda Q^T$$
+ - where columns of $Q$ are orthonormal eigenvectors and $\Lambda$ is diagonal of eigenvalues.
 
 Also used in ML context: $A^T A$ and $A A^T$ are symmetric; appear in SVD and PCA.
 
@@ -223,7 +292,7 @@ with $L$ lower-triangular with positive diagonal.
 Determinant via Cholesky (slides):
 $$\det(A)=\det(L)\det(L^T)=\det(L)^2=(\prod_i L_{ii})^2.$$
 
-### Singular Value Decomposition (SVD) (standard; slide section focuses on applications)
+### Singular Value Decomposition (SVD)
 For any $A\in\mathbb{R}^{m\times n}$:
 $$A = U\Sigma V^T$$
 - $U\in\mathbb{R}^{m\times m}$ orthogonal
@@ -234,7 +303,61 @@ Truncated SVD / rank-$k$ approximation:
 $$A_k = U_k\Sigma_k V_k^T$$
 (keep top $k$ singular values).
 
-### How to solve typical questions (Module 3)
+### Symbol guide & simple examples (Module 3)
+
+| Symbol | Read as | What it means |
+|---|---|---|
+| $\lambda$ | "lambda" | Eigenvalue — the scaling factor when a matrix acts on its eigenvector |
+| $x$ (in $Ax=\lambda x$) | "eigenvector" | A special direction that the matrix only stretches (never rotates) |
+| $\det(A)$ | "determinant of A" | A single number summarizing how $A$ scales volume; $\det=0$ means the matrix squishes space flat |
+| $I$ | "identity matrix" | The "do nothing" matrix: $AI=A$. Diagonal of 1s, everything else 0 |
+| $E_\lambda$ | "eigenspace for lambda" | All eigenvectors (plus zero) sharing the same eigenvalue $\lambda$ |
+| $\mathcal{N}(M)$ | "null space of M" | All vectors $x$ such that $Mx=0$ |
+| $Q$ | "Q" | Matrix whose columns are the eigenvectors (orthonormal if $A$ is symmetric) |
+| $\Lambda$ | "capital lambda" | Diagonal matrix of eigenvalues: $\Lambda = \mathrm{diag}(\lambda_1,\dots,\lambda_n)$ |
+| $\Sigma$ | "capital sigma" | Diagonal matrix of singular values in SVD (not summation here) |
+| $\sigma_i$ | "sigma-i" | The $i$-th singular value — measures how much SVD stretches along direction $i$ |
+| $U, V$ | "U, V" | Orthogonal matrices in SVD; $U$ = left directions, $V$ = right directions |
+| $L$ | "L" | Lower-triangular matrix in Cholesky: $A=LL^T$ |
+| $\prod_{i=1}^{n}$ | "product from i=1 to n" | Multiply terms together: $\prod_{i=1}^{3} a_i = a_1 \cdot a_2 \cdot a_3$ |
+
+**Analogy — Eigenvalues and eigenvectors:**
+
+Imagine stretching a rubber sheet pinned at the origin. Most points move *and* rotate, but some special directions only get stretched (or compressed). Those directions are **eigenvectors**, and how much they stretch is the **eigenvalue**.
+
+- $\lambda > 1$: stretched out
+- $0 < \lambda < 1$: compressed
+- $\lambda < 0$: flipped and stretched
+
+**Simple example — Eigenvalues of a 2x2:**
+
+$$
+A = \begin{pmatrix} 2 & 1 \\\\ 0 & 3 \end{pmatrix}
+$$
+
+Since $A$ is upper-triangular, eigenvalues are the diagonal entries: $\lambda_1=2,\ \lambda_2=3$.
+
+For $\lambda_1=2$: solve $(A-2I)x=0$:
+
+$$
+\begin{pmatrix} 0 & 1 \\\\ 0 & 1 \end{pmatrix} x = 0 \implies x = t\begin{pmatrix}1\\\\0\end{pmatrix}
+$$
+
+So eigenvector for $\lambda=2$ is $(1,0)$.
+
+**Analogy — SVD:**
+
+Any matrix transformation can be broken into 3 steps: (1) rotate/reflect ($V^T$), (2) stretch along axes ($\Sigma$), (3) rotate/reflect again ($U$). SVD finds exactly these three pieces.
+
+**Simple example — Product symbol** $\prod$**:**
+
+If a triangular matrix has diagonal entries $2, 3, 5$, then:
+
+$$
+\det = \prod_{i=1}^{3} u_{ii} = 2 \times 3 \times 5 = 30
+$$
+
+### questions (Module 3)
 
 **A) Find eigenvalues/eigenvectors**
 1. Compute $\det(A-\lambda I)$.
@@ -249,7 +372,8 @@ For symmetric $A$, choose orthonormal eigenvectors so $Q^{-1}=Q^T$.
 
 **C) Cholesky factorization**
 1. Verify $A$ is symmetric.
-2. Verify positive definiteness (often via Sylvester’s criterion: leading principal minors $>0$).
+2. Verify positive definiteness 
+   - (often via Sylvester’s criterion: leading principal minors $>0$).
 3. Solve for $L$ in $A=LL^T$ entry-by-entry (as in the 2×2 example in slides).
 
 **D) Low-rank approximation via truncated SVD**
@@ -259,7 +383,8 @@ For symmetric $A$, choose orthonormal eigenvectors so $Q^{-1}=Q^T$.
 
 ---
 
-## Module 4 — Vector Calculus (Derivatives, Gradients, Taylor, Hessian, Backprop)
+## Module 4 — Vector Calculus 
+- (Derivatives, Gradients, Taylor, Hessian, Backprop)
 
 ### Taylor’s theorem (1D, with remainder) (as shown)
 If $f$ is $n$-times differentiable, then for some $c\in(a,b)$:
@@ -270,11 +395,15 @@ $$f'(c)=\frac{f(b)-f(a)}{b-a}.$$
 
 ### Taylor in two variables (2nd order form shown)
 Let $h,k$ be small increments:
-$$f(a+h,b+k)=f(a,b)+h f_x(a,b)+k f_y(a,b)+\frac{1}{2}\left(h^2 f_{xx}+2hk f_{xy}+k^2 f_{yy}\right)\big|_{(a+ch,b+ck)}$$
+- $$f(a+h,b+k)=f(a,b)+h f_x(a,b)+k f_y(a,b)+\frac{1}{2}\left(h^2 f_{xx}+2hk f_{xy}+k^2 f_{yy}\right)\big|_{(a+ch,b+ck)}$$
 for some $c\in(0,1)$.
 
 ### Hessian (2 variables)
-$$H_f(x,y)=\begin{bmatrix}f_{xx} & f_{xy}\\ f_{yx} & f_{yy}\end{bmatrix}$$
+
+$$
+H_f(x,y) = \begin{pmatrix} f_{xx} & f_{xy} \\\\ f_{yx} & f_{yy} \end{pmatrix}
+$$
+
 (For smooth $f$, $f_{xy}=f_{yx}$ so Hessian is symmetric.)
 
 ### 2D second-derivative test / discriminant (slides)
@@ -294,10 +423,63 @@ Neural layer form:
 $$f_i = \phi_i(A_{i-1}f_{i-1}+b_{i-1}),\quad i=1,\dots,K,$$
 Loss (example):
 $$L(\theta)=\|y-f_K(\theta,x)\|_2^2.$$
-Chain rule reuse idea:
+- Chain rule reuse idea:
 Compute partials from output backwards so intermediate derivatives can be reused.
 
-### How to solve typical questions (Module 4)
+### Symbol guide & simple examples (Module 4)
+
+| Symbol | Read as | What it means |
+|---|---|---|
+| $\nabla f$ | "nabla f" or "gradient of f" | A vector of all partial derivatives; points in the direction of steepest increase |
+| $f_x$ or $\frac{\partial f}{\partial x}$ | "partial f partial x" | How fast $f$ changes when you nudge only $x$, keeping everything else fixed |
+| $f_{xx}$ | "f double-x" | Second partial derivative: the rate of change *of the rate of change* w.r.t. $x$ |
+| $f_{xy}$ | "f sub x-y" | Mixed partial: first differentiate w.r.t. $x$, then w.r.t. $y$ |
+| $H_f$ | "Hessian of f" | Matrix of all second partial derivatives — tells you about curvature |
+| $D$ | "discriminant" | $D = f_{xx}f_{yy} - (f_{xy})^2$; its sign classifies critical points |
+| $k!$ | "k factorial" | Multiply all integers from 1 to $k$: $4!=4{\cdot}3{\cdot}2{\cdot}1=24$ |
+| $f^{(k)}$ | "f to the k-th" | The $k$-th derivative of $f$ |
+| $\approx$ | "approximately equal" | Left side is close to, but not exactly, the right side |
+| $\phi$ | "phi" | Activation function in a neural network (e.g. ReLU, sigmoid) |
+| $\theta$ | "theta" | Collective name for all learnable parameters of a model |
+| $L(\theta)$ | "loss of theta" | A single number measuring how wrong the model's predictions are |
+
+**Analogy — Gradient:**
+
+You are standing on a hillside and want to know which direction is steepest uphill. The **gradient** $\nabla f$ is an arrow pointing exactly that way. Its length tells you how steep it is. Walking opposite to the gradient takes you downhill fastest — that is gradient descent.
+
+**Analogy — Hessian:**
+
+The gradient tells you the slope; the **Hessian** tells you the *curvature* — is the slope getting steeper (bowl-shaped = minimum) or flatter (hilltop = maximum)?
+
+**Simple example — Gradient and critical points:**
+
+Let $f(x,y)=x^2+y^2$.
+
+$$
+f_x=2x,\quad f_y=2y,\quad \nabla f=(2x,\; 2y)
+$$
+
+Set gradient to zero: $2x=0,\ 2y=0 \implies$ critical point at $(0,0)$.
+
+$$
+f_{xx}=2,\quad f_{yy}=2,\quad f_{xy}=0
+$$
+
+$$
+D = 2 \cdot 2 - 0^2 = 4 > 0,\quad f_{xx}=2>0 \implies \text{local minimum at } (0,0)
+$$
+
+**Simple example — Taylor (1D):**
+
+Approximate $e^x$ around $a=0$ (2nd order):
+
+$$
+e^x \approx 1 + x + \frac{x^2}{2}
+$$
+
+At $x=0.1$: exact $e^{0.1}=1.10517...$, approximation $= 1+0.1+0.005=1.105$. Very close!
+
+### questions (Module 4)
 
 **A) Find local maxima/minima of $f(x,y)$**
 1. Compute $f_x, f_y$.
@@ -351,12 +533,20 @@ Lagrangian (slides):
 $$L(x,\lambda,\nu)=f(x)+\sum_{i=1}^m \lambda_i g_i(x)+\sum_{j=1}^p \nu_j h_j(x),\quad \lambda_i\ge 0.$$
 
 ### KKT conditions (slides)
-At optimum $(x^*,\lambda^*,\nu^*)$:
-1. Primal feasibility: $g_i(x^*)\le0$, $h_j(x^*)=0$
-2. Dual feasibility: $\lambda_i^*\ge0$
-3. Complementary slackness: $\lambda_i^* g_i(x^*)=0$
-4. Stationarity:
-   $$\nabla f(x^*) + \sum_i \lambda_i^* \nabla g_i(x^*) + \sum_j \nu_j^* \nabla h_j(x^*)=0$$
+At optimum $(x^\ast,\lambda^\ast,\nu^\ast)$:
+- **Primal feasibility:** $g_i(x^\ast)\le 0$, $h_j(x^\ast)=0$
+- **Dual feasibility:** $\lambda_i^\ast\ge 0$
+- **Complementary slackness:** $\lambda_i^\ast\,g_i(x^\ast)=0$
+- **Stationarity:**
+
+$$
+\nabla f(x^\ast) + \sum_{i=1}^m \lambda_i^\ast\,\nabla g_i(x^\ast) + \sum_{j=1}^p \nu_j^\ast\,\nabla h_j(x^\ast) = 0.
+$$
+
+Quick-use equivalent (often the cleanest way to write stationarity):
+$$\nabla_x L(x^\ast,\lambda^\ast,\nu^\ast)=0,$$
+where
+$$L(x,\lambda,\nu)=f(x)+\sum_{i=1}^m \lambda_i g_i(x)+\sum_{j=1}^p \nu_j h_j(x),\quad \lambda_i\ge 0.$$
 
 ### Convexity criterion (slides)
 Convex set: $x,y\in C\Rightarrow \theta x+(1-\theta)y\in C$.
@@ -366,7 +556,56 @@ $$f(\theta x+(1-\theta)y)\le \theta f(x)+(1-\theta)f(y).$$
 Gradient (first-order) condition:
 $$f(y)\ge f(x)+\nabla f(x)^T(y-x).$$
 
-### How to solve typical questions (Module 5)
+### Symbol guide & simple examples (Module 5)
+
+| Symbol | Read as | What it means |
+|---|---|---|
+| $\min_x f(x)$ | "minimize f over x" | Find the value of $x$ that makes $f(x)$ as small as possible |
+| $\alpha$ (in GD) | "alpha" / "learning rate" | Step size — how big a step you take downhill each iteration |
+| $x_{i+1}$ | "x sub i+1" | The updated point after one gradient descent step |
+| $\nabla f(x_i)$ | "gradient at x-i" | The steepest-uphill direction at point $x_i$ |
+| $\text{s.t.}$ | "subject to" | Shorthand for "with the constraint that ..." |
+| $g_i(x) \le 0$ | "g-i of x <= 0" | An inequality constraint the solution must satisfy |
+| $h_j(x) = 0$ | "h-j of x = 0" | An equality constraint the solution must satisfy |
+| $\lambda_i$ (in KKT) | "lambda-i" | Lagrange multiplier for the $i$-th inequality constraint; measures how much that constraint "costs" |
+| $\nu_j$ | "nu-j" | Lagrange multiplier for the $j$-th equality constraint |
+| $x^\ast$ | "x star" | The optimal solution |
+| $\mu$ (in momentum) | "mu" | Momentum coefficient — how much of the previous step's velocity to keep |
+| $v_i$ | "velocity at step i" | Momentum term that carries forward previous movement |
+
+**Analogy — Gradient descent:**
+
+Imagine you are blindfolded on a hilly landscape and want to reach the lowest valley. You feel the slope under your feet (gradient) and take a step downhill. Repeat. The **learning rate** $\alpha$ is your step size — too big and you overshoot the valley, too small and you take forever.
+
+**Analogy — Lagrange multipliers:**
+
+You want the cheapest hotel room (minimize cost) but it must be within 1 km of the beach (constraint). The Lagrange multiplier $\lambda$ tells you: "if the beach constraint were relaxed by 1 metre, how much cheaper could your room be?" It prices the constraint.
+
+**Simple example — One step of gradient descent:**
+
+$$
+f(x) = x^2,\quad f'(x)=2x
+$$
+
+Start at $x_0=5$, learning rate $\alpha=0.1$:
+
+$$
+x_1 = x_0 - \alpha f'(x_0) = 5 - 0.1(10) = 4
+$$
+
+$$
+x_2 = 4 - 0.1(8) = 3.2
+$$
+
+Each step moves closer to the minimum at $x=0$.
+
+**Simple example — Complementary slackness (KKT):**
+
+Minimize $f(x) = x^2$ subject to $g(x) = x - 3 \le 0$ (i.e., $x \le 3$).
+
+The unconstrained minimum is at $x=0$, which already satisfies $x \le 3$. So the constraint is **inactive** ($g(0)=-3 < 0$), and complementary slackness forces $\lambda = 0$ — the constraint has zero cost because it was not binding.
+
+### questions (Module 5)
 
 **A) Run gradient descent**
 1. Compute gradient $\nabla f$.
@@ -400,7 +639,7 @@ Variance along $b_1$:
 $$V_1 = b_1^T S b_1.$$
 Optimization:
 $$\max_{b_1} b_1^T S b_1 \ \text{s.t. } \|b_1\|_2=1.$$
-Lagrangian leads to eigenproblem:
+- Lagrangian leads to eigenproblem:
 $$S b_1 = \lambda b_1.$$
 So $b_1$ is eigenvector of $S$ with largest eigenvalue.
 
@@ -409,22 +648,42 @@ Hyperplane:
 $$w^T x + b = 0.$$
 $w$ is normal to the separating hyperplane.
 
-### Hard-margin SVM (slides)
+### Hard-margin SVM
 $$\min_{w,b} \frac{1}{2}\|w\|_2^2\ \text{s.t. } y_n(w^T x_n + b)\ge 1,\ \forall n.$$
 
-### Soft-margin SVM (slides)
+### Soft-margin SVM
 Introduce slack variables $\xi_n\ge 0$:
-$$\min_{w,b,\xi} \frac{1}{2}\|w\|_2^2 + C\sum_{n=1}^N \xi_n$$
+
+$$
+\min_{w,b,\xi}\ \frac{1}{2}\|w\|_2^2 + C\sum_{n=1}^N \xi_n
+$$
+
 subject to
-$$y_n(w^T x_n + b)\ge 1-\xi_n,\quad \xi_n\ge 0.$$
 
-### Hinge loss (slides)
+$$
+y_n\,(w^T x_n + b)\ge 1-\xi_n,\quad \xi_n\ge 0,\quad n=1,\dots,N.
+$$
+
+Simple “margin” form (helps quickly check constraint violations):
+$$m_n = y_n(w^T x_n+b),\quad \text{constraint is } m_n\ge 1-\xi_n.$$
+
+### Hinge loss
 For a point $(x_n,y_n)$:
-$$\ell_n = \max\big(0,\ 1 - y_n(w^T x_n + b)\big).$$
-Soft-margin objective (common equivalent form shown in examples):
-$$\min_{w,b}\ \frac{1}{2}\|w\|_2^2 + C\sum_{n=1}^N \max(0, 1-y_n(w^T x_n + b)).$$
 
-### Kernels (slides)
+$$
+\ell_n = \max\big(0,\ 1 - y_n(w^T x_n + b)\big).
+$$
+
+Soft-margin objective (common equivalent form shown in examples):
+
+$$
+\min_{w,b}\ \frac{1}{2}\|w\|_2^2 + C\sum_{n=1}^N \max\big(0,\ 1-y_n(w^T x_n + b)\big).
+$$
+
+Quick-use equivalent (using margin $m_n$):
+$$\ell_n = \max(0,1-m_n),\quad m_n=y_n(w^T x_n+b).$$
+
+### Kernels
 Kernel is an inner product in feature space:
 $$K(x_i,x_j)=\phi(x_i)^T\phi(x_j).$$
 Examples shown:
@@ -432,10 +691,65 @@ Examples shown:
 - Polynomial degree $p$: $K(x_i,x_j)=(1+x_i^T x_j)^p$
 - Sigmoid: $K(x_i,x_j)=\tanh(\alpha_0 x_i^T x_j + \alpha_1)$
 
-### KKT + duality (appears in SVM prelim slides)
+### KKT + duality
 KKT conditions listed in Module 5 apply; strong duality under Slater’s condition (convex + strict feasibility).
+### Symbol guide & simple examples (Module 6)
 
-### How to solve typical questions (Module 6)
+| Symbol | Read as | What it means |
+|---|---|---|
+| $S$ | "covariance matrix" | Measures how much features vary together; entry $S_{ij}$ = covariance of feature $i$ and $j$ |
+| $\mathbb{E}[x]$ | "expected value of x" | The average/mean of $x$ |
+| $B$ | "projection matrix" | Matrix whose columns are the chosen PCA directions |
+| $z$ | "code" or "embedding" | The low-dimensional representation after projecting with $B^T$ |
+| $\hat{x}$ | "x hat" | Reconstructed (approximate) version of $x$ from the low-dim code |
+| $b_1$ | "b-one" | First principal component direction — captures the most variance |
+| $w$ | "weight vector" | The normal to the SVM separating hyperplane; defines the classifier |
+| $b$ (in SVM) | "bias" | Shifts the hyperplane away from the origin |
+| $y_n \in \{-1,+1\}$ | "label" | Class label: $+1$ for one class, $-1$ for the other |
+| $\xi_n$ | "xi-n" ("ksi-n") | Slack variable — how much a point violates the margin; $\xi=0$ means no violation |
+| $C$ | "C" | Regularization parameter — large $C$ penalizes violations heavily (hard margin); small $C$ allows more slack |
+| $m_n$ | "margin of point n" | $m_n=y_n(w^T x_n+b)$; if $m_n \ge 1$ the point is correctly classified with margin |
+| $K(x_i,x_j)$ | "kernel of x-i, x-j" | Similarity score between $x_i$ and $x_j$ computed in a higher-dimensional feature space without explicitly going there |
+| $\phi(x)$ | "phi of x" | Feature map — transforms $x$ into a higher-dimensional space |
+
+**Analogy — PCA:**
+
+Imagine a cloud of 3D points that mostly lies along a flat pancake-shape. PCA finds the pancake's flat directions (the two axes with the most spread). You can then describe each point by just 2 numbers instead of 3, losing very little information. The first principal component is the direction with the most spread.
+
+**Simple example — PCA on 2D data (reduce to 1D):**
+
+Suppose centered data points: $(-1,-1), (0,0), (1,1)$.
+
+Covariance:
+
+$$
+S = \frac{1}{3}\begin{pmatrix} 2 & 2 \\\\ 2 & 2 \end{pmatrix}
+$$
+
+Eigenvalues of $S$: $\lambda_1 = 4/3,\ \lambda_2 = 0$.
+
+Top eigenvector: $b_1 = \frac{1}{\sqrt{2}}(1,1)$ (the 45-degree line). PCA says: project everything onto this line. Point $(1,1)$ gets code $z = b_1^T (1,1) = \sqrt{2}$.
+
+**Analogy — SVM:**
+
+You have red and blue balls on a table and want to draw a straight line separating them. Many lines work, but SVM picks the one with the **widest street** (margin) between the classes. The balls touching the edge of the street are the **support vectors**.
+
+**Simple example — Hinge loss:**
+
+Suppose $w=(1),\ b=-2$, and point $x=3$ with label $y=+1$.
+
+Score: $s = w^T x + b = 3 - 2 = 1$.
+
+Margin: $m = y \cdot s = 1 \cdot 1 = 1$.
+
+Hinge loss: $\ell = \max(0, 1-1) = 0$. (Correctly classified with full margin, so zero loss.)
+
+Now if $x=2$: $s=0,\ m=0,\ \ell=\max(0,1-0)=1$. (Inside the margin, so penalized.)
+
+**Analogy — Kernel trick:**
+
+If red and blue balls cannot be separated by a straight line on a flat table, lift them into 3D space (feature map $\phi$). In 3D, a flat plane can separate them. The **kernel** lets you compute the "lifted" dot product without actually computing all the 3D coordinates — saving a lot of work.
+### questions (Module 6)
 
 **A) Do PCA on a dataset (conceptual + computation-ready)**
 1. Center data: $x_n \leftarrow x_n-\mu$.
