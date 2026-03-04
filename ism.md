@@ -180,7 +180,7 @@ $$
 **B) Naive Bayes from a small dataset (frequency table approach)**
 1. Convert raw labeled data into counts (frequency table) for each feature value within each class.
 2. Convert counts to probabilities $P(x_i\mid Y)$ and class priors $P(Y)$.
-3. Multiply (or sum logs): score$_k = P(Y=c_k)\prod_i P(x_i\mid Y=c_k)$.
+3. Multiply (or sum logs): $\mathrm{score}_k = P(Y=c_k)\prod_i P(x_i\mid Y=c_k)$.
 4. Choose the class with highest score.
 5. If any probability becomes 0, apply Laplace smoothing (add 1 to counts).
 
@@ -442,12 +442,9 @@ Compute correction factor, then:
 Then compute mean squares and compare F values for treatments/blocks.
 
 ### Maximum likelihood estimation (MLE) quick results
-- Bernoulli($p$):
-  $$\hat{p}_{\text{MLE}}=\frac{1}{n}\sum_{i=1}^n x_i$$
-- Poisson($\lambda$):
-  $$\hat{\lambda}_{\text{MLE}}=\bar{x}$$
-- Normal($\mu,\sigma^2$):
-  $$\hat{\mu}=\bar{x},\quad \hat{\sigma}^2=\frac{1}{n}\sum_{i=1}^n (x_i-\bar{x})^2$$
+- Bernoulli(p): $\hat{p}=\frac{1}{n}\sum_{i=1}^{n} x_i$
+- Poisson(lambda): $\hat{\lambda}_{\mathrm{MLE}}=\bar{x}$
+- Normal(mu, sigma^2): $\hat{\mu}=\bar{x}$, $\hat{\sigma}^2=\frac{1}{n}\sum_{i=1}^n (x_i-\bar{x})^2$
 
 ### Symbol guide & intuition (Module 4)
 
@@ -553,19 +550,19 @@ Grand mean: $\bar{x}=57/9=6.333\ldots$
 Between-group sum of squares:
 
 $$
-	ext{SSTR}=3(5-6.333)^2+3(8-6.333)^2+3(6-6.333)^2=14
+\mathrm{SSTR}=3(5-6.333)^2+3(8-6.333)^2+3(6-6.333)^2=14
 $$
 
 Within-group sum of squares:
 
 $$
-	ext{SSE}=2+2+2=6
+\mathrm{SSE}=2+2+2=6
 $$
 
 df: between $=k-1=2$, within $=n-k=6$.
 
 $$
-	ext{MSTR}=14/2=7,\quad \text{MSE}=6/6=1,\quad F=7
+\mathrm{MSTR}=14/2=7,\quad \mathrm{MSE}=6/6=1,\quad F=7
 $$
 
 **Conclusion:** Since $F$ is large (e.g., exceeds typical 5% critical value for $(2,6)$), reject $H_0$ (at least one mean differs).
@@ -606,9 +603,9 @@ Model:
 $$Y=a+bX+e$$
 Common closed forms:
 - Slope:
-  $$b=\frac{\sum (x_i-\bar{x})(y_i-\bar{y})}{\sum (x_i-\bar{x})^2}$$
+  $b=\frac{\sum (x_i-\bar{x})(y_i-\bar{y})}{\sum (x_i-\bar{x})^2}$
 - Intercept:
-  $$a=\bar{y}-b\bar{x}$$
+  $a=\bar{y}-b\bar{x}$
 
 ### Time series decomposition (components)
 - Additive model:
@@ -861,3 +858,329 @@ For $x=95$, compute $\gamma_1=P(z_1=1\mid x)$.
 
 Because $|95-90|=|95-100|=5$ and variances match, the two Gaussian densities are equal, so
 $$\gamma_1=\frac{0.6}{0.6+0.4}=0.6.$$
+
+---
+
+## Extra exam-style worked examples (based on ISM EndSem patterns)
+
+Sources used for patterns: `2024 EndSem Regular ISM.pdf`, `ISM Regular EndSem Feb 2026.pdf`.
+
+Note: Some endsem questions embed the data table as an image; where the table was not extractable, I kept the *same exam pattern* but used a small clean dataset so you still get a complete worked solution.
+
+### Module 5 — Karl Pearson correlation ($r$) (exam-style)
+
+**Question pattern:** Given paired data $(X,Y)$, compute Karl Pearson’s coefficient of correlation and interpret.
+
+**Given (extractable endsem-style data):**
+
+| Student | $X$ (Math) | $Y$ (Stats) |
+|---|---:|---:|
+| Ram | 12 | 15 |
+| Sham | 8 | 10 |
+| Rupa | 16 | 18 |
+| Anil | 6 | 9 |
+| Sunil | 14 | 16 |
+
+**Infer values:** $n=5$, so compute $\bar{x},\bar{y}$ from the 5 pairs.
+
+**Formula used:** $r=\frac{\sum_{i=1}^n (x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^n (x_i-\bar{x})^2}\,\sqrt{\sum_{i=1}^n (y_i-\bar{y})^2}}$
+
+**Steps:**
+1. Compute means:
+
+  $$\bar{x}=\frac{12+8+16+6+14}{5}=11.2,\quad \bar{y}=\frac{15+10+18+9+16}{5}=13.6$$
+
+2. Compute the three needed sums:
+
+  $$\sum (x_i-\bar{x})(y_i-\bar{y})=64.4$$
+  $$\sum (x_i-\bar{x})^2=68.8,\quad \sum (y_i-\bar{y})^2=61.2$$
+
+3. Plug in:
+
+  $$r=\frac{64.4}{\sqrt{68.8\cdot 61.2}}\approx 0.9925$$
+
+**Interpretation:** Strong positive linear association (as $X$ increases, $Y$ tends to increase).
+
+---
+
+### Module 5 — Least-squares regression line + prediction (exam-style)
+
+**Question pattern:** Fit a straight line by least squares and predict $Y$ at some $X$.
+
+**Given (extractable endsem-style data):**
+
+- Extraction time (minutes) $X$: $[27,45,41,19,35,39,19,49,15,31]$
+- Extraction efficiency (%) $Y$: $[57,64,80,46,62,72,52,77,57,68]$
+
+**Infer values:** $n=10$, simple linear regression $\hat{Y}=a+bX$.
+
+**Formulas used:** $b=\frac{\sum (x_i-\bar{x})(y_i-\bar{y})}{\sum (x_i-\bar{x})^2},\quad a=\bar{y}-b\bar{x}$
+
+**Steps (results):**
+1. Compute $\bar{x},\bar{y}$ (from the 10 pairs).
+2. Compute slope and intercept:
+
+  $$b\approx 0.764,\quad a\approx 39.052$$
+
+3. Regression line:
+
+  $$\hat{y}=39.052+0.764x$$
+
+4. Predict efficiency at $x=35$ minutes:
+
+  $$\hat{y}(35)=39.052+0.764\cdot 35\approx 65.792$$
+
+**Answer:** Predicted efficiency at 35 minutes is about $65.8\%$.
+
+---
+
+### Module 5 — Simple Exponential Smoothing (SES) + choose $\alpha$ by MSE (exam-style)
+
+**Question pattern:** Forecast the next period using SES for two values of $\alpha$, then compare by MSE.
+
+**Given (extractable endsem-style data):** Rice export (in thousands of quintals) to USA:
+
+| Year | 2015 | 2016 | 2017 | 2018 | 2019 | 2020 | 2021 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| $Y_t$ | 146 | 159 | 161 | 170 | 174 | 140 | 145 |
+
+Assume initial forecast equals actual: $F_{2015}=Y_{2015}=146$.
+
+**Formula used:**
+$$F_{t+1}=\alpha Y_t+(1-\alpha)F_t$$
+
+**Infer values:**
+- Forecast for 2022 is $F_{2022}=\alpha Y_{2021}+(1-\alpha)F_{2021}$.
+- MSE is computed over years where a real forecast exists (here 2016–2021).
+
+**A) $\alpha=0.3$ (key results)**
+
+Forecasts (2015–2021):
+$$[146.000,\ 146.000,\ 149.900,\ 153.230,\ 158.261,\ 162.983,\ 156.088]$$
+
+Forecast for 2022:
+$$F_{2022}\approx 152.762$$
+
+MSE (2016–2021):
+$$\text{MSE}\approx 245.384$$
+
+**B) $\alpha=0.6$ (key results)**
+
+Forecasts (2015–2021):
+$$[146.000,\ 146.000,\ 153.800,\ 158.120,\ 165.248,\ 170.499,\ 152.200]$$
+
+Forecast for 2022:
+$$F_{2022}\approx 147.880$$
+
+MSE (2016–2021):
+$$\text{MSE}\approx 236.768$$
+
+**Conclusion:** Here $\alpha=0.6$ gives lower MSE (better fit on this history) and is also more responsive to sudden changes.
+
+---
+
+### Module 6 — Holt’s linear trend method (step-by-step) (exam-style)
+
+**Question pattern:** Apply Holt’s method with given $\alpha,\beta,L_0,T_0$ and forecast next month.
+
+**Given (extractable endsem-style data):** subscriptions (in thousands)
+
+| Month | Jan | Feb | Mar | Apr | May | Jun |
+|---|---:|---:|---:|---:|---:|---:|
+| $Y_t$ | 15 | 18 | 22 | 25 | 29 | 33 |
+
+Parameters: $\alpha=0.5$, $\beta=0.3$, initial level $L_0=15$, initial trend $T_0=3$.
+
+**Formulas used:**
+$$L_t = \alpha Y_t + (1-\alpha)(L_{t-1}+T_{t-1})$$
+$$T_t = \beta(L_t-L_{t-1}) + (1-\beta)T_{t-1}$$
+$$F_{t+1}=L_t+T_t$$
+
+**Infer values:** Since we want July, we need the updated $(L_6,T_6)$ after processing up to June.
+
+**Step-by-step (rounded):**
+
+| $t$ | Month | $Y_t$ | $L_t$ | $T_t$ | Forecast before update ($L_{t-1}+T_{t-1}$) |
+|---:|---|---:|---:|---:|---:|
+| 1 | Jan | 15.0 | 16.500 | 2.550 | 18.000 |
+| 2 | Feb | 18.0 | 18.525 | 2.392 | 19.050 |
+| 3 | Mar | 22.0 | 21.459 | 2.555 | 20.917 |
+| 4 | Apr | 25.0 | 24.507 | 2.703 | 24.014 |
+| 5 | May | 29.0 | 28.105 | 2.971 | 27.210 |
+| 6 | Jun | 33.0 | 32.038 | 3.260 | 31.076 |
+
+Forecast for July:
+$$F_{\text{July}}=L_6+T_6\approx 32.038+3.260\approx 35.298$$
+
+**Comment (why $\beta$ matters):** $\beta$ controls how quickly your trend estimate adapts; with subscription growth, a fixed trend often lags, so trend smoothing is essential.
+
+---
+
+### Module 4 — One-sample $t$-test (claim about mean reduction) (exam-style)
+
+**Question pattern:** Test a company’s claim about population mean when $\sigma$ is unknown.
+
+**Given (extractable endsem-style data):**
+
+- Claim: mean reduction $\mu_0=15$ mmHg
+- Sample: $n=25$, $\bar{x}=13$, $s=5$
+- Significance: $\alpha=0.05$
+
+**Infer values:** Unknown population SD $\Rightarrow$ use $t$ test with $df=n-1=24$.
+
+**Hypotheses (two-sided):**
+$$H_0:\mu=15\quad \text{vs}\quad H_1:\mu\ne 15$$
+
+**Test statistic:**
+$$t=\frac{\bar{x}-\mu_0}{s/\sqrt{n}}=\frac{13-15}{5/\sqrt{25}}=\frac{-2}{1}=-2.0$$
+
+**Decision (p-value approach):**
+Two-sided p-value $\approx 0.0569$.
+
+**Conclusion:** Since $p>0.05$, fail to reject $H_0$. At 5% level, the sample does not provide strong enough evidence that the true mean reduction differs from 15 mmHg.
+
+---
+
+### Module 4 — One-sample $z$-test (known $\sigma$) (exam-style)
+
+**Question pattern:** Test a claim about mean when population SD is known.
+
+**Given (extractable endsem-style data):**
+
+- Claim: mean time reduction $\mu_0=20$ minutes
+- Sample: $n=36$, $\bar{x}=18.2$, known $\sigma=7.5$
+- Significance: $\alpha=0.05$
+
+**Infer values:** Known $\sigma$ and reasonably large $n$ $\Rightarrow$ $z$ test.
+
+**Hypotheses (two-sided):**
+$$H_0:\mu=20\quad \text{vs}\quad H_1:\mu\ne 20$$
+
+**Test statistic:**
+$$z=\frac{\bar{x}-\mu_0}{\sigma/\sqrt{n}}=\frac{18.2-20}{7.5/\sqrt{36}}=\frac{-1.8}{1.25}=-1.44$$
+
+Two-sided p-value $\approx 0.1499$.
+
+**Conclusion:** Since $p>0.05$, fail to reject $H_0$.
+
+---
+
+### Module 4 — Paired $t$-test (before/after) (exam-style)
+
+**Question pattern:** Same subjects measured twice; test if the intervention improves the mean.
+
+**Given (endsem-style; the exam often provides a small table):**
+
+| Student | Before | After |
+|---|---:|---:|
+| 1 | 56 | 58 |
+| 2 | 48 | 50 |
+| 3 | 50 | 54 |
+| 4 | 52 | 55 |
+| 5 | 49 | 51 |
+| 6 | 55 | 56 |
+
+Define paired differences $d_i = \text{After}-\text{Before}$.
+
+**Infer values:** $n=6$ pairs, unknown SD of differences $\Rightarrow$ paired $t$ test with $df=5$.
+
+**Hypotheses (one-sided improvement):**
+$$H_0:\mu_d=0\quad \text{vs}\quad H_1:\mu_d>0$$
+
+**Formulas used:**
+$$\bar{d}=\frac{1}{n}\sum d_i,\quad s_d^2=\frac{1}{n-1}\sum(d_i-\bar{d})^2,\quad t=\frac{\bar{d}}{s_d/\sqrt{n}}$$
+
+**Steps:**
+1. Differences: $d=[2,2,4,3,2,1]$.
+2. Mean difference:
+
+  $$\bar{d}=\frac{2+2+4+3+2+1}{6}=\frac{14}{6}\approx 2.333$$
+
+3. Sample SD of differences:
+
+  $$s_d\approx 1.033$$
+
+4. Test statistic:
+
+  $$t=\frac{2.333}{1.033/\sqrt{6}}\approx 5.53$$
+
+**Conclusion:** Very strong evidence for improvement (large positive $t$).
+
+---
+
+### Module 4 — $F$-test for comparing variances (exam-style)
+
+**Question pattern:** Two methods, compare variability (variances) using an $F$ test.
+
+**Given (extractable endsem-style data):**
+
+- Method A: $n_A=10$, sample SD $s_A=0.032$
+- Method B: $n_B=14$, sample SD $s_B=0.028$
+- Test at 5% significance whether A has *greater* variability.
+
+**Infer values:** Right-tailed test on the variance ratio with degrees of freedom $df_1=n_A-1=9$, $df_2=n_B-1=13$.
+
+**Hypotheses (right-tail):**
+$$H_0:\sigma_A^2=\sigma_B^2\quad \text{vs}\quad H_1:\sigma_A^2>\sigma_B^2$$
+
+**Test statistic:**
+$$F=\frac{s_A^2}{s_B^2}=\frac{0.032^2}{0.028^2}\approx 1.306$$
+
+Critical value at 5% (right tail):
+$$F_{0.95}(9,13)\approx 2.714$$
+
+**Conclusion:** Since $1.306<2.714$ (p-value $\approx 0.321$), fail to reject $H_0$. Not enough evidence that Method A is more variable.
+
+---
+
+### Module 4 — Poisson MLE + probability of zero (exam-style)
+
+**Question pattern:** For Poisson data, find MLE of $\lambda$ and compute $P(X=0)$.
+
+**Given (extractable endsem-style data):** accidents over 5 days: $[4,2,5,3,6]$.
+
+**Infer values:** For Poisson($\lambda$), MLE is sample mean.
+
+**Formulas used:**
+$$\hat{\lambda}=\bar{x}$$
+$$P(X=0)=e^{-\lambda}$$
+
+**Steps:**
+1. MLE:
+
+  $$\hat{\lambda}=\frac{4+2+5+3+6}{5}=4$$
+
+2. Probability of no accidents:
+
+  $$P(X=0)\approx e^{-4}\approx 0.0183$$
+
+---
+
+### Module 4 — CI for mean + “white noise” residual check (exam-style)
+
+**Question pattern A:** Construct a 95% CI for the population mean when $\sigma$ is unknown and $n$ is small.
+
+**Given (typical endsem setup):** $n=20$ and the full sample is provided. Compute $\bar{x}$ and $s$ from the 20 numbers.
+
+**Formula used (95% CI):**
+$$\bar{x}\pm t_{0.975,\,n-1}\frac{s}{\sqrt{n}}$$
+
+For $n=20$, $df=19$ and typically $t_{0.975,19}\approx 2.093$.
+
+**Question pattern B:** Given residual series, compute sample mean/variance and comment on white noise.
+
+**Given (extractable endsem-style data):** residuals
+$$\{2,-1,0,1,-2,1,-1,0\}$$
+
+**Infer values:** $n=8$. White noise is commonly assessed by (i) mean near 0 and (ii) no significant autocorrelation (often a qualitative check unless ACF/Ljung-Box is asked).
+
+**Steps:**
+1. Sample mean:
+
+  $$\bar{r}=\frac{2-1+0+1-2+1-1+0}{8}=0$$
+
+2. Sample variance (unbiased):
+
+  $$s^2=\frac{1}{n-1}\sum (r_i-\bar{r})^2=\frac{1}{7}(4+1+0+1+4+1+1+0)=\frac{12}{7}\approx 1.714$$
+
+**Comment:** Mean is exactly 0 here and variance is finite; with only 8 points you typically *cannot* prove white noise, but these are consistent with a “noise-like” residual series. If the exam asks for a formal check, compute ACF and/or Ljung–Box.
