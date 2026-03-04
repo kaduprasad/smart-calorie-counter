@@ -85,6 +85,76 @@ Echelon-form determinant definition used in slides:
 1. Row-reduce $A$ to echelon form (RREF not required).
 2. Count nonzero rows (equivalently, pivot columns).
 
+### Worked examples (Module 1)
+
+**Example 1A — Solve $Ax=b$**
+
+Solve:
+
+$$
+x_1 + 2x_2 = 5
+$$
+
+$$
+3x_1 + 4x_2 = 11
+$$
+
+Step 1 — Augmented matrix:
+
+$$
+\left[\begin{array}{cc|c} 1 & 2 & 5 \\\\ 3 & 4 & 11 \end{array}\right]
+$$
+
+Step 2 — $R_2 \leftarrow R_2 - 3R_1$:
+
+$$
+\left[\begin{array}{cc|c} 1 & 2 & 5 \\\\ 0 & -2 & -4 \end{array}\right]
+$$
+
+Step 3 — Back-substitute: $-2x_2=-4 \implies x_2=2$. Then $x_1+4=5 \implies x_1=1$.
+
+**Answer:** $x_1=1,\ x_2=2$.
+
+**Example 1B — Find $A^{-1}$**
+
+$$
+A = \begin{bmatrix} 1 & 2 \\\\ 3 & 4 \end{bmatrix}
+$$
+
+Form $[A \mid I]$:
+
+$$
+\left[\begin{array}{cc|cc} 1 & 2 & 1 & 0 \\\\ 3 & 4 & 0 & 1 \end{array}\right]
+$$
+
+$R_2 \leftarrow R_2-3R_1$:
+
+$$
+\left[\begin{array}{cc|cc} 1 & 2 & 1 & 0 \\\\ 0 & -2 & -3 & 1 \end{array}\right]
+$$
+
+$R_2 \leftarrow R_2/(-2)$:
+
+$$
+\left[\begin{array}{cc|cc} 1 & 2 & 1 & 0 \\\\ 0 & 1 & 3/2 & -1/2 \end{array}\right]
+$$
+
+$R_1 \leftarrow R_1 - 2R_2$:
+
+$$
+\left[\begin{array}{cc|cc} 1 & 0 & -2 & 1 \\\\ 0 & 1 & 3/2 & -1/2 \end{array}\right]
+$$
+
+$$
+A^{-1} = \begin{bmatrix} -2 & 1 \\\\ 3/2 & -1/2 \end{bmatrix}
+$$
+
+**Example 1C — Find rank and determinant**
+
+Same $A$ above. It row-reduces to 2 nonzero rows, so $\mathrm{rank}(A)=2$.
+
+$\det(A) = 1{\cdot}4 - 2{\cdot}3 = -2$. (Non-zero, confirming $A$ is invertible.)
+
 ---
 
 ## Module 2 — Vectors, Distance/Angle, Linear (In)dependence
@@ -261,6 +331,64 @@ Vectors $v_1=(1,0)$ and $v_2=(0,1)$ are **independent** because neither is a mul
 3. Use $\cos\theta = \langle x,y\rangle/(\|x\|\|y\|)$.
 4. Distance: $d(x,y)=\|x-y\|$.
 
+### Worked examples (Module 2)
+
+**Example 2A — Check linear independence**
+
+Are $v_1=(1,2,3)$ and $v_2=(2,4,6)$ linearly independent?
+
+Put as columns and solve $A\alpha=0$:
+
+$$
+\begin{bmatrix} 1 & 2 \\\\ 2 & 4 \\\\ 3 & 6 \end{bmatrix} \begin{bmatrix} \alpha_1 \\\\ \alpha_2 \end{bmatrix} = \begin{bmatrix} 0 \\\\ 0 \\\\ 0 \end{bmatrix}
+$$
+
+Row-reduce: $R_2 \leftarrow R_2-2R_1$, $R_3 \leftarrow R_3-3R_1$:
+
+$$
+\begin{bmatrix} 1 & 2 \\\\ 0 & 0 \\\\ 0 & 0 \end{bmatrix}
+$$
+
+$\alpha_2$ is free → non-trivial solution exists (e.g. $\alpha_1=-2, \alpha_2=1$).
+
+**Answer:** Dependent (indeed $v_2=2v_1$).
+
+**Example 2B — Find basis for a span**
+
+Vectors: $v_1=(1,0,1)$, $v_2=(2,0,2)$, $v_3=(0,1,1)$.
+
+Columns → row-reduce:
+
+$$
+\begin{bmatrix} 1 & 2 & 0 \\\\ 0 & 0 & 1 \\\\ 1 & 2 & 1 \end{bmatrix} \xrightarrow{R_3-R_1} \begin{bmatrix} 1 & 2 & 0 \\\\ 0 & 0 & 1 \\\\ 0 & 0 & 1 \end{bmatrix} \xrightarrow{R_3-R_2} \begin{bmatrix} 1 & 2 & 0 \\\\ 0 & 0 & 1 \\\\ 0 & 0 & 0 \end{bmatrix}
+$$
+
+Pivots in columns 1 and 3. **Basis:** $\{v_1, v_3\} = \{(1,0,1),\ (0,1,1)\}$.
+
+**Example 2C — Gram-Schmidt (2 vectors)**
+
+Orthonormalize $x_1=(1,1)$ and $x_2=(1,0)$.
+
+Step 1: $u_1 = (1,1)$, $\|u_1\|=\sqrt{2}$, so $e_1 = \frac{1}{\sqrt{2}}(1,1)$.
+
+Step 2:
+
+$$
+\mathrm{proj}_{e_1}(x_2) = (x_2 \cdot e_1)\,e_1 = \frac{1}{\sqrt{2}} \cdot \frac{1}{\sqrt{2}}(1,1) = \frac{1}{2}(1,1) = (0.5, 0.5)
+$$
+
+$$
+u_2 = x_2 - \mathrm{proj}_{e_1}(x_2) = (1,0)-(0.5,0.5) = (0.5,-0.5)
+$$
+
+$$
+\|u_2\| = \sqrt{0.25+0.25} = \frac{1}{\sqrt{2}},\quad e_2 = \frac{1}{\sqrt{2}}(1,-1)
+$$
+
+**Orthonormal basis:** $e_1=\frac{1}{\sqrt{2}}(1,1)$, $e_2=\frac{1}{\sqrt{2}}(1,-1)$.
+
+Check: $e_1 \cdot e_2 = \frac{1}{2}(1-1) = 0$ ✓, $\|e_1\|=\|e_2\|=1$ ✓.
+
 ---
 
 ### Module 3 — Matrix Decompositions (Eigen, Spectral, Cholesky, SVD)
@@ -332,7 +460,7 @@ Imagine stretching a rubber sheet pinned at the origin. Most points move *and* r
 **Simple example — Eigenvalues of a 2x2:**
 
 $$
-A = \begin{pmatrix} 2 & 1 \\\\ 0 & 3 \end{pmatrix}
+A = \begin{bmatrix} 2 & 1 \\\\ 0 & 3 \end{bmatrix}
 $$
 
 Since $A$ is upper-triangular, eigenvalues are the diagonal entries: $\lambda_1=2,\ \lambda_2=3$.
@@ -340,7 +468,7 @@ Since $A$ is upper-triangular, eigenvalues are the diagonal entries: $\lambda_1=
 For $\lambda_1=2$: solve $(A-2I)x=0$:
 
 $$
-\begin{pmatrix} 0 & 1 \\\\ 0 & 1 \end{pmatrix} x = 0 \implies x = t\begin{pmatrix}1\\\\0\end{pmatrix}
+\begin{bmatrix} 0 & 1 \\\\ 0 & 1 \end{bmatrix} x = 0 \implies x = t\begin{bmatrix}1\\\\0\end{bmatrix}
 $$
 
 So eigenvector for $\lambda=2$ is $(1,0)$.
@@ -381,6 +509,74 @@ For symmetric $A$, choose orthonormal eigenvectors so $Q^{-1}=Q^T$.
 2. Choose $k$.
 3. Keep top $k$ components → $A_k$.
 
+### Worked examples (Module 3)
+
+**Example 3A — Find eigenvalues and eigenvectors**
+
+$$
+A = \begin{bmatrix} 4 & 1 \\\\ 2 & 3 \end{bmatrix}
+$$
+
+Step 1 — Characteristic equation:
+
+$$
+\det(A-\lambda I) = (4-\lambda)(3-\lambda) - 2 = \lambda^2 - 7\lambda + 10 = 0
+$$
+
+$$
+(\lambda-5)(\lambda-2) = 0 \implies \lambda_1=5,\ \lambda_2=2
+$$
+
+Step 2 — Eigenvectors:
+
+For $\lambda_1=5$: $(A-5I)x=0$:
+
+$$
+\begin{bmatrix} -1 & 1 \\\\ 2 & -2 \end{bmatrix} x = 0 \implies x_1=x_2 \implies v_1 = (1,1)
+$$
+
+For $\lambda_2=2$: $(A-2I)x=0$:
+
+$$
+\begin{bmatrix} 2 & 1 \\\\ 2 & 1 \end{bmatrix} x = 0 \implies x_1 = -x_2/2 \implies v_2 = (1,-2)
+$$
+
+**Example 3B — Diagonalize**
+
+Using the eigenvalues/vectors above:
+
+$$
+Q = \begin{bmatrix} 1 & 1 \\\\ 1 & -2 \end{bmatrix},\quad \Lambda = \begin{bmatrix} 5 & 0 \\\\ 0 & 2 \end{bmatrix}
+$$
+
+Verify: $A = Q\Lambda Q^{-1}$.
+
+**Example 3C — Cholesky factorization**
+
+$$
+A = \begin{bmatrix} 4 & 2 \\\\ 2 & 5 \end{bmatrix}
+$$
+
+Check SPD: $A^T=A$ ✓. Leading minors: $4>0$, $\det(A)=20-4=16>0$ ✓.
+
+Solve $A=LL^T$:
+
+$$
+L = \begin{bmatrix} l_{11} & 0 \\\\ l_{21} & l_{22} \end{bmatrix}
+$$
+
+From $l_{11}^2=4$: $l_{11}=2$.
+
+From $l_{21} \cdot l_{11}=2$: $l_{21}=1$.
+
+From $l_{21}^2 + l_{22}^2=5$: $l_{22}=2$.
+
+$$
+L = \begin{bmatrix} 2 & 0 \\\\ 1 & 2 \end{bmatrix}
+$$
+
+Verify: $\det(A) = (l_{11} \cdot l_{22})^2 = (2 \cdot 2)^2 = 16$ ✓.
+
 ---
 
 ## Module 4 — Vector Calculus 
@@ -401,7 +597,7 @@ for some $c\in(0,1)$.
 ### Hessian (2 variables)
 
 $$
-H_f(x,y) = \begin{pmatrix} f_{xx} & f_{xy} \\\\ f_{yx} & f_{yy} \end{pmatrix}
+H_f(x,y) = \begin{bmatrix} f_{xx} & f_{xy} \\\\ f_{yx} & f_{yy} \end{bmatrix}
 $$
 
 (For smooth $f$, $f_{xy}=f_{yx}$ so Hessian is symmetric.)
@@ -498,6 +694,64 @@ At $x=0.1$: exact $e^{0.1}=1.10517...$, approximation $= 1+0.1+0.005=1.105$. Ver
 2. Compute local derivatives at each node.
 3. Propagate gradients backward using chain rule.
 
+### Worked examples (Module 4)
+
+**Example 4A — Find local extrema of $f(x,y) = x^2 + xy + y^2 - 3x$**
+
+Step 1 — Partial derivatives:
+
+$$
+f_x = 2x + y - 3,\quad f_y = x + 2y
+$$
+
+Step 2 — Set to zero:
+
+$$
+2x + y = 3,\quad x + 2y = 0
+$$
+
+From second equation: $x = -2y$. Substitute: $-4y+y=3 \implies y=-1,\ x=2$.
+
+Critical point: $(2,-1)$.
+
+Step 3 — Second derivatives and discriminant:
+
+$$
+f_{xx}=2,\quad f_{yy}=2,\quad f_{xy}=1
+$$
+
+$$
+D = 2{\cdot}2 - 1^2 = 3 > 0,\quad f_{xx}=2>0
+$$
+
+**Answer:** Local minimum at $(2,-1)$, with $f(2,-1) = 4-2+1-6 = -3$.
+
+**Example 4B — 2nd-order Taylor expansion of $f(x)=\sin(x)$ around $a=0$**
+
+Derivatives at $a=0$: $f(0)=0$, $f'(0)=\cos(0)=1$, $f''(0)=-\sin(0)=0$.
+
+$$
+\sin(x) \approx 0 + 1{\cdot}x + \frac{0}{2}x^2 = x
+$$
+
+So near $x=0$, $\sin(x) \approx x$. (At $x=0.1$: $\sin(0.1)=0.09983...$, approximation $=0.1$. Close!)
+
+**Example 4C — Backprop on a simple chain**
+
+Compute $\frac{dL}{dx}$ for: $a = 2x$, $b = a+3$, $L = b^2$.
+
+Forward: if $x=1$, then $a=2$, $b=5$, $L=25$.
+
+Backward (chain rule):
+
+$$
+\frac{dL}{db}=2b=10,\quad \frac{db}{da}=1,\quad \frac{da}{dx}=2
+$$
+
+$$
+\frac{dL}{dx} = \frac{dL}{db} \cdot \frac{db}{da} \cdot \frac{da}{dx} = 10 \cdot 1 \cdot 2 = 20
+$$
+
 ---
 
 ## Module 5 — Gradient Descent & Optimization Challenges
@@ -575,7 +829,7 @@ $$f(y)\ge f(x)+\nabla f(x)^T(y-x).$$
 
 **Analogy — Gradient descent:**
 
-Imagine you are blindfolded on a hilly landscape and want to reach the lowest valley. You feel the slope under your feet (gradient) and take a step downhill. Repeat. The **learning rate** $\alpha$ is your step size — too big and you overshoot the valley, too small and you take forever.
+You feel the slope under your feet (gradient) and take a step downhill. Repeat. The **learning rate** $\alpha$ is your step size — too big and you overshoot the valley, too small and you take forever.
 
 **Analogy — Lagrange multipliers:**
 
@@ -617,6 +871,60 @@ The unconstrained minimum is at $x=0$, which already satisfies $x \le 3$. So the
 1. Write constraints as $g_i(x)\le0$ and $h_j(x)=0$.
 2. Write Lagrangian $L(x,\lambda,\nu)$.
 3. Apply KKT (or for equality-only constraints: solve $\nabla f=\lambda\nabla g$ + constraint).
+
+### Worked examples (Module 5)
+
+**Example 5A — Gradient descent on $f(x)=x^4-3x^2+2$**
+
+$$
+f'(x) = 4x^3 - 6x
+$$
+
+Start at $x_0=2$, learning rate $\alpha=0.01$.
+
+| Step | $x$ | $f'(x)$ | $x_{\text{new}} = x - 0.01 f'(x)$ |
+|---|---|---|---|
+| 0 | $2$ | $4(8)-12=20$ | $2-0.2=1.8$ |
+| 1 | $1.8$ | $4(5.832)-10.8=12.528$ | $1.8-0.125=1.675$ |
+| 2 | $1.675$ | $\approx 8.75$ | $\approx 1.587$ |
+
+The iterates approach the local minimum near $x \approx 1.22$ (where $f'(x)=0$).
+
+**Example 5B — Lagrange multiplier (equality constraint)**
+
+Minimize $f(x,y)=x^2+y^2$ subject to $h(x,y)=x+y-4=0$.
+
+Lagrangian:
+
+$$
+L(x,y,\nu) = x^2+y^2 + \nu(x+y-4)
+$$
+
+Stationarity:
+
+$$
+\frac{\partial L}{\partial x} = 2x+\nu = 0,\quad \frac{\partial L}{\partial y} = 2y+\nu = 0
+$$
+
+From these: $2x=2y \implies x=y$. Plug into constraint: $2x=4 \implies x=y=2$.
+
+Then $\nu = -2(2)=-4$.
+
+**Answer:** Minimum at $(2,2)$ with $f=8$. The multiplier $\nu=-4$ means relaxing the constraint by $\epsilon$ would decrease $f$ by about $4\epsilon$.
+
+**Example 5C — KKT with inequality constraint**
+
+Minimize $f(x)=(x-3)^2$ subject to $g(x)=x-1 \le 0$ (i.e., $x \le 1$).
+
+Unconstrained minimum is at $x=3$, which violates $x \le 1$. So the constraint must be active.
+
+At $x^\ast=1$: $g(1)=0$ (active), $f'(1)=2(1-3)=-4$.
+
+Stationarity: $f'(x^\ast)+\lambda g'(x^\ast)=0 \implies -4+\lambda(1)=0 \implies \lambda=4$.
+
+Check: $\lambda=4 \ge 0$ ✓, $\lambda \cdot g(x^\ast)=4{\cdot}0=0$ ✓ (complementary slackness).
+
+**Answer:** $x^\ast=1$, $\lambda^\ast=4$.
 
 ---
 
@@ -723,7 +1031,7 @@ Suppose centered data points: $(-1,-1), (0,0), (1,1)$.
 Covariance:
 
 $$
-S = \frac{1}{3}\begin{pmatrix} 2 & 2 \\\\ 2 & 2 \end{pmatrix}
+S = \frac{1}{3}\begin{bmatrix} 2 & 2 \\\\ 2 & 2 \end{bmatrix}
 $$
 
 Eigenvalues of $S$: $\lambda_1 = 4/3,\ \lambda_2 = 0$.
@@ -777,6 +1085,82 @@ If red and blue balls cannot be separated by a straight line on a flat table, li
 2. Compute kernel matrix $K_{ij}=K(x_i,x_j)$.
 3. Solve dual for $\alpha$ (support vectors).
 4. Classify new $x$ via sign of weighted kernel sum.
+
+### Worked examples (Module 6)
+
+**Example 6A — PCA on 3 points in 2D**
+
+Data: $(2,4),\ (4,6),\ (6,8)$. Mean $\mu=(4,6)$.
+
+Center: $(-2,-2),\ (0,0),\ (2,2)$.
+
+Covariance:
+
+$$
+S = \frac{1}{3}\left[(-2)(-2)+0+4,\ \dots\right] = \frac{1}{3}\begin{bmatrix} 8 & 8 \\\\ 8 & 8 \end{bmatrix}
+$$
+
+Eigenvalues: $\det(S-\lambda I)=0 \implies \lambda_1=16/3,\ \lambda_2=0$.
+
+Top eigenvector: $b_1=\frac{1}{\sqrt{2}}(1,1)$.
+
+Project centered point $(2,2)$: $z = b_1^T(2,2) = \frac{1}{\sqrt{2}}(2+2)=2\sqrt{2}$.
+
+Reconstruct: $\hat{x} = z \cdot b_1 = 2\sqrt{2} \cdot \frac{1}{\sqrt{2}}(1,1) = (2,2)$. (Perfect reconstruction since all points lie on a line.)
+
+**Example 6B — Soft-margin SVM formulation & hinge loss**
+
+Data: $x_1=(1),\ y_1=+1$ and $x_2=(-1),\ y_2=-1$. Choose $C=10$.
+
+Propose $w=1,\ b=0$ (hyperplane at $x=0$).
+
+Point 1: $s_1=w^T x_1+b=1$, $m_1=y_1 s_1=1$, $\ell_1=\max(0,1-1)=0$.
+
+Point 2: $s_2=-1$, $m_2=(-1)(-1)=1$, $\ell_2=\max(0,1-1)=0$.
+
+Objective:
+
+$$
+\frac{1}{2}\|w\|^2 + C(\ell_1+\ell_2) = \frac{1}{2}(1) + 10(0) = 0.5
+$$
+
+Both margins are exactly 1 — points sit on the margin boundary (they are support vectors).
+
+Now try $w=0.5,\ b=0$:
+
+Point 1: $s_1=0.5$, $m_1=0.5$, $\ell_1=\max(0,0.5)=0.5$.
+
+Point 2: $s_2=-0.5$, $m_2=0.5$, $\ell_2=0.5$.
+
+Objective:
+
+$$
+\frac{1}{2}(0.25) + 10(1.0) = 0.125 + 10 = 10.125
+$$
+
+Much worse! The smaller $w$ reduces the regularization term but the margin violations are heavily penalized by $C=10$. The first solution ($w=1, b=0$) is better.
+
+**Example 6C — Polynomial kernel**
+
+Points: $x_1=(1)$, $x_2=(2)$. Polynomial kernel of degree 2:
+
+$$
+K(x_i,x_j) = (1 + x_i^T x_j)^2
+$$
+
+$$
+K(x_1,x_1) = (1+1)^2 = 4
+$$
+
+$$
+K(x_1,x_2) = (1+2)^2 = 9
+$$
+
+$$
+K(x_2,x_2) = (1+4)^2 = 25
+$$
+
+This is equivalent to using the feature map $\phi(x) = (1, \sqrt{2}x, x^2)$ and computing $\phi(x_i)^T \phi(x_j)$, but the kernel computes it directly from the original data — no need to explicitly build $\phi$.
 
 ---
 
