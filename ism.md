@@ -31,7 +31,35 @@ Note: Some slides are image-heavy / formatting-heavy; where text extraction was 
 - Independence:
   $$A\perp B \iff P(A\cap B)=P(A)P(B)$$
 
-### How to solve typical questions (Module 1)
+### Symbol guide & intuition (Module 1)
+
+| Symbol | Read as | Meaning / intuition |
+|---|---|---|
+| $n$ | "sample size" | Number of observations you collected (sample) |
+| $N$ | "population size" | Number of items in the full population (often unknown/huge) |
+| $\bar{x}$ | "x-bar" | Sample mean (average of the sample) |
+| $\mu$ | "mu" | Population mean (true average, usually unknown) |
+| $s^2,\ s$ | "sample variance/std" | Spread in the sample; uses $n-1$ for unbiased variance estimate |
+| $\sigma^2,\ \sigma$ | "population variance/std" | True population spread (parameter) |
+| $A^c$ | "A complement" | "not A" |
+| $\cup,\ \cap$ | union / intersection | "A or B" / "A and B" |
+| $A\perp B$ | "A independent B" | Knowing $B$ does not change the probability of $A$ |
+
+**Analogy — Variance as average squared distance:**
+Think of the mean as the "center". Variance is the average squared distance of points from that center.
+
+**Breakdown — sample variance formula:**
+
+$$
+s^2 = \frac{1}{n-1}\sum_{i=1}^n (x_i-\bar{x})^2
+$$
+
+- Compute $\bar{x}$
+- Compute deviations $x_i-\bar{x}$
+- Square and add them up (that sum is often called $SS$)
+- Divide by $n-1$
+
+### steps(Module 1)
 
 **A) Compute sample variance / standard deviation**
 1. Compute $\bar{x}$.
@@ -44,6 +72,48 @@ Note: Some slides are image-heavy / formatting-heavy; where text extraction was 
 2. Use the addition rule for $P(A\cup B)$.
 3. “Exactly one” is $P(A\cap B^c)+P(A^c\cap B)=P(A)+P(B)-2P(A\cap B)$.
 4. “Neither” is $P((A\cup B)^c)=1-P(A\cup B)$.
+
+### Worked examples (Module 1)
+
+**Example 1A — Compute sample variance and standard deviation**
+
+Data: $x = [2, 4, 6]$.
+
+Step 1: $\bar{x}=(2+4+6)/3=4$.
+
+Step 2: Deviations: $[-2, 0, 2]$. Squared deviations: $[4, 0, 4]$.
+
+Step 3: $SS=4+0+4=8$.
+
+Step 4:
+
+$$
+s^2 = \frac{SS}{n-1} = \frac{8}{2} = 4,\quad s = \sqrt{4}=2
+$$
+
+**Answer:** $s^2=4$, $s=2$.
+
+**Example 1B — “A or B”, “exactly one”, “neither”**
+
+Suppose $P(A)=0.6$, $P(B)=0.5$, $P(A\cap B)=0.3$.
+
+Addition rule:
+
+$$
+P(A\cup B)=0.6+0.5-0.3=0.8
+$$
+
+Exactly one:
+
+$$
+P(\text{exactly one})=P(A)+P(B)-2P(A\cap B)=1.1-0.6=0.5
+$$
+
+Neither:
+
+$$
+P(\text{neither}) = 1 - P(A\cup B) = 0.2
+$$
 
 ### Simple example (Module 1)
 A student passes Statistics with probability $P(S)=2/3$. They fail Mathematics with probability $5/9$, so $P(M)=1-5/9=4/9$. If $P(S\cup M)=4/5$, find $P(S\cap M)$.
@@ -78,7 +148,29 @@ Given class $Y\in\{c_1,\dots,c_K\}$ and features $X=(x_1,\dots,x_n)$:
 - MAP decision:
   $$\hat{y}=\arg\max_k\; P(Y=c_k)\prod_{i=1}^n P(x_i\mid Y=c_k)$$
 
-### How to solve typical questions (Module 2)
+### Symbol guide & intuition (Module 2)
+
+| Symbol | Read as | Meaning / intuition |
+|---|---|---|
+| $P(A\mid B)$ | "probability of A given B" | Probability after you learn $B$ happened |
+| $P(A\cap B)$ | "A and B" | Both events happen |
+| $E_1,\dots,E_n$ | partition events | Mutually exclusive cases that cover all possibilities |
+| Prior $P(H)$ | "prior" | Belief before seeing evidence |
+| Likelihood $P(E\mid H)$ | "likelihood" | How compatible the evidence is with the hypothesis |
+| Posterior $P(H\mid E)$ | "posterior" | Updated belief after evidence |
+| $\hat{y}$ | "y-hat" | Predicted class label |
+| $\arg\max$ | "arg max" | The input value that makes an expression largest |
+
+**Analogy — Bayes as "flip your viewpoint":**
+Instead of asking "how likely is evidence if hypothesis is true" ($P(E\mid H)$), Bayes lets you compute "how likely is the hypothesis given evidence" ($P(H\mid E)$).
+
+**Breakdown — Bayes’ theorem (2-hypothesis case):**
+
+$$
+P(H_1\mid E)=\frac{P(E\mid H_1)P(H_1)}{P(E\mid H_1)P(H_1)+P(E\mid H_2)P(H_2)}
+$$
+
+### steps(Module 2)
 
 **A) Total probability + Bayes**
 1. Identify hypotheses/events $E_1,\dots,E_n$ that partition the sample space.
@@ -91,6 +183,80 @@ Given class $Y\in\{c_1,\dots,c_K\}$ and features $X=(x_1,\dots,x_n)$:
 3. Multiply (or sum logs): score$_k = P(Y=c_k)\prod_i P(x_i\mid Y=c_k)$.
 4. Choose the class with highest score.
 5. If any probability becomes 0, apply Laplace smoothing (add 1 to counts).
+
+### Worked examples (Module 2)
+
+**Example 2A — Total probability + Bayes (factory / defect style)**
+
+Two machines make a part:
+- $P(M_1)=0.6$, $P(\text{Def}\mid M_1)=0.02$
+- $P(M_2)=0.4$, $P(\text{Def}\mid M_2)=0.05$
+
+Find $P(M_2\mid \text{Def})$.
+
+Step 1: Total probability:
+
+$$
+P(\text{Def})=0.6\cdot 0.02 + 0.4\cdot 0.05 = 0.012+0.020 = 0.032
+$$
+
+Step 2: Bayes:
+
+$$
+P(M_2\mid \text{Def})=\frac{0.4\cdot 0.05}{0.032}=\frac{0.020}{0.032}=0.625
+$$
+
+**Answer:** $P(M_2\mid \text{Def})=0.625$.
+
+**Example 2B — Naive Bayes with Laplace smoothing (tiny table)**
+
+Classify an email using two binary features:
+- $x_1=$ Offer? (Yes/No)
+- $x_2=$ Urgent? (Yes/No)
+
+Training counts (6 emails total):
+- Spam (3): Offer=Yes (3), Offer=No (0); Urgent=Yes (2), Urgent=No (1)
+- NotSpam (3): Offer=Yes (0), Offer=No (3); Urgent=Yes (1), Urgent=No (2)
+
+We want to classify a new email: Offer=Yes, Urgent=No.
+
+Priors: $P(\text{Spam})=3/6=0.5$, $P(\text{NotSpam})=0.5$.
+
+Without smoothing we get $P(\text{Offer=Yes}\mid \text{NotSpam})=0$ (bad: it kills the score). Apply Laplace smoothing (add 1, for 2 possible values):
+
+For Spam:
+
+$$
+P(\text{Offer=Yes}\mid \text{Spam})=\frac{3+1}{3+2}=\frac{4}{5}
+$$
+
+$$
+P(\text{Urgent=No}\mid \text{Spam})=\frac{1+1}{3+2}=\frac{2}{5}
+$$
+
+Score(Spam):
+
+$$
+0.5\cdot \frac{4}{5}\cdot \frac{2}{5}=0.5\cdot 0.32=0.16
+$$
+
+For NotSpam:
+
+$$
+P(\text{Offer=Yes}\mid \text{NotSpam})=\frac{0+1}{3+2}=\frac{1}{5}
+$$
+
+$$
+P(\text{Urgent=No}\mid \text{NotSpam})=\frac{2+1}{3+2}=\frac{3}{5}
+$$
+
+Score(NotSpam):
+
+$$
+0.5\cdot \frac{1}{5}\cdot \frac{3}{5}=0.5\cdot 0.12=0.06
+$$
+
+**Answer:** Predict Spam (higher score).
 
 ### Simple example (Module 2)
 Email spam classification using Bayes:
@@ -152,7 +318,33 @@ If $X\sim\mathrm{Bin}(n,p)$ and $np\ge 15$, $n(1-p)\ge 15$, then
 - If $Z\sim\mathcal{N}(0,1)$ and $V\sim\chi^2_\nu$ independent, then
   $$T=\frac{Z}{\sqrt{V/\nu}}\sim t_\nu$$
 
-### How to solve typical questions (Module 3)
+### Symbol guide & intuition (Module 3)
+
+| Symbol | Read as | Meaning / intuition |
+|---|---|---|
+| $X$ | random variable | A number produced by a random process |
+| $p_X(x)$ | pmf | Probability *at* value $x$ (discrete) |
+| $f_X(x)$ | pdf | Density (continuous); probability is area under the curve |
+| $F_X(x)$ | cdf | Accumulated probability up to $x$ |
+| $\mathbb{E}[X]$ | expectation | Long-run average value |
+| $\mathrm{Var}(X)$ | variance | Spread around the mean |
+| $\binom{n}{x}$ | "n choose x" | Number of ways to pick $x$ successes out of $n$ |
+| $\lambda$ | lambda | Poisson rate (average count per interval) |
+| $Z$ | Z-score | Standardized variable: how many SDs from the mean |
+
+**Analogy — pmf vs pdf:**
+- Discrete: pmf is like probability "at each bar".
+- Continuous: pdf is like a smooth curve; probability is the *area* between two x-values.
+
+**Breakdown — variance identity:**
+
+$$
+\mathrm{Var}(X)=\mathbb{E}[X^2]-(\mathbb{E}[X])^2
+$$
+
+This is often faster than summing $(x-\mathbb{E}[X])^2$ directly.
+
+### steps(Module 3)
 
 **A) Pick the right distribution**
 1. Identify the random variable: what is being counted/measured?
@@ -166,6 +358,28 @@ If $X\sim\mathrm{Bin}(n,p)$ and $np\ge 15$, $n(1-p)\ge 15$, then
 **B) Normal probabilities**
 1. Convert $X$ to $Z=(X-\mu)/\sigma$.
 2. Use standard normal CDF values.
+
+### Worked examples (Module 3)
+
+**Example 3A — Poisson probability (pick the right distribution)**
+
+If the number of calls per hour is Poisson with rate $\lambda=3$, find $P(X=0)$.
+
+$$
+P(X=0)=e^{-\lambda}\frac{\lambda^0}{0!}=e^{-3}\approx 0.0498
+$$
+
+**Example 3B — Normal probability via standardization**
+
+Let $X\sim\mathcal{N}(100, 15^2)$. Find $P(X\le 120)$.
+
+Standardize:
+
+$$
+Z=\frac{120-100}{15}=\frac{20}{15}=1.333\ldots
+$$
+
+So $P(X\le 120)=P(Z\le 1.33)\approx 0.908$ (from standard normal table/CDF).
 
 ### Simple example (Module 3)
 Ten fair coins are tossed. Let $X$ be number of heads. Find $P(X\le 3)$.
@@ -207,7 +421,7 @@ $$P(X\le 3)=\sum_{x=0}^3 \binom{10}{x}(0.5)^{10}.$$
 ### One-way ANOVA
 - Hypotheses:
   $$H_0: \mu_1=\cdots=\mu_k \quad\text{vs}\quad H_1:\text{at least one mean differs}$$
-- Sums of squares (as used in the slides):
+- Sums of squares :
   - SSTR: between-treatments
   - SSE: within (error)
   - SST: total, with $\text{SST} = \text{SSTR} + \text{SSE}$
@@ -235,7 +449,33 @@ Then compute mean squares and compare F values for treatments/blocks.
 - Normal($\mu,\sigma^2$):
   $$\hat{\mu}=\bar{x},\quad \hat{\sigma}^2=\frac{1}{n}\sum_{i=1}^n (x_i-\bar{x})^2$$
 
-### How to solve typical questions (Module 4)
+### Symbol guide & intuition (Module 4)
+
+| Symbol | Read as | Meaning / intuition |
+|---|---|---|
+| $H_0$ | "H-zero" | Default assumption (no effect / status quo) |
+| $H_1$ | "H-one" | What you want evidence for (effect / difference) |
+| $\alpha$ | "alpha" | Significance level: max false-alarm rate you accept |
+| p-value | p-value | How surprising your data is *if $H_0$ were true* |
+| $z, t$ | test statistics | Standardized distance between sample and $H_0$ |
+| $\chi^2$ | chi-square | Measure of mismatch between observed and expected counts |
+| df | degrees of freedom | Determines the reference distribution shape |
+| $O_{ij}, E_{ij}$ | observed/expected | Counts in the contingency table and what you’d expect under independence |
+| SSTR, SSE | sums of squares | Between-groups vs within-groups variation in ANOVA |
+
+**Analogy — hypothesis testing like a court case:**
+Treat $H_0$ as "innocent". You only reject $H_0$ if the evidence is strong enough (p-value $<\alpha$).
+
+**Breakdown — z statistic for mean ($\sigma$ known):**
+
+$$
+z=\frac{\bar{x}-\mu_0}{\sigma/\sqrt{n}}
+$$
+
+- Numerator: how far the sample mean is from the claimed mean
+- Denominator: standard error (typical fluctuation of $\bar{x}$)
+
+### steps(Module 4)
 
 **A) Z-test for a mean ($\sigma$ known)**
 1. State $H_0: \mu=\mu_0$ and $H_1$.
@@ -254,6 +494,92 @@ Then compute mean squares and compare F values for treatments/blocks.
 2. Compute SSTR and SSE (or use correction factor method).
 3. Compute F and compare with $F_{\alpha;(k-1,n-k)}$.
 
+### Worked examples (Module 4)
+
+**Example 4A — Z-test for a mean (known $\sigma$; exam-style)**
+
+A company claims the *mean time reduction* is $\mu_0=20$ minutes. A test on $n=36$ cases gives $\bar{x}=18.2$ with known $\sigma=7.5$.
+
+Test at $\alpha=0.05$:
+
+- $H_0: \mu=20$
+- $H_1: \mu<20$ (evidence that true reduction is *less* than claimed)
+
+Compute:
+
+$$
+z=\frac{18.2-20}{7.5/\sqrt{36}}=\frac{-1.8}{1.25}=-1.44
+$$
+
+Left-tail p-value $\approx 0.075$.
+
+**Conclusion:** Since $0.075>0.05$, fail to reject $H_0$. Data is not strong enough (at 5%) to conclude the true mean reduction is below 20.
+
+**Example 4B — Chi-square independence (2×2 table)**
+
+Observed counts (rows = Group A/B, columns = Pass/Fail):
+
+$$
+O=\begin{bmatrix} 30 & 10 \\\\ 20 & 20 \end{bmatrix}
+$$
+
+Row totals: $40,40$; column totals: $50,30$; total $n=80$.
+
+Expected counts under independence:
+
+$$
+E=\begin{bmatrix} 25 & 15 \\\\ 25 & 15 \end{bmatrix}
+$$
+
+Test statistic:
+
+$$
+\chi^2=\sum\frac{(O-E)^2}{E}=\frac{25}{25}+\frac{25}{15}+\frac{25}{25}+\frac{25}{15}=5.33
+$$
+
+df $=(2-1)(2-1)=1$. Since $5.33>3.84$ (5% critical), reject independence.
+
+**Conclusion:** There is evidence of association between group and outcome.
+
+**Example 4C — One-way ANOVA (small numbers)**
+
+Three groups (each has 3 observations):
+- Group 1: $[5,6,4]$ (mean $=5$)
+- Group 2: $[8,9,7]$ (mean $=8$)
+- Group 3: $[6,5,7]$ (mean $=6$)
+
+Grand mean: $\bar{x}=57/9=6.333\ldots$
+
+Between-group sum of squares:
+
+$$
+	ext{SSTR}=3(5-6.333)^2+3(8-6.333)^2+3(6-6.333)^2=14
+$$
+
+Within-group sum of squares:
+
+$$
+	ext{SSE}=2+2+2=6
+$$
+
+df: between $=k-1=2$, within $=n-k=6$.
+
+$$
+	ext{MSTR}=14/2=7,\quad \text{MSE}=6/6=1,\quad F=7
+$$
+
+**Conclusion:** Since $F$ is large (e.g., exceeds typical 5% critical value for $(2,6)$), reject $H_0$ (at least one mean differs).
+
+**Bonus (often asked) — Poisson MLE quick application**
+
+Accidents observed over 5 days: $[4,2,5,3,6]$.
+
+$$
+\hat{\lambda}=\bar{x}=\frac{4+2+5+3+6}{5}=4
+$$
+
+Then $P(X=0)=e^{-4}\approx 0.0183$.
+
 ### Simple example (Module 4)
 A sample of $n=30$ milk cartons has mean $\bar{x}=505$ ml. Assume population SD $\sigma=10$ ml. Test $H_0:\mu=500$ vs $H_1:\mu\ne 500$ at $\alpha=0.05$.
 
@@ -267,6 +593,11 @@ Two-tailed p-value $\approx 0.006$ (small), so reject $H_0$.
 ### Covariance and correlation
 - Covariance:
   $$\mathrm{Cov}(X,Y)=\mathbb{E}[(X-\mu_X)(Y-\mu_Y)]=\mathbb{E}[XY]-\mathbb{E}[X]\,\mathbb{E}[Y]$$
+- Pearson correlation coefficient:
+
+  $$r=\frac{\sum_{i=1}^n (x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^n (x_i-\bar{x})^2}\,\sqrt{\sum_{i=1}^n (y_i-\bar{y})^2}}$$
+
+  Interpretation: $r\approx 1$ strong positive linear relation, $r\approx -1$ strong negative, $r\approx 0$ no *linear* relation.
 - Autocovariance (time series $\{Y_t\}$, lag $h$):
   $$\gamma(h)=\mathrm{Cov}(Y_t,Y_{t+h})$$
 
@@ -295,7 +626,40 @@ Common error terms:
 - Forecast error: $e_t=Y_t-F_t$
 - Mean squared error (MSE): average of $e_t^2$ over the evaluation window
 
-### How to solve typical questions (Module 5)
+### Holt’s linear trend method (often used in exams)
+Keeps a level $L_t$ and trend $T_t$:
+
+$$
+L_t = \alpha Y_t + (1-\alpha)(L_{t-1}+T_{t-1})
+$$
+
+$$
+T_t = \beta(L_t-L_{t-1}) + (1-\beta)T_{t-1}
+$$
+
+Forecast $m$ steps ahead:
+
+$$
+F_{t+m}=L_t + mT_t
+$$
+
+### Symbol guide & intuition (Module 5)
+
+| Symbol | Read as | Meaning / intuition |
+|---|---|---|
+| $a,b$ | intercept/slope | Regression line $\hat{y}=a+b x$ |
+| $\hat{y}$ | y-hat | Predicted value |
+| $\alpha$ | smoothing constant | How much weight the latest observation gets |
+| $F_t$ | forecast at time $t$ | Your predicted value for time $t$ |
+| $e_t$ | forecast error | Difference between actual and forecast: $Y_t-F_t$ |
+| MSE | mean squared error | Average squared error: lower is better |
+| $\gamma(h)$ | autocovariance | Measures similarity between values $h$ steps apart |
+| $r$ | correlation | Standardized covariance: linear association strength |
+
+**Analogy — exponential smoothing as "memory":**
+Small $\alpha$ = long memory (slow to react). Large $\alpha$ = short memory (reacts quickly to spikes).
+
+### steps(Module 5)
 
 **A) Fit a simple linear regression and predict**
 1. Compute $\bar{x},\bar{y}$.
@@ -307,6 +671,58 @@ Common error terms:
 2. Initialize $F_2=Y_1$.
 3. Iterate $F_{t+1}=\alpha Y_t+(1-\alpha)F_t$.
 4. Output forecast for next period.
+
+### Worked examples (Module 5)
+
+**Example 5A — Fit a regression line and predict**
+
+Data: $(x,y)\in\{(1,2), (2,3), (3,5)\}$. Fit $\hat{y}=a+bx$ and predict at $x=4$.
+
+Compute means: $\bar{x}=2$, $\bar{y}=(2+3+5)/3=3.333\ldots$
+
+Compute slope:
+
+$$
+b=\frac{\sum (x_i-\bar{x})(y_i-\bar{y})}{\sum (x_i-\bar{x})^2}
+=\frac{(-1)(-1.333)+0(-0.333)+(1)(1.667)}{(-1)^2+0^2+1^2}
+=\frac{3}{2}=1.5
+$$
+
+Intercept:
+
+$$
+a=\bar{y}-b\bar{x}=3.333-1.5\cdot 2=0.333\ldots
+$$
+
+Predict:
+
+$$
+\hat{y}(4)=a+b\cdot 4\approx 0.333+6=6.333
+$$
+
+**Answer:** $\hat{y}\approx 0.333+1.5x$, so at $x=4$, $\hat{y}\approx 6.333$.
+
+**Example 5B — Exponential smoothing with two different $\alpha$ (exam-style)**
+
+Series (weeks 1–6): $Y=[112,118,125,121,130,142]$. Use $F_2=Y_1=112$.
+
+For $\alpha=0.4$:
+
+- $F_3=0.4\cdot 118+0.6\cdot 112=114.4$
+- $F_4=0.4\cdot 125+0.6\cdot 114.4=118.64$
+- $F_5=0.4\cdot 121+0.6\cdot 118.64=119.58$
+- $F_6=0.4\cdot 130+0.6\cdot 119.58=123.75$
+- $F_7=0.4\cdot 142+0.6\cdot 123.75\approx 131.05$
+
+For $\alpha=0.7$:
+
+- $F_3=0.7\cdot 118+0.3\cdot 112=116.2$
+- $F_4=0.7\cdot 125+0.3\cdot 116.2=122.36$
+- $F_5=0.7\cdot 121+0.3\cdot 122.36=121.41$
+- $F_6=0.7\cdot 130+0.3\cdot 121.41\approx 127.42$
+- $F_7=0.7\cdot 142+0.3\cdot 127.42\approx 137.63$
+
+**Conclusion:** Larger $\alpha$ (like 0.7) reacts more to recent spikes (higher, more responsive forecast).
 
 ### Simple example (Module 5)
 Weekly demand (TB) for weeks 1–6: $[112,118,125,121,130,142]$. Use $\alpha=0.3$ and $F_1=Y_1=112$. Compute forecast for week 7.
@@ -354,7 +770,7 @@ EM loop:
 3. **M-step**: update $(\pi_k,\mu_k,\Sigma_k)$.
 4. Stop when log-likelihood change is below threshold.
 
-### How to solve typical questions (Module 6)
+### steps(Module 6)
 
 **A) Responsibility for a 2-component 1D GMM**
 1. Compute the two Gaussian densities $\mathcal{N}(x\mid\mu_1,\sigma_1^2)$ and $\mathcal{N}(x\mid\mu_2,\sigma_2^2)$.
@@ -364,6 +780,76 @@ EM loop:
 **B) One EM iteration (2 components)**
 1. E-step: compute $\gamma_{n1},\gamma_{n2}$ for each data point.
 2. M-step: compute $N_1,N_2$ then update $\pi_k,\mu_k,(\sigma_k^2\text{ or }\Sigma_k)$.
+
+### Symbol guide & intuition (Module 6)
+
+| Symbol | Read as | Meaning / intuition |
+|---|---|---|
+| $K$ | number of components | How many clusters/gaussians you mix |
+| $\pi_k$ | mixing weight | Prior probability of component $k$ (must sum to 1) |
+| $\mathcal{N}(x\mid \mu_k,\Sigma_k)$ | Gaussian density | How likely $x$ is under component $k$ |
+| $z$ | latent indicator | Hidden "which cluster" variable |
+| $\gamma_{nk}$ | responsibility | Soft assignment: how much component $k$ explains point $n$ |
+| $N_k$ | effective count | Total responsibility mass for component $k$ |
+
+**Analogy — soft clustering:**
+Instead of assigning each point to exactly one cluster, EM assigns fractions (responsibilities) that add to 1.
+
+### Worked examples (Module 6)
+
+**Example 6A — Responsibility in a 2-component 1D GMM**
+
+Let $\pi_1=0.5,\pi_2=0.5$, $\mu_1=90,\mu_2=100$, $\sigma_1^2=\sigma_2^2=25$.
+
+For $x=95$, the distances are equal, so the Gaussian densities are equal and:
+
+$$
+\gamma_1=\frac{0.5}{0.5+0.5}=0.5
+$$
+
+**Example 6B — One EM iteration (means update only)**
+
+Data: $x_1=89$, $x_2=102$. Initialize $\pi_1=\pi_2=0.5$, $\mu_1=90$, $\mu_2=100$, $\sigma^2=25$ (same for both).
+
+E-step (using only the exponential parts; common constants cancel):
+
+- For $x_1=89$:
+
+  $$\exp\Big(-\frac{(89-90)^2}{2\cdot 25}\Big)=e^{-0.02}\approx 0.980$$
+
+  $$\exp\Big(-\frac{(89-100)^2}{2\cdot 25}\Big)=e^{-2.42}\approx 0.089$$
+
+  $$\gamma_{11}=\frac{0.980}{0.980+0.089}\approx 0.917$$
+
+- For $x_2=102$:
+
+  $$e^{-2.88}\approx 0.057,\quad e^{-0.08}\approx 0.923$$
+
+  $$\gamma_{21}=\frac{0.057}{0.057+0.923}\approx 0.058$$
+
+Compute effective counts:
+
+$$
+N_1=0.917+0.058=0.975,\quad N_2=2-N_1=1.025
+$$
+
+Update mixing weights:
+
+$$
+\pi_1=\frac{N_1}{2}\approx 0.487,\quad \pi_2\approx 0.513
+$$
+
+Update means:
+
+$$
+\mu_1=\frac{0.917\cdot 89 + 0.058\cdot 102}{0.975}\approx 89.77
+$$
+
+$$
+\mu_2=\frac{(1-0.917)\cdot 89 + (1-0.058)\cdot 102}{1.025}\approx 100.95
+$$
+
+**Takeaway:** after one iteration, component 1 shifts toward 89 and component 2 shifts toward 102.
 
 ### Simple example (Module 6)
 Two-component 1D GMM:
