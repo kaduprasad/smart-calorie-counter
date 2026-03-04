@@ -178,7 +178,7 @@ Vectors $x_1,\dots,x_k$ are **dependent** if there exists a non-trivial solution
 $$\alpha_1 x_1 + \cdots + \alpha_k x_k = 0.$$
 Otherwise independent.
 
-Practical check (slides): put vectors as columns of $A$ and solve $A\alpha=0$.
+Practical check  : put vectors as columns of $A$ and solve $A\alpha=0$.
 - If only trivial solution → independent.
 - Free variable(s) → dependent.
 
@@ -192,14 +192,14 @@ Quick rule from slides: $n$ vectors in $\mathbb{R}^m$ with $n>m$ are dependent.
 Dot product in $\mathbb{R}^n$:
 $$x\cdot y = x^T y = \sum_{i=1}^n x_i y_i.$$
 
-General inner product (slides): If $A$ is symmetric positive definite (SPD),
+General inner product  : If $A$ is symmetric positive definite (SPD),
 $$\langle x,y\rangle_A = x^T A y.$$
 
 SPD definition:
 - $A^T=A$
 - $x^T A x > 0$ for all $x\neq 0$
 
-### Norms (slides)
+### Norms  
 A norm $\|\cdot\|$ satisfies:
 - Absolute homogeneity: $\|\alpha x\|=|\alpha|\,\|x\|$
 - Triangle inequality: $\|x+y\|\le \|x\|+\|y\|$
@@ -417,7 +417,7 @@ If $A$ is symmetric positive definite, then
 $$A = L L^T$$
 with $L$ lower-triangular with positive diagonal.
 
-Determinant via Cholesky (slides):
+Determinant via Cholesky  :
 $$\det(A)=\det(L)\det(L^T)=\det(L)^2=(\prod_i L_{ii})^2.$$
 
 ### Singular Value Decomposition (SVD)
@@ -602,14 +602,14 @@ $$
 
 (For smooth $f$, $f_{xy}=f_{yx}$ so Hessian is symmetric.)
 
-### 2D second-derivative test / discriminant (slides)
+### 2D second-derivative test / discriminant  
 At a critical point $(a,b)$ where $f_x=f_y=0$, define
 $$D = f_{xx}(a,b)f_{yy}(a,b) - (f_{xy}(a,b))^2.$$
 - If $D>0$ and $f_{xx}>0$ → local minimum
 - If $D>0$ and $f_{xx}<0$ → local maximum
 - If $D<0$ → saddle
 
-Sylvester criterion perspective (slides): Hessian positive definite iff leading principal minors $>0$.
+Sylvester criterion perspective  : Hessian positive definite iff leading principal minors $>0$.
 
 ### Linearization (first-order approximation)
 $$f(x) \approx f(x_0) + \nabla f(x_0)^T (x-x_0).$$
@@ -760,7 +760,7 @@ $$
 Unconstrained problem:
 $$\min_x f(x)$$
 
-### Gradient descent update (slides)
+### Gradient descent update  
 $$x_{i+1} = x_i - \alpha\, \nabla f(x_i)$$
 where $\alpha$ is step size / learning rate.
 
@@ -769,13 +769,13 @@ If
 $$L(\theta) = \sum_{i=1}^n L_i(\theta),$$
 then gradient can be approximated by sampling terms (SGD / mini-batch).
 
-### Feature scaling (slides)
+### Feature scaling  
 - Mean centering: subtract column means
 - Normalization: divide by column standard deviation
 - Min–max scaling (as shown):
   $$x_{ij} \leftarrow \frac{x_{ij}-\min_j}{\max_j-\min_j}$$
 
-### Momentum (slides)
+### Momentum  
 $$x_{i+1}=x_i - \alpha\nabla f(x_i) + v_i$$
 $$v_i = \mu (x_i-x_{i-1}),\quad v_0=0,\quad \mu\in[0,1]$$
 
@@ -783,10 +783,10 @@ $$v_i = \mu (x_i-x_{i-1}),\quad v_0=0,\quad \mu\in[0,1]$$
 Primal:
 $$\min_x f(x)\ \text{s.t. } g_i(x)\le 0,\ i\in[m],\ \ h_j(x)=0,\ j\in[p]$$
 
-Lagrangian (slides):
+Lagrangian  :
 $$L(x,\lambda,\nu)=f(x)+\sum_{i=1}^m \lambda_i g_i(x)+\sum_{j=1}^p \nu_j h_j(x),\quad \lambda_i\ge 0.$$
 
-### KKT conditions (slides)
+### KKT conditions  
 At optimum $(x^\ast,\lambda^\ast,\nu^\ast)$:
 - **Primal feasibility:** $g_i(x^\ast)\le 0$, $h_j(x^\ast)=0$
 - **Dual feasibility:** $\lambda_i^\ast\ge 0$
@@ -802,7 +802,7 @@ $$\nabla_x L(x^\ast,\lambda^\ast,\nu^\ast)=0,$$
 where
 $$L(x,\lambda,\nu)=f(x)+\sum_{i=1}^m \lambda_i g_i(x)+\sum_{j=1}^p \nu_j h_j(x),\quad \lambda_i\ge 0.$$
 
-### Convexity criterion (slides)
+### Convexity criterion  
 Convex set: $x,y\in C\Rightarrow \theta x+(1-\theta)y\in C$.
 
 Convex function:
@@ -930,7 +930,7 @@ Check: $\lambda=4 \ge 0$ ✓, $\lambda \cdot g(x^\ast)=4{\cdot}0=0$ ✓ (complem
 
 ## Module 6 — Optimization in ML (PCA, SVM)
 
-### PCA setup (slides)
+### PCA setup  
 Data: $x_n\in\mathbb{R}^D$, centered so $\mathbb{E}[x]=0$.
 
 Covariance:
@@ -939,10 +939,10 @@ $$S = \frac{1}{N}\sum_{n=1}^N x_n x_n^T.$$
 Projection matrix $B=[b_1,\dots,b_M]\in\mathbb{R}^{D\times M}$ with orthonormal columns:
 $$b_i^T b_j = 0\ (i\ne j),\quad b_i^T b_i=1.$$
 
-Low-dim code and reconstruction (slides):
+Low-dim code and reconstruction  :
 $$z = B^T x,\quad \hat x = B z = BB^T x.$$
 
-### PCA as maximum-variance direction (slides)
+### PCA as maximum-variance direction  
 Variance along $b_1$:
 $$V_1 = b_1^T S b_1.$$
 Optimization:
