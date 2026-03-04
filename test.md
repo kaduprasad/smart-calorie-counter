@@ -178,7 +178,7 @@ Vectors $x_1,\dots,x_k$ are **dependent** if there exists a non-trivial solution
 $$\alpha_1 x_1 + \cdots + \alpha_k x_k = 0.$$
 Otherwise independent.
 
-Practical check  : put vectors as columns of $A$ and solve $A\alpha=0$.
+Practical check (slides): put vectors as columns of $A$ and solve $A\alpha=0$.
 - If only trivial solution → independent.
 - Free variable(s) → dependent.
 
@@ -192,14 +192,14 @@ Quick rule from slides: $n$ vectors in $\mathbb{R}^m$ with $n>m$ are dependent.
 Dot product in $\mathbb{R}^n$:
 $$x\cdot y = x^T y = \sum_{i=1}^n x_i y_i.$$
 
-General inner product  : If $A$ is symmetric positive definite (SPD),
+General inner product (slides): If $A$ is symmetric positive definite (SPD),
 $$\langle x,y\rangle_A = x^T A y.$$
 
 SPD definition:
 - $A^T=A$
 - $x^T A x > 0$ for all $x\neq 0$
 
-### Norms  
+### Norms (slides)
 A norm $\|\cdot\|$ satisfies:
 - Absolute homogeneity: $\|\alpha x\|=|\alpha|\,\|x\|$
 - Triangle inequality: $\|x+y\|\le \|x\|+\|y\|$
@@ -355,15 +355,53 @@ $\alpha_2$ is free → non-trivial solution exists (e.g. $\alpha_1=-2, \alpha_2=
 
 **Example 2B — Find basis for a span**
 
-Vectors: $v_1=(1,0,1)$, $v_2=(2,0,2)$, $v_3=(0,1,1)$.
+**What the question is asking:**
+Given vectors $v_1=(1,0,1)$, $v_2=(2,0,2)$, $v_3=(0,1,1)$, find the smallest subset that spans the same space — i.e., remove any redundant vectors so the remaining ones are linearly independent but still generate every vector the original set could.
 
-Columns → row-reduce:
+**Step 1 — Put each vector as a column of a matrix:**
+
+Each $v_i$ becomes one column. This gives us a $3 \times 3$ matrix:
 
 $$
-\begin{bmatrix} 1 & 2 & 0 \\\\ 0 & 0 & 1 \\\\ 1 & 2 & 1 \end{bmatrix} \xrightarrow{R_3-R_1} \begin{bmatrix} 1 & 2 & 0 \\\\ 0 & 0 & 1 \\\\ 0 & 0 & 1 \end{bmatrix} \xrightarrow{R_3-R_2} \begin{bmatrix} 1 & 2 & 0 \\\\ 0 & 0 & 1 \\\\ 0 & 0 & 0 \end{bmatrix}
+A = \begin{bmatrix} 1 & 2 & 0 \\\\ 0 & 0 & 1 \\\\ 1 & 2 & 1 \end{bmatrix} \quad \leftarrow \text{col 1 = } v_1,\ \text{col 2 = } v_2,\ \text{col 3 = } v_3
 $$
 
-Pivots in columns 1 and 3. **Basis:** $\{v_1, v_3\} = \{(1,0,1),\ (0,1,1)\}$.
+**Step 2 — Row-reduce to echelon form:**
+
+Apply $R_3 \leftarrow R_3 - R_1$ (subtract row 1 from row 3):
+
+$$
+\begin{bmatrix} 1 & 2 & 0 \\\\ 0 & 0 & 1 \\\\ 0 & 0 & 1 \end{bmatrix}
+$$
+
+Apply $R_3 \leftarrow R_3 - R_2$ (subtract row 2 from row 3):
+
+$$
+\begin{bmatrix} 1 & 2 & 0 \\\\ 0 & 0 & 1 \\\\ 0 & 0 & 0 \end{bmatrix}
+$$
+
+**Step 3 — Identify pivot columns:**
+
+A **pivot** is the first nonzero entry in each row of the echelon form:
+- Row 1: pivot in **column 1** (the entry $1$)
+- Row 2: pivot in **column 3** (the entry $1$; column 2 is zero, so it's skipped)
+- Row 3: all zeros — no pivot
+
+So the **pivot columns are 1 and 3**.
+
+**Step 4 — Go back to the original vectors at those column positions:**
+
+- Column 1 → $v_1 = (1,0,1)$ ✓
+- Column 3 → $v_3 = (0,1,1)$ ✓
+- Column 2 ($v_2$) is **not** a pivot column, meaning $v_2$ is redundant — it can be written as a combination of the pivot-column vectors.
+
+Indeed, $v_2 = (2,0,2) = 2 \times (1,0,1) = 2\,v_1$, so it adds nothing new.
+
+**Answer — Basis:** $\{v_1,\, v_3\} = \{(1,0,1),\ (0,1,1)\}$.
+
+These two vectors are independent (neither is a scaled copy of the other) and any vector that was in $\mathrm{span}\{v_1,v_2,v_3\}$ can still be built from just $v_1$ and $v_3$.
+
+> **Key takeaway:** "Pivot columns" in the row-reduced matrix tell you *which original vectors to keep*. Non-pivot columns correspond to vectors that are dependent on (built from) the pivot-column vectors and can be dropped.
 
 **Example 2C — Gram-Schmidt (2 vectors)**
 
@@ -417,7 +455,7 @@ If $A$ is symmetric positive definite, then
 $$A = L L^T$$
 with $L$ lower-triangular with positive diagonal.
 
-Determinant via Cholesky  :
+Determinant via Cholesky (slides):
 $$\det(A)=\det(L)\det(L^T)=\det(L)^2=(\prod_i L_{ii})^2.$$
 
 ### Singular Value Decomposition (SVD)
@@ -602,14 +640,14 @@ $$
 
 (For smooth $f$, $f_{xy}=f_{yx}$ so Hessian is symmetric.)
 
-### 2D second-derivative test / discriminant  
+### 2D second-derivative test / discriminant (slides)
 At a critical point $(a,b)$ where $f_x=f_y=0$, define
 $$D = f_{xx}(a,b)f_{yy}(a,b) - (f_{xy}(a,b))^2.$$
 - If $D>0$ and $f_{xx}>0$ → local minimum
 - If $D>0$ and $f_{xx}<0$ → local maximum
 - If $D<0$ → saddle
 
-Sylvester criterion perspective  : Hessian positive definite iff leading principal minors $>0$.
+Sylvester criterion perspective (slides): Hessian positive definite iff leading principal minors $>0$.
 
 ### Linearization (first-order approximation)
 $$f(x) \approx f(x_0) + \nabla f(x_0)^T (x-x_0).$$
@@ -760,7 +798,7 @@ $$
 Unconstrained problem:
 $$\min_x f(x)$$
 
-### Gradient descent update  
+### Gradient descent update (slides)
 $$x_{i+1} = x_i - \alpha\, \nabla f(x_i)$$
 where $\alpha$ is step size / learning rate.
 
@@ -769,13 +807,13 @@ If
 $$L(\theta) = \sum_{i=1}^n L_i(\theta),$$
 then gradient can be approximated by sampling terms (SGD / mini-batch).
 
-### Feature scaling  
+### Feature scaling (slides)
 - Mean centering: subtract column means
 - Normalization: divide by column standard deviation
 - Min–max scaling (as shown):
   $$x_{ij} \leftarrow \frac{x_{ij}-\min_j}{\max_j-\min_j}$$
 
-### Momentum  
+### Momentum (slides)
 $$x_{i+1}=x_i - \alpha\nabla f(x_i) + v_i$$
 $$v_i = \mu (x_i-x_{i-1}),\quad v_0=0,\quad \mu\in[0,1]$$
 
@@ -783,10 +821,10 @@ $$v_i = \mu (x_i-x_{i-1}),\quad v_0=0,\quad \mu\in[0,1]$$
 Primal:
 $$\min_x f(x)\ \text{s.t. } g_i(x)\le 0,\ i\in[m],\ \ h_j(x)=0,\ j\in[p]$$
 
-Lagrangian  :
+Lagrangian (slides):
 $$L(x,\lambda,\nu)=f(x)+\sum_{i=1}^m \lambda_i g_i(x)+\sum_{j=1}^p \nu_j h_j(x),\quad \lambda_i\ge 0.$$
 
-### KKT conditions  
+### KKT conditions (slides)
 At optimum $(x^\ast,\lambda^\ast,\nu^\ast)$:
 - **Primal feasibility:** $g_i(x^\ast)\le 0$, $h_j(x^\ast)=0$
 - **Dual feasibility:** $\lambda_i^\ast\ge 0$
@@ -802,7 +840,7 @@ $$\nabla_x L(x^\ast,\lambda^\ast,\nu^\ast)=0,$$
 where
 $$L(x,\lambda,\nu)=f(x)+\sum_{i=1}^m \lambda_i g_i(x)+\sum_{j=1}^p \nu_j h_j(x),\quad \lambda_i\ge 0.$$
 
-### Convexity criterion  
+### Convexity criterion (slides)
 Convex set: $x,y\in C\Rightarrow \theta x+(1-\theta)y\in C$.
 
 Convex function:
@@ -930,7 +968,7 @@ Check: $\lambda=4 \ge 0$ ✓, $\lambda \cdot g(x^\ast)=4{\cdot}0=0$ ✓ (complem
 
 ## Module 6 — Optimization in ML (PCA, SVM)
 
-### PCA setup  
+### PCA setup (slides)
 Data: $x_n\in\mathbb{R}^D$, centered so $\mathbb{E}[x]=0$.
 
 Covariance:
@@ -939,10 +977,10 @@ $$S = \frac{1}{N}\sum_{n=1}^N x_n x_n^T.$$
 Projection matrix $B=[b_1,\dots,b_M]\in\mathbb{R}^{D\times M}$ with orthonormal columns:
 $$b_i^T b_j = 0\ (i\ne j),\quad b_i^T b_i=1.$$
 
-Low-dim code and reconstruction  :
+Low-dim code and reconstruction (slides):
 $$z = B^T x,\quad \hat x = B z = BB^T x.$$
 
-### PCA as maximum-variance direction  
+### PCA as maximum-variance direction (slides)
 Variance along $b_1$:
 $$V_1 = b_1^T S b_1.$$
 Optimization:
@@ -1168,3 +1206,393 @@ This is equivalent to using the feature map $\phi(x) = (1, \sqrt{2}x, x^2)$ and 
 Tell me if you prefer:
 - a shorter 2–3 page “exam crib” version, or
 - a longer version with worked mini-examples per module.
+
+---
+
+## Extra exam-style worked examples (based on MFML Regular EndSem patterns)
+
+These are **additional** worked examples (not replacing anything above). Each example explicitly states the **module**, the **key formulas**, and the **steps**.
+
+### Example set A — Linear dependence, span, rank, determinant
+
+**Module(s):** Module 1 (rank/determinant), Module 2 (dependence/span/basis)
+
+**Formulas used:**
+- Linear dependence test: put vectors as columns of $A$, row-reduce.
+- Rank: $\mathrm{rank}(A)$ = number of pivot columns.
+- Determinant (3×3): compute by expansion or row-reduction.
+
+**Problem A1 — Dependence in $\mathbb{R}^4$ and basis for the span**
+
+Let
+
+$$
+u_1=(1,0,1,0),\quad u_2=(2,0,2,0),\quad u_3=(0,1,0,1),\quad u_4=(1,1,1,1).
+$$
+
+1) Are $\{u_1,u_2,u_3,u_4\}$ linearly independent in $\mathbb{R}^4$?
+
+2) Let $U=\mathrm{span}\{u_1,u_2,u_3,u_4\}$. Find a basis and $\dim(U)$.
+
+**Step 1 — Put vectors as columns and row-reduce:**
+
+$$
+A=\begin{bmatrix}
+1 & 2 & 0 & 1 \\
+0 & 0 & 1 & 1 \\
+1 & 2 & 0 & 1 \\
+0 & 0 & 1 & 1
+\end{bmatrix}
+$$
+
+Do $R_3\leftarrow R_3-R_1$ and $R_4\leftarrow R_4-R_2$:
+
+$$
+\begin{bmatrix}
+1 & 2 & 0 & 1 \\
+0 & 0 & 1 & 1 \\
+0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0
+\end{bmatrix}
+$$
+
+**Step 2 — Read pivots:** pivots are in **columns 1 and 3**.
+
+So the pivot columns correspond to $u_1$ and $u_3$.
+
+**Answer (1):** Dependent (since there are only 2 pivots for 4 vectors).
+
+**Answer (2):** A basis is $\{u_1,u_3\}$ and $\dim(U)=2$.
+
+Quick redundancy check: $u_2=2u_1$ and $u_4=u_1+u_3$.
+
+**Problem A2 — Rank and determinant of a 3×3**
+
+Let
+
+$$
+B=\begin{bmatrix}
+2 & 1 & 0 \\
+0 & 3 & 1 \\
+0 & 0 & 4
+\end{bmatrix}
+$$
+
+This is upper triangular.
+
+- **Rank:** all three diagonal entries are nonzero $\Rightarrow$ all three columns have pivots, so $\mathrm{rank}(B)=3$.
+
+- **Determinant (triangular rule):**
+
+$$
+\det(B)=2\cdot 3\cdot 4=24.
+$$
+
+---
+
+### Example set B — Eigenvalues, diagonalization, singular values
+
+**Module:** Module 3
+
+**Formulas used:**
+- Eigenvalues: solve $\det(A-\lambda I)=0$.
+- Eigenvectors: solve $(A-\lambda I)x=0$.
+- Diagonalization (if possible): $A=PDP^{-1}$ with $P=[v_1\ \cdots\ v_n]$.
+- Singular values: $\sigma_i=\sqrt{\lambda_i(A^T A)}$.
+
+**Problem B1 — Eigenvalues/eigenvectors + diagonalization**
+
+Let
+
+$$
+A=\begin{bmatrix}
+4 & 0 \\
+1 & 2
+\end{bmatrix}
+$$
+
+**Step 1 — Eigenvalues:**
+
+$$
+\det(A-\lambda I)=\det\begin{bmatrix}4-\lambda & 0 \\\n+1 & 2-\lambda\end{bmatrix}=(4-\lambda)(2-\lambda)=0
+$$
+
+So $\lambda_1=4$, $\lambda_2=2$.
+
+**Step 2 — Eigenvectors:**
+
+For $\lambda=4$:
+
+$$
+(A-4I)=\begin{bmatrix}0 & 0 \\\n+1 & -2\end{bmatrix}\Rightarrow x_1-2x_2=0\Rightarrow v_1=(2,1)
+$$
+
+For $\lambda=2$:
+
+$$
+(A-2I)=\begin{bmatrix}2 & 0 \\\n+1 & 0\end{bmatrix}\Rightarrow x_1=0\Rightarrow v_2=(0,1)
+$$
+
+**Step 3 — Diagonalize:**
+
+$$
+P=\begin{bmatrix}2 & 0 \\\n+1 & 1\end{bmatrix},\quad D=\begin{bmatrix}4 & 0 \\\n+0 & 2\end{bmatrix}
+$$
+
+Then $A=PDP^{-1}$.
+
+**Problem B2 — Singular values**
+
+Let
+
+$$
+M=\begin{bmatrix}3 & 0 \\\n+0 & 1\end{bmatrix}
+$$
+
+Compute $M^T M$:
+
+$$
+M^T M=\begin{bmatrix}9 & 0 \\\n+0 & 1\end{bmatrix}
+$$
+
+Eigenvalues are $9$ and $1$, so the singular values are:
+
+$$
+\sigma_1=3,\quad \sigma_2=1.
+$$
+
+---
+
+### Example set C — Inner product, induced norm, constrained optimization, KKT
+
+**Module(s):** Module 2 (inner product / norm), Module 5 (Lagrangian, KKT)
+
+**Formulas used:**
+- Inner product: $\langle u,v\rangle_A=u^TAv$ with $A$ symmetric positive definite.
+- Induced norm: $\|x\|_A=\sqrt{x^T A x}$.
+- Lagrangian: $L(x,\lambda)=f(x)+\sum_i\lambda_i g_i(x)$ with $\lambda_i\ge 0$.
+- KKT: primal feasibility, dual feasibility, complementary slackness, stationarity.
+
+**Problem C1 — Check that $u^TAv$ is an inner product**
+
+Let $A=\begin{bmatrix}2 & 0 \\\n+0 & 1\end{bmatrix}$. Define $\langle u,v\rangle_A=u^TAv$ on $\mathbb{R}^2$.
+
+**Claim:** This is a valid inner product because $A$ is symmetric ($A^T=A$) and positive definite (for $x\ne 0$, $x^TAx=2x_1^2+x_2^2>0$).
+
+So the induced norm is:
+
+$$
+\|x\|_A=\sqrt{2x_1^2+x_2^2}.
+$$
+
+**Problem C2 — Constrained minimization + KKT (simple, exam-style)**
+
+Minimize
+
+$$
+f(x,y)=2\| (x,y)\|_A^2 = 2(2x^2+y^2)=4x^2+2y^2
+$$
+
+subject to
+
+$$
+g_1(x,y)=x+y-3\le 0,\quad g_2(x,y)=1-(x+y)\le 0
+$$
+
+(i.e., the strip $1\le x+y\le 3$).
+
+**Step 1 — Lagrangian:**
+
+$$
+L(x,y,\lambda_1,\lambda_2)=4x^2+2y^2+\lambda_1(x+y-3)+\lambda_2(1-x-y)
+$$
+
+with $\lambda_1,\lambda_2\ge 0$.
+
+**Step 2 — Stationarity:**
+
+$$
+\frac{\partial L}{\partial x}=8x+\lambda_1-\lambda_2=0
+$$
+
+$$
+\frac{\partial L}{\partial y}=4y+\lambda_1-\lambda_2=0
+$$
+
+So $8x=4y\Rightarrow y=2x$.
+
+**Step 3 — Use active constraint intuition:** minimizing a positive quadratic pulls toward $(0,0)$, but feasibility requires $x+y\ge 1$, so the optimum will lie on the boundary $x+y=1$.
+
+Combine $y=2x$ with $x+y=1$:
+
+$$
+x+2x=1\Rightarrow x=\frac{1}{3},\quad y=\frac{2}{3}.
+$$
+
+**Step 4 — Check KKT conditions:**
+
+- Primal feasibility: $x+y=1$ satisfies $1\le x+y\le 3$.
+- Complementary slackness: $g_2=0$ is active so $\lambda_2$ may be $>0$; $g_1<0$ so $\lambda_1=0$.
+
+With $\lambda_1=0$, stationarity gives $\lambda_2=8x=8/3$ (and also $=4y=8/3$), which is $\ge 0$.
+
+**Answer:** optimum at $(x,y)=(1/3,\ 2/3)$.
+
+---
+
+### Example set D — Linear regression loss, Hessian convexity, gradient descent iterations
+
+**Module(s):** Module 4 (Hessian/convexity), Module 5 (gradient descent mechanics)
+
+**Formulas used:**
+- Linear regression with bias: $\hat{y}=w_0+w_1x$.
+- Squared error loss: $J(w_0,w_1)=\sum_{i=1}^n (y_i-(w_0+w_1x_i))^2$.
+- Gradient descent: $w^{(t+1)}=w^{(t)}-\eta_t\nabla J(w^{(t)})$.
+- Inverse decaying learning rate (one common form): $\eta_t=\frac{\eta_0}{1+k t}$.
+
+**Problem D1 — Show $J$ is convex by Hessian**
+
+Data: $(x,y)\in\{(1,2),(2,2),(3,4)\}$. Let $\hat{y}_i=w_0+w_1x_i$.
+
+Loss:
+
+$$
+J(w_0,w_1)=\sum_{i=1}^3 (y_i-w_0-w_1x_i)^2
+$$
+
+Hessian (general result):
+
+$$
+\nabla^2 J = 2\begin{bmatrix}
+n & \sum x_i \\
+\sum x_i & \sum x_i^2
+\end{bmatrix}
+$$
+
+Here $n=3$, $\sum x_i=6$, $\sum x_i^2=14$ so
+
+$$
+\nabla^2 J=2\begin{bmatrix}3 & 6 \\
+6 & 14\end{bmatrix}
+$$
+
+This matrix is positive semidefinite because its leading principal minors are nonnegative:
+- $2\cdot 3>0$
+- determinant $=4(3\cdot 14-6\cdot 6)=4(42-36)=24>0$
+
+So $\nabla^2J\succeq 0$ and $J$ is convex.
+
+**Problem D2 — Two iterations of gradient descent with inverse decay**
+
+Use the same dataset. Start at $w_0^{(0)}=0$, $w_1^{(0)}=0$.
+
+Gradient components:
+
+$$
+\frac{\partial J}{\partial w_0}=-2\sum_{i=1}^n (y_i-w_0-w_1x_i),\quad
+\frac{\partial J}{\partial w_1}=-2\sum_{i=1}^n x_i(y_i-w_0-w_1x_i)
+$$
+
+Learning rate schedule: $\eta_t=\frac{\eta_0}{1+k t}$ with $\eta_0=0.1$, $k=0.4$.
+
+**Iteration 1 (t=1):** $\eta_1=0.1/(1.4)=0.071428\ldots$
+
+At $(w_0,w_1)=(0,0)$, residuals are $[2,2,4]$.
+
+$$
+\frac{\partial J}{\partial w_0}=-2(2+2+4)=-16
+$$
+
+$$
+\frac{\partial J}{\partial w_1}=-2(1\cdot 2+2\cdot 2+3\cdot 4)=-2(2+4+12)=-36
+$$
+
+Update:
+
+$$
+w_0^{(1)}=0-\eta_1(-16)=1.142857\ldots
+$$
+
+$$
+w_1^{(1)}=0-\eta_1(-36)=2.571428\ldots
+$$
+
+**Iteration 2 (t=2):** $\eta_2=0.1/(1.8)=0.055555\ldots$
+
+Compute predictions:
+- At $x=1$: $\hat{y}=1.142857+2.571428=3.714285$ (residual $2-3.714285=-1.714285$)
+- At $x=2$: $\hat{y}=1.142857+5.142856=6.285713$ (residual $2-6.285713=-4.285713$)
+- At $x=3$: $\hat{y}=1.142857+7.714284=8.857141$ (residual $4-8.857141=-4.857141$)
+
+Now:
+
+$$
+\frac{\partial J}{\partial w_0}=-2\sum r_i=-2(-10.857139)=21.714278
+$$
+
+$$
+\frac{\partial J}{\partial w_1}=-2\sum x_ir_i=-2(1(-1.714285)+2(-4.285713)+3(-4.857141))=49.71427
+$$
+
+Update:
+
+$$
+w_0^{(2)}=w_0^{(1)}-\eta_2\cdot 21.714278\approx 1.142857-1.206349=-0.063492
+$$
+
+$$
+w_1^{(2)}=w_1^{(1)}-\eta_2\cdot 49.71427\approx 2.571428-2.761904=-0.190476
+$$
+
+**Answer:** After 2 iterations, approximately $(w_0,w_1)\approx(-0.0635,\ -0.1905)$.
+
+---
+
+### Example set E — Hard-margin SVM primal + margin comparison
+
+**Module:** Module 6
+
+**Formulas used:**
+- Hard-margin SVM primal:
+
+$$
+\min_{w,b}\ \frac{1}{2}\|w\|^2\ \text{s.t. } y_i(w^Tx_i+b)\ge 1\ \forall i
+$$
+
+- Margin of a given separating hyperplane $w^Tx+b=0$: geometric margin $\gamma=\min_i\frac{y_i(w^Tx_i+b)}{\|w\|}$.
+
+**Problem E1 — Write the primal and compare two separating lines**
+
+Data in $\mathbb{R}^2$:
+
+- Positive (+1): $x_1=(0,2)$, $x_2=(2,2)$
+- Negative (−1): $x_3=(0,0)$, $x_4=(2,0)$
+
+**(a) Primal problem:**
+
+$$
+\min_{w\in\mathbb{R}^2,\ b\in\mathbb{R}}\ \frac{1}{2}\|w\|^2\quad \text{s.t.}\quad y_i(w^T x_i+b)\ge 1\ \ (i=1,\dots,4)
+$$
+
+**(b) Check that $x_2=1$ is separating:**
+
+Line $x_2=1$ can be written as $w^Tx+b=0$ with $w=(0,1)$, $b=-1$.
+
+Compute scores $s=w^Tx+b=x_2-1$:
+- Positives: $s=2-1=1>0$
+- Negatives: $s=0-1=-1<0$
+
+So it separates.
+
+Margin (geometric): distances are $|x_2-1|/\|w\|=1/1=1$ for closest points, so margin width is $2$.
+
+**(c) Compare with line $x_2-x_1=0$:**
+
+This is $w=(-1,1)$, $b=0$.
+
+Scores $s=-x_1+x_2$:
+- For $(2,2)$: $s=0$ (lies on the boundary) so it does **not** strictly separate these points.
+
+So $x_2-x_1=0$ is not a valid separator for this dataset.
+
+**Answer:** $x_2=1$ is a valid separating hyperplane with geometric margin $1$ to the closest point (margin width $2$). The second candidate fails to separate.
