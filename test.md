@@ -1029,6 +1029,57 @@ $$
 Quick-use equivalent (using margin $m_n$):
 $$\ell_n = \max(0,1-m_n),\quad m_n=y_n(w^T x_n+b).$$
 
+
+### Writing the hinge-loss SVM objective for a given dataset (step-by-step)
+
+Let $w = (w_1, w_2)^T$ and the decision function be $f(x) = w_1 x_1 + w_2 x_2 + b$.
+
+**Step 1 — Write the hinge loss $L_n$ for each point:**
+
+For each point $(x_n, y_n)$, expand $L_n = \max\big(0, 1 - y_n(w^T x_n + b)\big)$:
+
+- **Positive class** ($y_n = +1$): $L_n = \max\big(0, 1 - (w_1 x_1 + w_2 x_2 + b)\big)$
+- **Negative class** ($y_n = -1$): $L_n = \max\big(0, 1 - (-1)(w_1 x_1 + w_2 x_2 + b)\big) = \max\big(0,\; 1 + w_1 x_1 + w_2 x_2 + b\big)$
+
+Notice: for $y=-1$ the sign inside flips, so you get $1 + (\text{score})$ instead of $1 - (\text{score})$.
+
+**Concrete example** using the dataset from the sample question:
+
+| Point | $x$ | $y$ |
+|---|---|---|
+| $X_1$ | $(2,2)$ | $+1$ |
+| $X_2$ | $(4,4)$ | $+1$ |
+| $X_3$ | $(2,0)$ | $-1$ |
+| $X_4$ | $(4,0)$ | $-1$ |
+
+Hinge loss for each point:
+
+$$
+L_1 = \max\big(0, 1 - (w_1(2) + w_2(2) + b)\big) = \max(0,\; 1 - 2w_1 - 2w_2 - b)
+$$
+
+$$
+L_2 = \max\big(0, 1 - (w_1(4) + w_2(4) + b)\big) = \max(0,\; 1 - 4w_1 - 4w_2 - b)
+$$
+
+$$
+L_3 = \max\big(0, 1 - (-1)(w_1(2) + w_2(0) + b)\big) = \max(0,\; 1 + 2w_1 + b)
+$$
+
+$$
+L_4 = \max\big(0, 1 - (-1)(w_1(4) + w_2(0) + b)\big) = \max(0,\; 1 + 4w_1 + b)
+$$
+
+**Step 2 — Write the full hinge-loss SVM objective:**
+
+$$
+J(w_1, w_2, b) = \frac{1}{2}(w_1^2 + w_2^2) + C\Big[L_1 + L_2 + L_3 + L_4\Big]
+$$
+
+where each $L_i$ is defined above.
+
+> **tip:** You are not asked to minimize this by hand. The question typically asks you to (a) write out this objective, or (b) plug in specific $(w, b)$ values to compare two candidate models.
+
 ### Kernels
 Kernel is an inner product in feature space:
 $$K(x_i,x_j)=\phi(x_i)^T\phi(x_j).$$
