@@ -17,6 +17,7 @@ import {
 } from '../services/storage';
 import { scheduleDailyReminder } from '../services/notifications';
 import { maharashtrianFoods } from '../data/foods';
+import { getCachedRemoteFoods, fetchRemoteFoods } from '../services/remoteFoodService';
 import { getUserData } from '../services/userDataService';
 import { calculateMacroTargets } from '../utils/macroTargets';
 
@@ -65,12 +66,13 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [isLoading, setIsLoading] = useState(true);
   const [selectedDate, setSelectedDate] = useState(getTodayDate());
   const [macroTargets, setMacroTargets] = useState<MacroTargets>({ protein: 50, fat: 65, fiber: 25 });
+  const [remoteFoods, setRemoteFoods] = useState<FoodItem[]>([]);
   const hasInitialLoad = React.useRef(false);
 
-  // Combine default foods with custom foods (stable ref via useMemo)
+  // Combine default + remote + custom foods (stable ref via useMemo)
   const allFoods = useMemo(
-    () => [...maharashtrianFoods, ...customFoods],
-    [customFoods],
+    () => [...maharashtrianFoods, ...remoteFoods, ...customFoods],
+    [remoteFoods, customFoods],
   );
 
   // Build / return cached food index (O(n) once, then O(1) on re-renders)
@@ -105,13 +107,14 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     try {
       // For initial load, fetch everything in parallel
       if (isInitialLoad) {
-        const [log, customs, appSettings, recent, logs, userData] = await Promise.all([
+        const [log, customs, appSettings, recent, logs, userData, cachedRemote] = await Promise.all([
           getDailyLog(selectedDate),
           getCustomFoods(),
           getSettings(),
           getRecentFoods(),
           getAllDailyLogs(),
           getUserData(),
+          getCachedRemoteFoods(),
         ]);
 
         setTodayLog(log);
@@ -120,6 +123,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         setRecentFoods(recent);
         setAllLogs(logs);
         setMacroTargets(calculateMacroTargets(userData));
+        setRemoteFoods(cachedRemote);
 
         // Cache settings and custom foods for faster subsequent opens
         cachedSettings = appSettings;
@@ -128,6 +132,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         // Schedule notification
         await scheduleDailyReminder(appSettings);
         hasInitialLoad.current = true;
+
+        // Fetch latest remote foods in the background (non-blocking)
+        fetchRemoteFoods().then(setRemoteFoods);
       } else {
         // For date changes, only fetch what's needed
         const [log, logs] = await Promise.all([
