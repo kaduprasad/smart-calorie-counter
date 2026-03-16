@@ -88,6 +88,21 @@ export const styles = StyleSheet.create({
     fontWeight: "600",
     color: "#FFFFFF",
   },
+  calculateButton: {
+    backgroundColor: "#8B5CF6",
+    paddingVertical: 14,
+    borderRadius: 12,
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+    gap: 8,
+    marginTop: 8,
+  },
+  calculateButtonText: {
+    fontSize: 16,
+    fontWeight: "700",
+    color: "#FFFFFF",
+  },
   savedValue: {
     fontSize: 12,
     color: "#9CA3AF",

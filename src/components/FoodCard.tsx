@@ -275,16 +275,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#FFF3E0',
     paddingVertical: 4,
-    paddingHorizontal: 8,
+    paddingHorizontal: 6,
     borderRadius: 8,
+    minWidth: 44,
   },
   calorieValue: {
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: '700',
     color: '#FF7B00',
   },
   calorieLabel: {
-    fontSize: 9,
+    fontSize: 8,
     color: '#FF9D45',
   },
   // Quick Add Styles

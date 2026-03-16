@@ -284,6 +284,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 28,
     textAlign: 'center',
+    textAlignVertical: 'center',
     fontSize: 14,
     fontWeight: '600',
     color: '#333333',
@@ -292,6 +293,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 4,
     borderWidth: 1,
     borderColor: '#DDDDDD',
+    padding: 0,
+    includeFontPadding: false,
   },
   itemTotal: {
     width: 50,

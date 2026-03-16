@@ -13,6 +13,7 @@ import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useApp } from '../context/AppContext';
 import { sendTestNotification, getScheduledNotifications } from '../services/notifications';
 import { NumericInput } from '../components/NumericInput';
+import { AnimatedSaveButton } from '../components/AnimatedSaveButton';
 import { styles } from './styles/settingsScreenStyles';
 import { UserInfoSection } from '../components';
 
@@ -69,12 +70,12 @@ export const SettingsScreen: React.FC = () => {
     await checkScheduledNotifications();
   };
 
-  const handleSaveCalorieGoal = async () => {
+  const handleSaveCalorieGoal = async (): Promise<boolean> => {
     const goalNum = parseInt(calorieGoal);
 
     if (isNaN(goalNum) || goalNum < 500 || goalNum > 10000) {
       Alert.alert('Invalid Goal', 'Please enter a goal between 500 and 10000 calories');
-      return;
+      return false;
     }
 
     await updateSettings({
@@ -82,15 +83,15 @@ export const SettingsScreen: React.FC = () => {
       dailyCalorieGoal: goalNum,
     });
 
-    Alert.alert('Success', `Daily calorie goal set to ${goalNum}`);
+    return true;
   };
 
-  const handleSaveExerciseGoal = async () => {
+  const handleSaveExerciseGoal = async (): Promise<boolean> => {
     const goalNum = parseInt(exerciseGoal);
 
     if (isNaN(goalNum) || goalNum < 0 || goalNum > 5000) {
       Alert.alert('Invalid Goal', 'Please enter a goal between 0 and 5000 calories');
-      return;
+      return false;
     }
 
     await updateSettings({
@@ -98,25 +99,24 @@ export const SettingsScreen: React.FC = () => {
       exerciseCalorieGoal: goalNum,
     });
 
-    Alert.alert('Success', `Daily exercise goal set to ${goalNum} cal`);
+    return true;
   };
 
-  const handleSaveWeightGoal = async () => {
+  const handleSaveWeightGoal = async (): Promise<boolean> => {
     if (!weightGoal) {
       // Clear weight goal
       await updateSettings({
         ...settings,
         weightGoal: undefined,
       });
-      Alert.alert('Success', 'Weight goal cleared');
-      return;
+      return true;
     }
 
     const goalNum = parseFloat(weightGoal);
 
     if (isNaN(goalNum) || goalNum < 30 || goalNum > 300) {
       Alert.alert('Invalid Goal', 'Please enter a weight between 30 and 300 kg');
-      return;
+      return false;
     }
 
     await updateSettings({
@@ -124,7 +124,7 @@ export const SettingsScreen: React.FC = () => {
       weightGoal: goalNum,
     });
 
-    Alert.alert('Success', `Target weight set to ${goalNum} kg`);
+    return true;
   };
 
   const handleTestNotification = async () => {
@@ -156,6 +156,11 @@ export const SettingsScreen: React.FC = () => {
       </View>
 
       <ScrollView style={styles.scrollView}>
+        {/* User Profile Section */}
+        <View style={styles.section}>
+          <UserInfoSection />
+        </View>
+
         {/* Goals Row - Calorie and Weight side by side */}
         <View style={styles.goalsRow}>
           {/* Daily Calorie Goal */}
@@ -177,12 +182,7 @@ export const SettingsScreen: React.FC = () => {
                 />
                 <Text style={styles.goalUnitSmall}>cal</Text>
               </View>
-              <TouchableOpacity
-                style={styles.saveButtonSmall}
-                onPress={handleSaveCalorieGoal}
-              >
-                <Text style={styles.saveButtonTextSmall}>Save</Text>
-              </TouchableOpacity>
+              <AnimatedSaveButton onSave={handleSaveCalorieGoal} />
               <Text style={styles.currentSettingSmall}>
                 Target: {settings.dailyCalorieGoal} cal
               </Text>
@@ -209,14 +209,10 @@ export const SettingsScreen: React.FC = () => {
                 />
                 <Text style={styles.goalUnitSmall}>kg</Text>
               </View>
-              <TouchableOpacity
-                style={styles.saveButtonSmall}
-                onPress={handleSaveWeightGoal}
-              >
-                <Text style={styles.saveButtonTextSmall}>
-                  {weightGoal ? 'Save' : 'Clear'}
-                </Text>
-              </TouchableOpacity>
+              <AnimatedSaveButton
+                onSave={handleSaveWeightGoal}
+                label={weightGoal ? 'Save' : 'Clear'}
+              />
               {settings.weightGoal && (
                 <Text style={styles.currentSettingSmall}>
                   Target: {settings.weightGoal} kg
@@ -253,21 +249,14 @@ export const SettingsScreen: React.FC = () => {
               />
               <Text style={styles.goalUnitSmall}>cal</Text>
             </View>
-            <TouchableOpacity
-              style={styles.saveButtonGreen}
-              onPress={handleSaveExerciseGoal}
-            >
-              <Text style={styles.saveButtonTextSmall}>Save</Text>
-            </TouchableOpacity>
+            <AnimatedSaveButton
+              onSave={handleSaveExerciseGoal}
+              color="#4CAF50"
+            />
             <Text style={styles.currentSettingSmall}>
               Target: {settings.exerciseCalorieGoal} cal/day
             </Text>
           </View>
-        </View>
-
-        {/* User Profile Section */}
-        <View style={styles.section}>
-          <UserInfoSection />
         </View>
 
         {/* Daily Reminder */}

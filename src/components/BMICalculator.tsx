@@ -143,12 +143,6 @@ export const BMICalculator: React.FC<BMICalculatorProps> = ({ onDataUpdate }) =>
               placeholderTextColor="#9CA3AF"
             />
             <Text style={styles.unit}>cm</Text>
-            <TouchableOpacity
-              style={styles.saveButton}
-              onPress={handleSaveHeight}
-            >
-              <Text style={styles.saveButtonText}>Save</Text>
-            </TouchableOpacity>
           </View>
           {userData.height && (
             <Text style={styles.savedValue}>Current: {userData.height} cm</Text>
@@ -177,6 +171,15 @@ export const BMICalculator: React.FC<BMICalculatorProps> = ({ onDataUpdate }) =>
             Enter weight to calculate BMI (not saved)
           </Text>
         </View>
+
+        {/* Calculate Button */}
+        <TouchableOpacity
+          style={styles.calculateButton}
+          onPress={handleSaveHeight}
+        >
+          <MaterialCommunityIcons name="calculator" size={18} color="#FFFFFF" />
+          <Text style={styles.calculateButtonText}>Calculate BMI</Text>
+        </TouchableOpacity>
       </View>
 
       {/* Weight Progress - Compare Profile weight vs BMI input weight */}

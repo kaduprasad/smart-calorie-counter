@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import {
   View,
   Text,
@@ -7,6 +7,8 @@ import {
   Alert,
   RefreshControl,
   Platform,
+  Animated,
+  Pressable,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
@@ -14,6 +16,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useApp } from '../context/AppContext';
 import { CalorieSummary, FoodLogItem, QuantitySelector, WeightInput, ExerciseInput } from '../components';
+import type { ExerciseInputRef } from '../components';
 import { formatDate, getTodayDate, getLocalDateString, getExerciseEntries } from '../services/storage';
 import { FoodLogEntry, FoodItem } from '../types';
 import { styles } from './styles/homeScreenStyles';
@@ -41,6 +44,32 @@ export const HomeScreen: React.FC = () => {
   const [editingEntry, setEditingEntry] = useState<FoodLogEntry | null>(null);
   const [refreshing, setRefreshing] = useState(false);
   const [exerciseCalories, setExerciseCalories] = useState(0);
+  const [fabOpen, setFabOpen] = useState(false);
+  const fabAnim = useRef(new Animated.Value(0)).current;
+  const exerciseRef = useRef<ExerciseInputRef>(null);
+
+  const toggleFab = useCallback(() => {
+    const toValue = fabOpen ? 0 : 1;
+    Animated.spring(fabAnim, {
+      toValue,
+      friction: 6,
+      tension: 80,
+      useNativeDriver: true,
+    }).start();
+    setFabOpen(!fabOpen);
+  }, [fabOpen, fabAnim]);
+
+  const closeFab = useCallback(() => {
+    if (fabOpen) {
+      Animated.spring(fabAnim, {
+        toValue: 0,
+        friction: 6,
+        tension: 80,
+        useNativeDriver: true,
+      }).start();
+      setFabOpen(false);
+    }
+  }, [fabOpen, fabAnim]);
 
   const isToday = selectedDate === getTodayDate();
 
@@ -164,7 +193,7 @@ export const HomeScreen: React.FC = () => {
 
         <WeightInput date={selectedDate} />
 
-        <ExerciseInput date={selectedDate} onExerciseSaved={loadExerciseCalories} />
+        <ExerciseInput ref={exerciseRef} date={selectedDate} onExerciseSaved={loadExerciseCalories} />
 
         <View style={styles.logSection}>
           <View style={styles.sectionHeader}>
@@ -197,11 +226,81 @@ export const HomeScreen: React.FC = () => {
         </View>
       </ScrollView>
 
+      {/* FAB Overlay */}
+      {fabOpen && (
+        <Pressable
+          style={styles.fabOverlay}
+          onPress={closeFab}
+        />
+      )}
+
+      {/* Add Food mini-FAB */}
+      <Animated.View
+        style={[
+          styles.miniFab,
+          {
+            transform: [
+              { translateY: fabAnim.interpolate({ inputRange: [0, 1], outputRange: [0, -130] }) },
+              { scale: fabAnim },
+            ],
+            opacity: fabAnim,
+          },
+        ]}
+        pointerEvents={fabOpen ? 'auto' : 'none'}
+      >
+        <TouchableOpacity
+          style={styles.miniFabButton}
+          onPress={() => {
+            closeFab();
+            navigation.navigate('AddFood');
+          }}
+        >
+          <Ionicons name="restaurant" size={20} color="#FFFFFF" />
+        </TouchableOpacity>
+        <Animated.Text style={[styles.miniFabLabel, { opacity: fabAnim }]}>Add Food</Animated.Text>
+      </Animated.View>
+
+      {/* Add Exercise mini-FAB */}
+      <Animated.View
+        style={[
+          styles.miniFab,
+          {
+            transform: [
+              { translateY: fabAnim.interpolate({ inputRange: [0, 1], outputRange: [0, -70] }) },
+              { scale: fabAnim },
+            ],
+            opacity: fabAnim,
+          },
+        ]}
+        pointerEvents={fabOpen ? 'auto' : 'none'}
+      >
+        <TouchableOpacity
+          style={[styles.miniFabButton, { backgroundColor: '#4CAF50' }]}
+          onPress={() => {
+            closeFab();
+            exerciseRef.current?.openModal();
+          }}
+        >
+          <MaterialCommunityIcons name="run-fast" size={20} color="#FFFFFF" />
+        </TouchableOpacity>
+        <Animated.Text style={[styles.miniFabLabel, { opacity: fabAnim }]}>Exercise</Animated.Text>
+      </Animated.View>
+
+      {/* Main FAB */}
       <TouchableOpacity
         style={styles.addButton}
-        onPress={() => navigation.navigate('AddFood')}
+        onPress={toggleFab}
+        activeOpacity={0.8}
       >
-        <Ionicons name="add" size={32} color="#FFFFFF" />
+        <Animated.View
+          style={{
+            transform: [{
+              rotate: fabAnim.interpolate({ inputRange: [0, 1], outputRange: ['0deg', '45deg'] }),
+            }],
+          }}
+        >
+          <Ionicons name="add" size={32} color="#FFFFFF" />
+        </Animated.View>
       </TouchableOpacity>
 
       {editingEntry && (

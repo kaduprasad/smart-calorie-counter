@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, forwardRef, useImperativeHandle } from 'react';
 import {
   View,
   Text,
@@ -23,6 +23,10 @@ interface ExerciseInputProps {
   onExerciseSaved?: () => void;
 }
 
+export interface ExerciseInputRef {
+  openModal: () => void;
+}
+
 // Helper to render exercise icon
 const ExerciseIcon: React.FC<{ type: ExerciseType; size: number; color: string }> = ({ type, size, color }) => {
   const data = EXERCISE_DATA[type];
@@ -36,7 +40,7 @@ const ExerciseIcon: React.FC<{ type: ExerciseType; size: number; color: string }
   }
 };
 
-export const ExerciseInput: React.FC<ExerciseInputProps> = ({ date, onExerciseSaved }) => {
+export const ExerciseInput = forwardRef<ExerciseInputRef, ExerciseInputProps>(({ date, onExerciseSaved }, ref) => {
   const [exercises, setExercises] = useState<ExerciseEntry[]>([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -56,6 +60,10 @@ export const ExerciseInput: React.FC<ExerciseInputProps> = ({ date, onExerciseSa
   // Multi-select state
   const [isMultiSelectMode, setIsMultiSelectMode] = useState(false);
   const [selectedExercises, setSelectedExercises] = useState<SelectedExercise[]>([]);
+
+  useImperativeHandle(ref, () => ({
+    openModal: () => setIsModalVisible(true),
+  }));
 
   useEffect(() => {
     loadExercises();
@@ -642,7 +650,7 @@ export const ExerciseInput: React.FC<ExerciseInputProps> = ({ date, onExerciseSa
       </Modal>
     </>
   );
-};
+});
 
 const styles = StyleSheet.create({
   container: {

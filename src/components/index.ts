@@ -8,6 +8,7 @@ export { CategoryFilter } from './CategoryFilter';
 export { WeightInput } from './WeightInput';
 export { WeightChart } from './WeightChart';
 export { ExerciseInput } from './ExerciseInput';
+export type { ExerciseInputRef } from './ExerciseInput';
 export { AnimatedIcon, Icons } from './AnimatedIcon';
 export { BMICalculator } from './BMICalculator';
 export { UserInfoSection, calculateTDEE } from './UserInfoSection';
