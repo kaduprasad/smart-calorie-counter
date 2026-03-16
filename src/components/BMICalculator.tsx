@@ -25,6 +25,9 @@ export const BMICalculator: React.FC<BMICalculatorProps> = ({ onDataUpdate }) =>
   const [heightInput, setHeightInput] = useState('');
   const [weightInput, setWeightInput] = useState(''); // Temporary weight for BMI calculation only
   const [isLoading, setIsLoading] = useState(true);
+  const [heightUnit, setHeightUnit] = useState<'cm' | 'ft'>('cm');
+  const [feetInput, setFeetInput] = useState('');
+  const [inchesInput, setInchesInput] = useState('');
 
   useEffect(() => {
     loadUserData();
@@ -32,20 +35,33 @@ export const BMICalculator: React.FC<BMICalculatorProps> = ({ onDataUpdate }) =>
 
   // Calculate BMI from input fields (not from saved data)
   const bmiResult = useMemo(() => {
-    const height = parseFloat(heightInput);
+    let heightCm: number;
+    if (heightUnit === 'ft') {
+      const ft = parseFloat(feetInput) || 0;
+      const inch = parseFloat(inchesInput) || 0;
+      heightCm = ft * 30.48 + inch * 2.54;
+    } else {
+      heightCm = parseFloat(heightInput);
+    }
     const weight = parseFloat(weightInput);
     
-    if (height && weight && height >= 50 && height <= 300 && weight >= 20 && weight <= 500) {
-      return calculateBMI(height, weight);
+    if (heightCm && weight && heightCm >= 50 && heightCm <= 300 && weight >= 20 && weight <= 500) {
+      return calculateBMI(heightCm, weight);
     }
     return null;
-  }, [heightInput, weightInput]);
+  }, [heightInput, weightInput, heightUnit, feetInput, inchesInput]);
 
   const loadUserData = async () => {
     try {
       const data = await getUserData();
       setUserData(data);
       setHeightInput(data.height?.toString() || '');
+      // Pre-fill ft/in from saved height
+      if (data.height) {
+        const totalInches = data.height / 2.54;
+        setFeetInput(Math.floor(totalInches / 12).toString());
+        setInchesInput(Math.round(totalInches % 12).toString());
+      }
       // Pre-fill weight input with current weight for reference
       setWeightInput(data.currentWeight?.toString() || '');
     } catch (error) {
@@ -56,7 +72,14 @@ export const BMICalculator: React.FC<BMICalculatorProps> = ({ onDataUpdate }) =>
   };
 
   const handleSaveHeight = async () => {
-    const height = parseFloat(heightInput);
+    let height: number;
+    if (heightUnit === 'ft') {
+      const ft = parseFloat(feetInput) || 0;
+      const inch = parseFloat(inchesInput) || 0;
+      height = Math.round((ft * 30.48 + inch * 2.54) * 10) / 10;
+    } else {
+      height = parseFloat(heightInput);
+    }
 
     if (isNaN(height) || height < 50 || height > 300) {
       Alert.alert('Invalid Height', 'Please enter height between 50 and 300 cm');
@@ -67,7 +90,11 @@ export const BMICalculator: React.FC<BMICalculatorProps> = ({ onDataUpdate }) =>
       const updated = await updateHeight(height);
       setUserData(updated);
       onDataUpdate?.(updated);
-      Alert.alert('Success', `Height saved: ${height} cm`);
+      // Sync both unit representations
+      setHeightInput(height.toString());
+      const totalInches = height / 2.54;
+      setFeetInput(Math.floor(totalInches / 12).toString());
+      setInchesInput(Math.round(totalInches % 12).toString());
     } catch (error) {
       Alert.alert('Error', 'Failed to save height');
     }
@@ -131,19 +158,57 @@ export const BMICalculator: React.FC<BMICalculatorProps> = ({ onDataUpdate }) =>
           <View style={styles.inputLabelRow}>
             <MaterialCommunityIcons name="human-male-height" size={18} color="#6B7280" />
             <Text style={styles.inputLabel}>Height</Text>
+            <View style={styles.unitToggle}>
+              <TouchableOpacity
+                style={[styles.unitToggleBtn, heightUnit === 'cm' && styles.unitToggleBtnActive]}
+                onPress={() => setHeightUnit('cm')}
+              >
+                <Text style={[styles.unitToggleText, heightUnit === 'cm' && styles.unitToggleTextActive]}>cm</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.unitToggleBtn, heightUnit === 'ft' && styles.unitToggleBtnActive]}
+                onPress={() => setHeightUnit('ft')}
+              >
+                <Text style={[styles.unitToggleText, heightUnit === 'ft' && styles.unitToggleTextActive]}>ft</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-          <View style={styles.inputRow}>
-            <NumericInput
-              style={styles.input}
-              value={heightInput}
-              onChangeText={setHeightInput}
-              allowDecimal={true}
-              maxDecimalPlaces={1}
-              placeholder="170"
-              placeholderTextColor="#9CA3AF"
-            />
-            <Text style={styles.unit}>cm</Text>
-          </View>
+          {heightUnit === 'cm' ? (
+            <View style={styles.inputRow}>
+              <NumericInput
+                style={styles.input}
+                value={heightInput}
+                onChangeText={setHeightInput}
+                allowDecimal={true}
+                maxDecimalPlaces={1}
+                placeholder="170"
+                placeholderTextColor="#9CA3AF"
+              />
+              <Text style={styles.unit}>cm</Text>
+            </View>
+          ) : (
+            <View style={styles.inputRow}>
+              <NumericInput
+                style={styles.inputSmall}
+                value={feetInput}
+                onChangeText={setFeetInput}
+                allowDecimal={false}
+                placeholder="5"
+                placeholderTextColor="#9CA3AF"
+              />
+              <Text style={styles.unit}>ft</Text>
+              <NumericInput
+                style={styles.inputSmall}
+                value={inchesInput}
+                onChangeText={setInchesInput}
+                allowDecimal={true}
+                maxDecimalPlaces={1}
+                placeholder="8"
+                placeholderTextColor="#9CA3AF"
+              />
+              <Text style={styles.unit}>in</Text>
+            </View>
+          )}
           {userData.height && (
             <Text style={styles.savedValue}>Current: {userData.height} cm</Text>
           )}

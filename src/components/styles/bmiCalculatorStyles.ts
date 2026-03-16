@@ -53,6 +53,29 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "600",
     color: "#374151",
+    flex: 1,
+  },
+  unitToggle: {
+    flexDirection: "row",
+    backgroundColor: "#F3F4F6",
+    borderRadius: 8,
+    padding: 2,
+  },
+  unitToggleBtn: {
+    paddingHorizontal: 12,
+    paddingVertical: 4,
+    borderRadius: 6,
+  },
+  unitToggleBtnActive: {
+    backgroundColor: "#8B5CF6",
+  },
+  unitToggleText: {
+    fontSize: 12,
+    fontWeight: "600",
+    color: "#6B7280",
+  },
+  unitToggleTextActive: {
+    color: "#FFFFFF",
   },
   inputRow: {
     flexDirection: "row",
@@ -68,8 +91,16 @@ export const styles = StyleSheet.create({
     fontWeight: "600",
     color: "#1F2937",
     textAlign: "center",
-    minWidth: 180,
-    maxWidth: 200,
+  },
+  inputSmall: {
+    flex: 1,
+    backgroundColor: "#F3F4F6",
+    borderRadius: 10,
+    padding: 12,
+    fontSize: 18,
+    fontWeight: "600",
+    color: "#1F2937",
+    textAlign: "center",
   },
   unit: {
     fontSize: 14,

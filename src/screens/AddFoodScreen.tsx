@@ -14,7 +14,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useApp } from '../context/AppContext';
-import { FoodCard, SearchBar, CategoryFilter, supportsQuickAdd, FoodSelectionCart, SelectedFood } from '../components';
+import { FoodCard, SearchBar, CategoryFilter, supportsQuickAdd, FoodSelectionCart, SelectedFood, VoiceInputModal } from '../components';
 import { categories, getUnitLabel } from '../data/foods';
 import { searchFoods } from '../data/foodIndex';
 import { FoodItem, FoodCategory } from '../types';
@@ -70,6 +70,9 @@ export const AddFoodScreen: React.FC = () => {
   const [isSearchingOnline, setIsSearchingOnline] = useState(false);
   const [onlineResults, setOnlineResults] = useState<OnlineSearchResult[]>([]);
   const [showOnlineResults, setShowOnlineResults] = useState(false);
+
+  // Voice input state
+  const [showVoiceModal, setShowVoiceModal] = useState(false);
 
   // Pair recent foods into groups of 2 for stacked vertical display
   const recentFoodPairs = useMemo(() => {
@@ -131,6 +134,22 @@ export const AddFoodScreen: React.FC = () => {
 
   const handleClearSelection = useCallback(() => {
     setSelectedFoods([]);
+  }, []);
+
+  // Voice input: add parsed foods to selection
+  const handleVoiceAddFoods = useCallback((foods: SelectedFood[]) => {
+    setSelectedFoods(prev => {
+      const updated = [...prev];
+      for (const item of foods) {
+        const idx = updated.findIndex(s => s.food.id === item.food.id);
+        if (idx >= 0) {
+          updated[idx] = { ...updated[idx], quantity: updated[idx].quantity + item.quantity };
+        } else {
+          updated.push(item);
+        }
+      }
+      return updated;
+    });
   }, []);
 
   // Check if a food is selected
@@ -219,6 +238,7 @@ export const AddFoodScreen: React.FC = () => {
         }}
         placeholder="Search food items..."
         autoFocus={true}
+        onMicPress={() => setShowVoiceModal(true)}
       />
 
       <CategoryFilter
@@ -419,6 +439,13 @@ export const AddFoodScreen: React.FC = () => {
           }
         />
       )}
+
+      <VoiceInputModal
+        visible={showVoiceModal}
+        onClose={() => setShowVoiceModal(false)}
+        foodIndex={foodIndex}
+        onAddFoods={handleVoiceAddFoods}
+      />
     </SafeAreaView>
   );
 };

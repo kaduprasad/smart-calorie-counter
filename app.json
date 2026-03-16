@@ -27,7 +27,8 @@
       "permissions": [
         "RECEIVE_BOOT_COMPLETED",
         "VIBRATE",
-        "SCHEDULE_EXACT_ALARM"
+        "SCHEDULE_EXACT_ALARM",
+        "RECORD_AUDIO"
       ]
     },
     "web": {
@@ -38,6 +39,13 @@
         "expo-notifications",
         {
           "color": "#FF7B00"
+        }
+      ],
+      [
+        "expo-speech-recognition",
+        {
+          "microphonePermission": "Allow Smart Calorie Tracker to use the microphone for voice food input.",
+          "speechRecognitionPermission": "Allow Smart Calorie Tracker to use speech recognition for voice food input."
         }
       ]
     ],

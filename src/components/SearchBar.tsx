@@ -8,6 +8,7 @@ interface SearchBarProps {
   placeholder?: string;
   onClear?: () => void;
   autoFocus?: boolean;
+  onMicPress?: () => void;
 }
 
 export const SearchBar: React.FC<SearchBarProps> = ({
@@ -16,6 +17,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   placeholder = 'Search foods...',
   onClear,
   autoFocus = false,
+  onMicPress,
 }) => {
   return (
     <View style={styles.container}>
@@ -39,6 +41,11 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           }}
         >
           <Ionicons name="close-circle" size={20} color="#999999" />
+        </TouchableOpacity>
+      )}
+      {onMicPress && (
+        <TouchableOpacity style={styles.micButton} onPress={onMicPress}>
+          <Ionicons name="mic" size={22} color="#FF7B00" />
         </TouchableOpacity>
       )}
     </View>
@@ -66,6 +73,9 @@ const styles = StyleSheet.create({
     color: '#1A1A1A',
   },
   clearButton: {
+    padding: 8,
+  },
+  micButton: {
     padding: 8,
   },
 });
