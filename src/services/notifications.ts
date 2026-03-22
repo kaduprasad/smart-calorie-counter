@@ -67,21 +67,46 @@ export const scheduleDailyReminder = async (
     const todayLog = await getDailyLog(getTodayDate());
     const todayCalories = todayLog?.totalCalories || 0;
 
-    const trigger: Notifications.NotificationTriggerInput = {
-      type: Notifications.SchedulableTriggerInputTypes.DAILY,
-      hour: settings.notificationTime.hour,
-      minute: settings.notificationTime.minute,
-    };
+    let notificationId: string;
 
-    const notificationId = await Notifications.scheduleNotificationAsync({
-      content: {
-        title: "🍽️ Log Your Meals!",
-        body: `आज आपण किती कॅलरी घेतल्या ते नोंदवा! (Today's intake: ${todayCalories} cal)`,
-        data: { type: NOTIFICATION_CHANNEL_ID },
-        sound: true,
-      },
-      trigger,
-    });
+    try {
+      // Try daily trigger (may fail on Android 12+ without exact alarm permission)
+      const trigger: Notifications.NotificationTriggerInput = {
+        type: Notifications.SchedulableTriggerInputTypes.DAILY,
+        hour: settings.notificationTime.hour,
+        minute: settings.notificationTime.minute,
+      };
+
+      notificationId = await Notifications.scheduleNotificationAsync({
+        content: {
+          title: "🍽️ Log Your Meals!",
+          body: `आज आपण किती कॅलरी घेतल्या ते नोंदवा! (Today's intake: ${todayCalories} cal)`,
+          data: { type: NOTIFICATION_CHANNEL_ID },
+          sound: true,
+        },
+        trigger,
+      });
+    } catch (triggerError) {
+      // Fallback: schedule with seconds delay for next occurrence
+      const now = new Date();
+      const target = new Date();
+      target.setHours(settings.notificationTime.hour, settings.notificationTime.minute, 0, 0);
+      if (target <= now) {
+        target.setDate(target.getDate() + 1);
+      }
+      const secondsUntil = Math.max(60, Math.floor((target.getTime() - now.getTime()) / 1000));
+
+      notificationId = await Notifications.scheduleNotificationAsync({
+        content: {
+          title: "🍽️ Log Your Meals!",
+          body: `आज आपण किती कॅलरी घेतल्या ते नोंदवा! (Today's intake: ${todayCalories} cal)`,
+          data: { type: NOTIFICATION_CHANNEL_ID },
+          sound: true,
+        },
+        trigger: { type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL, seconds: secondsUntil, repeats: false },
+      });
+      console.log("Used fallback time-interval trigger due to:", triggerError);
+    }
 
     console.log("Notification scheduled:", notificationId);
     return notificationId;
