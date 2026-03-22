@@ -1,8 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { UserData, BMIResult } from '../types';
 import { getLocalDateString } from '../utils/utils';
+import { STORAGE_KEYS, BMI } from '../common/constants';
 
-const USER_DATA_KEY = 'user_data';
+const USER_DATA_KEY = STORAGE_KEYS.USER_DATA;
 
 /**
  * Get user data from storage
@@ -127,19 +128,19 @@ export const calculateBMI = (heightCm: number, weightKg: number): BMIResult | nu
 
   // Determine BMI category
   let category: BMIResult['category'];
-  if (bmi < 18.5) {
+  if (bmi < BMI.UNDERWEIGHT) {
     category = 'underweight';
-  } else if (bmi < 25) {
+  } else if (bmi < BMI.OVERWEIGHT) {
     category = 'normal';
-  } else if (bmi < 30) {
+  } else if (bmi < BMI.OBESE) {
     category = 'overweight';
   } else {
     category = 'obese';
   }
 
   // Calculate healthy weight range (BMI 18.5 - 24.9)
-  const healthyWeightMin = Math.round(18.5 * heightM * heightM * 10) / 10;
-  const healthyWeightMax = Math.round(24.9 * heightM * heightM * 10) / 10;
+  const healthyWeightMin = Math.round(BMI.HEALTHY_MIN * heightM * heightM * 10) / 10;
+  const healthyWeightMax = Math.round(BMI.HEALTHY_MAX * heightM * heightM * 10) / 10;
 
   return {
     bmi: roundedBMI,

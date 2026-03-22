@@ -11,6 +11,7 @@ import { NumericInput } from './NumericInput';
 import { UserData } from '../types';
 import { getUserData, saveUserData } from '../services/userDataService';
 import { getLocalDateString } from '../utils/utils';
+import { VALIDATION } from '../common/constants';
 
 interface UserInfoSectionProps {
   onDataUpdate?: (userData: UserData) => void;
@@ -198,8 +199,8 @@ export const UserInfoSection: React.FC<UserInfoSectionProps> = ({ onDataUpdate }
     // Validate age if entered
     if (ageInput) {
       const age = parseInt(ageInput);
-      if (isNaN(age) || age < 10 || age > 120) {
-        Alert.alert('Invalid Age', 'Please enter age between 10 and 120');
+      if (isNaN(age) || age < VALIDATION.AGE.MIN || age > VALIDATION.AGE.MAX) {
+        Alert.alert('Invalid Age', `Please enter age between ${VALIDATION.AGE.MIN} and ${VALIDATION.AGE.MAX}`);
         return;
       }
     }
@@ -207,8 +208,8 @@ export const UserInfoSection: React.FC<UserInfoSectionProps> = ({ onDataUpdate }
     // Validate height if entered
     if (heightInput) {
       const height = parseFloat(heightInput);
-      if (isNaN(height) || height < 50 || height > 300) {
-        Alert.alert('Invalid Height', 'Please enter height between 50 and 300 cm');
+      if (isNaN(height) || height < VALIDATION.HEIGHT_CM.MIN || height > VALIDATION.HEIGHT_CM.MAX) {
+        Alert.alert('Invalid Height', `Please enter height between ${VALIDATION.HEIGHT_CM.MIN} and ${VALIDATION.HEIGHT_CM.MAX} cm`);
         return;
       }
     }
@@ -216,8 +217,8 @@ export const UserInfoSection: React.FC<UserInfoSectionProps> = ({ onDataUpdate }
     // Validate weight if entered
     if (weightInput) {
       const weight = parseFloat(weightInput);
-      if (isNaN(weight) || weight < 20 || weight > 500) {
-        Alert.alert('Invalid Weight', 'Please enter weight between 20 and 500 kg');
+      if (isNaN(weight) || weight < VALIDATION.WEIGHT_KG.MIN || weight > VALIDATION.WEIGHT_KG.MAX) {
+        Alert.alert('Invalid Weight', `Please enter weight between ${VALIDATION.WEIGHT_KG.MIN} and ${VALIDATION.WEIGHT_KG.MAX} kg`);
         return;
       }
     }

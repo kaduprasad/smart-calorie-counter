@@ -1,12 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { FoodItem } from '../types';
-
-const REMOTE_FOODS_URL =
-  'https://raw.githubusercontent.com/kaduprasad/smart-calorie-counter/main/data/remote-foods.json';
+import { REMOTE_FOODS_URL, STORAGE_KEYS, REMOTE_FOODS_FETCH_TIMEOUT_MS } from '../common/constants';
 
 const KEYS = {
-  REMOTE_FOODS: 'remote_foods_cache',
-  REMOTE_FOODS_VERSION: 'remote_foods_version',
+  REMOTE_FOODS: STORAGE_KEYS.REMOTE_FOODS,
+  REMOTE_FOODS_VERSION: STORAGE_KEYS.REMOTE_FOODS_VERSION,
 };
 
 interface RemoteFoodsPayload {
@@ -33,7 +31,7 @@ export const getCachedRemoteFoods = async (): Promise<FoodItem[]> => {
 export const fetchRemoteFoods = async (): Promise<FoodItem[]> => {
   try {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 8000);
+    const timeout = setTimeout(() => controller.abort(), REMOTE_FOODS_FETCH_TIMEOUT_MS);
 
     const response = await fetch(REMOTE_FOODS_URL, { signal: controller.signal });
     clearTimeout(timeout);

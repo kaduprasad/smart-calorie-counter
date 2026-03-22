@@ -3,6 +3,7 @@ import * as Device from "expo-device";
 import { Platform } from "react-native";
 import { AppSettings } from "../types";
 import { getSettings, getTodayDate, getDailyLog } from "./storage";
+import { APP_NAME, NOTIFICATION_CHANNEL_ID, NOTIFICATION_CHANNEL_NAME } from "../common/constants";
 
 // Configure notification handling
 Notifications.setNotificationHandler({
@@ -35,8 +36,8 @@ export const requestNotificationPermissions = async (): Promise<boolean> => {
   }
 
   if (Platform.OS === "android") {
-    await Notifications.setNotificationChannelAsync("daily-reminder", {
-      name: "Daily Reminder",
+    await Notifications.setNotificationChannelAsync(NOTIFICATION_CHANNEL_ID, {
+      name: NOTIFICATION_CHANNEL_NAME,
       importance: Notifications.AndroidImportance.HIGH,
       vibrationPattern: [0, 250, 250, 250],
       lightColor: "#FF7B00",
@@ -76,7 +77,7 @@ export const scheduleDailyReminder = async (
       content: {
         title: "🍽️ Log Your Meals!",
         body: `आज आपण किती कॅलरी घेतल्या ते नोंदवा! (Today's intake: ${todayCalories} cal)`,
-        data: { type: "daily-reminder" },
+        data: { type: NOTIFICATION_CHANNEL_ID },
         sound: true,
       },
       trigger,
@@ -118,7 +119,7 @@ export const sendTestNotification = async (): Promise<void> => {
   await Notifications.scheduleNotificationAsync({
     content: {
       title: "🍽️ Test Notification",
-      body: "This is a test notification for the Smart Calorie Tracker app!",
+      body: `This is a test notification for the ${APP_NAME} app!`,
       data: { type: "test" },
     },
     trigger: null, // Send immediately

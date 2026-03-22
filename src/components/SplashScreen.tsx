@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { APP_NAME } from '../common/constants';
 
 const { width, height } = Dimensions.get('window');
 
@@ -160,7 +161,7 @@ export const SplashScreen: React.FC = () => {
       </View>
 
       {/* App name - positioned below the floating icons */}
-      <Text style={styles.appName}>Smart Calorie Tracker</Text>
+      <Text style={styles.appName}>{APP_NAME}</Text>
 
       {/* Loading section at bottom */}
       <View style={styles.loadingSection}>

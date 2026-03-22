@@ -1,11 +1,11 @@
 import { FoodItem } from '../types';
-
-// Open Food Facts API - completely free, no API key needed
-const OPEN_FOOD_FACTS_API = 'https://world.openfoodfacts.org/cgi/search.pl';
-
-// CalorieNinjas API - free tier (10,000 requests/month)
-// Get your free API key at: https://calorieninjas.com/api
-const CALORIE_NINJAS_API = 'https://api.calorieninjas.com/v1/nutrition';
+import {
+  OPEN_FOOD_FACTS_API_URL,
+  CALORIE_NINJAS_API_URL,
+  USER_AGENT,
+  OPEN_FOOD_FACTS_PAGE_SIZE,
+  MAX_ONLINE_SEARCH_RESULTS,
+} from '../common/constants';
 
 // ⚠️ ADD YOUR FREE API KEY HERE (get it from https://calorieninjas.com/api)
 // CalorieNinjas is BEST for Indian foods - it understands "chapati", "dal", "biryani" etc.
@@ -25,10 +25,10 @@ export interface OnlineSearchResult {
 export const searchOpenFoodFacts = async (query: string): Promise<OnlineSearchResult[]> => {
   try {
     const response = await fetch(
-      `${OPEN_FOOD_FACTS_API}?search_terms=${encodeURIComponent(query)}&search_simple=1&action=process&json=1&page_size=20`,
+      `${OPEN_FOOD_FACTS_API_URL}?search_terms=${encodeURIComponent(query)}&search_simple=1&action=process&json=1&page_size=${OPEN_FOOD_FACTS_PAGE_SIZE}`,
       {
         headers: {
-          'User-Agent': 'CalorieCounter-MaharashtrianFood/1.0',
+          'User-Agent': USER_AGENT,
         },
       }
     );
@@ -61,7 +61,7 @@ export const searchOpenFoodFacts = async (query: string): Promise<OnlineSearchRe
       }
     }
 
-    return results.slice(0, 10); // Return top 10 results
+    return results.slice(0, MAX_ONLINE_SEARCH_RESULTS); // Return top results
   } catch (error) {
     console.error('Open Food Facts search error:', error);
     return [];
@@ -78,7 +78,7 @@ export const searchCalorieNinjas = async (query: string): Promise<OnlineSearchRe
 
   try {
     const response = await fetch(
-      `${CALORIE_NINJAS_API}?query=${encodeURIComponent(query)}`,
+      `${CALORIE_NINJAS_API_URL}?query=${encodeURIComponent(query)}`,
       {
         headers: {
           'X-Api-Key': CALORIE_NINJAS_API_KEY,

@@ -261,4 +261,15 @@ export const styles = StyleSheet.create({
     color: '#FF7B00',
     fontWeight: '600',
   },
+  loadingMore: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 16,
+    gap: 8,
+  },
+  loadingMoreText: {
+    fontSize: 13,
+    color: '#999',
+  },
 });

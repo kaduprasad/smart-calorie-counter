@@ -20,6 +20,7 @@ import type { ExerciseInputRef } from '../components';
 import { formatDate, getTodayDate, getLocalDateString, getExerciseEntries } from '../services/storage';
 import { FoodLogEntry, FoodItem } from '../types';
 import { styles } from './styles/homeScreenStyles';
+import { APP_NAME } from '../common/constants';
 
 type RootStackParamList = {
   MainTabs: undefined;
@@ -144,7 +145,7 @@ export const HomeScreen: React.FC = () => {
       <View style={styles.header}>
         <View style={styles.titleRow}>
           <MaterialCommunityIcons name="food-apple" size={28} color="#FF7B00" />
-          <Text style={styles.title}>Calorie Tracker</Text>
+          <Text style={styles.title}>{APP_NAME}</Text>
         </View>
         <Text style={styles.subtitle}>Exercise & Food Calorie Tracker</Text>
       </View>

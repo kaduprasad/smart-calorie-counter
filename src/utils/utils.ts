@@ -1,4 +1,5 @@
 // Date Utilities
+import { APP_LOCALE } from '../common/constants';
 
 // Helper to get date in YYYY-MM-DD format using local timezone
 export const getLocalDateString = (date: Date = new Date()): string => {
@@ -22,5 +23,5 @@ export const formatDate = (dateString: string): string => {
     month: 'short',
     day: 'numeric',
   };
-  return date.toLocaleDateString('en-IN', options);
+  return date.toLocaleDateString(APP_LOCALE, options);
 };

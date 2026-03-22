@@ -15,6 +15,7 @@ import { DailyLog, UserData } from '../types';
 import { WeightChart, calculateTDEE } from '../components';
 import { getUserData } from '../services/userDataService';
 import { styles } from './styles/historyScreenStyles';
+import { MIN_CALORIES_FOR_VALID_DAY, CALORIES_PER_KG_BODY_WEIGHT, APP_LOCALE } from '../common/constants';
 
 export const HistoryScreen: React.FC = () => {
   const { allLogs, settings, setSelectedDate } = useApp();
@@ -46,8 +47,7 @@ export const HistoryScreen: React.FC = () => {
   };
 
   // Calculate weekly calorie deficit/surplus
-  // Only consider days with meaningful data (at least 1000 calories logged)
-  const MIN_CALORIES_FOR_VALID_DAY = 1000;
+  // Only consider days with meaningful data (at least MIN_CALORIES_FOR_VALID_DAY calories logged)
   
   const calculateWeeklyStats = () => {
     const tdee = calculateTDEE(userData);
@@ -69,7 +69,7 @@ export const HistoryScreen: React.FC = () => {
     const weeklyDeficit = weeklyCaloriesConsumed - weeklyCaloriesNeeded;
     
     // 7700 calories = approximately 1 kg of body weight
-    const weightChange = weeklyDeficit / 7700;
+    const weightChange = weeklyDeficit / CALORIES_PER_KG_BODY_WEIGHT;
 
     return {
       tdee,
@@ -95,7 +95,7 @@ export const HistoryScreen: React.FC = () => {
 
   const getDayName = (dateStr: string) => {
     const date = new Date(dateStr);
-    return date.toLocaleDateString('en-IN', { weekday: 'short' });
+    return date.toLocaleDateString(APP_LOCALE, { weekday: 'short' });
   };
 
   const renderWeeklyBar = ({ item }: { item: { date: string; calories: number } }) => {

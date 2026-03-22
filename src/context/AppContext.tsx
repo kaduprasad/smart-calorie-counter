@@ -20,6 +20,7 @@ import { maharashtrianFoods } from '../data/foods';
 import { getCachedRemoteFoods, fetchRemoteFoods } from '../services/remoteFoodService';
 import { getUserData } from '../services/userDataService';
 import { calculateMacroTargets } from '../utils/macroTargets';
+import { DEFAULT_SETTINGS, DEFAULT_MACRO_TARGETS } from '../common/constants';
 
 interface AppContextType {
   // State
@@ -55,17 +56,12 @@ let cachedCustomFoods: FoodItem[] | null = null;
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [todayLog, setTodayLog] = useState<DailyLog | null>(null);
   const [customFoods, setCustomFoods] = useState<FoodItem[]>(cachedCustomFoods || []);
-  const [settings, setSettings] = useState<AppSettings>(cachedSettings || {
-    notificationEnabled: true,
-    notificationTime: { hour: 22, minute: 0 },
-    dailyCalorieGoal: 2000,
-    exerciseCalorieGoal: 300,
-  });
+  const [settings, setSettings] = useState<AppSettings>(cachedSettings || DEFAULT_SETTINGS);
   const [recentFoods, setRecentFoods] = useState<FoodItem[]>([]);
   const [allLogs, setAllLogs] = useState<{ [date: string]: DailyLog }>({});
   const [isLoading, setIsLoading] = useState(true);
   const [selectedDate, setSelectedDate] = useState(getTodayDate());
-  const [macroTargets, setMacroTargets] = useState<MacroTargets>({ protein: 50, fat: 65, fiber: 25 });
+  const [macroTargets, setMacroTargets] = useState<MacroTargets>(DEFAULT_MACRO_TARGETS);
   const [remoteFoods, setRemoteFoods] = useState<FoodItem[]>([]);
   const hasInitialLoad = React.useRef(false);
 

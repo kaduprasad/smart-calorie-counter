@@ -1,28 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DailyLog, FoodItem, AppSettings, FoodLogEntry, WeightEntry, ExerciseEntry } from '../types';
 import { getLocalDateString, getTodayDate, formatDate } from '../utils/utils';
+import { STORAGE_KEYS, DEFAULT_SETTINGS, RECENT_FOODS_LIMIT } from '../common/constants';
 
 // Re-export utility functions for backward compatibility
 export { getLocalDateString, getTodayDate, formatDate };
 
-const KEYS = {
-  DAILY_LOGS: 'daily_logs',
-  CUSTOM_FOODS: 'custom_foods',
-  SETTINGS: 'app_settings',
-  WEIGHT_ENTRIES: 'weight_entries',
-  EXERCISE_ENTRIES: 'exercise_entries',
-};
-
-const DEFAULT_SETTINGS: AppSettings = {
-  notificationEnabled: true,
-  notificationTime: {
-    hour: 22,
-    minute: 0,
-  },
-  dailyCalorieGoal: 2000,
-  exerciseCalorieGoal: 300,
-  weightGoal: undefined,
-};
+const KEYS = STORAGE_KEYS;
 
 // Daily Logs Storage
 export const getAllDailyLogs = async (): Promise<{ [date: string]: DailyLog }> => {
@@ -184,7 +168,7 @@ export const saveSettings = async (settings: AppSettings): Promise<void> => {
 };
 
 // Get recent entries for quick access
-export const getRecentFoods = async (limit: number = 10): Promise<FoodItem[]> => {
+export const getRecentFoods = async (limit: number = RECENT_FOODS_LIMIT): Promise<FoodItem[]> => {
   try {
     const allLogs = await getAllDailyLogs();
     const foodCounts: { [id: string]: { food: FoodItem; count: number; lastUsed: number } } = {};

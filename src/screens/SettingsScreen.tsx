@@ -16,6 +16,7 @@ import { NumericInput } from '../components/NumericInput';
 import { AnimatedSaveButton } from '../components/AnimatedSaveButton';
 import { styles } from './styles/settingsScreenStyles';
 import { UserInfoSection } from '../components';
+import { APP_NAME, VALIDATION } from '../common/constants';
 
 export const SettingsScreen: React.FC = () => {
   const { settings, updateSettings } = useApp();
@@ -73,8 +74,8 @@ export const SettingsScreen: React.FC = () => {
   const handleSaveCalorieGoal = async (): Promise<boolean> => {
     const goalNum = parseInt(calorieGoal);
 
-    if (isNaN(goalNum) || goalNum < 500 || goalNum > 10000) {
-      Alert.alert('Invalid Goal', 'Please enter a goal between 500 and 10000 calories');
+    if (isNaN(goalNum) || goalNum < VALIDATION.CALORIE_GOAL.MIN || goalNum > VALIDATION.CALORIE_GOAL.MAX) {
+      Alert.alert('Invalid Goal', `Please enter a goal between ${VALIDATION.CALORIE_GOAL.MIN} and ${VALIDATION.CALORIE_GOAL.MAX} calories`);
       return false;
     }
 
@@ -89,8 +90,8 @@ export const SettingsScreen: React.FC = () => {
   const handleSaveExerciseGoal = async (): Promise<boolean> => {
     const goalNum = parseInt(exerciseGoal);
 
-    if (isNaN(goalNum) || goalNum < 0 || goalNum > 5000) {
-      Alert.alert('Invalid Goal', 'Please enter a goal between 0 and 5000 calories');
+    if (isNaN(goalNum) || goalNum < VALIDATION.EXERCISE_GOAL.MIN || goalNum > VALIDATION.EXERCISE_GOAL.MAX) {
+      Alert.alert('Invalid Goal', `Please enter a goal between ${VALIDATION.EXERCISE_GOAL.MIN} and ${VALIDATION.EXERCISE_GOAL.MAX} calories`);
       return false;
     }
 
@@ -114,8 +115,8 @@ export const SettingsScreen: React.FC = () => {
 
     const goalNum = parseFloat(weightGoal);
 
-    if (isNaN(goalNum) || goalNum < 30 || goalNum > 300) {
-      Alert.alert('Invalid Goal', 'Please enter a weight between 30 and 300 kg');
+    if (isNaN(goalNum) || goalNum < VALIDATION.WEIGHT_GOAL.MIN || goalNum > VALIDATION.WEIGHT_GOAL.MAX) {
+      Alert.alert('Invalid Goal', `Please enter a weight between ${VALIDATION.WEIGHT_GOAL.MIN} and ${VALIDATION.WEIGHT_GOAL.MAX} kg`);
       return false;
     }
 
@@ -378,7 +379,7 @@ export const SettingsScreen: React.FC = () => {
           <View style={styles.card}>
             <View style={styles.aboutTitleRow}>
               <Ionicons name="restaurant" size={20} color="#FF7B00" />
-              <Text style={styles.aboutText}>Smart Calorie Tracker</Text>
+              <Text style={styles.aboutText}>{APP_NAME}</Text>
             </View>
             <Text style={styles.aboutDescription}>
               Track your daily food intake with a comprehensive database of Indian dishes including Maharashtrian, Konkani, Vidarbha, and North Indian cuisines.

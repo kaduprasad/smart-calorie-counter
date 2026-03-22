@@ -22,6 +22,7 @@ import { parseVoiceInput, ParsedFoodEntry } from '../utils/foodVoiceParser';
 import { getUnitLabel } from '../data/foods';
 import { SelectedFood } from './FoodSelectionCart';
 import { FoodItem } from '../types';
+import { APP_LOCALE, VOICE_SEARCH_RESULT_LIMIT } from '../common/constants';
 
 interface VoiceInputModalProps {
   visible: boolean;
@@ -127,7 +128,7 @@ export const VoiceInputModal: React.FC<VoiceInputModalProps> = ({
     startPulse();
 
     ExpoSpeechRecognitionModule.start({
-      lang: 'en-IN',
+      lang: APP_LOCALE,
       interimResults: true,
       continuous: false,
     });
@@ -160,7 +161,7 @@ export const VoiceInputModal: React.FC<VoiceInputModalProps> = ({
     if (q.length < 2) return [];
     // If input looks like bulk voice input (has commas or numbers at start), skip search
     if (/,/.test(q) || /^\d/.test(q)) return [];
-    return searchFoods(foodIndex, q, null).slice(0, 5);
+    return searchFoods(foodIndex, q, null).slice(0, VOICE_SEARCH_RESULT_LIMIT);
   }, [manualText, foodIndex]);
 
   const handleAddFromSearch = (food: FoodItem) => {

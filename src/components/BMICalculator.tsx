@@ -15,6 +15,7 @@ import {
   getBMICategoryInfo,
 } from '../services/userDataService';
 import { styles } from './styles/bmiCalculatorStyles';
+import { VALIDATION, BMI } from '../common/constants';
 
 interface BMICalculatorProps {
   onDataUpdate?: (userData: UserData) => void;
@@ -45,7 +46,7 @@ export const BMICalculator: React.FC<BMICalculatorProps> = ({ onDataUpdate }) =>
     }
     const weight = parseFloat(weightInput);
     
-    if (heightCm && weight && heightCm >= 50 && heightCm <= 300 && weight >= 20 && weight <= 500) {
+    if (heightCm && weight && heightCm >= VALIDATION.HEIGHT_CM.MIN && heightCm <= VALIDATION.HEIGHT_CM.MAX && weight >= VALIDATION.WEIGHT_KG.MIN && weight <= VALIDATION.WEIGHT_KG.MAX) {
       return calculateBMI(heightCm, weight);
     }
     return null;
@@ -123,11 +124,9 @@ export const BMICalculator: React.FC<BMICalculatorProps> = ({ onDataUpdate }) =>
   const weightProgress = getWeightProgress();
   const categoryInfo = bmiResult ? getBMICategoryInfo(bmiResult.category) : null;
 
-  // Calculate BMI position on scale (BMI 15-40 range for display)
+  // Calculate BMI position on scale
   const getBMIScalePosition = (bmi: number) => {
-    const minBMI = 15;
-    const maxBMI = 40;
-    return Math.max(0, Math.min(100, ((bmi - minBMI) / (maxBMI - minBMI)) * 100));
+    return Math.max(0, Math.min(100, ((bmi - BMI.SCALE_MIN) / (BMI.SCALE_MAX - BMI.SCALE_MIN)) * 100));
   };
 
   if (isLoading) {
@@ -158,33 +157,34 @@ export const BMICalculator: React.FC<BMICalculatorProps> = ({ onDataUpdate }) =>
           <View style={styles.inputLabelRow}>
             <MaterialCommunityIcons name="human-male-height" size={18} color="#6B7280" />
             <Text style={styles.inputLabel}>Height</Text>
-            <View style={styles.unitToggle}>
-              <TouchableOpacity
-                style={[styles.unitToggleBtn, heightUnit === 'cm' && styles.unitToggleBtnActive]}
-                onPress={() => setHeightUnit('cm')}
-              >
-                <Text style={[styles.unitToggleText, heightUnit === 'cm' && styles.unitToggleTextActive]}>cm</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[styles.unitToggleBtn, heightUnit === 'ft' && styles.unitToggleBtnActive]}
-                onPress={() => setHeightUnit('ft')}
-              >
-                <Text style={[styles.unitToggleText, heightUnit === 'ft' && styles.unitToggleTextActive]}>ft</Text>
-              </TouchableOpacity>
-            </View>
           </View>
           {heightUnit === 'cm' ? (
             <View style={styles.inputRow}>
-              <NumericInput
-                style={styles.input}
-                value={heightInput}
-                onChangeText={setHeightInput}
-                allowDecimal={true}
-                maxDecimalPlaces={1}
-                placeholder="170"
-                placeholderTextColor="#9CA3AF"
-              />
-              <Text style={styles.unit}>cm</Text>
+              <View style={styles.heightInputContainer}>
+                <NumericInput
+                  style={styles.heightInput}
+                  value={heightInput}
+                  onChangeText={setHeightInput}
+                  allowDecimal={true}
+                  maxDecimalPlaces={1}
+                  placeholder="170"
+                  placeholderTextColor="#9CA3AF"
+                />
+              </View>
+              <View style={styles.unitToggle}>
+                <TouchableOpacity
+                  style={[styles.unitToggleBtn, styles.unitToggleBtnActive]}
+                  onPress={() => setHeightUnit('cm')}
+                >
+                  <Text style={[styles.unitToggleText, styles.unitToggleTextActive]}>cm</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.unitToggleBtn}
+                  onPress={() => setHeightUnit('ft')}
+                >
+                  <Text style={styles.unitToggleText}>ft</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           ) : (
             <View style={styles.inputRow}>
@@ -207,6 +207,20 @@ export const BMICalculator: React.FC<BMICalculatorProps> = ({ onDataUpdate }) =>
                 placeholderTextColor="#9CA3AF"
               />
               <Text style={styles.unit}>in</Text>
+              <View style={styles.unitToggle}>
+                <TouchableOpacity
+                  style={styles.unitToggleBtn}
+                  onPress={() => setHeightUnit('cm')}
+                >
+                  <Text style={styles.unitToggleText}>cm</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={[styles.unitToggleBtn, styles.unitToggleBtnActive]}
+                  onPress={() => setHeightUnit('ft')}
+                >
+                  <Text style={[styles.unitToggleText, styles.unitToggleTextActive]}>ft</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           )}
           {userData.height && (

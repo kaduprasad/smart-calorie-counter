@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import {
   View,
   Text,
@@ -25,6 +25,9 @@ import {
   getAlternativeSearchTerms 
 } from '../services/foodSearch';
 import { styles } from './styles/addFoodScreenStyles';
+import { FOOD_LIST_PAGE_SIZE } from '../common/constants';
+
+const PAGE_SIZE = FOOD_LIST_PAGE_SIZE;
 
 // Quick Add Button for Recent Foods with hover support
 const RecentQuickButton: React.FC<{
@@ -74,6 +77,9 @@ export const AddFoodScreen: React.FC = () => {
   // Voice input state
   const [showVoiceModal, setShowVoiceModal] = useState(false);
 
+  // Pagination state
+  const [displayCount, setDisplayCount] = useState(PAGE_SIZE);
+
   // Pair recent foods into groups of 2 for stacked vertical display
   const recentFoodPairs = useMemo(() => {
     const pairs: FoodItem[][] = [];
@@ -86,6 +92,22 @@ export const AddFoodScreen: React.FC = () => {
   const filteredFoods = useMemo(() => {
     return searchFoods(foodIndex, searchQuery, selectedCategory);
   }, [foodIndex, selectedCategory, searchQuery]);
+
+  // Reset pagination when filters change
+  useEffect(() => {
+    setDisplayCount(PAGE_SIZE);
+  }, [searchQuery, selectedCategory]);
+
+  // Paginated slice of filtered foods
+  const displayedFoods = useMemo(() => {
+    return filteredFoods.slice(0, displayCount);
+  }, [filteredFoods, displayCount]);
+
+  const handleLoadMore = useCallback(() => {
+    if (displayCount < filteredFoods.length) {
+      setDisplayCount(prev => Math.min(prev + PAGE_SIZE, filteredFoods.length));
+    }
+  }, [displayCount, filteredFoods.length]);
 
   // Multi-select handler - auto adds to selection
   const handleSelectFood = useCallback((food: FoodItem, quantity?: number) => {
@@ -319,7 +341,7 @@ export const AddFoodScreen: React.FC = () => {
       ) : (
         <FlatList
           style={{ flex: 1 }}
-          data={filteredFoods}
+          data={displayedFoods}
           keyExtractor={(item) => item.id}
           numColumns={2}
           renderItem={({ item }) => (
@@ -333,6 +355,16 @@ export const AddFoodScreen: React.FC = () => {
           )}
           contentContainerStyle={styles.list}
           columnWrapperStyle={styles.row}
+          onEndReached={handleLoadMore}
+          onEndReachedThreshold={0.5}
+          ListFooterComponent={
+            displayedFoods.length < filteredFoods.length ? (
+              <View style={styles.loadingMore}>
+                <ActivityIndicator size="small" color="#FF7B00" />
+                <Text style={styles.loadingMoreText}>Loading more...</Text>
+              </View>
+            ) : null
+          }
           ListHeaderComponent={
             <>
               {/* Multi-select Cart */}
@@ -404,7 +436,9 @@ export const AddFoodScreen: React.FC = () => {
                   </Text>
                 </View>
                 <Text style={styles.resultCount}>
-                  {filteredFoods.length} items
+                  {displayedFoods.length < filteredFoods.length
+                    ? `Showing ${displayedFoods.length} of ${filteredFoods.length} items`
+                    : `${filteredFoods.length} items`}
                 </Text>
               </View>
             </>

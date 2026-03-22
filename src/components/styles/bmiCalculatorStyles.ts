@@ -58,29 +58,43 @@ export const styles = StyleSheet.create({
   unitToggle: {
     flexDirection: "row",
     backgroundColor: "#F3F4F6",
-    borderRadius: 8,
-    padding: 2,
+    borderRadius: 12,
+    padding: 4,
   },
   unitToggleBtn: {
-    paddingHorizontal: 12,
-    paddingVertical: 4,
-    borderRadius: 6,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    borderRadius: 8,
   },
   unitToggleBtnActive: {
     backgroundColor: "#8B5CF6",
   },
   unitToggleText: {
-    fontSize: 12,
+    fontSize: 14,
     fontWeight: "600",
     color: "#6B7280",
   },
   unitToggleTextActive: {
     color: "#FFFFFF",
   },
+  heightInputContainer: {
+    flex: 1,
+    borderWidth: 2,
+    borderColor: "#E0E0E0",
+    borderRadius: 12,
+    paddingHorizontal: 16,
+  },
+  heightInput: {
+    fontSize: 18,
+    fontWeight: "600",
+    color: "#1F2937",
+    paddingVertical: 12,
+    textAlign: "center",
+  },
   inputRow: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 8,
+    gap: 12,
   },
   input: {
     flex: 1,
