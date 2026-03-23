@@ -1,13 +1,30 @@
 name: EAS Preview Build
 
 on:
-  push:
-    branches: [preview]
-  workflow_dispatch: # Manual trigger from GitHub Actions tab
+  workflow_dispatch:
+    inputs:
+      profile:
+        description: 'EAS Build Profile'
+        required: true
+        default: 'preview'
+        type: choice
+        options:
+          - preview
+          - development
+          - production
+      platform:
+        description: 'Target Platform'
+        required: true
+        default: 'android'
+        type: choice
+        options:
+          - android
+          - ios
+          - all
 
 jobs:
   build:
-    name: EAS Preview Build
+    name: "EAS Build (${{ inputs.profile }} - ${{ inputs.platform }})"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -28,5 +45,5 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build and publish preview
-        run: eas build --platform android --profile preview --non-interactive
+      - name: Run EAS Build
+        run: eas build --platform ${{ inputs.platform }} --profile ${{ inputs.profile }} --non-interactive
