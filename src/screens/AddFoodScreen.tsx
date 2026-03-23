@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback, useEffect } from 'react';
+import React, { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import {
   View,
   Text,
@@ -6,7 +6,6 @@ import {
   ScrollView,
   TouchableOpacity,
   ActivityIndicator,
-  Alert,
   Image,
   Pressable,
 } from 'react-native';
@@ -80,6 +79,9 @@ export const AddFoodScreen: React.FC = () => {
   // Pagination state
   const [displayCount, setDisplayCount] = useState(PAGE_SIZE);
 
+  // Auto-search timer ref
+  const autoSearchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   // Pair recent foods into groups of 2 for stacked vertical display
   const recentFoodPairs = useMemo(() => {
     const pairs: FoodItem[][] = [];
@@ -97,6 +99,36 @@ export const AddFoodScreen: React.FC = () => {
   useEffect(() => {
     setDisplayCount(PAGE_SIZE);
   }, [searchQuery, selectedCategory]);
+
+  // Auto-trigger online search when local results are empty
+  useEffect(() => {
+    // Clear any pending auto-search timer
+    if (autoSearchTimerRef.current) {
+      clearTimeout(autoSearchTimerRef.current);
+      autoSearchTimerRef.current = null;
+    }
+
+    const query = searchQuery.trim();
+    if (!query || query.length < 3 || selectedCategory) return;
+
+    // Only auto-search when local results are empty
+    if (filteredFoods.length === 0) {
+      // Start online search after a short debounce (2 seconds)
+      autoSearchTimerRef.current = setTimeout(() => {
+        handleSearchOnline();
+      }, 1000);
+    } else {
+      // If local results reappear, hide online results
+      setShowOnlineResults(false);
+      setOnlineResults([]);
+    }
+
+    return () => {
+      if (autoSearchTimerRef.current) {
+        clearTimeout(autoSearchTimerRef.current);
+      }
+    };
+  }, [searchQuery, filteredFoods.length, selectedCategory]);
 
   // Paginated slice of filtered foods
   const displayedFoods = useMemo(() => {
@@ -213,30 +245,17 @@ export const AddFoodScreen: React.FC = () => {
       setOnlineResults(results);
     } catch (error) {
       console.error('Online search error:', error);
-      Alert.alert('Search Error', 'Failed to search online. Please try again.');
     } finally {
       setIsSearchingOnline(false);
     }
   };
 
-  // Add online result to custom foods and log it
+  // Add online result to custom foods and log it (directly, no confirmation)
   const handleAddOnlineResult = async (result: OnlineSearchResult) => {
-    Alert.alert(
-      'Add to Custom Foods?',
-      `Add "${result.name}" (${result.calories} cal per ${result.servingSize}g) to your custom foods?`,
-      [
-        { text: 'Cancel', style: 'cancel' },
-        {
-          text: 'Add & Log',
-          onPress: async () => {
-            const foodItem = convertToFoodItem(result);
-            await createCustomFood(foodItem);
-            handleSelectFood(foodItem);
-            setShowOnlineResults(false);
-          },
-        },
-      ]
-    );
+    const foodItem = convertToFoodItem(result);
+    await createCustomFood(foodItem);
+    handleSelectFood(foodItem);
+    setShowOnlineResults(false);
   };
 
   const showRecentSection = showRecent && !searchQuery && !selectedCategory && recentFoods.length > 0;
@@ -303,7 +322,7 @@ export const AddFoodScreen: React.FC = () => {
                       <Text style={styles.onlineResultBrand}>{item.brand}</Text>
                     )}
                     <Text style={styles.onlineResultSource}>
-                      Source: {item.source === 'openfoodfacts' ? 'Open Food Facts' : 'CalorieNinjas'}
+                      Source: {item.source === 'usda' ? 'USDA' : item.source === 'openfoodfacts' ? 'Open Food Facts' : item.source === 'calorieninjas' ? 'CalorieNinjas' : 'Online'}
                     </Text>
                   </View>
                   <View style={styles.onlineResultCalories}>
@@ -451,23 +470,23 @@ export const AddFoodScreen: React.FC = () => {
                 "{searchQuery}" not in database
               </Text>
               
-              <TouchableOpacity
-                style={styles.searchOnlineButton}
-                onPress={handleSearchOnline}
-                disabled={isSearchingOnline}
-              >
-                {isSearchingOnline ? (
-                  <ActivityIndicator color="#FFFFFF" />
-                ) : (
-                  <>
-                    <Ionicons name="globe-outline" size={20} color="#FFFFFF" style={{ marginRight: 8 }} />
-                    <Text style={styles.searchOnlineText}>Search Online</Text>
-                  </>
-                )}
-              </TouchableOpacity>
+              {isSearchingOnline ? (
+                <View style={{ alignItems: 'center', marginTop: 12 }}>
+                  <ActivityIndicator size="small" color="#FF7B00" />
+                  <Text style={[styles.onlineNote, { marginTop: 8 }]}>Searching online...</Text>
+                </View>
+              ) : (
+                <TouchableOpacity
+                  style={styles.searchOnlineButton}
+                  onPress={handleSearchOnline}
+                >
+                  <Ionicons name="globe-outline" size={20} color="#FFFFFF" style={{ marginRight: 8 }} />
+                  <Text style={styles.searchOnlineText}>Search Online</Text>
+                </TouchableOpacity>
+              )}
               
               <Text style={styles.onlineNote}>
-                Free search using Open Food Facts database
+                {isSearchingOnline ? 'Checking USDA & Open Food Facts...' : 'Auto-searches after 2 seconds'}
               </Text>
             </View>
           }

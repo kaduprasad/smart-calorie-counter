@@ -11,6 +11,7 @@ import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { NumericInput } from './NumericInput';
 import { WeightEntry } from '../types';
 import { getWeightEntry, saveWeightEntry, getTodayDate } from '../services/storage';
+import { formatShortDate } from '../utils/normalize';
 
 interface WeightInputProps {
   date: string;
@@ -59,13 +60,6 @@ export const WeightInput: React.FC<WeightInputProps> = ({ date, onWeightSaved })
   };
 
   const isToday = date === getTodayDate();
-
-  // Format date for display (e.g., "20 Feb")
-  const formatShortDate = (dateStr: string) => {
-    const d = new Date(dateStr);
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    return `${d.getDate()} ${months[d.getMonth()]}`;
-  };
 
   if (isLoading) {
     return null;

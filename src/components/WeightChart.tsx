@@ -4,6 +4,7 @@ import { LineChart } from 'react-native-chart-kit';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { WeightEntry } from '../types';
 import { getWeightHistory, WeightPeriod } from '../services/storage';
+import { formatDateLabel } from '../utils/normalize';
 
 interface WeightChartProps {
   refreshTrigger?: number;
@@ -32,11 +33,6 @@ export const WeightChart: React.FC<WeightChartProps> = ({ refreshTrigger, weight
     const data = await getWeightHistory(selectedPeriod);
     setWeightData(data);
     setIsLoading(false);
-  };
-
-  const formatDateLabel = (dateStr: string): string => {
-    const date = new Date(dateStr);
-    return `${date.getDate()}/${date.getMonth() + 1}`;
   };
 
   // Calculate stats

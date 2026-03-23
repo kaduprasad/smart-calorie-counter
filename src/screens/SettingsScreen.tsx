@@ -17,6 +17,7 @@ import { AnimatedSaveButton } from '../components/AnimatedSaveButton';
 import { styles } from './styles/settingsScreenStyles';
 import { UserInfoSection } from '../components';
 import { APP_NAME, VALIDATION } from '../common/constants';
+import { formatTime } from '../utils/normalize';
 
 export const SettingsScreen: React.FC = () => {
   const { settings, updateSettings } = useApp();
@@ -131,12 +132,6 @@ export const SettingsScreen: React.FC = () => {
   const handleTestNotification = async () => {
     await sendTestNotification();
     Alert.alert('Test Sent', 'A test notification has been sent');
-  };
-
-  const formatTime = (h: number, m: number) => {
-    const period = h >= 12 ? 'PM' : 'AM';
-    const displayHour = h % 12 || 12;
-    return `${displayHour}:${m.toString().padStart(2, '0')} ${period}`;
   };
 
   const presetTimes = [

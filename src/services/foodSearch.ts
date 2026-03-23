@@ -1,4 +1,6 @@
+import { Platform } from 'react-native';
 import { FoodItem } from '../types';
+import { toTitleCase } from '../utils/normalize';
 import {
   OPEN_FOOD_FACTS_API_URL,
   CALORIE_NINJAS_API_URL,
@@ -27,50 +29,64 @@ export interface OnlineSearchResult {
 }
 
 // Search using Open Food Facts (free, no API key)
+// Includes retry logic for 429 rate-limit responses
 export const searchOpenFoodFacts = async (query: string): Promise<OnlineSearchResult[]> => {
-  try {
-    const response = await fetch(
-      `${OPEN_FOOD_FACTS_API_URL}?search_terms=${encodeURIComponent(query)}&search_simple=1&action=process&json=1&page_size=${OPEN_FOOD_FACTS_PAGE_SIZE}`,
-      {
-        headers: {
-          'User-Agent': USER_AGENT,
-        },
+  const attempt = async (retryCount: number): Promise<OnlineSearchResult[]> => {
+    try {
+      const response = await fetch(
+        `${OPEN_FOOD_FACTS_API_URL}?search_terms=${encodeURIComponent(query)}&search_simple=1&action=process&json=1&page_size=${OPEN_FOOD_FACTS_PAGE_SIZE}`,
+        {
+          headers: {
+            'User-Agent': USER_AGENT,
+          },
+        }
+      );
+
+      // Retry once on 429 Too Many Requests
+      if (response.status === 429 && retryCount < 1) {
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        return attempt(retryCount + 1);
       }
-    );
 
-    if (!response.ok) {
-      throw new Error('Failed to fetch from Open Food Facts');
-    }
+      if (!response.ok) {
+        throw new Error(`Open Food Facts returned ${response.status}`);
+      }
 
-    const data = await response.json();
-    const results: OnlineSearchResult[] = [];
+      const data = await response.json();
+      const results: OnlineSearchResult[] = [];
 
-    if (data.products && Array.isArray(data.products)) {
-      for (const product of data.products) {
-        // Only include products with calorie information
-        const calories = product.nutriments?.['energy-kcal_100g'] || 
-                        product.nutriments?.['energy-kcal'] ||
-                        (product.nutriments?.['energy_100g'] ? product.nutriments['energy_100g'] / 4.184 : null);
-        
-        if (calories && product.product_name) {
-          results.push({
-            name: product.product_name,
-            calories: Math.round(calories),
-            servingSize: 100,
-            servingUnit: 'grams',
-            source: 'openfoodfacts',
-            imageUrl: product.image_small_url || product.image_url,
-            brand: product.brands,
-          });
+      if (data.products && Array.isArray(data.products)) {
+        for (const product of data.products) {
+          const n = product.nutriments ?? {};
+          const calories = n['energy-kcal_100g'] || n['energy-kcal'] ||
+            (n['energy_100g'] ? n['energy_100g'] / 4.184 : null);
+
+          if (calories && product.product_name) {
+            results.push({
+              name: product.product_name,
+              calories: Math.round(calories),
+              protein: n['proteins_100g'] ? Math.round(n['proteins_100g']) : undefined,
+              fat: n['fat_100g'] ? Math.round(n['fat_100g']) : undefined,
+              fiber: n['fiber_100g'] ? Math.round(n['fiber_100g']) : undefined,
+              carbs: n['carbohydrates_100g'] ? Math.round(n['carbohydrates_100g']) : undefined,
+              servingSize: 100,
+              servingUnit: 'grams',
+              source: 'openfoodfacts',
+              imageUrl: product.image_small_url || product.image_url,
+              brand: product.brands,
+            });
+          }
         }
       }
-    }
 
-    return results.slice(0, MAX_ONLINE_SEARCH_RESULTS); // Return top results
-  } catch (error) {
-    console.error('Open Food Facts search error:', error);
-    return [];
-  }
+      return results.slice(0, MAX_ONLINE_SEARCH_RESULTS);
+    } catch (error) {
+      console.error('Open Food Facts search error:', error);
+      return [];
+    }
+  };
+
+  return attempt(0);
 };
 
 // Search using CalorieNinjas API (free tier - 10,000 requests/month)
@@ -119,22 +135,27 @@ export const searchCalorieNinjas = async (query: string): Promise<OnlineSearchRe
   }
 };
 
+
 // Search using USDA FoodData Central (free, detailed macro profiles)
 // Get a free API key at: https://fdc.nal.usda.gov/api-key-signup
 export const searchUSDA = async (query: string): Promise<OnlineSearchResult[]> => {
   try {
-    const response = await fetch(
-      `${USDA_FOOD_DATA_API_URL}/foods/search?api_key=${encodeURIComponent(USDA_API_KEY)}&query=${encodeURIComponent(query)}&dataType=Foundation,SR%20Legacy&pageSize=10`,
-      {
-        headers: { 'Content-Type': 'application/json' },
-      }
-    );
+    // Try Foundation + SR Legacy first; fall back to Branded if no results
+    const fetchUSDA = async (dataType: string) => {
+      const response = await fetch(
+        `${USDA_FOOD_DATA_API_URL}/foods/search?api_key=${encodeURIComponent(USDA_API_KEY)}&query=${encodeURIComponent(query)}&dataType=${encodeURIComponent(dataType)}&pageSize=25&sortBy=dataType.keyword&sortOrder=asc`,
+        { headers: { 'Content-Type': 'application/json' } }
+      );
+      if (!response.ok) throw new Error('Failed to fetch from USDA FoodData Central');
+      return response.json();
+    };
 
-    if (!response.ok) {
-      throw new Error('Failed to fetch from USDA FoodData Central');
+    let data = await fetchUSDA('Foundation,SR Legacy');
+
+    // If no results from standard datasets, try Branded
+    if (!data.foods?.length && data.totalHits === 0) {
+      data = await fetchUSDA('Branded');
     }
-
-    const data = await response.json();
     const results: OnlineSearchResult[] = [];
 
     if (data.foods && Array.isArray(data.foods)) {
@@ -148,7 +169,7 @@ export const searchUSDA = async (query: string): Promise<OnlineSearchResult[]> =
         if (!calories || !food.description) continue;
 
         results.push({
-          name: food.description,
+          name: toTitleCase(food.description),
           calories: Math.round(calories),
           protein: Math.round(findNutrient(1003)),
           fat: Math.round(findNutrient(1004)),
@@ -157,10 +178,13 @@ export const searchUSDA = async (query: string): Promise<OnlineSearchResult[]> =
           servingSize: 100,
           servingUnit: 'grams',
           source: 'usda',
-          brand: food.brandOwner || undefined,
+          brand: food.brandOwner ? toTitleCase(food.brandOwner) : undefined,
         });
       }
     }
+
+    // Sort: highest calorie items first (most relevant for a calorie tracker)
+    results.sort((a, b) => b.calories - a.calories);
 
     return results.slice(0, MAX_ONLINE_SEARCH_RESULTS);
   } catch (error) {
@@ -169,24 +193,22 @@ export const searchUSDA = async (query: string): Promise<OnlineSearchResult[]> =
   }
 };
 
-// Combined search - tries multiple sources
-// USDA is prioritized for detailed macro data, then CalorieNinjas for Indian foods
+// Combined search - tries multiple sources in parallel for speed
+// USDA results are shown first (detailed macros), then others
 export const searchFoodOnline = async (query: string): Promise<OnlineSearchResult[]> => {
-  const results: OnlineSearchResult[] = [];
+  // Run all API calls in parallel for faster results
+  const searches: Promise<OnlineSearchResult[]>[] = [
+    searchUSDA(query),
+    searchOpenFoodFacts(query),
+  ];
 
-  // Try USDA FoodData Central FIRST (detailed macros, official government data)
-  const usdaResults = await searchUSDA(query);
-  results.push(...usdaResults);
-
-  // Try CalorieNinjas if API key is configured (good for Indian foods)
-  if (CALORIE_NINJAS_API_KEY) {
-    const cnResults = await searchCalorieNinjas(query);
-    results.push(...cnResults);
+  // Add CalorieNinjas only on native (no CORS support on web)
+  if (CALORIE_NINJAS_API_KEY && Platform.OS !== 'web') {
+    searches.push(searchCalorieNinjas(query));
   }
 
-  // Try Open Food Facts (always free, good for packaged foods)
-  const offResults = await searchOpenFoodFacts(query);
-  results.push(...offResults);
+  const allResults = await Promise.all(searches);
+  const results = allResults.flat();
 
   // Remove duplicates based on name similarity
   const uniqueResults = results.filter((item, index, self) =>

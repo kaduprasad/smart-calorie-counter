@@ -1,5 +1,6 @@
 import { FoodItem } from '../types';
 import { FoodIndex, searchFoods } from '../data/foodIndex';
+import { cleanVoiceText } from './normalize';
 
 export interface ParsedFoodEntry {
   rawText: string;
@@ -85,25 +86,6 @@ export function parseVoiceInput(
   const cleaned = cleanVoiceText(text);
   const entries = splitIntoEntries(cleaned);
   return entries.map(entry => parseSingleEntry(entry, foodIndex));
-}
-
-/**
- * Pre-process raw speech text:
- *  - Strip apostrophes & contraction suffixes ("don't" → "don")
- *  - Remove filler words the mic may inject
- *  - Normalize whitespace
- */
-function cleanVoiceText(text: string): string {
-  return text
-    // "don't" → "don", "won't" → "won", "can't" → "can"
-    .replace(/['']t\b/gi, '')
-    // Remove stray apostrophes: "don'" → "don"
-    .replace(/['']/g, '')
-    // Remove common filler words the mic may inject
-    .replace(/\b(um|uh|hmm|like|please|okay|ok|i want|i need|add|give me|put)\b/gi, '')
-    // Collapse extra whitespace
-    .replace(/\s+/g, ' ')
-    .trim();
 }
 
 // ─── Smart splitting ───────────────────────────────────────────────

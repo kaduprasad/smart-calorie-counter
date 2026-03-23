@@ -90,22 +90,5 @@ export const getExerciseMET = (type: ExerciseType): number => {
   return EXERCISE_DATA[type].met;
 };
 
-/**
- * Format exercise summary for display
- * @example "30 min • 4.0 km • 280 kcal"
- */
-export const formatExerciseSummary = (
-  durationMins: number,
-  caloriesBurnt: number,
-  distanceKm?: number
-): string => {
-  const parts: string[] = [`${durationMins} min`];
-  
-  if (distanceKm) {
-    parts.push(`${distanceKm} km`);
-  }
-  
-  parts.push(`${caloriesBurnt} kcal`);
-  
-  return parts.join(' • ');
-};
+// Re-export formatExerciseSummary from centralized normalize.ts
+export { formatExerciseSummary } from '../utils/normalize';

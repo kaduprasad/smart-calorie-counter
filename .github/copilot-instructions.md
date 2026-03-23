@@ -121,6 +121,8 @@ All configuration constants live in `src/common/constants.ts`. This includes:
 
 ## Code Conventions
 
+- **Readability:** Add a helper function into helper file for complex logic don't burden a single file.
+- **Reusability and modularity:** Components and hooks should be reusable and modular. Avoid duplicating logic.
 - **Styles:** Always in separate `styles/` folders — `screens/styles/` and `components/styles/`. Use `StyleSheet.create()`.
 - **Exports:** Barrel exports via `index.ts` in `components/`, `screens/`, `common/`.
 - **State:** Single `AppContext` provides all global state. No Redux/Zustand.

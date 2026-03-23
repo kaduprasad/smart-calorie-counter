@@ -13,46 +13,10 @@
  */
 
 import { FoodItem, FoodCategory } from '../types';
+import { normalizeForSearch } from '../utils/normalize';
 
-// ─── Phonetic normalization for Indian food search ──────────────────────
-// Handles common Hinglish/transliteration spelling variations:
-//   ladoo/laado/lado/laadu/laddu/ladu  →  ladu
-//   bhaji/baji  →  baji
-//   chutney/chatni  →  catni / cutney
-//   biryani/biriyani/briyani  →  biryani / biriyani / briyani
-//   dal/daal/dhal  →  dal
-//   barfi/burfi/barfee  →  barfi
-//   kheer/keer  →  ker
-//   sabzi/sabji  →  sabzi / sabji
-//
-// The normalizer reduces both the query AND the stored keywords to a
-// canonical form so variations match without storing every permutation.
-
-export function normalizeForSearch(text: string): string {
-  return text
-    // Vowel doubling → single vowel
-    .replace(/aa/g, 'a')
-    .replace(/ee/g, 'i')
-    .replace(/oo/g, 'u')
-    .replace(/ii/g, 'i')
-    .replace(/uu/g, 'u')
-    // Double consonants → single
-    .replace(/dd/g, 'd')
-    .replace(/tt/g, 't')
-    .replace(/nn/g, 'n')
-    .replace(/ll/g, 'l')
-    // Aspirated consonants → base
-    .replace(/bh/g, 'b')
-    .replace(/dh/g, 'd')
-    .replace(/gh/g, 'g')
-    .replace(/jh/g, 'j')
-    .replace(/kh/g, 'k')
-    .replace(/th/g, 't')
-    // sh→s (shev↔sev, sheera↔seera, shengdana↔sengdana)
-    .replace(/sh/g, 's')
-    // ph→f (phulka↔fulka)
-    .replace(/ph/g, 'f');
-}
+// Re-export for backward compatibility
+export { normalizeForSearch } from '../utils/normalize';
 
 // ─── Index types ────────────────────────────────────────────────────────
 
