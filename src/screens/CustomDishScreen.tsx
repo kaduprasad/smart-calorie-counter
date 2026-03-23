@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   ScrollView,
   Alert,
@@ -12,7 +11,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useApp } from '../context/AppContext';
 import { FoodItem, FoodUnit } from '../types';
-import { NumericInput } from '../components/NumericInput';
+import { InputTextField } from '../components/InputTextField';
+import { FormField } from '../components/FormField';
 import { styles } from './styles/customDishScreenStyles';
 
 const unitOptions: { value: FoodUnit; label: string }[] = [
@@ -134,54 +134,41 @@ export const CustomDishScreen: React.FC = () => {
           <View style={styles.form}>
             <Text style={styles.formTitle}>New Custom Dish</Text>
 
-            <View style={styles.inputGroup}>
-              <Text style={styles.label}>Dish Name *</Text>
-              <TextInput
-                style={styles.input}
-                value={name}
-                onChangeText={setName}
-                placeholder="e.g., Mom's Special Sabji"
-                placeholderTextColor="#999"
-              />
-            </View>
+            <InputTextField
+              label="Dish Name"
+              required
+              value={name}
+              onChangeText={setName}
+              placeholder="e.g., Mom's Special Sabji"
+            />
 
-            <View style={styles.inputGroup}>
-              <Text style={styles.label}>Marathi Name (optional)</Text>
-              <TextInput
-                style={styles.input}
-                value={nameMarathi}
-                onChangeText={setNameMarathi}
-                placeholder="e.g., आईची भाजी"
-                placeholderTextColor="#999"
-              />
-            </View>
+            <InputTextField
+              label="Regional Name"
+              value={nameMarathi}
+              onChangeText={setNameMarathi}
+              placeholder="e.g. आईची भाजी"
+            />
 
-            <View style={styles.inputGroup}>
-              <Text style={styles.label}>Calories per Unit *</Text>
-              <NumericInput
-                style={styles.input}
-                value={calories}
-                onChangeText={setCalories}
-                placeholder="e.g., 150"
-                allowDecimal={false}
-                placeholderTextColor="#999"
-              />
-            </View>
+            <InputTextField
+              label="Calories per Unit"
+              required
+              numeric
+              allowDecimal={false}
+              value={calories}
+              onChangeText={setCalories}
+              placeholder="e.g., 150"
+            />
 
-            <View style={styles.inputGroup}>
-              <Text style={styles.label}>Weight per Unit (grams, optional)</Text>
-              <NumericInput
-                style={styles.input}
-                value={weight}
-                onChangeText={setWeight}
-                placeholder="e.g., 100"
-                allowDecimal={false}
-                placeholderTextColor="#999"
-              />
-            </View>
+            <InputTextField
+              label="Weight per Unit (grams)"
+              numeric
+              allowDecimal={false}
+              value={weight}
+              onChangeText={setWeight}
+              placeholder="e.g., 100"
+            />
 
-            <View style={styles.inputGroup}>
-              <Text style={styles.label}>Unit Type</Text>
+            <FormField label="Unit Type">
               <View style={styles.unitOptions}>
                 {unitOptions.map((option) => (
                   <TouchableOpacity
@@ -203,7 +190,7 @@ export const CustomDishScreen: React.FC = () => {
                   </TouchableOpacity>
                 ))}
               </View>
-            </View>
+            </FormField>
 
             <View style={styles.formButtons}>
               <TouchableOpacity
