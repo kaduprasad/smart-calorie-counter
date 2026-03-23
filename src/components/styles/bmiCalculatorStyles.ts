@@ -5,6 +5,8 @@ export const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     borderRadius: 16,
     padding: 16,
+    borderWidth: 1,
+    borderColor: "#DDD6FE",
   },
   loadingContainer: {
     padding: 20,

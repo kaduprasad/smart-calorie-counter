@@ -152,6 +152,7 @@ export const WeightChart: React.FC<WeightChartProps> = ({ refreshTrigger, weight
                 styles.periodButtonText,
                 selectedPeriod === period.key && styles.periodButtonTextActive,
               ]}
+              numberOfLines={1}
             >
               {period.label}
             </Text>
@@ -302,22 +303,24 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: '#F5F5F5',
     borderRadius: 8,
-    padding: 4,
+    padding: 3,
     marginBottom: 16,
+    gap: 2,
   },
   periodButton: {
     flex: 1,
-    paddingVertical: 8,
-    paddingHorizontal: 4,
+    paddingVertical: 6,
+    paddingHorizontal: 2,
     borderRadius: 6,
     alignItems: 'center',
+    justifyContent: 'center',
   },
   periodButtonActive: {
     backgroundColor: '#FF7B00',
   },
   periodButtonText: {
-    fontSize: 12,
-    fontWeight: '500',
+    fontSize: 11,
+    fontWeight: '600',
     color: '#666666',
   },
   periodButtonTextActive: {

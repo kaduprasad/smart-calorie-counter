@@ -158,7 +158,7 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   logDate: {
-    fontSize: 16,
+    fontSize: 13,
     fontWeight: '600',
     color: '#1A1A1A',
   },
