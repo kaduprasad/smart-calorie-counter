@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { COLORS } from '../../common/colors';
 
 export const styles = StyleSheet.create({
   container: {
@@ -28,13 +29,16 @@ export const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
   },
+  actionButtons: {
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    gap: 10,
+  },
   createButton: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#FF7B00',
-    marginHorizontal: 16,
-    marginVertical: 16,
+    backgroundColor: COLORS.purpleMedium,
     padding: 16,
     borderRadius: 12,
   },
@@ -43,11 +47,30 @@ export const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#FFFFFF',
   },
+  recipeButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: COLORS.purpleMedium,
+    padding: 16,
+    borderRadius: 12,
+  },
+  recipeButtonText: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: '#FFFFFF',
+  },
+  recipeButtonSub: {
+    fontSize: 11,
+    color: COLORS.purpleSubtext,
+    marginTop: 2,
+  },
   form: {
     backgroundColor: '#FFFFFF',
     margin: 16,
     padding: 20,
     borderRadius: 16,
+    borderWidth: 1,
+    borderColor: COLORS.purpleBorder,
   },
   formTitle: {
     fontSize: 18,
@@ -83,7 +106,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#F5F5F5',
   },
   unitOptionActive: {
-    backgroundColor: '#FF7B00',
+    backgroundColor: COLORS.purpleMedium,
   },
   unitOptionText: {
     fontSize: 14,
@@ -108,7 +131,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#F5F5F5',
   },
   saveButton: {
-    backgroundColor: '#FF7B00',
+    backgroundColor: COLORS.purpleMedium,
   },
   cancelButtonText: {
     fontSize: 16,
@@ -137,6 +160,8 @@ export const styles = StyleSheet.create({
     padding: 16,
     borderRadius: 12,
     marginBottom: 8,
+    borderWidth: 1,
+    borderColor: COLORS.purpleBorder,
   },
   customFoodInfo: {
     flex: 1,
@@ -153,7 +178,7 @@ export const styles = StyleSheet.create({
   },
   customFoodCalories: {
     fontSize: 14,
-    color: '#FF7B00',
+    color: COLORS.purple,
     marginTop: 4,
   },
   deleteButton: {

@@ -133,3 +133,6 @@ AddFoodScreen uses multi-select with a `FoodSelectionCart` — users pick multip
 
 ### Voice Input
 `VoiceInputModal` uses `expo-speech-recognition` with `en-IN` locale. Parsed via `foodVoiceParser.ts` which matches spoken food names to the food index.
+
+### Theme and Colors
+For color scheme refer these standard color codes from this file `src/common/colors.ts` and whenever new color is added add that color in the `COLORS` object with meaningful readable names in `src/common/colors.ts` and use that color from the COLORS object instead of hardcoding it in the stylesheets or tsx files.

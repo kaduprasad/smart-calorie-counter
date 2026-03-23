@@ -20,3 +20,4 @@ export { ExerciseSelectionCart, SelectedExercise } from './ExerciseSelectionCart
 export { VoiceInputModal } from './VoiceInputModal';
 export { FormField } from './FormField';
 export { InputTextField } from './InputTextField';
+export { RecipeBuilder } from './RecipeBuilder';

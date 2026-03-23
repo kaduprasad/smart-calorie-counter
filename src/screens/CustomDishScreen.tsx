@@ -5,14 +5,15 @@ import {
   TouchableOpacity,
   ScrollView,
   Alert,
-  FlatList,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { COLORS } from '../common/colors';
 import { useApp } from '../context/AppContext';
 import { FoodItem, FoodUnit } from '../types';
 import { InputTextField } from '../components/InputTextField';
 import { FormField } from '../components/FormField';
+import { RecipeBuilder } from '../components/RecipeBuilder';
 import { styles } from './styles/customDishScreenStyles';
 
 const unitOptions: { value: FoodUnit; label: string }[] = [
@@ -35,6 +36,7 @@ export const CustomDishScreen: React.FC = () => {
   const [weight, setWeight] = useState('');
   const [selectedUnit, setSelectedUnit] = useState<FoodUnit>('serving');
   const [showForm, setShowForm] = useState(false);
+  const [showRecipeBuilder, setShowRecipeBuilder] = useState(false);
 
   const handleCreate = async () => {
     if (!name.trim()) {
@@ -75,6 +77,40 @@ export const CustomDishScreen: React.FC = () => {
     }
   };
 
+  const handleRecipeSave = async (recipe: {
+    name: string;
+    nameMarathi: string;
+    servings: number;
+    ingredients: { ingredient: { name: string }; grams: number }[];
+    totalCalories: number;
+    totalProtein: number;
+    totalFat: number;
+    totalFiber: number;
+    caloriesPerServing: number;
+  }) => {
+    const newFood: FoodItem = {
+      id: `custom-${Date.now()}`,
+      name: recipe.name,
+      nameMarathi: recipe.nameMarathi || undefined,
+      category: 'custom',
+      caloriesPerUnit: recipe.caloriesPerServing,
+      proteinPerUnit: Math.round(recipe.totalProtein / recipe.servings),
+      fatPerUnit: Math.round(recipe.totalFat / recipe.servings),
+      fiberPerUnit: Math.round(recipe.totalFiber / recipe.servings),
+      unit: 'serving',
+      isCustom: true,
+      searchKeywords: recipe.ingredients.map(i => i.ingredient.name.toLowerCase()),
+    };
+
+    try {
+      await createCustomFood(newFood);
+      setShowRecipeBuilder(false);
+      Alert.alert('Success', `"${recipe.name}" created!\n${recipe.caloriesPerServing} cal per serving (${recipe.servings} servings)`);
+    } catch (error) {
+      Alert.alert('Error', 'Failed to create dish');
+    }
+  };
+
   const handleDelete = (food: FoodItem) => {
     Alert.alert(
       'Delete Custom Dish',
@@ -90,46 +126,38 @@ export const CustomDishScreen: React.FC = () => {
     );
   };
 
-  const renderCustomFood = ({ item }: { item: FoodItem }) => (
-    <View style={styles.customFoodItem}>
-      <View style={styles.customFoodInfo}>
-        <Text style={styles.customFoodName}>{item.name}</Text>
-        {item.nameMarathi && (
-          <Text style={styles.customFoodMarathi}>{item.nameMarathi}</Text>
-        )}
-        <Text style={styles.customFoodCalories}>
-          {item.caloriesPerUnit} cal per {item.unit}
-          {item.unitWeight && ` (${item.unitWeight}g)`}
-        </Text>
-      </View>
-      <TouchableOpacity
-        style={styles.deleteButton}
-        onPress={() => handleDelete(item)}
-      >
-        <Ionicons name="trash-outline" size={22} color="#FF4444" />
-      </TouchableOpacity>
-    </View>
-  );
-
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <View style={styles.header}>
         <View style={styles.titleRow}>
-          <Ionicons name="star" size={28} color="#FF7B00" />
+          <MaterialCommunityIcons name="chef-hat" size={28} color={COLORS.purple} />
           <Text style={styles.title}>Custom Dishes</Text>
         </View>
-        <Text style={styles.subtitle}>Create your own food items</Text>
+        <Text style={styles.subtitle}>Create your own meal recipes</Text>
       </View>
 
       <ScrollView style={styles.scrollView}>
         {!showForm ? (
-          <TouchableOpacity
-            style={styles.createButton}
-            onPress={() => setShowForm(true)}
-          >
-            <Ionicons name="add-circle" size={24} color="#FFFFFF" style={{ marginRight: 8 }} />
-            <Text style={styles.createButtonText}>Create New Dish</Text>
-          </TouchableOpacity>
+          <View style={styles.actionButtons}>
+            <TouchableOpacity
+              style={styles.createButton}
+              onPress={() => setShowForm(true)}
+            >
+              <Ionicons name="add-circle" size={24} color="#FFFFFF" style={{ marginRight: 8 }} />
+              <Text style={styles.createButtonText}>Quick Create</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.recipeButton}
+              onPress={() => setShowRecipeBuilder(true)}
+            >
+              <MaterialCommunityIcons name="chef-hat" size={22} color="#FFFFFF" style={{ marginRight: 8 }} />
+              <View>
+                <Text style={styles.recipeButtonText}>Build from Ingredients</Text>
+                <Text style={styles.recipeButtonSub}>Calculate calories from raw ingredients</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
         ) : (
           <View style={styles.form}>
             <Text style={styles.formTitle}>New Custom Dish</Text>
@@ -229,15 +257,35 @@ export const CustomDishScreen: React.FC = () => {
               </Text>
             </View>
           ) : (
-            <FlatList
-              data={customFoods}
-              keyExtractor={(item) => item.id}
-              renderItem={renderCustomFood}
-              scrollEnabled={false}
-            />
+            customFoods.map(item => (
+              <View key={item.id} style={styles.customFoodItem}>
+                <View style={styles.customFoodInfo}>
+                  <Text style={styles.customFoodName}>{item.name}</Text>
+                  {item.nameMarathi && (
+                    <Text style={styles.customFoodMarathi}>{item.nameMarathi}</Text>
+                  )}
+                  <Text style={styles.customFoodCalories}>
+                    {item.caloriesPerUnit} cal per {item.unit}
+                    {item.unitWeight && ` (${item.unitWeight}g)`}
+                  </Text>
+                </View>
+                <TouchableOpacity
+                  style={styles.deleteButton}
+                  onPress={() => handleDelete(item)}
+                >
+                  <Ionicons name="trash-outline" size={22} color="#FF4444" />
+                </TouchableOpacity>
+              </View>
+            ))
           )}
         </View>
       </ScrollView>
+
+      <RecipeBuilder
+        visible={showRecipeBuilder}
+        onClose={() => setShowRecipeBuilder(false)}
+        onSave={handleRecipeSave}
+      />
     </SafeAreaView>
   );
 };

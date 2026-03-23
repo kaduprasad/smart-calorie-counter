@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Text, View, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
   HomeScreen,
@@ -98,7 +98,16 @@ const MainTabs: React.FC = () => {
         component={CustomDishScreen}
         options={{
           tabBarIcon: ({ focused }) => (
-            <TabIcon iconName="star" focused={focused} label="Custom" />
+            <View style={styles.tabIconContainer}>
+              <MaterialCommunityIcons
+                name={focused ? 'chef-hat' : 'chef-hat'}
+                size={22}
+                color={focused ? '#FF7B00' : '#999999'}
+              />
+              <Text style={[styles.tabLabel, focused && styles.tabLabelActive]} numberOfLines={1}>
+                Custom
+              </Text>
+            </View>
           ),
         }}
       />

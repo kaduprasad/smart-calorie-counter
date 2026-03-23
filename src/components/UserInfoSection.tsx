@@ -429,30 +429,36 @@ export const UserInfoSection: React.FC<UserInfoSectionProps> = ({ onDataUpdate }
       <View style={styles.section}>
         <Text style={styles.sectionLabel}>Activity Level</Text>
         <View style={styles.activityGrid}>
-          {ACTIVITY_LEVELS.map((level) => (
-            <TouchableOpacity
-              key={level.key}
-              style={[
-                styles.activityBtn,
-                selectedActivityLevel === level.key && styles.activityBtnActive,
-              ]}
-              onPress={() => handleActivitySelect(level.key)}
-            >
-              <MaterialCommunityIcons
-                name={level.icon as any}
-                size={24}
-                color={selectedActivityLevel === level.key ? '#FFFFFF' : '#4CAF50'}
-              />
-              <Text
+          {ACTIVITY_LEVELS.map((level) => {
+            const isActive = selectedActivityLevel === level.key;
+            const accentColor = selectedGender === 'female' ? '#EC4899' : '#3B82F6';
+            const lightBg = selectedGender === 'female' ? '#FDF2F8' : '#EFF6FF';
+            const darkText = selectedGender === 'female' ? '#9D174D' : '#1E40AF';
+            return (
+              <TouchableOpacity
+                key={level.key}
                 style={[
-                  styles.activityLabel,
-                  selectedActivityLevel === level.key && styles.activityLabelActive,
+                  styles.activityBtn,
+                  { backgroundColor: isActive ? accentColor : lightBg },
                 ]}
+                onPress={() => handleActivitySelect(level.key)}
               >
-                {level.label}
-              </Text>
-            </TouchableOpacity>
-          ))}
+                <MaterialCommunityIcons
+                  name={level.icon as any}
+                  size={24}
+                  color={isActive ? '#FFFFFF' : accentColor}
+                />
+                <Text
+                  style={[
+                    styles.activityLabel,
+                    { color: isActive ? '#FFFFFF' : darkText },
+                  ]}
+                >
+                  {level.label}
+                </Text>
+              </TouchableOpacity>
+            );
+          })}
         </View>
         {selectedActivityLevel && (
           <Text style={styles.activityDescription}>
