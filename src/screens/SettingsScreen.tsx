@@ -387,15 +387,23 @@ export const SettingsScreen: React.FC = () => {
             <View style={styles.features}>
               <View style={styles.featureRow}>
                 <Ionicons name="checkmark-circle" size={16} color="#4CAF50" />
-                <Text style={styles.featureItem}>330+ Indian food items</Text>
+                <Text style={styles.featureItem}>1020+ Indian food items</Text>
               </View>
               <View style={styles.featureRow}>
                 <Ionicons name="checkmark-circle" size={16} color="#4CAF50" />
-                <Text style={styles.featureItem}>15 food categories</Text>
+                <Text style={styles.featureItem}>16 food categories</Text>
               </View>
               <View style={styles.featureRow}>
                 <Ionicons name="checkmark-circle" size={16} color="#4CAF50" />
-                <Text style={styles.featureItem}>BMR & TDEE calculator</Text>
+                <Text style={styles.featureItem}>USDA online food search with macros</Text>
+              </View>
+              <View style={styles.featureRow}>
+                <Ionicons name="checkmark-circle" size={16} color="#4CAF50" />
+                <Text style={styles.featureItem}>Recipe builder from 120+ ingredients</Text>
+              </View>
+              <View style={styles.featureRow}>
+                <Ionicons name="checkmark-circle" size={16} color="#4CAF50" />
+                <Text style={styles.featureItem}>BMR, TDEE & BMI calculator</Text>
               </View>
               <View style={styles.featureRow}>
                 <Ionicons name="checkmark-circle" size={16} color="#4CAF50" />
@@ -407,15 +415,19 @@ export const SettingsScreen: React.FC = () => {
               </View>
               <View style={styles.featureRow}>
                 <Ionicons name="checkmark-circle" size={16} color="#4CAF50" />
-                <Text style={styles.featureItem}>Visual speedometer gauge</Text>
+                <Text style={styles.featureItem}>Voice input for food logging</Text>
               </View>
               <View style={styles.featureRow}>
                 <Ionicons name="checkmark-circle" size={16} color="#4CAF50" />
-                <Text style={styles.featureItem}>History & statistics</Text>
+                <Text style={styles.featureItem}>Weight tracking with charts</Text>
               </View>
               <View style={styles.featureRow}>
                 <Ionicons name="checkmark-circle" size={16} color="#4CAF50" />
                 <Text style={styles.featureItem}>Custom dish creation</Text>
+              </View>
+              <View style={styles.featureRow}>
+                <Ionicons name="checkmark-circle" size={16} color="#4CAF50" />
+                <Text style={styles.featureItem}>History & statistics</Text>
               </View>
               <View style={styles.featureRow}>
                 <Ionicons name="checkmark-circle" size={16} color="#4CAF50" />

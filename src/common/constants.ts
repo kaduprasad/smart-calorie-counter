@@ -7,6 +7,7 @@ export const APP_LOCALE = 'en-IN';
 // ─── API Configuration ──────────────────────────────────────────────────
 export const OPEN_FOOD_FACTS_API_URL = 'https://world.openfoodfacts.org/cgi/search.pl';
 export const CALORIE_NINJAS_API_URL = 'https://api.calorieninjas.com/v1/nutrition';
+export const USDA_FOOD_DATA_API_URL = 'https://api.nal.usda.gov/fdc/v1';
 export const REMOTE_FOODS_URL =
   'https://raw.githubusercontent.com/kaduprasad/smart-calorie-counter/main/data/remote-foods.json';
 export const USER_AGENT = 'CalorieCounter-MaharashtrianFood/1.0';

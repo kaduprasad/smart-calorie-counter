@@ -2,21 +2,26 @@ import { FoodItem } from '../types';
 import {
   OPEN_FOOD_FACTS_API_URL,
   CALORIE_NINJAS_API_URL,
+  USDA_FOOD_DATA_API_URL,
   USER_AGENT,
   OPEN_FOOD_FACTS_PAGE_SIZE,
   MAX_ONLINE_SEARCH_RESULTS,
 } from '../common/constants';
 
-// ⚠️ ADD YOUR FREE API KEY HERE (get it from https://calorieninjas.com/api)
-// CalorieNinjas is BEST for Indian foods - it understands "chapati", "dal", "biryani" etc.
-const CALORIE_NINJAS_API_KEY = ''; // e.g., 'abc123xyz...'
+// API keys loaded from .env (EXPO_PUBLIC_ prefix exposes them to client code)
+const CALORIE_NINJAS_API_KEY = process.env.EXPO_PUBLIC_CALORIE_NINJAS_API_KEY ?? '';
+const USDA_API_KEY = process.env.EXPO_PUBLIC_USDA_API_KEY ?? 'DEMO_KEY';
 
 export interface OnlineSearchResult {
   name: string;
   calories: number;
+  protein?: number;
+  fat?: number;
+  fiber?: number;
+  carbs?: number;
   servingSize: number;
   servingUnit: string;
-  source: 'openfoodfacts' | 'calorieninjas' | 'manual';
+  source: 'openfoodfacts' | 'calorieninjas' | 'usda' | 'manual';
   imageUrl?: string;
   brand?: string;
 }
@@ -114,12 +119,66 @@ export const searchCalorieNinjas = async (query: string): Promise<OnlineSearchRe
   }
 };
 
+// Search using USDA FoodData Central (free, detailed macro profiles)
+// Get a free API key at: https://fdc.nal.usda.gov/api-key-signup
+export const searchUSDA = async (query: string): Promise<OnlineSearchResult[]> => {
+  try {
+    const response = await fetch(
+      `${USDA_FOOD_DATA_API_URL}/foods/search?api_key=${encodeURIComponent(USDA_API_KEY)}&query=${encodeURIComponent(query)}&dataType=Foundation,SR%20Legacy&pageSize=10`,
+      {
+        headers: { 'Content-Type': 'application/json' },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch from USDA FoodData Central');
+    }
+
+    const data = await response.json();
+    const results: OnlineSearchResult[] = [];
+
+    if (data.foods && Array.isArray(data.foods)) {
+      for (const food of data.foods) {
+        const nutrients = food.foodNutrients || [];
+        const findNutrient = (id: number) =>
+          nutrients.find((n: { nutrientId: number; value?: number }) => n.nutrientId === id)?.value ?? 0;
+
+        // USDA nutrient IDs: 1008=Energy(kcal), 1003=Protein, 1004=Fat, 1079=Fiber, 1005=Carbs
+        const calories = findNutrient(1008);
+        if (!calories || !food.description) continue;
+
+        results.push({
+          name: food.description,
+          calories: Math.round(calories),
+          protein: Math.round(findNutrient(1003)),
+          fat: Math.round(findNutrient(1004)),
+          fiber: Math.round(findNutrient(1079)),
+          carbs: Math.round(findNutrient(1005)),
+          servingSize: 100,
+          servingUnit: 'grams',
+          source: 'usda',
+          brand: food.brandOwner || undefined,
+        });
+      }
+    }
+
+    return results.slice(0, MAX_ONLINE_SEARCH_RESULTS);
+  } catch (error) {
+    console.error('USDA FoodData Central search error:', error);
+    return [];
+  }
+};
+
 // Combined search - tries multiple sources
-// CalorieNinjas is prioritized for Indian foods as it has better recognition
+// USDA is prioritized for detailed macro data, then CalorieNinjas for Indian foods
 export const searchFoodOnline = async (query: string): Promise<OnlineSearchResult[]> => {
   const results: OnlineSearchResult[] = [];
 
-  // Try CalorieNinjas FIRST if API key is configured (better for Indian foods)
+  // Try USDA FoodData Central FIRST (detailed macros, official government data)
+  const usdaResults = await searchUSDA(query);
+  results.push(...usdaResults);
+
+  // Try CalorieNinjas if API key is configured (good for Indian foods)
   if (CALORIE_NINJAS_API_KEY) {
     const cnResults = await searchCalorieNinjas(query);
     results.push(...cnResults);
@@ -152,6 +211,9 @@ export const convertToFoodItem = (result: OnlineSearchResult): FoodItem => {
     nameMarathi: undefined,
     category: 'custom',
     caloriesPerUnit: result.calories,
+    proteinPerUnit: result.protein,
+    fatPerUnit: result.fat,
+    fiberPerUnit: result.fiber,
     unit: 'grams',
     unitWeight: result.servingSize,
     isCustom: true,

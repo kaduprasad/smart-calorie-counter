@@ -2,7 +2,7 @@
 
 ## Overview
 
-React Native (Expo SDK 54) calorie counter app focused on Indian cuisine — Maharashtrian, Konkani, South Indian, North Indian, and regional dishes. TypeScript strict mode. No backend — all data is local via AsyncStorage.
+React Native (Expo SDK 54) calorie counter app focused on Indian cuisine — Maharashtrian, Konkani, South & North Indian, and regional dishes. TypeScript strict mode. No backend — all data is local via AsyncStorage.
 
 ## Tech Stack
 
@@ -19,23 +19,28 @@ React Native (Expo SDK 54) calorie counter app focused on Indian cuisine — Mah
 ```
 src/
 ├── common/          # Shared utilities & centralized constants
+│   ├── colors.ts    # COLORS object — single source of truth for all colors
 │   ├── constants.ts # ALL app-wide constants (see "Constants" below)
 │   ├── index.ts     # Barrel exports
 │   └── ProgressScale.tsx
 ├── components/      # Reusable UI components
+│   ├── FormField.tsx      # Label wrapper with optional required asterisk
+│   ├── InputTextField.tsx  # Combined label + TextInput (like MUI TextField)
+│   ├── RecipeBuilder.tsx   # Full-screen modal to build dishes from ingredients
 │   ├── styles/      # Component-specific StyleSheet files
 │   └── index.ts     # Barrel exports
 ├── context/         # React Context (AppContext — single global store)
-├── data/            # Static food/exercise databases
+├── data/            # Static food/exercise/ingredient databases
 │   ├── foods.ts     # ~1020+ static food items (Maharashtrian focus)
 │   ├── foodIndex.ts # Lazy-built indexes with phonetic/Hinglish search
+│   ├── ingredients.ts # 120+ cooking ingredients with per-100g nutrition
 │   └── exercises.ts # Exercise types + MET values
 ├── navigation/      # AppNavigator (tab + stack)
 ├── screens/         # Screen components
 │   └── styles/      # Screen-specific StyleSheet files
 ├── services/        # Data layer (storage, search, notifications)
 │   ├── storage.ts          # AsyncStorage CRUD for logs, settings, etc.
-│   ├── foodSearch.ts       # Online search (Open Food Facts, CalorieNinjas)
+│   ├── foodSearch.ts       # Online search (USDA, Open Food Facts, CalorieNinjas)
 │   ├── remoteFoodService.ts # Fetches remote-foods.json from GitHub
 │   ├── userDataService.ts  # User profile + BMI calculations
 │   ├── exerciseService.ts  # Calorie burn calculations
@@ -47,6 +52,7 @@ src/
     └── foodVoiceParser.ts # Voice-to-food parsing
 data/
 └── remote-foods.json  # Dynamic food database (~290 items, fetched at runtime)
+.env                   # API keys (gitignored — see "Environment Variables")
 ```
 
 ## Food Database Architecture
@@ -92,7 +98,7 @@ interface FoodItem {
 
 All configuration constants live in `src/common/constants.ts`. This includes:
 - App identity (`APP_NAME`, `APP_LOCALE`)
-- API URLs (`OPEN_FOOD_FACTS_API_URL`, `CALORIE_NINJAS_API_URL`, `REMOTE_FOODS_URL`)
+- API URLs (`OPEN_FOOD_FACTS_API_URL`, `CALORIE_NINJAS_API_URL`, `USDA_FOOD_DATA_API_URL`, `REMOTE_FOODS_URL`)
 - Storage keys (`STORAGE_KEYS` — single source of truth for all AsyncStorage keys)
 - Default settings (`DEFAULT_SETTINGS`, `DEFAULT_CALORIE_GOAL`, etc.)
 - Macro/nutrition science (`CALORIES_PER_GRAM_FAT`, `PROTEIN_MULTIPLIERS`, etc.)
@@ -122,6 +128,10 @@ All configuration constants live in `src/common/constants.ts`. This includes:
 - **Pagination:** `FlatList` with progressive loading (`onEndReached`). Page size from `FOOD_LIST_PAGE_SIZE`.
 - **Type safety:** TypeScript strict mode. Fix all narrowing issues — don't use `as` casts to bypass.
 - **No over-engineering:** Don't add abstractions for single-use patterns.
+- **Post-feature updates:** After completing a major feature, update these three places:
+  1. `README.md` — add the feature to the relevant Features section
+  2. `src/screens/SettingsScreen.tsx` — add a feature row in the About → Smart Calorie Tracker features list
+  3. This file (`copilot-instructions.md`) — document the pattern/convention if it introduces one
 
 ## Key Patterns
 
@@ -129,10 +139,33 @@ All configuration constants live in `src/common/constants.ts`. This includes:
 The BMI Calculator height toggle (cm/ft) and Exercise Duration toggle (min/hr) use inline toggles inside the input row — not separate label rows. Both share the same visual pattern: `unitSelector` container with `unitBtn` + `unitBtnActive` styles.
 
 ### Food Selection
-AddFoodScreen uses multi-select with a `FoodSelectionCart` — users pick multiple items, adjust quantities, then add all at once. Quick-add buttons (1, 1.5, 2, 2.5) appear on eligible items (breads, rice).
+AddFoodScreen uses multi-select with a `FoodSelectionCart`.
 
 ### Voice Input
 `VoiceInputModal` uses `expo-speech-recognition` with `en-IN` locale. Parsed via `foodVoiceParser.ts` which matches spoken food names to the food index.
 
 ### Theme and Colors
 For color scheme refer these standard color codes from this file `src/common/colors.ts` and whenever new color is added add that color in the `COLORS` object with meaningful readable names in `src/common/colors.ts` and use that color from the COLORS object instead of hardcoding it in the stylesheets or tsx files.
+
+### Recipe Builder
+`RecipeBuilder` is a full-screen modal (purple `#7C3AED` theme) that lets users build custom dishes from 120+ raw cooking ingredients (`src/data/ingredients.ts`).
+
+### Form Components
+- `InputTextField` — Combined label + TextInput with required asterisk, error text, numeric mode, focus highlight. Use for all text/number input fields.
+
+## Online Food Search
+
+`src/services/foodSearch.ts` combines three external APIs in priority order:
+1. **USDA FoodData Central** (priority) — Official US government nutrition DB. Free API key, detailed macros (protein, fat, fiber, carbs). Foundation + SR Legacy datasets.
+2. **CalorieNinjas** — Best for Indian food names (understands "chapati", "dal", etc.). Free tier 3K req/month.
+
+## Environment Variables
+API keys live in `.env` (gitignored).
+For EAS builds, store keys as EAS Secrets (`eas secret:create`).
+
+## CI/CD
+
+GitHub Actions workflow at `.github/workflows/eas-preview.yml`:
+- **Manual trigger** (`workflow_dispatch`) from Actions tab with dropdowns for build profile (preview/development/production) and platform (android/ios/all)
+- Requires `EXPO_TOKEN` GitHub secret for EAS CLI authentication
+- Uses `expo/expo-github-action@v8` for Expo/EAS CLI setup
