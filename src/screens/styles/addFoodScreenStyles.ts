@@ -45,6 +45,13 @@ export const styles = StyleSheet.create({
   recentSection: {
     paddingTop: 8,
   },
+  recentHint: {
+    fontSize: 11,
+    color: '#9CA3AF',
+    paddingHorizontal: 4,
+    marginBottom: 4,
+    fontStyle: 'italic',
+  },
   sectionTitle: {
     fontSize: 16,
     fontWeight: '600',
@@ -74,6 +81,14 @@ export const styles = StyleSheet.create({
   recentCompactRow: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  recentCompactRowPinned: {
+    borderLeftWidth: 2,
+    borderLeftColor: '#FF7B00',
+    paddingLeft: 4,
+  },
+  pinIcon: {
+    marginRight: 4,
   },
   recentCompactInfo: {
     marginRight: 10,

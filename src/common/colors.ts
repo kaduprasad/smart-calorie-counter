@@ -27,6 +27,16 @@ export const COLORS = {
   warning: '#F59E0B',
   info: '#3B82F6',
 
+  // ── Gender / Profile ──
+  male: '#3B82F6',
+  maleLight: '#DBEAFE',
+  maleBgLight: '#EFF6FF',
+  maleDark: '#1E40AF',
+  female: '#EC4899',
+  femaleLight: '#FCE7F3',
+  femaleBgLight: '#FDF2F8',
+  femaleDark: '#9D174D',
+
   // ── Text ──
   textPrimary: '#1A1A1A',
   textBody: '#1F2937',

@@ -147,7 +147,10 @@ AddFoodScreen uses multi-select with a `FoodSelectionCart`.
 `VoiceInputModal` uses `expo-speech-recognition` with `en-IN` locale. Parsed via `foodVoiceParser.ts` which matches spoken food names to the food index.
 
 ### Theme and Colors
-For color scheme refer these standard color codes from this file `src/common/colors.ts` and whenever new color is added add that color in the `COLORS` object with meaningful readable names in `src/common/colors.ts` and use that color from the COLORS object instead of hardcoding it in the stylesheets or tsx files.
+All colors live in `src/common/colors.ts` as the `COLORS` object — the single source of truth.
+- **Never hardcode hex colors** in `.tsx` files or `StyleSheet.create()`. Import `COLORS` and use named keys.
+- When a new color is needed, add it to `COLORS` with a descriptive name (e.g., `femaleDark`, `successBorder`), then reference it.
+- Groupings: Primary (orange), Secondary (purple), Gender/Profile (blue/pink), Semantic, Text, Backgrounds, Borders.
 
 ### Recipe Builder
 `RecipeBuilder` is a full-screen modal (purple `#7C3AED` theme) that lets users build custom dishes from 120+ raw cooking ingredients (`src/data/ingredients.ts`).

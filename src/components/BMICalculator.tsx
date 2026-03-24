@@ -129,6 +129,25 @@ export const BMICalculator: React.FC<BMICalculatorProps> = ({ onDataUpdate }) =>
     return Math.max(0, Math.min(100, ((bmi - BMI.SCALE_MIN) / (BMI.SCALE_MAX - BMI.SCALE_MIN)) * 100));
   };
 
+  const handleHeightUnitChange = (unit: 'cm' | 'ft') => {
+    if (unit === 'ft' && heightUnit === 'cm') {
+      const cm = parseFloat(heightInput) || 0;
+      if (cm > 0) {
+        const totalInches = cm / 2.54;
+        setFeetInput(Math.floor(totalInches / 12).toString());
+        setInchesInput(Math.round(totalInches % 12).toString());
+      }
+    } else if (unit === 'cm' && heightUnit === 'ft') {
+      const ft = parseFloat(feetInput) || 0;
+      const inch = parseFloat(inchesInput) || 0;
+      if (ft > 0 || inch > 0) {
+        const cm = Math.round((ft * 30.48 + inch * 2.54) * 10) / 10;
+        setHeightInput(cm.toString());
+      }
+    }
+    setHeightUnit(unit);
+  };
+
   if (isLoading) {
     return (
       <View style={styles.loadingContainer}>
@@ -174,13 +193,13 @@ export const BMICalculator: React.FC<BMICalculatorProps> = ({ onDataUpdate }) =>
               <View style={styles.unitToggle}>
                 <TouchableOpacity
                   style={[styles.unitToggleBtn, styles.unitToggleBtnActive]}
-                  onPress={() => setHeightUnit('cm')}
+                  onPress={() => handleHeightUnitChange('cm')}
                 >
                   <Text style={[styles.unitToggleText, styles.unitToggleTextActive]}>cm</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.unitToggleBtn}
-                  onPress={() => setHeightUnit('ft')}
+                  onPress={() => handleHeightUnitChange('ft')}
                 >
                   <Text style={styles.unitToggleText}>ft</Text>
                 </TouchableOpacity>
@@ -210,13 +229,13 @@ export const BMICalculator: React.FC<BMICalculatorProps> = ({ onDataUpdate }) =>
               <View style={styles.unitToggle}>
                 <TouchableOpacity
                   style={styles.unitToggleBtn}
-                  onPress={() => setHeightUnit('cm')}
+                  onPress={() => handleHeightUnitChange('cm')}
                 >
                   <Text style={styles.unitToggleText}>cm</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={[styles.unitToggleBtn, styles.unitToggleBtnActive]}
-                  onPress={() => setHeightUnit('ft')}
+                  onPress={() => handleHeightUnitChange('ft')}
                 >
                   <Text style={[styles.unitToggleText, styles.unitToggleTextActive]}>ft</Text>
                 </TouchableOpacity>

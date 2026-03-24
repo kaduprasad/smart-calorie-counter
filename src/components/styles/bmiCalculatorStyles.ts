@@ -64,7 +64,7 @@ export const styles = StyleSheet.create({
     padding: 4,
   },
   unitToggleBtn: {
-    paddingHorizontal: 16,
+    paddingHorizontal: 12,
     paddingVertical: 10,
     borderRadius: 8,
   },
@@ -96,7 +96,7 @@ export const styles = StyleSheet.create({
   inputRow: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 12,
+    gap: 8,
   },
   input: {
     flex: 1,
@@ -109,7 +109,7 @@ export const styles = StyleSheet.create({
     textAlign: "center",
   },
   inputSmall: {
-    flex: 1,
+    width: 60,
     backgroundColor: "#F3F4F6",
     borderRadius: 10,
     padding: 12,
@@ -122,7 +122,6 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     color: "#6B7280",
     fontWeight: "500",
-    width: 30,
   },
   saveButton: {
     backgroundColor: "#8B5CF6",

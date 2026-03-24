@@ -25,7 +25,6 @@ import {
 } from '../services/foodSearch';
 import { styles } from './styles/addFoodScreenStyles';
 import { FOOD_LIST_PAGE_SIZE } from '../common/constants';
-import { useDebounce } from '../hooks';
 
 const PAGE_SIZE = FOOD_LIST_PAGE_SIZE;
 
@@ -60,7 +59,7 @@ const RecentQuickButton: React.FC<{
 
 export const AddFoodScreen: React.FC = () => {
   const navigation = useNavigation();
-  const { allFoods, foodIndex, recentFoods, addFood, createCustomFood } = useApp();
+  const { allFoods, foodIndex, recentFoods, pinnedFoodIds, addFood, createCustomFood, togglePinFood } = useApp();
 
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<FoodCategory | null>(null);
@@ -81,17 +80,23 @@ export const AddFoodScreen: React.FC = () => {
   // Pagination state
   const [displayCount, setDisplayCount] = useState(PAGE_SIZE);
 
-  // Debounced search query for auto online search (1.5s)
-  const debouncedQuery = useDebounce(searchQuery, 1500);
+
+
+  // Sort recent foods: pinned first, then by recency
+  const sortedRecentFoods = useMemo(() => {
+    const pinned = recentFoods.filter(f => pinnedFoodIds.includes(f.id));
+    const unpinned = recentFoods.filter(f => !pinnedFoodIds.includes(f.id));
+    return [...pinned, ...unpinned];
+  }, [recentFoods, pinnedFoodIds]);
 
   // Pair recent foods into groups of 2 for stacked vertical display
   const recentFoodPairs = useMemo(() => {
     const pairs: FoodItem[][] = [];
-    for (let i = 0; i < recentFoods.length; i += 2) {
-      pairs.push(recentFoods.slice(i, i + 2));
+    for (let i = 0; i < sortedRecentFoods.length; i += 2) {
+      pairs.push(sortedRecentFoods.slice(i, i + 2));
     }
     return pairs;
-  }, [recentFoods]);
+  }, [sortedRecentFoods]);
 
   const filteredFoods = useMemo(() => {
     return searchFoods(foodIndex, searchQuery, selectedCategory);
@@ -102,18 +107,7 @@ export const AddFoodScreen: React.FC = () => {
     setDisplayCount(PAGE_SIZE);
   }, [searchQuery, selectedCategory]);
 
-  // Auto-trigger online search ONCE when local results are empty (debounced)
-  useEffect(() => {
-    const query = debouncedQuery.trim();
-    if (!query || query.length < 3 || selectedCategory) return;
-
-    // Only auto-search the first time — after that, user uses the globe button
-    if (filteredFoods.length === 0 && !hasSearchedOnline && !isSearchingOnline) {
-      handleSearchOnline();
-    }
-  }, [debouncedQuery, filteredFoods.length, selectedCategory]);
-
-  // Reset online search state when query changes significantly
+  // Reset online search state when query changes
   useEffect(() => {
     setHasSearchedOnline(false);
     setShowOnlineResults(false);
@@ -272,7 +266,7 @@ export const AddFoodScreen: React.FC = () => {
         autoFocus={true}
         onMicPress={() => setShowVoiceModal(true)}
         onSearchOnline={
-          hasSearchedOnline && filteredFoods.length === 0 && searchQuery.trim().length >= 3
+          searchQuery.trim().length >= 3
             ? handleSearchOnline
             : undefined
         }
@@ -397,6 +391,7 @@ export const AddFoodScreen: React.FC = () => {
               {showRecentSection && (
                 <View style={styles.recentSection}>
                   <Text style={styles.sectionTitle}>⏰ Recent Foods</Text>
+                  <Text style={styles.recentHint}>Long press to pin/unpin</Text>
                   <ScrollView
                     horizontal
                     showsHorizontalScrollIndicator={false}
@@ -404,12 +399,22 @@ export const AddFoodScreen: React.FC = () => {
                   >
                     {recentFoodPairs.map((pair, index) => (
                       <View key={`recent-pair-${index}`} style={styles.recentCompactColumn}>
-                        {pair.map((item) => (
+                        {pair.map((item) => {
+                          const isPinned = pinnedFoodIds.includes(item.id);
+                          return (
                           <View key={`recent-${item.id}`} style={styles.recentCompactItem}>
                             <TouchableOpacity
-                              style={styles.recentCompactRow}
+                              style={[
+                                styles.recentCompactRow,
+                                isPinned && styles.recentCompactRowPinned,
+                              ]}
                               onPress={() => handleSelectFood(item)}
+                              onLongPress={() => togglePinFood(item.id)}
+                              delayLongPress={400}
                             >
+                              {isPinned && (
+                                <Ionicons name="pin" size={12} color="#FF7B00" style={styles.pinIcon} />
+                              )}
                               <View style={styles.recentCompactInfo}>
                                 <Text style={styles.recentCompactName} numberOfLines={1}>
                                   {item.name}
@@ -434,7 +439,8 @@ export const AddFoodScreen: React.FC = () => {
                               )}
                             </TouchableOpacity>
                           </View>
-                        ))}
+                          );
+                        })}
                       </View>
                     ))}
                   </ScrollView>
@@ -472,13 +478,9 @@ export const AddFoodScreen: React.FC = () => {
                   <ActivityIndicator size="small" color="#FF7B00" />
                   <Text style={[styles.onlineNote, { marginTop: 8 }]}>Searching online...</Text>
                 </View>
-              ) : hasSearchedOnline ? (
-                <Text style={[styles.onlineNote, { marginTop: 12 }]}>
-                  Tap the 🌐 in the search bar to search again
-                </Text>
               ) : (
                 <Text style={[styles.onlineNote, { marginTop: 12 }]}>
-                  Auto-searching online...
+                  Tap the 🌐 in the search bar to search online
                 </Text>
               )}
             </View>

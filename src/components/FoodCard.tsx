@@ -161,10 +161,17 @@ export const FoodCard: React.FC<FoodCardProps> = ({
           {food.nameMarathi && (
             <Text style={styles.nameMarathi}>{food.nameMarathi}</Text>
           )}
-          <Text style={styles.unit}>
-            Per {getUnitLabel(food.unit, 1)}
-            {food.unitWeight && ` (${food.unitWeight}g)`}
-          </Text>
+          <View style={styles.unitRow}>
+            <Text style={styles.unit}>
+              Per {getUnitLabel(food.unit, 1)}
+              {food.unitWeight && ` (${food.unitWeight}g)`}
+            </Text>
+            {food.isCustom && (
+              <View style={styles.customBadge}>
+                <Text style={styles.customBadgeText}>Custom</Text>
+              </View>
+            )}
+          </View>
         </View>
         {showCalories && (
           <View style={styles.calorieContainer}>
@@ -190,12 +197,6 @@ export const FoodCard: React.FC<FoodCardProps> = ({
               />
             ))}
           </View>
-        </View>
-      )}
-      
-      {food.isCustom && (
-        <View style={[styles.customBadge, onSelect && styles.customBadgeWithCheckbox]}>
-          <Text style={styles.customBadgeText}>Custom</Text>
         </View>
       )}
     </Pressable>
@@ -332,22 +333,20 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
   customBadge: {
-    position: 'absolute',
-    top: 8,
-    right: 8,
     backgroundColor: '#4CAF50',
-    paddingHorizontal: 8,
-    paddingVertical: 2,
+    paddingHorizontal: 6,
+    paddingVertical: 1,
     borderRadius: 4,
-  },
-  customBadgeWithCheckbox: {
-    top: undefined,
-    bottom: 8,
-    right: 8,
+    alignSelf: 'flex-start',
   },
   customBadgeText: {
-    fontSize: 10,
+    fontSize: 9,
     color: '#FFFFFF',
     fontWeight: '600',
+  },
+  unitRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
   },
 });

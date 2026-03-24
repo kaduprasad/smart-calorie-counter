@@ -14,6 +14,8 @@ import {
   getTodayDate,
   getAllDailyLogs,
   getRecentFoods,
+  getPinnedFoodIds,
+  togglePinnedFood,
 } from '../services/storage';
 import { scheduleDailyReminder } from '../services/notifications';
 import { maharashtrianFoods } from '../data/foods';
@@ -30,6 +32,7 @@ interface AppContextType {
   foodIndex: FoodIndex;
   settings: AppSettings;
   recentFoods: FoodItem[];
+  pinnedFoodIds: string[];
   allLogs: { [date: string]: DailyLog };
   isLoading: boolean;
   selectedDate: string;
@@ -44,6 +47,7 @@ interface AppContextType {
   createCustomFood: (food: FoodItem) => Promise<void>;
   removeCustomFood: (foodId: string) => Promise<void>;
   updateSettings: (settings: AppSettings) => Promise<void>;
+  togglePinFood: (foodId: string) => Promise<void>;
   refreshData: () => Promise<void>;
 }
 
@@ -58,6 +62,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [customFoods, setCustomFoods] = useState<FoodItem[]>(cachedCustomFoods || []);
   const [settings, setSettings] = useState<AppSettings>(cachedSettings || DEFAULT_SETTINGS);
   const [recentFoods, setRecentFoods] = useState<FoodItem[]>([]);
+  const [pinnedFoodIds, setPinnedFoodIds] = useState<string[]>([]);
   const [allLogs, setAllLogs] = useState<{ [date: string]: DailyLog }>({});
   const [isLoading, setIsLoading] = useState(true);
   const [selectedDate, setSelectedDate] = useState(getTodayDate());
@@ -103,7 +108,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     try {
       // For initial load, fetch everything in parallel
       if (isInitialLoad) {
-        const [log, customs, appSettings, recent, logs, userData, cachedRemote] = await Promise.all([
+        const [log, customs, appSettings, recent, logs, userData, cachedRemote, pinned] = await Promise.all([
           getDailyLog(selectedDate),
           getCustomFoods(),
           getSettings(),
@@ -111,12 +116,14 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
           getAllDailyLogs(),
           getUserData(),
           getCachedRemoteFoods(),
+          getPinnedFoodIds(),
         ]);
 
         setTodayLog(log);
         setCustomFoods(customs);
         setSettings(appSettings);
         setRecentFoods(recent);
+        setPinnedFoodIds(pinned);
         setAllLogs(logs);
         setMacroTargets(calculateMacroTargets(userData));
         setRemoteFoods(cachedRemote);
@@ -202,6 +209,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     await loadData();
   };
 
+  const togglePinFood = async (foodId: string) => {
+    const updated = await togglePinnedFood(foodId);
+    setPinnedFoodIds(updated);
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -211,6 +223,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         foodIndex,
         settings,
         recentFoods,
+        pinnedFoodIds,
         allLogs,
         isLoading,
         selectedDate,
@@ -223,6 +236,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         createCustomFood,
         removeCustomFood,
         updateSettings,
+        togglePinFood,
         refreshData,
       }}
     >

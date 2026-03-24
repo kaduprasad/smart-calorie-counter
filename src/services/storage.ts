@@ -201,6 +201,38 @@ export const getRecentFoods = async (limit: number = RECENT_FOODS_LIMIT): Promis
   }
 };
 
+// Pinned Foods Storage
+export const getPinnedFoodIds = async (): Promise<string[]> => {
+  try {
+    const data = await AsyncStorage.getItem(KEYS.PINNED_FOODS);
+    return data ? JSON.parse(data) : [];
+  } catch (error) {
+    console.error('Error getting pinned foods:', error);
+    return [];
+  }
+};
+
+export const savePinnedFoodIds = async (ids: string[]): Promise<void> => {
+  try {
+    await AsyncStorage.setItem(KEYS.PINNED_FOODS, JSON.stringify(ids));
+  } catch (error) {
+    console.error('Error saving pinned foods:', error);
+    throw error;
+  }
+};
+
+export const togglePinnedFood = async (foodId: string): Promise<string[]> => {
+  const pinned = await getPinnedFoodIds();
+  const index = pinned.indexOf(foodId);
+  if (index >= 0) {
+    pinned.splice(index, 1);
+  } else {
+    pinned.push(foodId);
+  }
+  await savePinnedFoodIds(pinned);
+  return pinned;
+};
+
 // Get weekly summary
 export const getWeeklySummary = async (): Promise<{ date: string; calories: number }[]> => {
   try {

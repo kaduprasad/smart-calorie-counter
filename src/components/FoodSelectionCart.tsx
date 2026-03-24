@@ -74,7 +74,8 @@ export const FoodSelectionCart: React.FC<FoodSelectionCartProps> = ({
           <ScrollView
             style={styles.itemsList}
             nestedScrollEnabled
-            showsVerticalScrollIndicator={false}
+            showsVerticalScrollIndicator={true}
+            persistentScrollbar={true}
           >
             {selectedFoods.map((item) => (
               <CartItem
