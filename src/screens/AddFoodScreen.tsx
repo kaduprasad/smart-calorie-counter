@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback, useEffect, useRef } from 'react';
+import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import {
   View,
   Text,
@@ -25,6 +25,7 @@ import {
 } from '../services/foodSearch';
 import { styles } from './styles/addFoodScreenStyles';
 import { FOOD_LIST_PAGE_SIZE } from '../common/constants';
+import { useDebounce } from '../hooks';
 
 const PAGE_SIZE = FOOD_LIST_PAGE_SIZE;
 
@@ -72,6 +73,7 @@ export const AddFoodScreen: React.FC = () => {
   const [isSearchingOnline, setIsSearchingOnline] = useState(false);
   const [onlineResults, setOnlineResults] = useState<OnlineSearchResult[]>([]);
   const [showOnlineResults, setShowOnlineResults] = useState(false);
+  const [hasSearchedOnline, setHasSearchedOnline] = useState(false);
 
   // Voice input state
   const [showVoiceModal, setShowVoiceModal] = useState(false);
@@ -79,8 +81,8 @@ export const AddFoodScreen: React.FC = () => {
   // Pagination state
   const [displayCount, setDisplayCount] = useState(PAGE_SIZE);
 
-  // Auto-search timer ref
-  const autoSearchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // Debounced search query for auto online search (1.5s)
+  const debouncedQuery = useDebounce(searchQuery, 1500);
 
   // Pair recent foods into groups of 2 for stacked vertical display
   const recentFoodPairs = useMemo(() => {
@@ -100,35 +102,23 @@ export const AddFoodScreen: React.FC = () => {
     setDisplayCount(PAGE_SIZE);
   }, [searchQuery, selectedCategory]);
 
-  // Auto-trigger online search when local results are empty
+  // Auto-trigger online search ONCE when local results are empty (debounced)
   useEffect(() => {
-    // Clear any pending auto-search timer
-    if (autoSearchTimerRef.current) {
-      clearTimeout(autoSearchTimerRef.current);
-      autoSearchTimerRef.current = null;
-    }
-
-    const query = searchQuery.trim();
+    const query = debouncedQuery.trim();
     if (!query || query.length < 3 || selectedCategory) return;
 
-    // Only auto-search when local results are empty
-    if (filteredFoods.length === 0) {
-      // Start online search after a short debounce (2 seconds)
-      autoSearchTimerRef.current = setTimeout(() => {
-        handleSearchOnline();
-      }, 1000);
-    } else {
-      // If local results reappear, hide online results
-      setShowOnlineResults(false);
-      setOnlineResults([]);
+    // Only auto-search the first time — after that, user uses the globe button
+    if (filteredFoods.length === 0 && !hasSearchedOnline && !isSearchingOnline) {
+      handleSearchOnline();
     }
+  }, [debouncedQuery, filteredFoods.length, selectedCategory]);
 
-    return () => {
-      if (autoSearchTimerRef.current) {
-        clearTimeout(autoSearchTimerRef.current);
-      }
-    };
-  }, [searchQuery, filteredFoods.length, selectedCategory]);
+  // Reset online search state when query changes significantly
+  useEffect(() => {
+    setHasSearchedOnline(false);
+    setShowOnlineResults(false);
+    setOnlineResults([]);
+  }, [searchQuery]);
 
   // Paginated slice of filtered foods
   const displayedFoods = useMemo(() => {
@@ -247,6 +237,7 @@ export const AddFoodScreen: React.FC = () => {
       console.error('Online search error:', error);
     } finally {
       setIsSearchingOnline(false);
+      setHasSearchedOnline(true);
     }
   };
 
@@ -280,6 +271,12 @@ export const AddFoodScreen: React.FC = () => {
         placeholder="Search food items..."
         autoFocus={true}
         onMicPress={() => setShowVoiceModal(true)}
+        onSearchOnline={
+          hasSearchedOnline && filteredFoods.length === 0 && searchQuery.trim().length >= 3
+            ? handleSearchOnline
+            : undefined
+        }
+        isSearchingOnline={isSearchingOnline}
       />
 
       <CategoryFilter
@@ -475,19 +472,15 @@ export const AddFoodScreen: React.FC = () => {
                   <ActivityIndicator size="small" color="#FF7B00" />
                   <Text style={[styles.onlineNote, { marginTop: 8 }]}>Searching online...</Text>
                 </View>
+              ) : hasSearchedOnline ? (
+                <Text style={[styles.onlineNote, { marginTop: 12 }]}>
+                  Tap the 🌐 in the search bar to search again
+                </Text>
               ) : (
-                <TouchableOpacity
-                  style={styles.searchOnlineButton}
-                  onPress={handleSearchOnline}
-                >
-                  <Ionicons name="globe-outline" size={20} color="#FFFFFF" style={{ marginRight: 8 }} />
-                  <Text style={styles.searchOnlineText}>Search Online</Text>
-                </TouchableOpacity>
+                <Text style={[styles.onlineNote, { marginTop: 12 }]}>
+                  Auto-searching online...
+                </Text>
               )}
-              
-              <Text style={styles.onlineNote}>
-                {isSearchingOnline ? 'Checking USDA & Open Food Facts...' : 'Auto-searches after 2 seconds'}
-              </Text>
             </View>
           }
         />

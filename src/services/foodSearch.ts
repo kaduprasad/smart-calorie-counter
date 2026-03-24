@@ -194,12 +194,12 @@ export const searchUSDA = async (query: string): Promise<OnlineSearchResult[]> =
 };
 
 // Combined search - tries multiple sources in parallel for speed
-// USDA results are shown first (detailed macros), then others
+// Open Food Facts first (has product images), then USDA, then CalorieNinjas
 export const searchFoodOnline = async (query: string): Promise<OnlineSearchResult[]> => {
   // Run all API calls in parallel for faster results
   const searches: Promise<OnlineSearchResult[]>[] = [
-    searchUSDA(query),
     searchOpenFoodFacts(query),
+    searchUSDA(query),
   ];
 
   // Add CalorieNinjas only on native (no CORS support on web)

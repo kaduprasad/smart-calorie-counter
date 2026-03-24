@@ -194,7 +194,7 @@ export const FoodCard: React.FC<FoodCardProps> = ({
       )}
       
       {food.isCustom && (
-        <View style={styles.customBadge}>
+        <View style={[styles.customBadge, onSelect && styles.customBadgeWithCheckbox]}>
           <Text style={styles.customBadgeText}>Custom</Text>
         </View>
       )}
@@ -339,6 +339,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     paddingVertical: 2,
     borderRadius: 4,
+  },
+  customBadgeWithCheckbox: {
+    top: undefined,
+    bottom: 8,
+    right: 8,
   },
   customBadgeText: {
     fontSize: 10,

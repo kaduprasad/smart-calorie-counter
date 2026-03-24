@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TextInput, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { View, TextInput, TouchableOpacity, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 interface SearchBarProps {
@@ -9,6 +9,10 @@ interface SearchBarProps {
   onClear?: () => void;
   autoFocus?: boolean;
   onMicPress?: () => void;
+  /** Show an inline "Search Online" button (globe icon) */
+  onSearchOnline?: () => void;
+  /** Whether online search is in progress */
+  isSearchingOnline?: boolean;
 }
 
 export const SearchBar: React.FC<SearchBarProps> = ({
@@ -18,6 +22,8 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   onClear,
   autoFocus = false,
   onMicPress,
+  onSearchOnline,
+  isSearchingOnline,
 }) => {
   return (
     <View style={styles.container}>
@@ -41,6 +47,19 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           }}
         >
           <Ionicons name="close-circle" size={20} color="#999999" />
+        </TouchableOpacity>
+      )}
+      {onSearchOnline && (
+        <TouchableOpacity
+          style={styles.onlineSearchButton}
+          onPress={onSearchOnline}
+          disabled={isSearchingOnline}
+        >
+          {isSearchingOnline ? (
+            <ActivityIndicator size="small" color="#FFFFFF" />
+          ) : (
+            <Ionicons name="globe-outline" size={18} color="#FFFFFF" />
+          )}
         </TouchableOpacity>
       )}
       {onMicPress && (
@@ -74,6 +93,12 @@ const styles = StyleSheet.create({
   },
   clearButton: {
     padding: 8,
+  },
+  onlineSearchButton: {
+    backgroundColor: '#FF7B00',
+    borderRadius: 8,
+    padding: 6,
+    marginLeft: 4,
   },
   micButton: {
     padding: 8,

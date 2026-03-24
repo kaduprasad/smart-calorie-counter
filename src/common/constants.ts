@@ -88,7 +88,7 @@ export const MIN_CALORIES_FOR_VALID_DAY = 1000;
 // ─── Pagination / Limits ────────────────────────────────────────────────
 export const FOOD_LIST_PAGE_SIZE = 50;
 export const RECENT_FOODS_LIMIT = 10;
-export const MAX_ONLINE_SEARCH_RESULTS = 10;
+export const MAX_ONLINE_SEARCH_RESULTS = 20;
 export const OPEN_FOOD_FACTS_PAGE_SIZE = 20;
 export const VOICE_SEARCH_RESULT_LIMIT = 5;
 
