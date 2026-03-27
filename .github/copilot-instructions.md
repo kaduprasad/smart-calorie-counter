@@ -137,6 +137,9 @@ All configuration constants live in `src/common/constants.ts`. This includes:
 
 ## Key Patterns
 
+### Modal Close Button (Mandatory)
+Every `<Modal>` **must** have a visible close (X) button using `<Ionicons name="close" />` — positioned `absolute`, `top: 10`, `right: 10` inside the modal content. The backdrop overlay should also dismiss on press where applicable. Never rely on Cancel buttons or gestures alone for dismissal.
+
 ### Inline Unit Toggle
 The BMI Calculator height toggle (cm/ft) and Exercise Duration toggle (min/hr) use inline toggles inside the input row — not separate label rows. Both share the same visual pattern: `unitSelector` container with `unitBtn` + `unitBtnActive` styles.
 

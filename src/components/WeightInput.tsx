@@ -106,6 +106,13 @@ export const WeightInput: React.FC<WeightInputProps> = ({ date, onWeightSaved })
           onPress={() => setIsModalVisible(false)}
         >
           <Pressable style={styles.modalContent} onPress={(e) => e.stopPropagation()}>
+            <TouchableOpacity
+              style={styles.closeButton}
+              onPress={() => setIsModalVisible(false)}
+              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+            >
+              <Ionicons name="close" size={24} color="#888" />
+            </TouchableOpacity>
             <Text style={styles.modalTitle}>
               {isToday ? "Enter Today's Weight" : `Weight for ${date}`}
             </Text>
@@ -206,6 +213,13 @@ const styles = StyleSheet.create({
     padding: 24,
     width: '85%',
     maxWidth: 340,
+  },
+  closeButton: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+    zIndex: 1,
+    padding: 4,
   },
   modalTitle: {
     fontSize: 18,

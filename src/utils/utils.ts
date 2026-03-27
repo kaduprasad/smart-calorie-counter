@@ -1,4 +1,4 @@
-// Re-export all formatting & normalization utilities from centralized normalize.ts
+// Re-export formatting utilities from normalize.ts
 export {
   getLocalDateString,
   getTodayDate,
@@ -8,6 +8,10 @@ export {
   formatTime,
   formatExerciseSummary,
   toTitleCase,
+} from './normalize';
+
+// Re-export NLP utilities from the centralized NLP engine
+export {
   normalizeForSearch,
   cleanVoiceText,
-} from './normalize';
+} from '../naturalLanguageProcessingEngine';

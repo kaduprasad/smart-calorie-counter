@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
 import { DailyLog, FoodItem, FoodLogEntry, AppSettings, MacroTotals, MacroTargets, UserData } from '../types';
-import { FoodIndex, getFoodIndex } from '../data/foodIndex';
+import { FoodIndex, getFoodIndex } from '../naturalLanguageProcessingEngine';
 import {
   getDailyLog,
   addFoodEntry,

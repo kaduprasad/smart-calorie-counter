@@ -15,13 +15,12 @@ import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useApp } from '../context/AppContext';
 import { FoodCard, SearchBar, CategoryFilter, supportsQuickAdd, FoodSelectionCart, SelectedFood, VoiceInputModal } from '../components';
 import { categories, getUnitLabel } from '../data/foods';
-import { searchFoods } from '../data/foodIndex';
+import { searchFoods, getAlternativeSearchTerms } from '../naturalLanguageProcessingEngine';
 import { FoodItem, FoodCategory } from '../types';
 import { 
   searchFoodOnline, 
   OnlineSearchResult, 
   convertToFoodItem,
-  getAlternativeSearchTerms 
 } from '../services/foodSearch';
 import { styles } from './styles/addFoodScreenStyles';
 import { FOOD_LIST_PAGE_SIZE } from '../common/constants';

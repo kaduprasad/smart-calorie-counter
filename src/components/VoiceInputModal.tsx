@@ -17,8 +17,8 @@ import {
   ExpoSpeechRecognitionModule,
   useSpeechRecognitionEvent,
 } from 'expo-speech-recognition';
-import { FoodIndex, searchFoods } from '../data/foodIndex';
-import { parseVoiceInput, ParsedFoodEntry } from '../utils/foodVoiceParser';
+import { FoodIndex, searchFoods } from '../naturalLanguageProcessingEngine';
+import { parseVoiceInput, ParsedFoodEntry } from '../naturalLanguageProcessingEngine';
 import { getUnitLabel } from '../data/foods';
 import { SelectedFood } from './FoodSelectionCart';
 import { FoodItem } from '../types';

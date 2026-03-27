@@ -1,13 +1,19 @@
 /**
- * Centralized normalization, formatting, and text transformation helpers.
+ * Centralized formatting and text transformation helpers.
  *
  * All pure functions — no side effects, no app state, no imports from
  * React or context. Safe to use anywhere in the app.
+ *
+ * NLP functions (normalizeForSearch, cleanVoiceText) have been moved to
+ * src/naturalLanguageProcessingEngine/normalize.ts
  */
 
 import { APP_LOCALE } from '../common/constants';
 
-// ─── Text normalization ─────────────────────────────────────────────────
+// Re-export NLP functions for backward compatibility
+export { normalizeForSearch, cleanVoiceText } from '../naturalLanguageProcessingEngine';
+
+// ─── Text formatting ────────────────────────────────────────────────────
 
 /**
  * Convert string to Title Case.
@@ -20,60 +26,6 @@ export const toTitleCase = (str: string): string => {
     .replace(/\bUht\b/gi, 'UHT')
     .replace(/\bNfs\b/gi, 'NFS');
 };
-
-/**
- * Phonetic normalization for Indian food search (Hinglish/Marathi/Hindi).
- *
- * Reduces both query AND stored keywords to a canonical form so
- * variations match without storing every permutation:
- *   ladoo/laado/lado/laadu/laddu/ladu → ladu
- *   bhaji/baji → baji
- *   dal/daal/dhal → dal
- */
-export function normalizeForSearch(text: string): string {
-  return text
-    // Vowel doubling → single vowel
-    .replace(/aa/g, 'a')
-    .replace(/ee/g, 'i')
-    .replace(/oo/g, 'u')
-    .replace(/ii/g, 'i')
-    .replace(/uu/g, 'u')
-    // Double consonants → single
-    .replace(/dd/g, 'd')
-    .replace(/tt/g, 't')
-    .replace(/nn/g, 'n')
-    .replace(/ll/g, 'l')
-    // Aspirated consonants → base
-    .replace(/bh/g, 'b')
-    .replace(/dh/g, 'd')
-    .replace(/gh/g, 'g')
-    .replace(/jh/g, 'j')
-    .replace(/kh/g, 'k')
-    .replace(/th/g, 't')
-    // sh→s (shev↔sev, sheera↔seera, shengdana↔sengdana)
-    .replace(/sh/g, 's')
-    // ph→f (phulka↔fulka)
-    .replace(/ph/g, 'f');
-}
-
-/**
- * Clean raw voice/speech text:
- *  - Strip apostrophes & contraction suffixes ("don't" → "don")
- *  - Remove filler words the mic may inject
- *  - Normalize whitespace
- */
-export function cleanVoiceText(text: string): string {
-  return text
-    // "don't" → "don", "won't" → "won", "can't" → "can"
-    .replace(/[''\u2019]t\b/gi, '')
-    // Remove stray apostrophes: "don'" → "don"
-    .replace(/[''\u2019]/g, '')
-    // Remove common filler words the mic may inject
-    .replace(/\b(um|uh|hmm|like|please|okay|ok|i want|i need|add|give me|put)\b/gi, '')
-    // Collapse extra whitespace
-    .replace(/\s+/g, ' ')
-    .trim();
-}
 
 // ─── Date formatting ────────────────────────────────────────────────────
 
