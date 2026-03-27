@@ -144,10 +144,10 @@ export const HomeScreen: React.FC = () => {
     <SafeAreaView style={styles.container} edges={['top']}>
       <View style={styles.header}>
         <View style={styles.titleRow}>
-          <MaterialCommunityIcons name="food-apple" size={28} color="#FF7B00" />
-          <Text style={styles.title}>{APP_NAME}</Text>
+          <MaterialCommunityIcons name="food-apple" size={24} color="#FF7B00" />
+          <Text style={styles.title} numberOfLines={1} adjustsFontSizeToFit>{APP_NAME}</Text>
         </View>
-        <Text style={styles.subtitle}>Exercise & Food Calorie Tracker</Text>
+        <Text style={styles.subtitle} numberOfLines={1} adjustsFontSizeToFit>Exercise & Food Calorie Tracker</Text>
       </View>
 
       <View style={styles.dateSelector}>
@@ -229,8 +229,9 @@ export const HomeScreen: React.FC = () => {
 
       {/* FAB Overlay */}
       {fabOpen && (
-        <Pressable
+        <TouchableOpacity
           style={styles.fabOverlay}
+          activeOpacity={1}
           onPress={closeFab}
         />
       )}
@@ -276,7 +277,7 @@ export const HomeScreen: React.FC = () => {
         pointerEvents={fabOpen ? 'auto' : 'none'}
       >
         <TouchableOpacity
-          style={[styles.miniFabButton, { backgroundColor: '#4CAF50' }]}
+          style={[styles.miniFabButton, { backgroundColor: '#60A5FA' }]}
           onPress={() => {
             closeFab();
             exerciseRef.current?.openModal();

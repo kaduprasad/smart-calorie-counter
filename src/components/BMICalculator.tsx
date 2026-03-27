@@ -294,14 +294,14 @@ export const BMICalculator: React.FC<BMICalculatorProps> = ({ onDataUpdate }) =>
             </View>
             <View style={styles.weightChangeStat}>
               <Ionicons
-                name={weightProgress.change >= 0 ? 'arrow-up' : 'arrow-down'}
+                name={weightProgress.change > 0 ? 'arrow-up' : weightProgress.change < 0 ? 'arrow-down' : 'remove'}
                 size={20}
-                color={weightProgress.change >= 0 ? '#EF4444' : '#10B981'}
+                color={weightProgress.change > 0 ? '#EF4444' : weightProgress.change < 0 ? '#10B981' : '#6B7280'}
               />
               <Text
                 style={[
                   styles.weightChangeValue,
-                  { color: weightProgress.change >= 0 ? '#EF4444' : '#10B981' },
+                  { color: weightProgress.change > 0 ? '#EF4444' : weightProgress.change < 0 ? '#10B981' : '#6B7280' },
                 ]}
               >
                 {weightProgress.change > 0 ? '+' : ''}{weightProgress.change} kg

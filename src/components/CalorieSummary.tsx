@@ -284,9 +284,9 @@ export const CalorieSummary: React.FC<CalorieSummaryProps> = ({
               {/* Fats row */}
               <View style={[styles.macroRow, { marginTop: 14 }]}>
                 <View style={styles.macroRowLeft}>
-                  <Ionicons name="water" size={11} color="#F59E0B" />
+                  <Ionicons name="water" size={11} color="#EAB308" />
                   <Text style={styles.macroRowLabel}>Fats:</Text>
-                  <Text style={[styles.macroRowPercent, { color: macroTotals.fat > macroTargets.fat ? '#EF4444' : '#F59E0B' }]}>
+                  <Text style={[styles.macroRowPercent, { color: macroTotals.fat > macroTargets.fat ? '#EF4444' : '#EAB308' }]}>
                     {macroTargets.fat > 0 ? Math.round((macroTotals.fat / macroTargets.fat) * 100) : 0}%
                   </Text>
                 </View>
@@ -295,7 +295,7 @@ export const CalorieSummary: React.FC<CalorieSummaryProps> = ({
               <View style={styles.macroBarTrack}>
                 <View style={[styles.macroBarFill, {
                   width: `${Math.min((macroTotals.fat / Math.max(macroTargets.fat, 1)) * 100, 100)}%`,
-                  backgroundColor: macroTotals.fat > macroTargets.fat ? '#EF4444' : '#F59E0B',
+                  backgroundColor: macroTotals.fat > macroTargets.fat ? '#EF4444' : '#EAB308',
                 }]} />
               </View>
 
@@ -432,18 +432,19 @@ const styles = StyleSheet.create({
   meterCenterDisplay: {
     position: "absolute",
     alignItems: "center",
-    bottom: 5,
+    bottom: 0,
   },
   netLabel: {
     fontSize: 10,
-    fontWeight: "600",
-    color: "#9CA3AF",
-    letterSpacing: 1,
+    fontWeight: "700",
+    color: "#6B7280",
+    letterSpacing: 1.5,
+    marginBottom: 1,
   },
   netValue: {
-    fontSize: 32,
+    fontSize: 26,
     fontWeight: "800",
-    marginTop: -3,
+    marginTop: -2,
   },
   netUnit: {
     fontSize: 11,
@@ -525,7 +526,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   cardValue: {
-    fontSize: 36,
+    fontSize: 28,
     fontWeight: "800",
     color: "#F59E0B",
   },

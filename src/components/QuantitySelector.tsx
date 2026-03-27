@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Modal } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Modal, Pressable } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { FoodItem } from '../types';
 import { getUnitLabel } from '../data/foods';
 import { NumericInput } from './NumericInput';
@@ -63,9 +64,11 @@ export const QuantitySelector: React.FC<QuantitySelectorProps> = ({
       animationType="slide"
       onRequestClose={handleClose}
     >
-      <View style={styles.overlay}>
-        <View style={styles.container}>
-          <Text style={styles.title}>Add to Log</Text>
+      <Pressable style={styles.overlay} onPress={handleClose}>
+        <Pressable style={styles.container} onPress={(e) => e.stopPropagation()}>
+          <TouchableOpacity style={styles.closeButton} onPress={handleClose}>
+            <Ionicons name="close" size={24} color="#666666" />
+          </TouchableOpacity>
           
           <View style={styles.foodInfo}>
             <Text style={styles.foodName}>{food.name}</Text>
@@ -145,11 +148,11 @@ export const QuantitySelector: React.FC<QuantitySelectorProps> = ({
               style={[styles.button, styles.confirmButton]}
               onPress={handleConfirm}
             >
-              <Text style={styles.confirmButtonText}>Add</Text>
+              <Text style={styles.confirmButtonText}>+ Add</Text>
             </TouchableOpacity>
           </View>
-        </View>
-      </View>
+        </Pressable>
+      </Pressable>
     </Modal>
   );
 };
@@ -158,25 +161,26 @@ const styles = StyleSheet.create({
   overlay: {
     flex: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 24,
   },
   container: {
     backgroundColor: '#FFFFFF',
-    borderTopLeftRadius: 24,
-    borderTopRightRadius: 24,
-    padding: 24,
-    paddingBottom: 40,
+    borderRadius: 16,
+    padding: 20,
+    paddingTop: 16,
+    width: '100%',
+    maxWidth: 340,
   },
-  title: {
-    fontSize: 20,
-    fontWeight: '700',
-    color: '#1A1A1A',
-    textAlign: 'center',
-    marginBottom: 16,
+  closeButton: {
+    alignSelf: 'flex-end',
+    padding: 4,
+    marginBottom: 4,
   },
   foodInfo: {
     alignItems: 'center',
-    marginBottom: 24,
+    marginBottom: 16,
   },
   foodName: {
     fontSize: 18,
@@ -235,7 +239,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     gap: 8,
-    marginBottom: 24,
+    marginBottom: 16,
   },
   quickSelectButton: {
     paddingHorizontal: 16,
@@ -256,10 +260,10 @@ const styles = StyleSheet.create({
   },
   calorieInfo: {
     alignItems: 'center',
-    padding: 16,
+    padding: 12,
     backgroundColor: '#FFF3E0',
     borderRadius: 12,
-    marginBottom: 24,
+    marginBottom: 16,
   },
   calorieLabel: {
     fontSize: 14,
@@ -267,7 +271,7 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   calorieValue: {
-    fontSize: 28,
+    fontSize: 22,
     fontWeight: '700',
     color: '#FF7B00',
   },
@@ -277,7 +281,7 @@ const styles = StyleSheet.create({
   },
   button: {
     flex: 1,
-    paddingVertical: 16,
+    paddingVertical: 14,
     borderRadius: 12,
     alignItems: 'center',
   },

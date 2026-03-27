@@ -10,8 +10,9 @@ import {
   StyleSheet,
   Pressable,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import { INGREDIENTS, INGREDIENT_CATEGORIES, Ingredient, IngredientCategory } from '../data/ingredients';
+import { INGREDIENTS, INGREDIENT_CATEGORIES, Ingredient, IngredientCategory, getIngredientWeightUnit } from '../data/ingredients';
 import { InputTextField } from './InputTextField';
 
 export interface RecipeIngredient {
@@ -174,7 +175,7 @@ export const RecipeBuilder: React.FC<RecipeBuilderProps> = ({ visible, onClose, 
         </View>
         <View style={s.ingredientMeta}>
           <Text style={s.ingredientCal}>{item.caloriesPer100g} cal</Text>
-          <Text style={s.ingredientPer100}>per 100g</Text>
+          <Text style={s.ingredientPer100}>per 100{getIngredientWeightUnit(item)}</Text>
         </View>
         <Ionicons
           name={isAdded ? 'checkmark-circle' : 'add-circle-outline'}
@@ -187,7 +188,7 @@ export const RecipeBuilder: React.FC<RecipeBuilderProps> = ({ visible, onClose, 
 
   return (
     <Modal visible={visible} animationType="slide" presentationStyle="pageSheet">
-      <View style={s.container}>
+      <SafeAreaView style={s.container} edges={['top', 'bottom']}>
         {/* Header */}
         <View style={s.header}>
           <TouchableOpacity onPress={handleClose} style={s.headerBtn}>
@@ -308,7 +309,7 @@ export const RecipeBuilder: React.FC<RecipeBuilderProps> = ({ visible, onClose, 
                       <Text style={s.trayChipText} numberOfLines={1}>
                         {item.ingredient.name.split('(')[0].trim()}
                       </Text>
-                      <Text style={s.trayChipGrams}>{item.grams}g</Text>
+                      <Text style={s.trayChipGrams}>{item.grams}{getIngredientWeightUnit(item.ingredient)}</Text>
                       <TouchableOpacity onPress={() => removeIngredient(item.ingredient.id)}>
                         <Ionicons name="close-circle" size={16} color="#EF4444" />
                       </TouchableOpacity>
@@ -369,7 +370,7 @@ export const RecipeBuilder: React.FC<RecipeBuilderProps> = ({ visible, onClose, 
                   <View key={item.ingredient.id} style={s.breakdownRow}>
                     <View style={s.breakdownInfo}>
                       <Text style={s.breakdownName} numberOfLines={1}>{item.ingredient.name}</Text>
-                      <Text style={s.breakdownGrams}>{item.grams}g</Text>
+                      <Text style={s.breakdownGrams}>{item.grams}{getIngredientWeightUnit(item.ingredient)}</Text>
                     </View>
                     <Text style={s.breakdownCal}>{cal} cal</Text>
                     <TouchableOpacity onPress={() => removeIngredient(item.ingredient.id)} style={s.breakdownRemove}>
@@ -420,7 +421,7 @@ export const RecipeBuilder: React.FC<RecipeBuilderProps> = ({ visible, onClose, 
                 <Text style={s.qtySubtitle}>{editingIngredient.nameLocal}</Text>
               )}
               <Text style={s.qtyCalInfo}>
-                {editingIngredient.caloriesPer100g} cal per 100g
+                {editingIngredient.caloriesPer100g} cal per 100{getIngredientWeightUnit(editingIngredient)}
               </Text>
 
               {/* Measure toggle */}
@@ -442,7 +443,7 @@ export const RecipeBuilder: React.FC<RecipeBuilderProps> = ({ visible, onClose, 
                     onPress={() => setUseMeasure(false)}
                   >
                     <Text style={[s.measureTabText, !useMeasure && s.measureTabTextActive]}>
-                      Grams
+                      {getIngredientWeightUnit(editingIngredient) === 'ml' ? 'Millilitres' : 'Grams'}
                     </Text>
                   </TouchableOpacity>
                 </View>
@@ -459,11 +460,11 @@ export const RecipeBuilder: React.FC<RecipeBuilderProps> = ({ visible, onClose, 
                     onChangeText={handleMeasureChange}
                     containerStyle={{ flex: 1 }}
                   />
-                  <Text style={s.qtyEqualsText}>= {editGrams}g</Text>
+                  <Text style={s.qtyEqualsText}>= {editGrams}{getIngredientWeightUnit(editingIngredient)}</Text>
                 </View>
               ) : (
                 <InputTextField
-                  label="Grams"
+                  label={getIngredientWeightUnit(editingIngredient) === 'ml' ? 'Millilitres' : 'Grams'}
                   numeric
                   allowDecimal={false}
                   value={editGrams}
@@ -500,7 +501,7 @@ export const RecipeBuilder: React.FC<RecipeBuilderProps> = ({ visible, onClose, 
             </Pressable>
           </Pressable>
         )}
-      </View>
+      </SafeAreaView>
     </Modal>
   );
 };

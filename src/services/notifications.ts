@@ -80,7 +80,7 @@ export const scheduleDailyReminder = async (
       notificationId = await Notifications.scheduleNotificationAsync({
         content: {
           title: "🍽️ Log Your Meals!",
-          body: `आज आपण किती कॅलरी घेतल्या ते नोंदवा! (Today's intake: ${todayCalories} cal)`,
+          body: `Don't forget to log your meals! (Today's intake: ${todayCalories} cal)`,
           data: { type: NOTIFICATION_CHANNEL_ID },
           sound: true,
         },
@@ -99,7 +99,7 @@ export const scheduleDailyReminder = async (
       notificationId = await Notifications.scheduleNotificationAsync({
         content: {
           title: "🍽️ Log Your Meals!",
-          body: `आज आपण किती कॅलरी घेतल्या ते नोंदवा! (Today's intake: ${todayCalories} cal)`,
+          body: `Don't forget to log your meals! (Today's intake: ${todayCalories} cal)`,
           data: { type: NOTIFICATION_CHANNEL_ID },
           sound: true,
         },

@@ -44,7 +44,7 @@ export const DEFAULT_SETTINGS: AppSettings = {
 
 // ─── Macro Nutrition Defaults ───────────────────────────────────────────
 export const DEFAULT_MACRO_TARGETS: MacroTargets = {
-  protein: 50,
+  protein: 60,
   fat: 65,
   fiber: 25,
 };
@@ -54,11 +54,11 @@ export const FAT_CALORIES_FRACTION = 0.275;
 export const FIBER_GRAMS_PER_1000_CAL = 14;
 
 export const PROTEIN_MULTIPLIERS: Record<string, number> = {
-  sedentary: 0.8,
-  lightly_active: 1.0,
-  moderately_active: 1.2,
-  very_active: 1.4,
-  extra_active: 1.6,
+  sedentary: 1.0,
+  lightly_active: 1.2,
+  moderately_active: 1.4,
+  very_active: 1.6,
+  extra_active: 1.8,
 };
 
 // ─── Validation Ranges ──────────────────────────────────────────────────

@@ -138,17 +138,23 @@ const ExerciseCartItem: React.FC<ExerciseCartItemProps> = ({
   const [durationInput, setDurationInput] = useState(exercise.duration.toString());
   const exerciseData = EXERCISE_DATA[exercise.type];
 
+  const MAX_DURATION_MINS = 600; // 10 hours
+
   const handleDurationChange = useCallback((text: string) => {
+    const parsed = parseFloat(text);
+    if (!isNaN(parsed) && parsed > MAX_DURATION_MINS) {
+      text = MAX_DURATION_MINS.toString();
+    }
     setDurationInput(text);
     const duration = parseFloat(text);
     if (!isNaN(duration) && duration > 0) {
-      // Recalculate calories and distance
+      const capped = Math.min(duration, MAX_DURATION_MINS);
       const distanceKm = exerciseData.hasDistance 
-        ? estimateDistanceFromDuration(exercise.type, duration)
+        ? estimateDistanceFromDuration(exercise.type, capped)
         : undefined;
-      const calories = calculateCaloriesBurnt(exercise.type, duration, userWeight, distanceKm);
+      const calories = calculateCaloriesBurnt(exercise.type, capped, userWeight, distanceKm);
       onUpdate({ 
-        duration, 
+        duration: capped, 
         distance: distanceKm,
         calories 
       });
@@ -156,7 +162,7 @@ const ExerciseCartItem: React.FC<ExerciseCartItemProps> = ({
   }, [exercise.type, userWeight, exerciseData.hasDistance, onUpdate]);
 
   const handleIncrement = () => {
-    const newDuration = exercise.duration + 5;
+    const newDuration = Math.min(exercise.duration + 5, MAX_DURATION_MINS);
     setDurationInput(newDuration.toString());
     const distanceKm = exerciseData.hasDistance 
       ? estimateDistanceFromDuration(exercise.type, newDuration)
@@ -206,6 +212,7 @@ const ExerciseCartItem: React.FC<ExerciseCartItemProps> = ({
             value={durationInput}
             onChangeText={handleDurationChange}
             allowDecimal={false}
+            maxLength={3}
           />
           <Text style={styles.durationUnit}>min</Text>
         </View>
@@ -256,17 +263,19 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   headerTitle: {
-    fontSize: 15,
+    fontSize: 14,
     fontWeight: '600',
     color: '#333333',
+    flexShrink: 1,
   },
   headerRight: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    gap: 6,
+    flexShrink: 0,
   },
   totalStats: {
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: '600',
     color: '#4CAF50',
   },
@@ -280,29 +289,25 @@ const styles = StyleSheet.create({
   cartItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 10,
-    paddingHorizontal: 4,
+    paddingVertical: 8,
+    paddingHorizontal: 2,
     borderBottomWidth: 1,
     borderBottomColor: '#C8E6C9',
+    flexWrap: 'nowrap',
   },
   removeBtn: {
-    marginRight: 6,
+    marginRight: 4,
   },
   exerciseIcon: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    backgroundColor: '#E8F5E9',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 8,
+    display: 'none',
   },
   itemInfo: {
-    flex: 1,
-    marginRight: 8,
+    flex: 0,
+    width: 50,
+    marginRight: 6,
   },
   itemName: {
-    fontSize: 13,
+    fontSize: 11,
     fontWeight: '600',
     color: '#333333',
   },
@@ -313,7 +318,8 @@ const styles = StyleSheet.create({
   durationControls: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginRight: 8,
+    marginRight: 6,
+    flexShrink: 0,
   },
   durationBtn: {
     width: 26,
@@ -337,10 +343,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 4,
   },
   durationInput: {
-    width: 36,
+    width: 40,
     height: 26,
     textAlign: 'center',
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: '600',
     color: '#333333',
     backgroundColor: '#FFFFFF',
@@ -348,6 +354,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#C8E6C9',
     paddingHorizontal: 2,
+    paddingVertical: 0,
   },
   durationUnit: {
     fontSize: 11,
@@ -356,10 +363,11 @@ const styles = StyleSheet.create({
   },
   caloriesBox: {
     alignItems: 'flex-end',
-    minWidth: 45,
+    minWidth: 40,
+    flexShrink: 0,
   },
   caloriesValue: {
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: '700',
     color: '#4CAF50',
   },

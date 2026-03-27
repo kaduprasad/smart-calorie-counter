@@ -28,6 +28,21 @@ export type IngredientCategory =
   | 'condiments'
   | 'misc';
 
+// IDs of dairy items that are solid (not liquid)
+const SOLID_DAIRY_IDS = new Set(['paneer', 'cheese', 'khoya']);
+
+/** Returns true for oils and liquid dairy (milk, curd, cream, buttermilk, etc.) */
+export const isLiquidIngredient = (ingredient: Ingredient): boolean => {
+  if (ingredient.category === 'oils_fats') return true;
+  if (ingredient.category === 'dairy' && !SOLID_DAIRY_IDS.has(ingredient.id)) return true;
+  return false;
+};
+
+/** Returns 'ml' for liquids, 'g' for solids */
+export const getIngredientWeightUnit = (ingredient: Ingredient): string => {
+  return isLiquidIngredient(ingredient) ? 'ml' : 'g';
+};
+
 export const INGREDIENT_CATEGORIES: { key: IngredientCategory; label: string; icon: string }[] = [
   { key: 'grains_flour', label: 'Grains', icon: 'grain' },
   { key: 'lentils_legumes', label: 'Lentils', icon: 'food-variant' },

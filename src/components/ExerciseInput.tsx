@@ -78,10 +78,17 @@ export const ExerciseInput = forwardRef<ExerciseInputRef, ExerciseInputProps>(({
   };
 
   const loadUserWeight = async () => {
-    // Get weight from settings or use a default
-    const settings = await getSettings();
-    // For now, use a reasonable default; could be extended to read from weight entries
-    setUserWeight(DEFAULT_BODY_WEIGHT);
+    try {
+      const { getUserData } = await import('../services/userDataService');
+      const userData = await getUserData();
+      if (userData.currentWeight && userData.currentWeight > 0) {
+        setUserWeight(userData.currentWeight);
+      } else {
+        setUserWeight(DEFAULT_BODY_WEIGHT);
+      }
+    } catch {
+      setUserWeight(DEFAULT_BODY_WEIGHT);
+    }
   };
 
   // Update estimated calories when inputs change
@@ -380,6 +387,12 @@ export const ExerciseInput = forwardRef<ExerciseInputRef, ExerciseInputProps>(({
           onPress={() => setIsModalVisible(false)}
         >
           <Pressable style={styles.modalContent} onPress={(e) => e.stopPropagation()}>
+            <TouchableOpacity
+              style={styles.closeButton}
+              onPress={() => { setIsModalVisible(false); resetForm(); }}
+            >
+              <Ionicons name="close" size={24} color="#666666" />
+            </TouchableOpacity>
             <ScrollView showsVerticalScrollIndicator={false}>
               {/* Modal Header with Multi-Select Toggle */}
               <View style={styles.modalHeader}>
@@ -479,9 +492,18 @@ export const ExerciseInput = forwardRef<ExerciseInputRef, ExerciseInputProps>(({
                       <NumericInput
                         style={styles.durationInput}
                         value={duration}
-                        onChangeText={setDuration}
+                        onChangeText={(text) => {
+                          const val = parseFloat(text);
+                          const maxMins = timeUnit === 'hours' ? 10 : 600;
+                          if (!isNaN(val) && val > maxMins) {
+                            setDuration(maxMins.toString());
+                          } else {
+                            setDuration(text);
+                          }
+                        }}
                         allowDecimal={true}
                         maxDecimalPlaces={1}
+                        maxLength={timeUnit === 'hours' ? 4 : 3}
                         placeholder="30"
                         placeholderTextColor="#AAAAAA"
                       />
@@ -598,7 +620,7 @@ export const ExerciseInput = forwardRef<ExerciseInputRef, ExerciseInputProps>(({
                     <Ionicons name="information-circle-outline" size={16} color="#888" />
                     <Text style={styles.metInfoText}>
                       Based on MET value of {EXERCISE_DATA[selectedType].met} for {EXERCISE_DATA[selectedType].name.toLowerCase()}
-                      {' '}and 70kg body weight
+                      {' '}and {userWeight}kg body weight
                     </Text>
                   </View>
 
@@ -760,9 +782,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderRadius: 16,
     padding: 20,
+    paddingTop: 12,
     width: '90%',
     maxWidth: 400,
     maxHeight: '85%',
+  },
+  closeButton: {
+    alignSelf: 'flex-end',
+    padding: 4,
+    marginBottom: 4,
   },
   modalTitle: {
     fontSize: 20,

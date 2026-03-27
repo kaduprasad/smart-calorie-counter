@@ -1,5 +1,5 @@
-import React, { useReducer, useEffect, useCallback } from "react";
-import { View, Text, TouchableOpacity, Alert, StyleSheet } from "react-native";
+import React, { useReducer, useEffect, useCallback, useRef } from "react";
+import { View, Text, TouchableOpacity, Alert, StyleSheet, Animated } from "react-native";
 import { MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
 import { NumericInput } from "./NumericInput";
 import { UserData } from "../types";
@@ -205,6 +205,18 @@ export const UserInfoSection: React.FC<UserInfoSectionProps> = ({
   onDataUpdate,
 }) => {
   const [state, dispatch] = useReducer(formReducer, initialState);
+  const [toastVisible, setToastVisible] = React.useState(false);
+  const toastAnim = useRef(new Animated.Value(0)).current;
+
+  const showToast = useCallback(() => {
+    setToastVisible(true);
+    Animated.sequence([
+      Animated.spring(toastAnim, { toValue: 1, friction: 6, tension: 80, useNativeDriver: true }),
+      Animated.delay(1500),
+      Animated.timing(toastAnim, { toValue: 0, duration: 300, useNativeDriver: true }),
+    ]).start(() => setToastVisible(false));
+  }, [toastAnim]);
+
   const {
     userData,
     ageInput,
@@ -397,7 +409,7 @@ export const UserInfoSection: React.FC<UserInfoSectionProps> = ({
       await saveUserData(data);
       dispatch({ type: "SAVE_SUCCESS", payload: data });
       onDataUpdate?.(data);
-      Alert.alert("Success", "Profile saved successfully!");
+      showToast();
     } catch (error) {
       Alert.alert("Error", "Failed to save profile");
     }
@@ -784,6 +796,22 @@ export const UserInfoSection: React.FC<UserInfoSectionProps> = ({
         <MaterialCommunityIcons name="content-save" size={20} color="#FFFFFF" />
         <Text style={styles.saveProfileBtnText}>Save Profile</Text>
       </TouchableOpacity>
+
+      {/* Success Toast */}
+      {toastVisible && (
+        <Animated.View
+          style={[
+            styles.toast,
+            {
+              opacity: toastAnim,
+              transform: [{ translateY: toastAnim.interpolate({ inputRange: [0, 1], outputRange: [-20, 0] }) }],
+            },
+          ]}
+        >
+          <Ionicons name="checkmark-circle" size={20} color="#10B981" />
+          <Text style={styles.toastText}>Profile saved!</Text>
+        </Animated.View>
+      )}
     </View>
   );
 };
@@ -1111,5 +1139,23 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontWeight: "600",
     fontSize: 16,
+  },
+  toast: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#ECFDF5",
+    borderWidth: 1,
+    borderColor: "#A7F3D0",
+    borderRadius: 12,
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    marginTop: 12,
+    gap: 8,
+  },
+  toastText: {
+    fontSize: 15,
+    fontWeight: "600",
+    color: "#065F46",
   },
 });

@@ -132,17 +132,17 @@ const styles = StyleSheet.create({
   macroProtein: {
     fontSize: 11,
     fontWeight: '600',
-    color: '#3B82F6',
+    color: '#6B7280',
   },
   macroFat: {
     fontSize: 11,
     fontWeight: '600',
-    color: '#F59E0B',
+    color: '#6B7280',
   },
   macroFiber: {
     fontSize: 11,
     fontWeight: '600',
-    color: '#10B981',
+    color: '#6B7280',
   },
   macroDot: {
     fontSize: 11,

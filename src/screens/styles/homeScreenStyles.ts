@@ -1,4 +1,8 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
+// Clamp font sizes: scale down on narrow screens (<360dp), never exceed base size
+const scale = (size: number) => Math.min(size, Math.round(size * Math.min(SCREEN_WIDTH / 375, 1)));
 
 export const styles = StyleSheet.create({
   container: {
@@ -7,21 +11,22 @@ export const styles = StyleSheet.create({
   },
   header: {
     paddingHorizontal: 16,
-    paddingTop: 16,
-    paddingBottom: 8,
+    paddingTop: 12,
+    paddingBottom: 6,
   },
   titleRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    gap: 6,
   },
   title: {
-    fontSize: 28,
+    fontSize: scale(22),
     fontWeight: '700',
     color: '#1A1A1A',
+    flexShrink: 1,
   },
   subtitle: {
-    fontSize: 14,
+    fontSize: scale(12),
     color: '#666666',
     marginTop: 2,
   },
@@ -43,7 +48,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   dateText: {
-    fontSize: 18,
+    fontSize: scale(16),
     fontWeight: '600',
     color: '#1A1A1A',
   },
@@ -67,7 +72,7 @@ export const styles = StyleSheet.create({
     marginBottom: 12,
   },
   sectionTitle: {
-    fontSize: 18,
+    fontSize: scale(16),
     fontWeight: '600',
     color: '#1A1A1A',
   },
@@ -80,7 +85,7 @@ export const styles = StyleSheet.create({
     paddingVertical: 48,
   },
   emptyText: {
-    fontSize: 18,
+    fontSize: scale(16),
     fontWeight: '600',
     color: '#666666',
     marginTop: 16,
@@ -94,9 +99,9 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 24,
     right: 24,
-    width: 64,
-    height: 64,
-    borderRadius: 32,
+    width: 56,
+    height: 56,
+    borderRadius: 28,
     backgroundColor: '#FF7B00',
     justifyContent: 'center',
     alignItems: 'center',
