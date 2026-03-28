@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     gap: 8,
   },
   title: {
-    fontSize: 28,
+    fontSize: 22,
     fontWeight: '700',
     color: '#1A1A1A',
   },

@@ -287,4 +287,28 @@ export const styles = StyleSheet.create({
     fontSize: 13,
     color: '#999',
   },
+  recentHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    paddingHorizontal: 4,
+    marginBottom: 8,
+  },
+  emptyHomeState: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 64,
+  },
+  emptyHomeText: {
+    fontSize: 17,
+    fontWeight: '600',
+    color: '#9CA3AF',
+    marginTop: 14,
+  },
+  emptyHomeSubtext: {
+    fontSize: 13,
+    color: '#D1D5DB',
+    marginTop: 4,
+    textAlign: 'center',
+  },
 });

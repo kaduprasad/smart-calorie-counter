@@ -243,6 +243,7 @@ export const AddFoodScreen: React.FC = () => {
   };
 
   const showRecentSection = showRecent && !searchQuery && !selectedCategory && recentFoods.length > 0;
+  const hasActiveSearch = !!(searchQuery || selectedCategory);
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
@@ -347,6 +348,92 @@ export const AddFoodScreen: React.FC = () => {
             </View>
           )}
         </View>
+      ) : !hasActiveSearch ? (
+        /* No search/category — show only pinned+recent, no full food list */
+        <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.list}>
+          {/* Multi-select Cart */}
+          {selectedFoods.length > 0 && (
+            <FoodSelectionCart
+              selectedFoods={selectedFoods}
+              onUpdateQuantity={handleUpdateSelectedQuantity}
+              onRemoveFood={handleRemoveFromSelection}
+              onAddAll={handleAddAllSelected}
+              onClearAll={handleClearSelection}
+            />
+          )}
+
+          {showRecentSection && (
+            <View style={styles.recentSection}>
+              <View style={styles.recentHeader}>
+                <MaterialCommunityIcons name="clock-fast" size={18} color="#FF7B00" />
+                <Text style={styles.sectionTitle}>Recent Foods</Text>
+              </View>
+              <Text style={styles.recentHint}>Long press to pin/unpin</Text>
+              <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={styles.recentList}
+              >
+                {recentFoodPairs.map((pair, index) => (
+                  <View key={`recent-pair-${index}`} style={styles.recentCompactColumn}>
+                    {pair.map((item) => {
+                      const isPinned = pinnedFoodIds.includes(item.id);
+                      return (
+                      <View key={`recent-${item.id}`} style={styles.recentCompactItem}>
+                        <TouchableOpacity
+                          style={[
+                            styles.recentCompactRow,
+                            isPinned && styles.recentCompactRowPinned,
+                          ]}
+                          onPress={() => handleSelectFood(item)}
+                          onLongPress={() => togglePinFood(item.id)}
+                          delayLongPress={400}
+                        >
+                          {isPinned && (
+                            <Ionicons name="pin" size={12} color="#FF7B00" style={styles.pinIcon} />
+                          )}
+                          <View style={styles.recentCompactInfo}>
+                            <Text style={styles.recentCompactName} numberOfLines={1}>
+                              {item.name}
+                            </Text>
+                            <Text style={styles.recentCompactCalories}>
+                              {item.caloriesPerUnit} cal
+                            </Text>
+                          </View>
+                          {supportsQuickAdd(item) && (
+                            <View style={styles.recentCompactButtons}>
+                              <Text style={styles.recentCompactUom}>
+                                {getUnitLabel(item.unit, 2)}
+                              </Text>
+                              {[1, 1.5, 2, 2.5].map((qty) => (
+                                <RecentQuickButton
+                                  key={qty}
+                                  qty={qty}
+                                  onPress={() => handleSelectFood(item, qty)}
+                                />
+                              ))}
+                            </View>
+                          )}
+                        </TouchableOpacity>
+                      </View>
+                      );
+                    })}
+                  </View>
+                ))}
+              </ScrollView>
+            </View>
+          )}
+
+          {!showRecentSection && selectedFoods.length === 0 && (
+            <View style={styles.emptyHomeState}>
+              <MaterialCommunityIcons name="food-apple-outline" size={56} color="#D1D5DB" />
+              <Text style={styles.emptyHomeText}>Search for foods to add</Text>
+              <Text style={styles.emptyHomeSubtext}>
+                Type a food name above or pick a category
+              </Text>
+            </View>
+          )}
+        </ScrollView>
       ) : (
         <FlatList
           style={{ flex: 1 }}
@@ -387,73 +474,12 @@ export const AddFoodScreen: React.FC = () => {
                 />
               )}
 
-              {showRecentSection && (
-                <View style={styles.recentSection}>
-                  <Text style={styles.sectionTitle}>⏰ Recent Foods</Text>
-                  <Text style={styles.recentHint}>Long press to pin/unpin</Text>
-                  <ScrollView
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                    contentContainerStyle={styles.recentList}
-                  >
-                    {recentFoodPairs.map((pair, index) => (
-                      <View key={`recent-pair-${index}`} style={styles.recentCompactColumn}>
-                        {pair.map((item) => {
-                          const isPinned = pinnedFoodIds.includes(item.id);
-                          return (
-                          <View key={`recent-${item.id}`} style={styles.recentCompactItem}>
-                            <TouchableOpacity
-                              style={[
-                                styles.recentCompactRow,
-                                isPinned && styles.recentCompactRowPinned,
-                              ]}
-                              onPress={() => handleSelectFood(item)}
-                              onLongPress={() => togglePinFood(item.id)}
-                              delayLongPress={400}
-                            >
-                              {isPinned && (
-                                <Ionicons name="pin" size={12} color="#FF7B00" style={styles.pinIcon} />
-                              )}
-                              <View style={styles.recentCompactInfo}>
-                                <Text style={styles.recentCompactName} numberOfLines={1}>
-                                  {item.name}
-                                </Text>
-                                <Text style={styles.recentCompactCalories}>
-                                  {item.caloriesPerUnit} cal
-                                </Text>
-                              </View>
-                              {supportsQuickAdd(item) && (
-                                <View style={styles.recentCompactButtons}>
-                                  <Text style={styles.recentCompactUom}>
-                                    {getUnitLabel(item.unit, 2)}
-                                  </Text>
-                                  {[1, 1.5, 2, 2.5].map((qty) => (
-                                    <RecentQuickButton
-                                      key={qty}
-                                      qty={qty}
-                                      onPress={() => handleSelectFood(item, qty)}
-                                    />
-                                  ))}
-                                </View>
-                              )}
-                            </TouchableOpacity>
-                          </View>
-                          );
-                        })}
-                      </View>
-                    ))}
-                  </ScrollView>
-                </View>
-              )}
-
               <View style={styles.listHeader}>
                 <View style={styles.sectionTitleRow}>
                   <Text style={styles.sectionTitle}>
                     {selectedCategory
                       ? categories.find(c => c.id === selectedCategory)?.name || 'Foods'
-                      : searchQuery
-                      ? 'Search Results'
-                      : 'All Foods'}
+                      : 'Search Results'}
                   </Text>
                 </View>
                 <Text style={styles.resultCount}>
@@ -479,7 +505,7 @@ export const AddFoodScreen: React.FC = () => {
                 </View>
               ) : (
                 <Text style={[styles.onlineNote, { marginTop: 12 }]}>
-                  Tap the 🌐 in the search bar to search online
+                  Tap the <Ionicons name="globe-outline" size={14} color="#999999" /> in the search bar to search online
                 </Text>
               )}
             </View>

@@ -130,7 +130,7 @@ export const CustomDishScreen: React.FC = () => {
     <SafeAreaView style={styles.container} edges={['top']}>
       <View style={styles.header}>
         <View style={styles.titleRow}>
-          <MaterialCommunityIcons name="chef-hat" size={28} color={COLORS.purple} />
+          <MaterialCommunityIcons name="chef-hat" size={22} color={COLORS.purple} />
           <Text style={styles.title}>Custom Dishes</Text>
         </View>
         <Text style={styles.subtitle}>Create your own meal recipes</Text>

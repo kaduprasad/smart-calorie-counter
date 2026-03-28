@@ -155,6 +155,12 @@ All colors live in `src/common/colors.ts` as the `COLORS` object — the single 
 - When a new color is needed, add it to `COLORS` with a descriptive name (e.g., `femaleDark`, `successBorder`), then reference it.
 - Groupings: Primary (orange), Secondary (purple), Gender/Profile (blue/pink), Semantic, Text, Backgrounds, Borders.
 
+### Typography
+All standard font sizes live in `src/common/typography.ts` as the `FONT_SIZE` object.
+- **Check `FONT_SIZE` before adding/updating any text.** Use the closest matching key — never invent sizes outside the scale.
+- Screen titles: 22, section headers: 16, card titles: 18, body: 14, captions: 12, tiny: 11, hero numbers: 24–48.
+- Keep screen titles ≤ 22. Hero display numbers (calories, BMI) can go up to 48.
+
 ### Recipe Builder
 `RecipeBuilder` is a full-screen modal (purple `#7C3AED` theme) that lets users build custom dishes from 120+ raw cooking ingredients (`src/data/ingredients.ts`).
 

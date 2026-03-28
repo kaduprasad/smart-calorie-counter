@@ -17,12 +17,12 @@ export const styles = StyleSheet.create({
     gap: 8,
   },
   title: {
-    fontSize: 28,
+    fontSize: 20,
     fontWeight: "700",
     color: "#1A1A1A",
   },
   subtitle: {
-    fontSize: 14,
+    fontSize: 12,
     color: "#666666",
     marginTop: 2,
   },
@@ -43,7 +43,7 @@ export const styles = StyleSheet.create({
     borderRadius: 12,
   },
   createButtonText: {
-    fontSize: 15,
+    fontSize: 14,
     fontWeight: "600",
     color: "#FFFFFF",
   },
@@ -56,12 +56,12 @@ export const styles = StyleSheet.create({
     borderRadius: 12,
   },
   recipeButtonText: {
-    fontSize: 15,
+    fontSize: 14,
     fontWeight: "600",
     color: "#FFFFFF",
   },
   recipeButtonSub: {
-    fontSize: 11,
+    fontSize: 10,
     color: COLORS.purpleSubtext,
     marginTop: 2,
     textAlign: "center",
@@ -75,10 +75,10 @@ export const styles = StyleSheet.create({
     borderColor: COLORS.purpleBorder,
   },
   formTitle: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "600",
     color: "#1A1A1A",
-    marginBottom: 20,
+    marginBottom: 16,
   },
   inputGroup: {
     marginBottom: 16,
@@ -92,8 +92,8 @@ export const styles = StyleSheet.create({
   input: {
     backgroundColor: "#F5F5F5",
     borderRadius: 10,
-    padding: 14,
-    fontSize: 16,
+    padding: 12,
+    fontSize: 14,
     color: '#1A1A1A',
   },
   unitOptions: {
@@ -111,7 +111,7 @@ export const styles = StyleSheet.create({
     backgroundColor: COLORS.purpleMedium,
   },
   unitOptionText: {
-    fontSize: 14,
+    fontSize: 13,
     color: "#666666",
   },
   unitOptionTextActive: {
@@ -136,12 +136,12 @@ export const styles = StyleSheet.create({
     backgroundColor: COLORS.purpleMedium,
   },
   cancelButtonText: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: "600",
     color: "#666666",
   },
   saveButtonText: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: "600",
     color: "#FFFFFF",
   },
@@ -150,10 +150,10 @@ export const styles = StyleSheet.create({
     paddingBottom: 24,
   },
   sectionTitle: {
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: "600",
     color: "#1A1A1A",
-    marginBottom: 12,
+    marginBottom: 10,
   },
   customFoodItem: {
     flexDirection: "row",
@@ -169,19 +169,19 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   customFoodName: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: "600",
     color: "#1A1A1A",
   },
   customFoodMarathi: {
-    fontSize: 14,
+    fontSize: 12,
     color: "#666666",
     marginTop: 2,
   },
   customFoodCalories: {
-    fontSize: 14,
+    fontSize: 12,
     color: COLORS.purple,
-    marginTop: 4,
+    marginTop: 3,
   },
   deleteButton: {
     padding: 8,
@@ -191,15 +191,15 @@ export const styles = StyleSheet.create({
     paddingVertical: 48,
   },
   emptyText: {
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: "600",
     color: "#666666",
-    marginTop: 16,
+    marginTop: 12,
   },
   emptySubtext: {
-    fontSize: 14,
+    fontSize: 12,
     color: "#999999",
-    marginTop: 4,
+    marginTop: 3,
     textAlign: "center",
   },
 });

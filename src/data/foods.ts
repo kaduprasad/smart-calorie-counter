@@ -519,7 +519,7 @@ export const maharashtrianFoods: FoodItem[] = [
     fiberPerUnit: 1.5,
     unit: 'cup',
     unitWeight: 150,
-    searchKeywords: ['sev chi bhaji', 'sev sabzi', 'shev curry', 'sev tamatar', 'sabji', 'sev ki sabzi'],
+    searchKeywords: ['sev chi bhaji', 'sev sabzi', 'shev curry', 'sev tamatar', 'sabji', 'sev ki sabzi', 'shevchi bhaji', 'shev chi bhaji', 'sevachi bhaji'],
   },
   {
     id: 'harbara-kalvan',
@@ -545,7 +545,7 @@ export const maharashtrianFoods: FoodItem[] = [
     fiberPerUnit: 3.5,
     unit: 'cup',
     unitWeight: 150,
-    searchKeywords: ['long beans curry', 'yard long beans', 'chawli chi bhaji', 'chawli sabzi', 'sabji'],
+    searchKeywords: ['long beans curry', 'yard long beans', 'chawli chi bhaji', 'chawli sabzi', 'sabji', 'chavlichi bhaji', 'chavli chi bhaji', 'chawlichi bhaji', 'lobia bhaji'],
   },
 
   // Vegetables
@@ -560,7 +560,7 @@ export const maharashtrianFoods: FoodItem[] = [
     fiberPerUnit: 2,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['aloo bhaji', 'potato sabzi', 'sukhi batata', 'sabji', 'aloo sabji', 'aloo ki sabzi'],
+    searchKeywords: ['aloo bhaji', 'potato sabzi', 'sukhi batata', 'sabji', 'aloo sabji', 'aloo ki sabzi', 'batatachi bhaji', 'batata chi bhaji', 'batate bhaji', 'sukha batata'],
   },
   {
     id: 'batata-bhaji-gravy',
@@ -573,7 +573,7 @@ export const maharashtrianFoods: FoodItem[] = [
     fiberPerUnit: 2,
     unit: 'serving',
     unitWeight: 120,
-    searchKeywords: ['aloo curry', 'potato curry', 'batata rassa', 'sabzi', 'sabji', 'aloo rassa'],
+    searchKeywords: ['aloo curry', 'potato curry', 'batata rassa', 'sabzi', 'sabji', 'aloo rassa', 'batatachi rassa bhaji', 'batata gravy'],
   },
   {
     id: 'batata-bhaji-jeera',
@@ -612,7 +612,7 @@ export const maharashtrianFoods: FoodItem[] = [
     fiberPerUnit: 2.5,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['baingan', 'brinjal sabzi', 'eggplant', 'vangyachi bhaji', 'sabji', 'baingan ki sabzi', 'baingan sabji'],
+    searchKeywords: ['baingan', 'brinjal sabzi', 'eggplant', 'vangyachi bhaji', 'vangi chi bhaji', 'vangichi bhaji', 'sabji', 'baingan ki sabzi', 'baingan sabji', 'wangi bhaji', 'wangyachi bhaji'],
   },
   {
     id: 'bharli-vangi',
@@ -638,7 +638,7 @@ export const maharashtrianFoods: FoodItem[] = [
     fiberPerUnit: 3,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['bhindi', 'okra sabzi', 'lady finger', 'sabji', 'bhindi ki sabzi', 'bhindi sabji'],
+    searchKeywords: ['bhindi', 'okra sabzi', 'lady finger', 'sabji', 'bhindi ki sabzi', 'bhindi sabji', 'bhendichi bhaji', 'bhendi chi bhaji', 'bhende bhaji', 'bhindichi bhaji'],
   },
   {
     id: 'gobi-bhaji',
@@ -651,7 +651,7 @@ export const maharashtrianFoods: FoodItem[] = [
     fiberPerUnit: 2.5,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['phulgobi', 'cauliflower sabzi', 'fulavar bhaji', 'sabji', 'gobi ki sabzi', 'phulgobi sabji'],
+    searchKeywords: ['phulgobi', 'cauliflower sabzi', 'fulavar bhaji', 'sabji', 'gobi ki sabzi', 'phulgobi sabji', 'fulavarchi bhaji', 'phulgobichi bhaji', 'gobi chi bhaji', 'flower bhaji'],
   },
   {
     id: 'kobi-bhaji',
@@ -664,7 +664,7 @@ export const maharashtrianFoods: FoodItem[] = [
     fiberPerUnit: 2.5,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['patta gobi', 'cabbage sabzi', 'bandh gobi', 'sabji', 'patta gobi sabji', 'bandh gobi sabzi'],
+    searchKeywords: ['patta gobi', 'cabbage sabzi', 'bandh gobi', 'sabji', 'patta gobi sabji', 'bandh gobi sabzi', 'kobichi bhaji', 'kobi chi bhaji', 'band gobi', 'cabbage bhaji'],
   },
   {
     id: 'dudhi-bhaji',
@@ -677,7 +677,7 @@ export const maharashtrianFoods: FoodItem[] = [
     fiberPerUnit: 1.5,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['lauki', 'ghia', 'bottle gourd sabzi', 'sabji', 'lauki sabji', 'lauki ki sabzi'],
+    searchKeywords: ['lauki', 'ghia', 'bottle gourd sabzi', 'sabji', 'lauki sabji', 'lauki ki sabzi', 'dudhichi bhaji', 'dudhi chi bhaji', 'dudhya bhaji', 'lauki bhaji'],
   },
   {
     id: 'dodka-bhaji',
@@ -690,7 +690,7 @@ export const maharashtrianFoods: FoodItem[] = [
     fiberPerUnit: 2,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['turai', 'ridge gourd sabzi', 'gilki', 'sabji', 'turai ki sabzi', 'tori'],
+    searchKeywords: ['turai', 'ridge gourd sabzi', 'gilki', 'sabji', 'turai ki sabzi', 'tori', 'dodkyachi bhaji', 'dodka chi bhaji', 'dodke bhaji', 'turai bhaji'],
   },
   {
     id: 'karela-bhaji',
@@ -703,7 +703,7 @@ export const maharashtrianFoods: FoodItem[] = [
     fiberPerUnit: 3,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['bitter gourd sabzi', 'karele ki sabzi', 'sabji', 'karela sabji'],
+    searchKeywords: ['bitter gourd sabzi', 'karele ki sabzi', 'sabji', 'karela sabji', 'karlyachi bhaji', 'karle chi bhaji', 'karle bhaji', 'karale bhaji'],
   },
   {
     id: 'tendli-bhaji',
@@ -716,7 +716,7 @@ export const maharashtrianFoods: FoodItem[] = [
     fiberPerUnit: 2,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['tindora', 'ivy gourd', 'kundru', 'sabzi', 'sabji', 'tindora sabzi', 'kundru ki sabzi'],
+    searchKeywords: ['tindora', 'ivy gourd', 'kundru', 'sabzi', 'sabji', 'tindora sabzi', 'kundru ki sabzi', 'tendlichi bhaji', 'tendli chi bhaji', 'tondli bhaji', 'tondlichi bhaji'],
   },
   {
     id: 'ghevda-bhaji',
@@ -729,7 +729,7 @@ export const maharashtrianFoods: FoodItem[] = [
     fiberPerUnit: 3,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['french beans', 'fansi', 'string beans', 'sabzi', 'sabji', 'fansi ki sabzi', 'beans sabzi'],
+    searchKeywords: ['french beans', 'fansi', 'string beans', 'sabzi', 'sabji', 'fansi ki sabzi', 'beans sabzi', 'ghevdyachi bhaji', 'ghevda chi bhaji', 'beans bhaji', 'farasbi bhaji'],
   },
   {
     id: 'methi-bhaji',
@@ -742,7 +742,7 @@ export const maharashtrianFoods: FoodItem[] = [
     fiberPerUnit: 2.5,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['fenugreek leaves', 'methi saag', 'methi ki sabzi', 'sabji', 'methi sabji'],
+    searchKeywords: ['fenugreek leaves', 'methi saag', 'methi ki sabzi', 'sabji', 'methi sabji', 'methichi bhaji', 'methi chi bhaji', 'methee bhaji', 'methichi pala bhaji'],
   },
   {
     id: 'palak-bhaji',
@@ -755,7 +755,7 @@ export const maharashtrianFoods: FoodItem[] = [
     fiberPerUnit: 2,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['spinach sabzi', 'palak saag', 'palak ki sabzi', 'sabji', 'palak sabji'],
+    searchKeywords: ['spinach sabzi', 'palak saag', 'palak ki sabzi', 'sabji', 'palak sabji', 'palakchi bhaji', 'palak chi bhaji', 'paalak bhaji', 'palak paat bhaji'],
   },
   {
     id: 'shepu-bhaji',
@@ -768,7 +768,7 @@ export const maharashtrianFoods: FoodItem[] = [
     fiberPerUnit: 2,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['dill leaves', 'suva bhaji', 'soa bhaji', 'sabzi', 'sabji', 'suva sabzi'],
+    searchKeywords: ['dill leaves', 'suva bhaji', 'soa bhaji', 'sabzi', 'sabji', 'suva sabzi', 'shepuchi bhaji', 'shepu chi bhaji', 'shepuche bhaji', 'dill bhaji'],
   },
   {
     id: 'ambadi-bhaji',
@@ -781,7 +781,7 @@ export const maharashtrianFoods: FoodItem[] = [
     fiberPerUnit: 2.5,
     unit: 'serving',
     unitWeight: 100,
-    searchKeywords: ['gongura', 'sorrel leaves', 'pitwaa', 'sabzi', 'sabji', 'gongura sabzi'],
+    searchKeywords: ['gongura', 'sorrel leaves', 'pitwaa', 'sabzi', 'sabji', 'gongura sabzi', 'ambadichi bhaji', 'ambadi chi bhaji', 'ambadya bhaji'],
   },
   {
     id: 'zunka',

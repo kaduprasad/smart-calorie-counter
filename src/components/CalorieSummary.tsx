@@ -1,5 +1,5 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React, { useState, useEffect, useRef } from "react";
+import { View, Text, StyleSheet, TouchableOpacity, Animated, Easing } from "react-native";
 import Svg, {
   Path,
   Line,
@@ -35,6 +35,9 @@ export const CalorieSummary: React.FC<CalorieSummaryProps> = ({
   const roundedConsumed = Math.round(consumed);
   const roundedExercise = Math.round(exerciseBurnt);
 
+  const [foodCollapsed, setFoodCollapsed] = useState(false);
+  const [exerciseCollapsed, setExerciseCollapsed] = useState(false);
+
   // Net calories = consumed - burnt
   const netCalories = roundedConsumed - roundedExercise;
   const isOverGoal = netCalories > goal;
@@ -58,6 +61,42 @@ export const CalorieSummary: React.FC<CalorieSummaryProps> = ({
   const maxDisplayedCal = Math.max(2000, goal * 1.2);
   const fillPercentage = Math.min((netCalories / maxDisplayedCal) * 100, 100);
   const targetPercentage = (goal / maxDisplayedCal) * 100;
+
+  // Animated speedometer fill
+  const animProgress = useRef(new Animated.Value(0)).current;
+  const [animatedFillPercent, setAnimatedFillPercent] = useState(0);
+  const [animatedNetCal, setAnimatedNetCal] = useState(0);
+
+  useEffect(() => {
+    animProgress.setValue(0);
+    setAnimatedFillPercent(0);
+    setAnimatedNetCal(0);
+
+    const listenerId = animProgress.addListener(({ value }) => {
+      setAnimatedFillPercent(value);
+      setAnimatedNetCal(Math.round((value / 100) * maxDisplayedCal));
+    });
+
+    Animated.timing(animProgress, {
+      toValue: fillPercentage,
+      duration: 900,
+      easing: Easing.out(Easing.cubic),
+      useNativeDriver: false,
+    }).start();
+
+    return () => {
+      animProgress.removeListener(listenerId);
+    };
+  }, [netCalories, fillPercentage, maxDisplayedCal]);
+
+  // Determine color based on animated progress
+  const getAnimatedMeterColor = () => {
+    const animCal = animatedNetCal;
+    if (animCal <= goal * 0.8) return "#3B82F6";
+    if (animCal <= goal) return "#10B981";
+    return "#EF4444";
+  };
+  const animatedMeterColor = getAnimatedMeterColor();
 
   // Convert angle to radians (0° = right, 90° = down, 180° = left, 270° = up in SVG)
   const toRadians = (degrees: number) => (degrees * Math.PI) / 180;
@@ -84,10 +123,10 @@ export const CalorieSummary: React.FC<CalorieSummaryProps> = ({
   // Background arc (full semicircle)
   const bgArcPath = createArcPath(startAngle, endAngle);
 
-  // Fill arc (based on net calories) - goes from left towards right
-  const fillEndAngle = startAngle + (fillPercentage / 100) * totalArcAngle;
+  // Fill arc (animated) - goes from left towards right
+  const fillEndAngle = startAngle + (animatedFillPercent / 100) * totalArcAngle;
   const fillArcPath =
-    netCalories > 0
+    animatedFillPercent > 0
       ? createArcPath(startAngle, Math.min(fillEndAngle, endAngle))
       : "";
 
@@ -143,11 +182,11 @@ export const CalorieSummary: React.FC<CalorieSummaryProps> = ({
               strokeLinecap="round"
             />
 
-            {/* Filled Arc */}
-            {netCalories > 0 && (
+            {/* Filled Arc (animated) */}
+            {animatedFillPercent > 0 && (
               <Path
                 d={fillArcPath}
-                stroke={meterColor}
+                stroke={animatedMeterColor}
                 strokeWidth={meterStroke}
                 fill="none"
                 strokeLinecap="round"
@@ -189,8 +228,8 @@ export const CalorieSummary: React.FC<CalorieSummaryProps> = ({
           {/* Center Display */}
           <View style={styles.meterCenterDisplay}>
             <Text style={styles.netLabel}>NET</Text>
-            <Text style={[styles.netValue, { color: meterColor }]}>
-              {netCalories}
+            <Text style={[styles.netValue, { color: animatedMeterColor }]}>
+              {animatedNetCal}
             </Text>
             <Text style={styles.netUnit}>calories</Text>
             <View
@@ -218,7 +257,11 @@ export const CalorieSummary: React.FC<CalorieSummaryProps> = ({
       <View style={styles.cardsContainer}>
         {/* Food Card */}
         <View style={styles.card}>
-          <View style={styles.foodCardTopRow}>
+          <TouchableOpacity
+            style={[styles.foodCardTopRow, !foodCollapsed && { marginBottom: 16 }]}
+            onPress={() => setFoodCollapsed(!foodCollapsed)}
+            activeOpacity={0.7}
+          >
             <View style={styles.foodCardLeft}>
               <View
                 style={[styles.cardIconContainer, { backgroundColor: "#FEF3C7" }]}
@@ -238,16 +281,25 @@ export const CalorieSummary: React.FC<CalorieSummaryProps> = ({
                 </Text>
               </View>
             </View>
-            <View style={styles.foodCardRight}>
-              <Text style={[styles.foodCardCalValue, { color: foodColor }]}>
-                {roundedConsumed}
-              </Text>
-              <Text style={styles.foodCardCalLabel}>consumed</Text>
+            <View style={styles.foodCardRightRow}>
+              <View style={styles.foodCardRight}>
+                <Text style={[styles.foodCardCalValue, { color: foodColor }]}>
+                  {roundedConsumed}
+                </Text>
+                <Text style={styles.foodCardCalLabel}>consumed</Text>
+              </View>
+              <Ionicons
+                name={foodCollapsed ? "chevron-down" : "chevron-up"}
+                size={18}
+                color="#9CA3AF"
+              />
             </View>
-          </View>
+          </TouchableOpacity>
 
-          {/* Food Scale with Target Marker */}
-          <ProgressScale
+          {!foodCollapsed && (
+            <>
+              {/* Food Scale with Target Marker */}
+              <ProgressScale
             value={roundedConsumed}
             max={goal}
             fillColor={foodColor}
@@ -268,7 +320,7 @@ export const CalorieSummary: React.FC<CalorieSummaryProps> = ({
                 <View style={styles.macroRowLeft}>
                   <MaterialCommunityIcons name="seed" size={12} color="#3B82F6" />
                   <Text style={styles.macroRowLabel}>Protein:</Text>
-                  <Text style={[styles.macroRowPercent, { color: macroTotals.protein > macroTargets.protein ? '#EF4444' : '#3B82F6' }]}>
+                  <Text style={[styles.macroRowPercent, { color: '#3B82F6' }]}>
                     {macroTargets.protein > 0 ? Math.round((macroTotals.protein / macroTargets.protein) * 100) : 0}%
                   </Text>
                 </View>
@@ -277,7 +329,7 @@ export const CalorieSummary: React.FC<CalorieSummaryProps> = ({
               <View style={styles.macroBarTrack}>
                 <View style={[styles.macroBarFill, {
                   width: `${Math.min((macroTotals.protein / Math.max(macroTargets.protein, 1)) * 100, 100)}%`,
-                  backgroundColor: macroTotals.protein > macroTargets.protein ? '#EF4444' : '#3B82F6',
+                  backgroundColor: '#3B82F6',
                 }]} />
               </View>
 
@@ -304,7 +356,7 @@ export const CalorieSummary: React.FC<CalorieSummaryProps> = ({
                 <View style={styles.macroRowLeft}>
                   <MaterialCommunityIcons name="barley" size={12} color="#10B981" />
                   <Text style={styles.macroRowLabel}>Fiber:</Text>
-                  <Text style={[styles.macroRowPercent, { color: macroTotals.fiber > macroTargets.fiber ? '#EF4444' : '#10B981' }]}>
+                  <Text style={[styles.macroRowPercent, { color: '#10B981' }]}>
                     {macroTargets.fiber > 0 ? Math.round((macroTotals.fiber / macroTargets.fiber) * 100) : 0}%
                   </Text>
                 </View>
@@ -313,43 +365,68 @@ export const CalorieSummary: React.FC<CalorieSummaryProps> = ({
               <View style={styles.macroBarTrack}>
                 <View style={[styles.macroBarFill, {
                   width: `${Math.min((macroTotals.fiber / Math.max(macroTargets.fiber, 1)) * 100, 100)}%`,
-                  backgroundColor: macroTotals.fiber > macroTargets.fiber ? '#EF4444' : '#10B981',
+                  backgroundColor: '#10B981',
                 }]} />
               </View>
             </View>
+          )}
+            </>
           )}
         </View>
 
         {/* Exercise Card */}
         <View style={styles.card}>
-          <View style={styles.cardHeader}>
-            <View
-              style={[styles.cardIconContainer, { backgroundColor: "#DBEAFE" }]}
-            >
-              <FontAwesome5 name="running" size={22} color="#3B82F6" />
+          <TouchableOpacity
+            style={[styles.exerciseCardTopRow, !exerciseCollapsed && { marginBottom: 12 }]}
+            onPress={() => setExerciseCollapsed(!exerciseCollapsed)}
+            activeOpacity={0.7}
+          >
+            <View style={styles.foodCardLeft}>
+              <View
+                style={[styles.cardIconContainer, { backgroundColor: "#DBEAFE" }]}
+              >
+                <FontAwesome5 name="running" size={22} color="#3B82F6" />
+              </View>
+              <View>
+                <Text style={styles.cardTitle}>Exercise</Text>
+                <Text style={[styles.foodCardStatus, { color: exerciseColor }]}>
+                  {isExerciseOverTarget
+                    ? `Target reached!`
+                    : `${exerciseGoal - roundedExercise} to go`}
+                </Text>
+              </View>
             </View>
-            <Text style={styles.cardTitle}>Exercise</Text>
-          </View>
+            <View style={styles.foodCardRightRow}>
+              <View style={styles.foodCardRight}>
+                <Text style={[styles.foodCardCalValue, { color: exerciseColor }]}>
+                  {roundedExercise}
+                </Text>
+                <Text style={styles.foodCardCalLabel}>burned</Text>
+              </View>
+              <Ionicons
+                name={exerciseCollapsed ? "chevron-down" : "chevron-up"}
+                size={18}
+                color="#9CA3AF"
+              />
+            </View>
+          </TouchableOpacity>
 
-          <View style={styles.cardBody}>
-            <Text style={[styles.cardValue, { color: exerciseColor }]}>
-              {roundedExercise}
-            </Text>
-            <Text style={styles.cardSubtext}>burned</Text>
-          </View>
+          {!exerciseCollapsed && (
+            <>
+              {/* Exercise Scale with Target Marker */}
+              <ProgressScale
+                value={roundedExercise}
+                max={exerciseGoal}
+                fillColor={exerciseColor}
+              />
 
-          {/* Exercise Scale with Target Marker */}
-          <ProgressScale
-            value={roundedExercise}
-            max={exerciseGoal}
-            fillColor={exerciseColor}
-          />
-
-          <Text style={[styles.scaleStatus, { color: exerciseColor }]}>
-            {isExerciseOverTarget
-              ? `Target reached! +${roundedExercise - exerciseGoal}`
-              : `${exerciseGoal - roundedExercise} to reach goal`}
-          </Text>
+              <Text style={[styles.scaleStatus, { color: exerciseColor }]}>
+                {isExerciseOverTarget
+                  ? `Target reached! +${roundedExercise - exerciseGoal}`
+                  : `${exerciseGoal - roundedExercise} to reach goal`}
+              </Text>
+            </>
+          )}
         </View>
       </View>
 
@@ -495,7 +572,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 20,
   },
   foodCardLeft: {
     flexDirection: 'row',
@@ -510,6 +586,16 @@ const styles = StyleSheet.create({
   foodCardRight: {
     alignItems: 'flex-end',
     paddingRight: 4,
+  },
+  foodCardRightRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+  },
+  exerciseCardTopRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   foodCardCalValue: {
     fontSize: 28,

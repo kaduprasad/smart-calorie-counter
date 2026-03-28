@@ -244,7 +244,7 @@ export const WeightChart: React.FC<WeightChartProps> = ({ refreshTrigger, weight
                     styles.progressStatValue,
                     progressInfo.isGoalReached ? styles.goalReached : {}
                   ]}>
-                    {progressInfo.isGoalReached ? '🎉 Reached!' : `${Math.abs(progressInfo.remaining).toFixed(1)} kg`}
+                    {progressInfo.isGoalReached ? <><MaterialCommunityIcons name="party-popper" size={14} color="#4CAF50" /> Reached!</> : `${Math.abs(progressInfo.remaining).toFixed(1)} kg`}
                   </Text>
                   <Text style={styles.progressStatLabel}>
                     {progressInfo.isGoalReached ? 'Goal' : 'To Go'}

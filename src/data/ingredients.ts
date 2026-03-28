@@ -143,6 +143,9 @@ export const INGREDIENTS: Ingredient[] = [
   { id: 'coconut-fresh', name: 'Coconut (Fresh)', nameLocal: 'खोबरे', category: 'vegetables', caloriesPer100g: 354, proteinPer100g: 3.3, fatPer100g: 33, fiberPer100g: 9, commonMeasure: '1 cup grated', measureGrams: 80 },
   { id: 'coconut-dry', name: 'Coconut (Dry/Copra)', nameLocal: 'सुके खोबरे', category: 'vegetables', caloriesPer100g: 650, proteinPer100g: 7.5, fatPer100g: 65, fiberPer100g: 16, commonMeasure: '1 tbsp', measureGrams: 7 },
   { id: 'curry-leaves', name: 'Curry Leaves', nameLocal: 'कढीपत्ता', category: 'vegetables', caloriesPer100g: 108, proteinPer100g: 6.1, fatPer100g: 1, fiberPer100g: 6.4, commonMeasure: '10 leaves', measureGrams: 2 },
+  { id: 'ivy-gourd', name: 'Ivy Gourd (Tondli)', nameLocal: 'तोंडली', category: 'vegetables', caloriesPer100g: 17, proteinPer100g: 1.4, fatPer100g: 0.2, fiberPer100g: 3, commonMeasure: '1 cup', measureGrams: 100 },
+  { id: 'pumpkin', name: 'Pumpkin', nameLocal: 'भोपळा', category: 'vegetables', caloriesPer100g: 23, proteinPer100g: 0.8, fatPer100g: 0.2, fiberPer100g: 2.6, commonMeasure: '1 cup chopped', measureGrams: 120 },
+  { id: 'okra', name: 'Okra (Ladies Finger)', nameLocal: 'भेंडी', category: 'vegetables', caloriesPer100g: 27, proteinPer100g: 2.1, fatPer100g: 0.2, fiberPer100g: 4.1, commonMeasure: '1 cup chopped', measureGrams: 100 },
 
   // ── Fruits ──
   { id: 'banana', name: 'Banana', nameLocal: 'केळे', category: 'fruits', caloriesPer100g: 89, proteinPer100g: 1.1, fatPer100g: 0.3, fiberPer100g: 2.6, commonMeasure: '1 medium', measureGrams: 118 },
@@ -153,6 +156,10 @@ export const INGREDIENTS: Ingredient[] = [
   { id: 'coconut-milk', name: 'Coconut Milk', nameLocal: 'नारळाचे दूध', category: 'fruits', caloriesPer100g: 230, proteinPer100g: 2.3, fatPer100g: 24, fiberPer100g: 0, commonMeasure: '1 cup', measureGrams: 240 },
   { id: 'dates', name: 'Dates (Kharik)', nameLocal: 'खारीक', category: 'fruits', caloriesPer100g: 282, proteinPer100g: 2.5, fatPer100g: 0.4, fiberPer100g: 8, commonMeasure: '1 piece', measureGrams: 8 },
   { id: 'raisins', name: 'Raisins (Kishmish)', nameLocal: 'मनुके', category: 'fruits', caloriesPer100g: 299, proteinPer100g: 3.1, fatPer100g: 0.5, fiberPer100g: 3.7, commonMeasure: '1 tbsp', measureGrams: 10 },
+  { id: 'amla', name: 'Amla (Gooseberry)', nameLocal: 'आवळा', category: 'fruits', caloriesPer100g: 24, proteinPer100g: 0.3, fatPer100g: 0.2, fiberPer100g: 7.8, commonMeasure: '1 piece', measureGrams: 44 },
+  { id: 'sapota', name: 'Sapota (Chikoo)', nameLocal: 'चिक्कू', category: 'fruits', caloriesPer100g: 73, proteinPer100g: 0.9, fatPer100g: 1.3, fiberPer100g: 9.6, commonMeasure: '1 medium', measureGrams: 120 },
+  { id: 'guava', name: 'Guava', nameLocal: 'पेरू', category: 'fruits', caloriesPer100g: 32, proteinPer100g: 1.4, fatPer100g: 0.3, fiberPer100g: 8.6, commonMeasure: '1 medium', measureGrams: 165 },
+  { id: 'pomegranate', name: 'Pomegranate', nameLocal: 'डाळिंब', category: 'fruits', caloriesPer100g: 55, proteinPer100g: 1.3, fatPer100g: 0.2, fiberPer100g: 2.8, commonMeasure: '1 cup arils', measureGrams: 175 },
 
   // ── Nuts & Seeds ──
   { id: 'cashew', name: 'Cashew', nameLocal: 'काजू', category: 'nuts_seeds', caloriesPer100g: 553, proteinPer100g: 18, fatPer100g: 44, fiberPer100g: 3.3, commonMeasure: '10 pieces', measureGrams: 15 },
@@ -164,6 +171,8 @@ export const INGREDIENTS: Ingredient[] = [
   { id: 'cumin-seeds', name: 'Cumin Seeds (Jeera)', nameLocal: 'जिरे', category: 'nuts_seeds', caloriesPer100g: 375, proteinPer100g: 18, fatPer100g: 22, fiberPer100g: 10.5, commonMeasure: '1 tsp', measureGrams: 2 },
   { id: 'flaxseed', name: 'Flaxseed (Javas)', nameLocal: 'जवस', category: 'nuts_seeds', caloriesPer100g: 534, proteinPer100g: 18, fatPer100g: 42, fiberPer100g: 27, commonMeasure: '1 tbsp', measureGrams: 10 },
   { id: 'coconut-desiccated', name: 'Desiccated Coconut', nameLocal: 'खोबरं किस', category: 'nuts_seeds', caloriesPer100g: 660, proteinPer100g: 6.9, fatPer100g: 64, fiberPer100g: 16, commonMeasure: '1 tbsp', measureGrams: 7 },
+  { id: 'fenugreek-seeds', name: 'Fenugreek Seeds (Methi Dana)', nameLocal: 'मेथी दाणे', category: 'nuts_seeds', caloriesPer100g: 235, proteinPer100g: 25.4, fatPer100g: 5.7, fiberPer100g: 47.6, commonMeasure: '1 tsp', measureGrams: 6 },
+  { id: 'groundnut', name: 'Groundnut (Peanut)', nameLocal: 'शेंगदाणे', category: 'nuts_seeds', caloriesPer100g: 567, proteinPer100g: 26, fatPer100g: 49, fiberPer100g: 8.5, commonMeasure: '1 cup', measureGrams: 30 },
 
   // ── Meat & Fish ──
   { id: 'chicken-breast', name: 'Chicken Breast', nameLocal: 'चिकन ब्रेस्ट', category: 'meat_fish', caloriesPer100g: 165, proteinPer100g: 31, fatPer100g: 3.6, fiberPer100g: 0, commonMeasure: '1 piece', measureGrams: 120 },
