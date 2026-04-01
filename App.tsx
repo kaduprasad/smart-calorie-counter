@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { AppProvider, useApp } from './src/context/AppContext';
+import { AppProvider } from './src/context/AppContext';
+import { useLog } from './src/context/LogContext';
 import { AppNavigator } from './src/navigation/AppNavigator';
 import { SplashScreen } from './src/components';
 import {
@@ -12,7 +13,7 @@ import {
 const MIN_SPLASH_DURATION = 2000; // Minimum time to show splash screen (ms)
 
 const AppContent: React.FC = () => {
-  const { isLoading: isDataLoading } = useApp();
+  const { isLoading: isDataLoading } = useLog();
   const [showSplash, setShowSplash] = useState(true);
   const [splashTimerDone, setSplashTimerDone] = useState(false);
 

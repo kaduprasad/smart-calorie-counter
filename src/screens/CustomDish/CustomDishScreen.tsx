@@ -8,12 +8,12 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import { COLORS } from '../common/colors';
-import { useApp } from '../context/AppContext';
-import { FoodItem, FoodUnit } from '../types';
-import { InputTextField } from '../components/InputTextField';
-import { FormField } from '../components/FormField';
-import { RecipeBuilder } from '../components/RecipeBuilder';
+import { COLORS } from '../../common/colors';
+import { useFood } from '../../context/FoodContext';
+import { FoodItem, FoodUnit } from '../../types';
+import { InputTextField } from '../../components/InputTextField';
+import { FormField } from '../../components/FormField';
+import { RecipeBuilder } from '../../components/RecipeBuilder';
 import { styles } from './styles/customDishScreenStyles';
 
 const unitOptions: { value: FoodUnit; label: string }[] = [
@@ -28,7 +28,7 @@ const unitOptions: { value: FoodUnit; label: string }[] = [
 ];
 
 export const CustomDishScreen: React.FC = () => {
-  const { customFoods, createCustomFood, removeCustomFood } = useApp();
+  const { customFoods, createCustomFood, removeCustomFood } = useFood();
 
   const [name, setName] = useState('');
   const [nameMarathi, setNameMarathi] = useState('');
@@ -273,7 +273,7 @@ export const CustomDishScreen: React.FC = () => {
                   style={styles.deleteButton}
                   onPress={() => handleDelete(item)}
                 >
-                  <Ionicons name="trash-outline" size={22} color="#FF4444" />
+                  <Ionicons name="trash-outline" size={18} color="#FF4444" />
                 </TouchableOpacity>
               </View>
             ))

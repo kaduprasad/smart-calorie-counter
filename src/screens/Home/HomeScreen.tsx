@@ -14,13 +14,14 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import { useApp } from '../context/AppContext';
-import { CalorieSummary, FoodLogItem, QuantitySelector, WeightInput, ExerciseInput } from '../components';
-import type { ExerciseInputRef } from '../components';
-import { formatDate, getTodayDate, getLocalDateString, getExerciseEntries } from '../services/storage';
-import { FoodLogEntry, FoodItem } from '../types';
+import { useSettings } from '../../context/SettingsContext';
+import { useLog } from '../../context/LogContext';
+import { CalorieSummary, FoodLogItem, QuantitySelector, WeightInput, ExerciseInput } from '../../components';
+import type { ExerciseInputRef } from '../../components';
+import { formatDate, getTodayDate, getLocalDateString, getExerciseEntries } from '../../services/storage';
+import { FoodLogEntry, FoodItem } from '../../types';
 import { styles } from './styles/homeScreenStyles';
-import { APP_NAME } from '../common/constants';
+import { APP_NAME } from '../../common/constants';
 
 type RootStackParamList = {
   MainTabs: undefined;
@@ -29,9 +30,9 @@ type RootStackParamList = {
 
 export const HomeScreen: React.FC = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const { settings, macroTargets } = useSettings();
   const {
     todayLog,
-    settings,
     removeFood,
     updateQuantity,
     isLoading,
@@ -39,8 +40,7 @@ export const HomeScreen: React.FC = () => {
     selectedDate,
     setSelectedDate,
     macroTotals,
-    macroTargets,
-  } = useApp();
+  } = useLog();
 
   const [editingEntry, setEditingEntry] = useState<FoodLogEntry | null>(null);
   const [refreshing, setRefreshing] = useState(false);
@@ -48,6 +48,7 @@ export const HomeScreen: React.FC = () => {
   const [fabOpen, setFabOpen] = useState(false);
   const fabAnim = useRef(new Animated.Value(0)).current;
   const exerciseRef = useRef<ExerciseInputRef>(null);
+  const scrollRef = useRef<ScrollView>(null);
 
   const toggleFab = useCallback(() => {
     const toValue = fabOpen ? 0 : 1;
@@ -89,6 +90,7 @@ export const HomeScreen: React.FC = () => {
   useFocusEffect(
     useCallback(() => {
       loadExerciseCalories();
+      scrollRef.current?.scrollTo({ y: 0, animated: false });
     }, [loadExerciseCalories])
   );
 
@@ -178,6 +180,7 @@ export const HomeScreen: React.FC = () => {
       </View>
 
       <ScrollView
+        ref={scrollRef}
         style={styles.scrollView}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} />
@@ -229,9 +232,8 @@ export const HomeScreen: React.FC = () => {
 
       {/* FAB Overlay */}
       {fabOpen && (
-        <TouchableOpacity
+        <Pressable
           style={styles.fabOverlay}
-          activeOpacity={1}
           onPress={closeFab}
         />
       )}

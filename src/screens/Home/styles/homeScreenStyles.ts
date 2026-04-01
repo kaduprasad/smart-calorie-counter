@@ -123,7 +123,8 @@ export const styles = StyleSheet.create({
     right: 28,
     flexDirection: 'row',
     alignItems: 'center',
-    zIndex: 11,
+    zIndex: 15,
+    elevation: 15,
   } as any,
   miniFabButton: {
     width: 48,

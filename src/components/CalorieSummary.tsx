@@ -10,6 +10,7 @@ import {
   Ionicons,
   FontAwesome5,
 } from "@expo/vector-icons";
+import { useIsFocused } from "@react-navigation/native";
 import { ProgressScale } from "../common";
 import { MacroTotals, MacroTargets } from "../types";
 
@@ -62,12 +63,15 @@ export const CalorieSummary: React.FC<CalorieSummaryProps> = ({
   const fillPercentage = Math.min((netCalories / maxDisplayedCal) * 100, 100);
   const targetPercentage = (goal / maxDisplayedCal) * 100;
 
-  // Animated speedometer fill
+  // Animated speedometer fill — replays on every screen focus
+  const isFocused = useIsFocused();
   const animProgress = useRef(new Animated.Value(0)).current;
   const [animatedFillPercent, setAnimatedFillPercent] = useState(0);
   const [animatedNetCal, setAnimatedNetCal] = useState(0);
 
   useEffect(() => {
+    if (!isFocused) return;
+
     animProgress.setValue(0);
     setAnimatedFillPercent(0);
     setAnimatedNetCal(0);
@@ -87,7 +91,7 @@ export const CalorieSummary: React.FC<CalorieSummaryProps> = ({
     return () => {
       animProgress.removeListener(listenerId);
     };
-  }, [netCalories, fillPercentage, maxDisplayedCal]);
+  }, [isFocused, netCalories, fillPercentage, maxDisplayedCal]);
 
   // Determine color based on animated progress
   const getAnimatedMeterColor = () => {

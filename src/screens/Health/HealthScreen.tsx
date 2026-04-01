@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useCallback } from 'react';
 import {
   View,
   Text,
@@ -7,9 +7,18 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { BMICalculator } from '../components';
+import { BMICalculator } from '../../components';
+import { useFocusEffect } from '@react-navigation/native';
 
 export const HealthScreen: React.FC = () => {
+  const scrollRef = useRef<ScrollView>(null);
+
+  useFocusEffect(
+    useCallback(() => {
+      scrollRef.current?.scrollTo({ y: 0, animated: false });
+    }, [])
+  );
+
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <View style={styles.header}>
@@ -20,7 +29,7 @@ export const HealthScreen: React.FC = () => {
         <Text style={styles.subtitle}>Track your health metrics</Text>
       </View>
 
-      <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+      <ScrollView ref={scrollRef} style={styles.scrollView} showsVerticalScrollIndicator={false}>
         {/* BMI Calculator */}
         <View style={styles.section}>
           <BMICalculator />

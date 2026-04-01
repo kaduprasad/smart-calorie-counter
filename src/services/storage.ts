@@ -234,14 +234,15 @@ export const togglePinnedFood = async (foodId: string): Promise<string[]> => {
 };
 
 // Get weekly summary
-export const getWeeklySummary = async (): Promise<{ date: string; calories: number }[]> => {
+export const getWeeklySummary = async (weekOffset: number = 0): Promise<{ date: string; calories: number }[]> => {
   try {
     const allLogs = await getAllDailyLogs();
     const summary: { date: string; calories: number }[] = [];
     
+    const baseOffset = weekOffset * 7;
     for (let i = 6; i >= 0; i--) {
       const date = new Date();
-      date.setDate(date.getDate() - i);
+      date.setDate(date.getDate() - i - baseOffset);
       const dateStr = getLocalDateString(date);
       
       summary.push({

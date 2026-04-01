@@ -125,11 +125,12 @@ All configuration constants live in `src/common/constants.ts`. This includes:
 - **Reusability and modularity:** Components and hooks should be reusable and modular. Avoid duplicating logic.
 - **Styles:** Always in separate `styles/` folders — `screens/styles/` and `components/styles/`. Use `StyleSheet.create()`.
 - **Exports:** Barrel exports via `index.ts` in `components/`, `screens/`, `common/`.
-- **State:** Single `AppContext` provides all global state. No Redux/Zustand.
+- **State:** Split context architecture — `SettingsContext`, `FoodContext`, `LogContext` with `AppContext` as orchestrator. No Redux/Zustand.
 - **Callbacks:** Wrap in `useCallback`. Derived data in `useMemo`.
 - **Pagination:** `FlatList` with progressive loading (`onEndReached`). Page size from `FOOD_LIST_PAGE_SIZE`.
 - **Type safety:** TypeScript strict mode. Fix all narrowing issues — don't use `as` casts to bypass.
 - **No over-engineering:** Don't add abstractions for single-use patterns.
+- **Mobile-first design:** All UI is designed for latest smartphone screens (360–430dp width). Ensure layouts don't overflow — use `flex: 1`, percentage widths, or constrained `maxWidth` instead of fixed pixel sizes. Test row layouts mentally against a ~370dp container. Avoid placing too many fixed-width elements in a single row.
 - **Post-feature updates:** After completing a major feature, update these three places:
   1. `README.md` — add the feature to the relevant Features section
   2. `src/screens/SettingsScreen.tsx` — add a feature row in the About → Smart Calorie Tracker features list

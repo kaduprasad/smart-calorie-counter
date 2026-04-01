@@ -742,8 +742,8 @@ export const UserInfoSection: React.FC<UserInfoSectionProps> = ({
       {/* Estimated Daily Calories (BMR/TDEE) - shown when all fields are filled */}
       {estimatedTDEE > 0 && (
         <View style={styles.bmrSection}>
-          <View style={styles.bmrBox}>
-            <MaterialCommunityIcons name="fire" size={24} color="#FF5722" />
+          <View style={[styles.bmrBox, { backgroundColor: selectedGender === 'female' ? COLORS.femaleBgLight : COLORS.maleBgLight }]}>
+            <MaterialCommunityIcons name="fire" size={24} color={selectedGender === 'female' ? COLORS.femaleDark : COLORS.maleDark} />
             <View style={styles.bmrTextContainer}>
               <View style={styles.bmrLabelRow}>
                 <Text style={styles.bmrLabel}>
@@ -760,7 +760,7 @@ export const UserInfoSection: React.FC<UserInfoSectionProps> = ({
                   />
                 </TouchableOpacity>
               </View>
-              <Text style={styles.bmrValue}>{estimatedTDEE} kcal/day</Text>
+              <Text style={[styles.bmrValue, { color: selectedGender === 'female' ? COLORS.femaleDark : COLORS.maleDark }]}>{estimatedTDEE} kcal/day</Text>
             </View>
           </View>
           {showBMRTooltip && (

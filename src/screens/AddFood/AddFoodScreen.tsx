@@ -8,22 +8,24 @@ import {
   ActivityIndicator,
   Image,
   Pressable,
+  Vibration,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import { useApp } from '../context/AppContext';
-import { FoodCard, SearchBar, CategoryFilter, supportsQuickAdd, FoodSelectionCart, SelectedFood, VoiceInputModal } from '../components';
-import { categories, getUnitLabel } from '../data/foods';
-import { searchFoods, getAlternativeSearchTerms } from '../naturalLanguageProcessingEngine';
-import { FoodItem, FoodCategory } from '../types';
+import { useFood } from '../../context/FoodContext';
+import { useLog } from '../../context/LogContext';
+import { FoodCard, SearchBar, CategoryFilter, supportsQuickAdd, FoodSelectionCart, SelectedFood, VoiceInputModal } from '../../components';
+import { categories, getUnitLabel } from '../../data/foods';
+import { searchFoods, getAlternativeSearchTerms } from '../../naturalLanguageProcessingEngine';
+import { FoodItem, FoodCategory } from '../../types';
 import { 
   searchFoodOnline, 
   OnlineSearchResult, 
   convertToFoodItem,
-} from '../services/foodSearch';
+} from '../../services/foodSearch';
 import { styles } from './styles/addFoodScreenStyles';
-import { FOOD_LIST_PAGE_SIZE } from '../common/constants';
+import { FOOD_LIST_PAGE_SIZE } from '../../common/constants';
 
 const PAGE_SIZE = FOOD_LIST_PAGE_SIZE;
 
@@ -58,7 +60,8 @@ const RecentQuickButton: React.FC<{
 
 export const AddFoodScreen: React.FC = () => {
   const navigation = useNavigation();
-  const { allFoods, foodIndex, recentFoods, pinnedFoodIds, addFood, createCustomFood, togglePinFood } = useApp();
+  const { allFoods, foodIndex, recentFoods, pinnedFoodIds, createCustomFood, togglePinFood } = useFood();
+  const { addFood } = useLog();
 
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<FoodCategory | null>(null);
@@ -386,11 +389,16 @@ export const AddFoodScreen: React.FC = () => {
                             isPinned && styles.recentCompactRowPinned,
                           ]}
                           onPress={() => handleSelectFood(item)}
-                          onLongPress={() => togglePinFood(item.id)}
+                          onLongPress={() => {
+                            Vibration.vibrate(50);
+                            togglePinFood(item.id);
+                          }}
                           delayLongPress={400}
                         >
                           {isPinned && (
-                            <Ionicons name="pin" size={12} color="#FF7B00" style={styles.pinIcon} />
+                            <View style={styles.pinBadge}>
+                              <Ionicons name="pin" size={10} color="#FFFFFF" />
+                            </View>
                           )}
                           <View style={styles.recentCompactInfo}>
                             <Text style={styles.recentCompactName} numberOfLines={1}>

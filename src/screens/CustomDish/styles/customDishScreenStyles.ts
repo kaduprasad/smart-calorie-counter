@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { COLORS } from "../../common/colors";
+import { COLORS } from "../../../common/colors";
 
 export const styles = StyleSheet.create({
   container: {
@@ -150,18 +150,19 @@ export const styles = StyleSheet.create({
     paddingBottom: 24,
   },
   sectionTitle: {
-    fontSize: 15,
+    fontSize: 14,
     fontWeight: "600",
     color: "#1A1A1A",
-    marginBottom: 10,
+    marginBottom: 8,
   },
   customFoodItem: {
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#FFFFFF",
-    padding: 16,
-    borderRadius: 12,
-    marginBottom: 8,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 10,
+    marginBottom: 6,
     borderWidth: 1,
     borderColor: COLORS.purpleBorder,
   },
@@ -169,22 +170,22 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   customFoodName: {
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: "600",
     color: "#1A1A1A",
   },
   customFoodMarathi: {
-    fontSize: 12,
+    fontSize: 11,
     color: "#666666",
-    marginTop: 2,
+    marginTop: 1,
   },
   customFoodCalories: {
-    fontSize: 12,
+    fontSize: 11,
     color: COLORS.purple,
-    marginTop: 3,
+    marginTop: 2,
   },
   deleteButton: {
-    padding: 8,
+    padding: 6,
   },
   emptyState: {
     alignItems: "center",

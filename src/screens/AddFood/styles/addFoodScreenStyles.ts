@@ -87,7 +87,13 @@ export const styles = StyleSheet.create({
     borderLeftColor: '#FF7B00',
     paddingLeft: 4,
   },
-  pinIcon: {
+  pinBadge: {
+    width: 18,
+    height: 18,
+    borderRadius: 9,
+    backgroundColor: '#FF7B00',
+    alignItems: 'center',
+    justifyContent: 'center',
     marginRight: 4,
   },
   recentCompactInfo: {

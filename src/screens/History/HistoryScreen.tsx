@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import {
   View,
   Text,
@@ -9,20 +9,31 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import { useApp } from '../context/AppContext';
-import { getWeeklySummary, formatDate, getTodayDate } from '../services/storage';
-import { DailyLog, UserData } from '../types';
-import { WeightChart, calculateTDEE } from '../components';
-import { getUserData } from '../services/userDataService';
+import { useSettings } from '../../context/SettingsContext';
+import { useLog } from '../../context/LogContext';
+import { getWeeklySummary, formatDate, getTodayDate } from '../../services/storage';
+import { DailyLog, UserData } from '../../types';
+import { WeightChart, calculateTDEE } from '../../components';
+import { getUserData } from '../../services/userDataService';
 import { styles } from './styles/historyScreenStyles';
-import { MIN_CALORIES_FOR_VALID_DAY, CALORIES_PER_KG_BODY_WEIGHT, APP_LOCALE } from '../common/constants';
+import { MIN_CALORIES_FOR_VALID_DAY, CALORIES_PER_KG_BODY_WEIGHT, APP_LOCALE } from '../../common/constants';
+import { useFocusEffect } from '@react-navigation/native';
 
 export const HistoryScreen: React.FC = () => {
-  const { allLogs, settings, setSelectedDate } = useApp();
+  const { settings } = useSettings();
+  const { allLogs, setSelectedDate } = useLog();
+  const listRef = useRef<FlatList>(null);
   const [weeklySummary, setWeeklySummary] = useState<{ date: string; calories: number }[]>([]);
   const [userData, setUserData] = useState<UserData>({});
   const [showDeficitTooltip, setShowDeficitTooltip] = useState(false);
   const [showWeightTooltip, setShowWeightTooltip] = useState(false);
+  const [weekOffset, setWeekOffset] = useState(0);
+
+  useFocusEffect(
+    useCallback(() => {
+      listRef.current?.scrollToOffset({ offset: 0, animated: false });
+    }, [])
+  );
 
   // Check if today is Sunday (0 = Sunday)
   const isSunday = new Date().getDay() === 0;
@@ -30,10 +41,10 @@ export const HistoryScreen: React.FC = () => {
   useEffect(() => {
     loadWeeklySummary();
     loadUserData();
-  }, [allLogs]);
+  }, [allLogs, weekOffset]);
 
   const loadWeeklySummary = async () => {
-    const summary = await getWeeklySummary();
+    const summary = await getWeeklySummary(weekOffset);
     setWeeklySummary(summary);
   };
 
@@ -98,14 +109,22 @@ export const HistoryScreen: React.FC = () => {
     return date.toLocaleDateString(APP_LOCALE, { weekday: 'short' });
   };
 
-  const renderWeeklyBar = ({ item }: { item: { date: string; calories: number } }) => {
+  const getWeekRangeLabel = () => {
+    if (weeklySummary.length === 0) return '';
+    const start = new Date(weeklySummary[0].date);
+    const end = new Date(weeklySummary[weeklySummary.length - 1].date);
+    const fmt = (d: Date) => `${d.getDate()} ${d.toLocaleDateString(APP_LOCALE, { month: 'short' })}`;
+    return `${fmt(start)} – ${fmt(end)}`;
+  };
+
+  const renderWeeklyBar = (item: { date: string; calories: number }) => {
     const percentage = (item.calories / maxCalories) * 100;
     const isOverGoal = item.calories > settings.dailyCalorieGoal;
     const isUnderGoal = item.calories > 0 && item.calories <= settings.dailyCalorieGoal;
     const isToday = item.date === getTodayDate();
 
     return (
-      <View style={styles.barContainer}>
+      <View key={item.date} style={styles.barContainer}>
         <Text style={[styles.barCalories, item.calories === 0 && styles.barCaloriesEmpty]}>
           {item.calories > 0 ? item.calories : '-'}
         </Text>
@@ -154,27 +173,29 @@ export const HistoryScreen: React.FC = () => {
   };
 
   const renderListHeader = () => {
-    const goalLinePercent = (settings.dailyCalorieGoal / maxCalories) * 100;
-    const barHeight = 100; // height of barWrapper
-    const goalLineBottom = (goalLinePercent / 100) * barHeight;
-    
     return (
     <>
       <View style={styles.weeklySection}>
-        <Text style={styles.sectionTitle}>This Week</Text>
+        <View style={styles.weekNavRow}>
+          <TouchableOpacity onPress={() => setWeekOffset(prev => prev + 1)} style={styles.weekNavBtn}>
+            <Ionicons name="chevron-back" size={20} color="#666666" />
+          </TouchableOpacity>
+          <View style={styles.weekNavCenter}>
+            <Text style={styles.sectionTitle}>{weekOffset === 0 ? 'This Week' : 'Week'}</Text>
+            <Text style={styles.weekRangeLabel}>{getWeekRangeLabel()}</Text>
+          </View>
+          <TouchableOpacity
+            onPress={() => setWeekOffset(prev => Math.max(prev - 1, 0))}
+            style={styles.weekNavBtn}
+            disabled={weekOffset === 0}
+          >
+            <Ionicons name="chevron-forward" size={20} color={weekOffset === 0 ? '#DDDDDD' : '#666666'} />
+          </TouchableOpacity>
+        </View>
         <View style={styles.chartArea}>
-          <View style={[styles.goalIndicator, { bottom: goalLineBottom }]} />
-          <Text style={[styles.goalText, { bottom: goalLineBottom + 2 }]}>
-            {settings.dailyCalorieGoal} goal
-          </Text>
-          <FlatList
-            data={weeklySummary}
-            keyExtractor={(item) => item.date}
-            renderItem={renderWeeklyBar}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.weeklyChart}
-          />
+          <View style={styles.weeklyChart}>
+            {weeklySummary.map(item => renderWeeklyBar(item))}
+          </View>
         </View>
       </View>
 
@@ -313,6 +334,7 @@ export const HistoryScreen: React.FC = () => {
       </View>
 
       <FlatList
+        ref={listRef}
         data={sortedLogs}
         keyExtractor={(item) => item.date}
         renderItem={renderLogItem}

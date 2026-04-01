@@ -65,7 +65,14 @@ export const scheduleDailyReminder = async (
 
     // Get today's calorie intake for the notification message
     const todayLog = await getDailyLog(getTodayDate());
-    const todayCalories = todayLog?.totalCalories || 0;
+    const todayCalories = Math.round(todayLog?.totalCalories || 0);
+    const settings_goal = (await getSettings()).dailyCalorieGoal;
+    const remaining = Math.max(0, settings_goal - todayCalories);
+
+    // Build a motivating message based on progress
+    const bodyText = todayCalories > 0
+      ? `You've logged ${todayCalories} cal today. ${remaining > 0 ? `${remaining} cal remaining to hit your goal!` : 'Great job hitting your goal!'}`
+      : `You haven't logged any meals today. Tap to start tracking!`;
 
     let notificationId: string;
 
@@ -79,8 +86,8 @@ export const scheduleDailyReminder = async (
 
       notificationId = await Notifications.scheduleNotificationAsync({
         content: {
-          title: "🍽️ Log Your Meals!",
-          body: `Don't forget to log your meals! (Today's intake: ${todayCalories} cal)`,
+          title: "Log Your Meals!",
+          body: bodyText,
           data: { type: NOTIFICATION_CHANNEL_ID },
           sound: true,
         },
@@ -98,8 +105,8 @@ export const scheduleDailyReminder = async (
 
       notificationId = await Notifications.scheduleNotificationAsync({
         content: {
-          title: "🍽️ Log Your Meals!",
-          body: `Don't forget to log your meals! (Today's intake: ${todayCalories} cal)`,
+          title: "Log Your Meals!",
+          body: bodyText,
           data: { type: NOTIFICATION_CHANNEL_ID },
           sound: true,
         },
@@ -143,7 +150,7 @@ export const sendTestNotification = async (): Promise<void> => {
 
   await Notifications.scheduleNotificationAsync({
     content: {
-      title: "🍽️ Test Notification",
+      title: "Test Notification",
       body: `This is a test notification for the ${APP_NAME} app!`,
       data: { type: "test" },
     },
