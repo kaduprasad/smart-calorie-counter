@@ -18,6 +18,7 @@ export { IncrementButton, DecrementButton } from './IncrementDecrementButton';
 export { FoodSelectionCart, SelectedFood } from './FoodSelectionCart';
 export { ExerciseSelectionCart, SelectedExercise } from './ExerciseSelectionCart';
 export { VoiceInputModal } from './VoiceInputModal';
+export { UpdateChecker } from './UpdateChecker';
 export { FormField } from './FormField';
 export { InputTextField } from './InputTextField';
 export { RecipeBuilder } from './RecipeBuilder';

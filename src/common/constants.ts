@@ -1,28 +1,34 @@
-import { AppSettings, MacroTargets } from '../types';
+import { AppSettings, MacroTargets } from "../types";
 
 // ─── App Identity ───────────────────────────────────────────────────────
-export const APP_NAME = 'Smart Calorie Tracker';
-export const APP_LOCALE = 'en-IN';
+export const APP_NAME = "Smart Calorie Tracker";
+export const APP_LOCALE = "en-IN";
 
 // ─── API Configuration ──────────────────────────────────────────────────
-export const OPEN_FOOD_FACTS_API_URL = 'https://world.openfoodfacts.org/cgi/search.pl';
-export const CALORIE_NINJAS_API_URL = 'https://api.calorieninjas.com/v1/nutrition';
-export const USDA_FOOD_DATA_API_URL = 'https://api.nal.usda.gov/fdc/v1';
+export const OPEN_FOOD_FACTS_API_URL =
+  "https://world.openfoodfacts.org/cgi/search.pl";
+export const CALORIE_NINJAS_API_URL =
+  "https://api.calorieninjas.com/v1/nutrition";
+export const USDA_FOOD_DATA_API_URL = "https://api.nal.usda.gov/fdc/v1";
 export const REMOTE_FOODS_URL =
-  'https://raw.githubusercontent.com/kaduprasad/smart-calorie-counter/main/data/remote-foods.json';
-export const USER_AGENT = 'CalorieCounter-MaharashtrianFood/1.0';
+  "https://raw.githubusercontent.com/kaduprasad/smart-calorie-counter/main/data/remote-foods.json";
+export const APP_CONFIG_URL =
+  "https://raw.githubusercontent.com/kaduprasad/smart-calorie-counter/main/data/app-config.json";
+export const USER_AGENT = "CalorieCounter-MaharashtrianFood/1.0";
+export const APP_VERSION = "1.0.0";
 
 // ─── AsyncStorage Keys ──────────────────────────────────────────────────
 export const STORAGE_KEYS = {
-  DAILY_LOGS: 'daily_logs',
-  CUSTOM_FOODS: 'custom_foods',
-  SETTINGS: 'app_settings',
-  WEIGHT_ENTRIES: 'weight_entries',
-  EXERCISE_ENTRIES: 'exercise_entries',
-  REMOTE_FOODS: 'remote_foods_cache',
-  REMOTE_FOODS_VERSION: 'remote_foods_version',
-  USER_DATA: 'user_data',
-  PINNED_FOODS: 'pinned_foods',
+  DAILY_LOGS: "daily_logs",
+  CUSTOM_FOODS: "custom_foods",
+  SETTINGS: "app_settings",
+  WEIGHT_ENTRIES: "weight_entries",
+  EXERCISE_ENTRIES: "exercise_entries",
+  REMOTE_FOODS: "remote_foods_cache",
+  REMOTE_FOODS_VERSION: "remote_foods_version",
+  USER_DATA: "user_data",
+  PINNED_FOODS: "pinned_foods",
+  DISMISSED_UPDATE_VERSION: "dismissed_update_version",
 } as const;
 
 // ─── Default Settings ───────────────────────────────────────────────────
@@ -95,7 +101,8 @@ export const VOICE_SEARCH_RESULT_LIMIT = 5;
 
 // ─── Network ────────────────────────────────────────────────────────────
 export const REMOTE_FOODS_FETCH_TIMEOUT_MS = 8000;
+export const APP_CONFIG_FETCH_TIMEOUT_MS = 300000; // 5 minutes - config changes are infrequent, so we can afford a longer timeout
 
 // ─── Notifications ──────────────────────────────────────────────────────
-export const NOTIFICATION_CHANNEL_ID = 'daily-reminder';
-export const NOTIFICATION_CHANNEL_NAME = 'Daily Reminder';
+export const NOTIFICATION_CHANNEL_ID = "daily-reminder";
+export const NOTIFICATION_CHANNEL_NAME = "Daily Reminder";

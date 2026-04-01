@@ -1,0 +1,13 @@
+{
+  "latestVersion": "1.0.0",
+  "minSupportedVersion": "1.0.0",
+  "updateMessage": "A new version of Smart Calorie Tracker is available with exciting features!",
+  "forceUpdate": false,
+  "playStoreUrl": "https://play.google.com/store/apps/details?id=com.kaduprasad.smartcalorietracker",
+  "releaseNotes": [
+    "Initial release with 1000+ Indian food items",
+    "Voice food input in English (India)",
+    "BMI calculator and weight tracking",
+    "Daily calorie and macro tracking"
+  ]
+}

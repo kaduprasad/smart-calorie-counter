@@ -4,7 +4,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AppProvider } from './src/context/AppContext';
 import { useLog } from './src/context/LogContext';
 import { AppNavigator } from './src/navigation/AppNavigator';
-import { SplashScreen } from './src/components';
+import { SplashScreen, UpdateChecker } from './src/components';
 import {
   setupNotificationListener,
   setupNotificationResponseListener,
@@ -57,6 +57,7 @@ const AppContent: React.FC = () => {
   return (
     <>
       <StatusBar style="dark" />
+      <UpdateChecker />
       <AppNavigator />
     </>
   );
