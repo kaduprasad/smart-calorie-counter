@@ -160,3 +160,11 @@ export interface BMIResult {
   category: 'underweight' | 'normal' | 'overweight' | 'obese';
   healthyWeightRange: { min: number; max: number };
 }
+
+// Authenticated user (Google Sign-In)
+export interface AuthUser {
+  id: string;
+  email: string;
+  name: string | null;
+  photo: string | null;
+}

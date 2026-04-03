@@ -17,6 +17,10 @@ export const APP_CONFIG_URL =
 export const USER_AGENT = "CalorieCounter-MaharashtrianFood/1.0";
 export const APP_VERSION = "1.0.0";
 
+// ─── Google Sign-In ─────────────────────────────────────────────────────
+export const GOOGLE_WEB_CLIENT_ID =
+  "717068097924-7dijobrmdsjepdk9frgtuf75j8jv6t67.apps.googleusercontent.com";
+
 // ─── AsyncStorage Keys ──────────────────────────────────────────────────
 export const STORAGE_KEYS = {
   DAILY_LOGS: "daily_logs",
@@ -29,6 +33,7 @@ export const STORAGE_KEYS = {
   USER_DATA: "user_data",
   PINNED_FOODS: "pinned_foods",
   DISMISSED_UPDATE_VERSION: "dismissed_update_version",
+  AUTH_USER: "auth_user",
 } as const;
 
 // ─── Default Settings ───────────────────────────────────────────────────

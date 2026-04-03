@@ -10,6 +10,7 @@ import { GoalsSection } from './GoalsSection';
 import { ExerciseGoalSection } from './ExerciseGoalSection';
 import { ReminderSection } from './ReminderSection';
 import { AboutSection } from './AboutSection';
+import { AccountSection } from './AccountSection';
 
 export const SettingsScreen: React.FC = () => {
   const { settings, updateSettings } = useSettings();
@@ -32,6 +33,8 @@ export const SettingsScreen: React.FC = () => {
       </View>
 
       <ScrollView ref={scrollRef} style={styles.scrollView}>
+        <AccountSection />
+
         <View style={styles.section}>
           <UserInfoSection />
         </View>

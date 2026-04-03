@@ -57,7 +57,8 @@
           "microphonePermission": "Allow Smart Calorie Tracker to use the microphone for voice food input.",
           "speechRecognitionPermission": "Allow Smart Calorie Tracker to use speech recognition for voice food input."
         }
-      ]
+      ],
+      "@react-native-google-signin/google-signin"
     ],
     "extra": {
       "eas": {

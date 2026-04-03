@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AppProvider } from './src/context/AppContext';
+import { AuthProvider } from './src/context/AuthContext';
 import { useLog } from './src/context/LogContext';
 import { AppNavigator } from './src/navigation/AppNavigator';
 import { SplashScreen, UpdateChecker } from './src/components';
@@ -66,9 +67,11 @@ const AppContent: React.FC = () => {
 export default function App() {
   return (
     <SafeAreaProvider>
-      <AppProvider>
-        <AppContent />
-      </AppProvider>
+      <AuthProvider>
+        <AppProvider>
+          <AppContent />
+        </AppProvider>
+      </AuthProvider>
     </SafeAreaProvider>
   );
 }
