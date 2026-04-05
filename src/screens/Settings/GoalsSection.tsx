@@ -49,17 +49,19 @@ export const GoalsSection: React.FC<GoalsSectionProps> = ({ settings, updateSett
           </View>
           <Text style={styles.goalCardLabel}>Calorie{'\n'}Goal</Text>
         </View>
-        <View style={styles.goalCardInputRow}>
-          <NumericInput
-            style={styles.goalCardInput}
-            value={calorieGoal}
-            onChangeText={setCalorieGoal}
-            allowDecimal={false}
-            placeholder="2000"
-          />
-          <Text style={styles.goalCardUnit}>cal</Text>
+        <View style={{ alignSelf: 'stretch' }}>
+          <View style={styles.goalCardInputRow}>
+            <NumericInput
+              style={styles.goalCardInput}
+              value={calorieGoal}
+              onChangeText={setCalorieGoal}
+              allowDecimal={false}
+              placeholder="2000"
+            />
+            <Text style={styles.goalCardUnit}>cal</Text>
+          </View>
+          <AnimatedSaveButton onSave={handleSaveCalorieGoal} style={{ marginTop: 10, borderRadius: 12 }} />
         </View>
-        <AnimatedSaveButton onSave={handleSaveCalorieGoal} compact />
         <Text style={styles.goalCardHint}>
           Target: {settings.dailyCalorieGoal} cal
         </Text>
@@ -72,18 +74,20 @@ export const GoalsSection: React.FC<GoalsSectionProps> = ({ settings, updateSett
           </View>
           <Text style={styles.goalCardLabel}>Weight{'\n'}Goal</Text>
         </View>
-        <View style={styles.goalCardInputRow}>
-          <NumericInput
-            style={styles.goalCardInput}
-            value={weightGoal}
-            onChangeText={setWeightGoal}
-            allowDecimal={true}
-            maxDecimalPlaces={1}
-            placeholder="70"
-          />
-          <Text style={styles.goalCardUnit}>kg</Text>
+        <View style={{ alignSelf: 'stretch' }}>
+          <View style={styles.goalCardInputRow}>
+            <NumericInput
+              style={styles.goalCardInput}
+              value={weightGoal}
+              onChangeText={setWeightGoal}
+              allowDecimal={true}
+              maxDecimalPlaces={1}
+              placeholder="70"
+            />
+            <Text style={styles.goalCardUnit}>kg</Text>
+          </View>
+          <AnimatedSaveButton onSave={handleSaveWeightGoal} style={{ marginTop: 10, borderRadius: 12 }} />
         </View>
-        <AnimatedSaveButton onSave={handleSaveWeightGoal} compact />
         <Text style={styles.goalCardHint}>
           {settings.weightGoal ? `Target: ${settings.weightGoal} kg` : 'Set your target'}
         </Text>

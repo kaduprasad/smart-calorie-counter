@@ -14,7 +14,6 @@ interface ExerciseGoalSectionProps {
 
 export const ExerciseGoalSection: React.FC<ExerciseGoalSectionProps> = ({ settings, updateSettings }) => {
   const [exerciseGoal, setExerciseGoal] = useState(settings.exerciseCalorieGoal.toString());
-  const [inputFocused, setInputFocused] = useState(false);
 
   const handleSave = async (): Promise<boolean> => {
     const goalNum = parseInt(exerciseGoal);
@@ -39,21 +38,16 @@ export const ExerciseGoalSection: React.FC<ExerciseGoalSectionProps> = ({ settin
           Daily calorie burn target from workouts
         </Text>
         <View style={styles.exerciseGoalRow}>
-          <NumericInput
-            style={[
-              styles.exerciseGoalInput,
-              inputFocused && styles.goalInputFocusedGreen,
-            ]}
-            value={exerciseGoal}
-            onChangeText={setExerciseGoal}
-            onFocus={() => setInputFocused(true)}
-            onBlur={() => setInputFocused(false)}
-            allowDecimal={false}
-            placeholder="300"
-          />
-          <Text style={styles.exerciseGoalUnit}>cal/day</Text>
-          <AnimatedSaveButton onSave={handleSave} color="#4CAF50" compact />
-        </View>
+            <NumericInput
+              style={styles.exerciseGoalInput}
+              value={exerciseGoal}
+              onChangeText={setExerciseGoal}
+              allowDecimal={false}
+              placeholder="300"
+            />
+            <Text style={styles.exerciseGoalUnit}>cal</Text>
+          </View>
+        <AnimatedSaveButton onSave={handleSave} color="#4CAF50" style={{ marginTop: 10, borderRadius: 12 }} />
         <Text style={styles.goalCardHint}>
           Target: {settings.exerciseCalorieGoal} cal/day
         </Text>
