@@ -173,13 +173,13 @@ export const FoodCard: React.FC<FoodCardProps> = ({
             )}
           </View>
         </View>
-        {showCalories && (
-          <View style={styles.calorieContainer}>
-            <Text style={styles.calorieValue}>{food.caloriesPerUnit}</Text>
-            <Text style={styles.calorieLabel}>cal</Text>
-          </View>
-        )}
       </View>
+      {showCalories && (
+        <View style={styles.calorieContainer}>
+          <Text style={styles.calorieValue}>{food.caloriesPerUnit}</Text>
+          <Text style={styles.calorieLabel}>cal</Text>
+        </View>
+      )}
       
       {/* Quick Add Section */}
       {showQuickAdd && (
@@ -249,13 +249,10 @@ const styles = StyleSheet.create({
   },
   content: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingRight: 16,
+    paddingRight: 50,
   },
   info: {
     flex: 1,
-    marginRight: 12,
   },
   name: {
     fontSize: 12,
@@ -273,20 +270,23 @@ const styles = StyleSheet.create({
     color: '#888888',
   },
   calorieContainer: {
+    position: 'absolute',
+    bottom: 8,
+    right: 8,
     alignItems: 'center',
     backgroundColor: '#FFF3E0',
-    paddingVertical: 4,
-    paddingHorizontal: 6,
-    borderRadius: 8,
-    minWidth: 44,
+    paddingVertical: 3,
+    paddingHorizontal: 5,
+    borderRadius: 6,
+    minWidth: 36,
   },
   calorieValue: {
-    fontSize: 12,
+    fontSize: 11,
     fontWeight: '700',
     color: '#FF7B00',
   },
   calorieLabel: {
-    fontSize: 8,
+    fontSize: 7,
     color: '#FF9D45',
   },
   // Quick Add Styles

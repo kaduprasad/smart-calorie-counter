@@ -6,6 +6,8 @@ import { AppSettings } from '../../types';
 import { sendTestNotification, getScheduledNotifications } from '../../services/notifications';
 import { formatTime } from '../../utils/normalize';
 import { styles } from './styles/settingsScreenStyles';
+import { useSettings } from '../../context/SettingsContext';
+import { COLORS } from '../../common/colors';
 
 interface ReminderSectionProps {
   settings: AppSettings;
@@ -20,6 +22,10 @@ const presetTimes = [
 ];
 
 export const ReminderSection: React.FC<ReminderSectionProps> = ({ settings, updateSettings }) => {
+  const { gender } = useSettings();
+  const isFemale = gender === 'female';
+  const accentColor = isFemale ? COLORS.female : COLORS.male;
+  const accentBg = isFemale ? COLORS.femaleLight : COLORS.maleLight;
   const [notificationEnabled, setNotificationEnabled] = useState(settings.notificationEnabled);
   const [hour, setHour] = useState(settings.notificationTime.hour.toString());
   const [minute, setMinute] = useState(settings.notificationTime.minute.toString().padStart(2, '0'));
@@ -65,8 +71,8 @@ export const ReminderSection: React.FC<ReminderSectionProps> = ({ settings, upda
     <View style={styles.section}>
       <View style={styles.card}>
         <View style={styles.cardHeader}>
-          <View style={styles.cardIconContainer}>
-            <Ionicons name="notifications" size={20} color="#FF7B00" />
+          <View style={[styles.cardIconContainer, { backgroundColor: accentBg }]}>
+            <Ionicons name="notifications" size={16} color={accentColor} />
           </View>
           <Text style={styles.cardTitle}>Daily Reminder</Text>
         </View>
@@ -80,8 +86,8 @@ export const ReminderSection: React.FC<ReminderSectionProps> = ({ settings, upda
           <Switch
             value={notificationEnabled}
             onValueChange={handleToggleNotification}
-            trackColor={{ false: '#D1D5DB', true: '#9CA3AF' }}
-            thumbColor={notificationEnabled ? '#4B5563' : '#F3F4F6'}
+            trackColor={{ false: '#D1D5DB', true: accentBg }}
+            thumbColor={notificationEnabled ? accentColor : '#F3F4F6'}
           />
         </View>
 
@@ -124,8 +130,7 @@ export const ReminderSection: React.FC<ReminderSectionProps> = ({ settings, upda
                   style={[
                     styles.presetButton,
                     parseInt(hour) === preset.hour &&
-                      parseInt(minute) === preset.minute &&
-                      styles.presetButtonActive,
+                      parseInt(minute) === preset.minute && { backgroundColor: accentColor },
                   ]}
                   onPress={() => {
                     setHour(preset.hour.toString());
@@ -146,7 +151,7 @@ export const ReminderSection: React.FC<ReminderSectionProps> = ({ settings, upda
               ))}
             </View>
 
-            <TouchableOpacity style={styles.saveButton} onPress={handleSaveNotificationTime}>
+            <TouchableOpacity style={[styles.saveButton, { backgroundColor: accentColor }]} onPress={handleSaveNotificationTime}>
               <Text style={styles.saveButtonText}>Save Time</Text>
             </TouchableOpacity>
 

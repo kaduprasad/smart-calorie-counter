@@ -222,8 +222,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     minWidth: 80,
     paddingVertical: 8,
-    borderBottomWidth: 2,
-    borderBottomColor: '#FF7B00',
   },
   unitText: {
     fontSize: 14,

@@ -7,6 +7,7 @@ import { getUserData, saveUserData } from "../services/userDataService";
 import { getLocalDateString } from "../utils/utils";
 import { VALIDATION } from "../common/constants";
 import { COLORS } from "../common/colors";
+import { useSettings } from "../context/SettingsContext";
 
 interface UserInfoSectionProps {
   onDataUpdate?: (userData: UserData) => void;
@@ -207,6 +208,7 @@ export const UserInfoSection: React.FC<UserInfoSectionProps> = ({
   const [state, dispatch] = useReducer(formReducer, initialState);
   const [toastVisible, setToastVisible] = React.useState(false);
   const toastAnim = useRef(new Animated.Value(0)).current;
+  const { setGender: setContextGender } = useSettings();
 
   const showToast = useCallback(() => {
     setToastVisible(true);
@@ -274,7 +276,8 @@ export const UserInfoSection: React.FC<UserInfoSectionProps> = ({
   // Memoized handlers to prevent unnecessary re-renders
   const handleGenderSelect = useCallback((gender: "male" | "female") => {
     dispatch({ type: "SET_GENDER", payload: gender });
-  }, []);
+    setContextGender(gender);
+  }, [setContextGender]);
 
   const handleAgeChange = useCallback((text: string) => {
     dispatch({ type: "SET_AGE", payload: text });
@@ -580,7 +583,7 @@ export const UserInfoSection: React.FC<UserInfoSectionProps> = ({
                 value={heightInput}
                 onChangeText={handleHeightChange}
                 allowDecimal={true}
-                maxDecimalPlaces={1}
+                maxDecimalPlaces={2}
                 placeholder="170"
                 placeholderTextColor="#BBBBBB"
                 maxLength={5}
@@ -683,7 +686,7 @@ export const UserInfoSection: React.FC<UserInfoSectionProps> = ({
               value={weightInput}
               onChangeText={handleWeightChange}
               allowDecimal={true}
-              maxDecimalPlaces={1}
+              maxDecimalPlaces={2}
               placeholder="70"
               placeholderTextColor="#BBBBBB"
               maxLength={5}
@@ -921,8 +924,7 @@ const styles = StyleSheet.create({
   },
   heightInputContainer: {
     flex: 1,
-    borderWidth: 2,
-    borderColor: "#E0E0E0",
+    backgroundColor: "#F3F4F6",
     borderRadius: 12,
     paddingHorizontal: 16,
   },

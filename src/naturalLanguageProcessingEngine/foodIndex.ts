@@ -48,8 +48,8 @@ const FUSE_OPTIONS: IFuseOptions<FoodSearchEntry> = {
     { name: 'marathiNorm', weight: 0.2 },
     { name: 'keywordsNorm', weight: 0.3 },
   ],
-  threshold: 0.35,       // 0 = exact, 1 = match anything; 0.35 catches 1-2 char typos
-  distance: 100,         // how far from expected position a match can be
+  threshold: 0.45,       // 0 = exact, 1 = match anything; 0.45 catches transpositions + 1-2 char typos
+  distance: 200,         // how far from expected position a match can be
   includeScore: true,
   minMatchCharLength: 2, // ignore single-char fuzzy noise
   shouldSort: true,
@@ -121,7 +121,7 @@ export function getFoodIndex(foods: FoodItem[]): FoodIndex {
 // ─── Search ─────────────────────────────────────────────────────────────
 
 /** Maximum Fuse.js results to consider (avoids flooding with weak matches) */
-const FUSE_MAX_RESULTS = 15;
+const FUSE_MAX_RESULTS = 20;
 
 /**
  * Three-pass search:
@@ -186,9 +186,16 @@ export function searchFoods(
     if (nameHit || marathiHit || keywordHit) {
       let score = 0;
       if (nameHit) {
-        score = entry.nameLower.startsWith(q) ? 100
-          : entry.nameLower.includes(q) ? 80
-          : 70;
+        // Whole-word boundary check: "sheng" in "Gavar Sheng Bhaji" ranks higher
+        // than "sheng" as prefix of "Shengdana" — uses word-boundary regex
+        const escaped = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const wordBoundaryRe = new RegExp(`\\b${escaped}\\b`);
+        const isWholeWord = wordBoundaryRe.test(entry.nameLower);
+        if (isWholeWord) {
+          score = entry.nameLower.startsWith(q) ? 100 : 95;
+        } else {
+          score = entry.nameLower.startsWith(q) ? 85 : 80;
+        }
       } else if (marathiHit) {
         score = 60;
       } else {

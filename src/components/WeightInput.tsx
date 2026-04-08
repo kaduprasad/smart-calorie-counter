@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   View,
   Text,
@@ -12,6 +12,8 @@ import { NumericInput } from './NumericInput';
 import { WeightEntry } from '../types';
 import { getWeightEntry, saveWeightEntry, getTodayDate } from '../services/storage';
 import { formatShortDate } from '../utils/normalize';
+import { useSettings } from '../context/SettingsContext';
+import { getUserData } from '../services/userDataService';
 
 interface WeightInputProps {
   date: string;
@@ -19,10 +21,22 @@ interface WeightInputProps {
 }
 
 export const WeightInput: React.FC<WeightInputProps> = ({ date, onWeightSaved }) => {
+  const { gender } = useSettings();
   const [todayWeight, setTodayWeight] = useState<number | null>(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [inputWeight, setInputWeight] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const [profileWeight, setProfileWeight] = useState<number | undefined>();
+
+  useEffect(() => {
+    loadTodayWeight();
+    getUserData().then(data => setProfileWeight(data.currentWeight));
+  }, [date]);
+
+  const placeholderWeight = useMemo(() => {
+    if (profileWeight) return String(profileWeight);
+    return gender === 'female' ? '50' : '70';
+  }, [profileWeight, gender]);
 
   useEffect(() => {
     loadTodayWeight();
@@ -123,8 +137,8 @@ export const WeightInput: React.FC<WeightInputProps> = ({ date, onWeightSaved })
                 value={inputWeight}
                 onChangeText={setInputWeight}
                 allowDecimal={true}
-                maxDecimalPlaces={1}
-                placeholder="70.5"
+                maxDecimalPlaces={2}
+                placeholder={placeholderWeight}
                 placeholderTextColor="#AAAAAA"
                 autoFocus
               />

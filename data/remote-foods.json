@@ -1,46 +1,7 @@
 {
-  "version": 1,
-  "lastUpdated": "2026-03-15",
+  "version": 4,
+  "lastUpdated": "2026-04-07",
   "foods": [
-    {
-      "id": "remote-masala-oats",
-      "name": "Masala Oats",
-      "nameMarathi": "मसाला ओट्स",
-      "category": "breakfast",
-      "caloriesPerUnit": 180,
-      "proteinPerUnit": 6,
-      "fatPerUnit": 4,
-      "fiberPerUnit": 4,
-      "unit": "bowl",
-      "unitWeight": 200,
-      "searchKeywords": ["oats", "quaker oats", "saffola oats", "healthy breakfast"]
-    },
-    {
-      "id": "remote-corn-flakes",
-      "name": "Corn Flakes (with milk)",
-      "nameMarathi": "कॉर्न फ्लेक्स",
-      "category": "breakfast",
-      "caloriesPerUnit": 220,
-      "proteinPerUnit": 7,
-      "fatPerUnit": 3.5,
-      "fiberPerUnit": 1,
-      "unit": "bowl",
-      "unitWeight": 200,
-      "searchKeywords": ["cornflakes", "kelloggs", "cereal"]
-    },
-    {
-      "id": "remote-muesli",
-      "name": "Muesli (with milk)",
-      "nameMarathi": "म्यूस्ली",
-      "category": "breakfast",
-      "caloriesPerUnit": 310,
-      "proteinPerUnit": 10,
-      "fatPerUnit": 8,
-      "fiberPerUnit": 5,
-      "unit": "bowl",
-      "unitWeight": 200,
-      "searchKeywords": ["granola", "healthy cereal", "yogibar"]
-    },
     {
       "id": "remote-cheese-toast",
       "name": "Cheese Toast",
@@ -52,7 +13,11 @@
       "fiberPerUnit": 1,
       "unit": "piece",
       "unitWeight": 60,
-      "searchKeywords": ["cheese bread", "grilled cheese", "toast"]
+      "searchKeywords": [
+        "cheese bread",
+        "grilled cheese",
+        "toast"
+      ]
     },
     {
       "id": "remote-paneer-bhurji",
@@ -65,20 +30,11 @@
       "fiberPerUnit": 2,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["scrambled paneer", "bhurji", "panir"]
-    },
-    {
-      "id": "remote-egg-bhurji",
-      "name": "Egg Bhurji",
-      "nameMarathi": "अंडा भुर्जी",
-      "category": "nonveg",
-      "caloriesPerUnit": 220,
-      "proteinPerUnit": 14,
-      "fatPerUnit": 16,
-      "fiberPerUnit": 1,
-      "unit": "plate",
-      "unitWeight": 150,
-      "searchKeywords": ["scrambled eggs", "anda bhurji", "bhurji"]
+      "searchKeywords": [
+        "scrambled paneer",
+        "bhurji",
+        "panir"
+      ]
     },
     {
       "id": "remote-momos-veg",
@@ -91,7 +47,12 @@
       "fiberPerUnit": 3,
       "unit": "plate",
       "unitWeight": 120,
-      "searchKeywords": ["dumpling", "momo", "steamed momos", "tibetan"]
+      "searchKeywords": [
+        "dumpling",
+        "momo",
+        "steamed momos",
+        "tibetan"
+      ]
     },
     {
       "id": "remote-momos-chicken",
@@ -104,59 +65,11 @@
       "fiberPerUnit": 2,
       "unit": "plate",
       "unitWeight": 120,
-      "searchKeywords": ["chicken dumpling", "momo", "nonveg momos"]
-    },
-    {
-      "id": "remote-shawarma-chicken",
-      "name": "Chicken Shawarma",
-      "nameMarathi": "चिकन शवरमा",
-      "category": "nonveg",
-      "caloriesPerUnit": 430,
-      "proteinPerUnit": 24,
-      "fatPerUnit": 18,
-      "fiberPerUnit": 3,
-      "unit": "piece",
-      "unitWeight": 200,
-      "searchKeywords": ["shawarma", "wrap", "roll", "arabic"]
-    },
-    {
-      "id": "remote-spring-roll",
-      "name": "Veg Spring Roll (Fried)",
-      "nameMarathi": "स्प्रिंग रोल",
-      "category": "snacks",
-      "caloriesPerUnit": 130,
-      "proteinPerUnit": 3,
-      "fatPerUnit": 7,
-      "fiberPerUnit": 1.5,
-      "unit": "piece",
-      "unitWeight": 50,
-      "searchKeywords": ["chinese spring roll", "roll", "fried roll"]
-    },
-    {
-      "id": "remote-manchurian-dry",
-      "name": "Veg Manchurian (Dry)",
-      "nameMarathi": "व्हेज मंच्युरियन",
-      "category": "chaat",
-      "caloriesPerUnit": 280,
-      "proteinPerUnit": 5,
-      "fatPerUnit": 14,
-      "fiberPerUnit": 3,
-      "unit": "plate",
-      "unitWeight": 150,
-      "searchKeywords": ["manchurian", "chinese", "indo chinese"]
-    },
-    {
-      "id": "remote-fried-rice",
-      "name": "Veg Fried Rice",
-      "nameMarathi": "व्हेज फ्राईड राईस",
-      "category": "rice",
-      "caloriesPerUnit": 310,
-      "proteinPerUnit": 7,
-      "fatPerUnit": 10,
-      "fiberPerUnit": 3,
-      "unit": "plate",
-      "unitWeight": 250,
-      "searchKeywords": ["chinese rice", "fried rice", "indo chinese"]
+      "searchKeywords": [
+        "chicken dumpling",
+        "momo",
+        "nonveg momos"
+      ]
     },
     {
       "id": "remote-hakka-noodles",
@@ -169,59 +82,12 @@
       "fiberPerUnit": 3,
       "unit": "plate",
       "unitWeight": 250,
-      "searchKeywords": ["chowmein", "noodles", "chinese noodles", "stir fry"]
-    },
-    {
-      "id": "remote-chicken-biryani",
-      "name": "Chicken Biryani",
-      "nameMarathi": "चिकन बिर्याणी",
-      "category": "nonveg",
-      "caloriesPerUnit": 400,
-      "proteinPerUnit": 20,
-      "fatPerUnit": 14,
-      "fiberPerUnit": 2,
-      "unit": "plate",
-      "unitWeight": 250,
-      "searchKeywords": ["biryani", "dum biryani", "hyderabadi biryani"]
-    },
-    {
-      "id": "remote-mutton-biryani",
-      "name": "Mutton Biryani",
-      "nameMarathi": "मटण बिर्याणी",
-      "category": "nonveg",
-      "caloriesPerUnit": 450,
-      "proteinPerUnit": 22,
-      "fatPerUnit": 18,
-      "fiberPerUnit": 2,
-      "unit": "plate",
-      "unitWeight": 250,
-      "searchKeywords": ["biryani", "goat biryani", "lamb biryani"]
-    },
-    {
-      "id": "remote-chicken-tikka",
-      "name": "Chicken Tikka",
-      "nameMarathi": "चिकन टिक्का",
-      "category": "nonveg",
-      "caloriesPerUnit": 250,
-      "proteinPerUnit": 28,
-      "fatPerUnit": 12,
-      "fiberPerUnit": 1,
-      "unit": "plate",
-      "unitWeight": 150,
-      "searchKeywords": ["tikka", "tandoori tikka", "grilled chicken"]
-    },
-    {
-      "id": "remote-fish-fry",
-      "name": "Fish Fry (Bombil/Bangda)",
-      "nameMarathi": "मासे फ्राय",
-      "category": "nonveg",
-      "caloriesPerUnit": 220,
-      "proteinPerUnit": 18,
-      "fatPerUnit": 14,
-      "fiberPerUnit": 0.5,
-      "unit": "piece",
-      "unitWeight": 80,
-      "searchKeywords": ["bombil fry", "bangda fry", "fish tawa", "surmai fry", "mase"]
+      "searchKeywords": [
+        "chowmein",
+        "noodles",
+        "chinese noodles",
+        "stir fry"
+      ]
     },
     {
       "id": "remote-keema-pav",
@@ -234,20 +100,12 @@
       "fiberPerUnit": 3,
       "unit": "plate",
       "unitWeight": 200,
-      "searchKeywords": ["mutton keema", "keema", "mince", "kheema"]
-    },
-    {
-      "id": "remote-dal-khichdi",
-      "name": "Dal Khichdi (with ghee)",
-      "nameMarathi": "डाळ खिचडी",
-      "category": "maincourse",
-      "caloriesPerUnit": 250,
-      "proteinPerUnit": 9,
-      "fatPerUnit": 7,
-      "fiberPerUnit": 5,
-      "unit": "bowl",
-      "unitWeight": 200,
-      "searchKeywords": ["khichdi", "comfort food", "healthy"]
+      "searchKeywords": [
+        "mutton keema",
+        "keema",
+        "mince",
+        "kheema"
+      ]
     },
     {
       "id": "remote-curd-rice",
@@ -260,85 +118,11 @@
       "fiberPerUnit": 1,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["dahi bhat", "mosaranna", "thayir sadam"]
-    },
-    {
-      "id": "remote-onion-raw",
-      "name": "Onion (Raw)",
-      "nameMarathi": "कांदा",
-      "category": "vegetables",
-      "caloriesPerUnit": 40,
-      "proteinPerUnit": 1.1,
-      "fatPerUnit": 0.1,
-      "fiberPerUnit": 1.7,
-      "unit": "bowl",
-      "unitWeight": 100,
-      "searchKeywords": ["kanda", "pyaj", "salad"]
-    },
-    {
-      "id": "remote-radish-raw",
-      "name": "Radish (Raw)",
-      "nameMarathi": "मुळा",
-      "category": "vegetables",
-      "caloriesPerUnit": 16,
-      "proteinPerUnit": 0.7,
-      "fatPerUnit": 0.1,
-      "fiberPerUnit": 1.6,
-      "unit": "bowl",
-      "unitWeight": 100,
-      "searchKeywords": ["moola", "mula", "salad"]
-    },
-    {
-      "id": "remote-beetroot-raw",
-      "name": "Beetroot (Raw)",
-      "nameMarathi": "बीट",
-      "category": "vegetables",
-      "caloriesPerUnit": 43,
-      "proteinPerUnit": 1.6,
-      "fatPerUnit": 0.2,
-      "fiberPerUnit": 2.8,
-      "unit": "bowl",
-      "unitWeight": 100,
-      "searchKeywords": ["beet", "chukandar", "salad"]
-    },
-    {
-      "id": "remote-lettuce",
-      "name": "Lettuce",
-      "nameMarathi": "लेट्यूस / सलाड पाने",
-      "category": "vegetables",
-      "caloriesPerUnit": 15,
-      "proteinPerUnit": 1.4,
-      "fatPerUnit": 0.2,
-      "fiberPerUnit": 1.3,
-      "unit": "bowl",
-      "unitWeight": 100,
-      "searchKeywords": ["salad leaves", "green leaves", "iceberg"]
-    },
-    {
-      "id": "remote-sweet-corn",
-      "name": "Sweet Corn (Boiled)",
-      "nameMarathi": "गोड मका",
-      "category": "snacks",
-      "caloriesPerUnit": 96,
-      "proteinPerUnit": 3.4,
-      "fatPerUnit": 1.5,
-      "fiberPerUnit": 2.4,
-      "unit": "cup",
-      "unitWeight": 100,
-      "searchKeywords": ["corn cup", "bhutta", "maka", "butter corn"]
-    },
-    {
-      "id": "remote-peanut-chikki",
-      "name": "Peanut Chikki",
-      "nameMarathi": "शेंगदाणा चिक्की",
-      "category": "sweets",
-      "caloriesPerUnit": 110,
-      "proteinPerUnit": 3.5,
-      "fatPerUnit": 5,
-      "fiberPerUnit": 1,
-      "unit": "piece",
-      "unitWeight": 25,
-      "searchKeywords": ["chikki", "gajak", "gudh singdana", "jaggery peanut"]
+      "searchKeywords": [
+        "dahi bhat",
+        "mosaranna",
+        "thayir sadam"
+      ]
     },
     {
       "id": "remote-coconut-barfi",
@@ -351,72 +135,28 @@
       "fiberPerUnit": 1,
       "unit": "piece",
       "unitWeight": 25,
-      "searchKeywords": ["naral barfi", "kopra barfi", "coconut sweet"]
-    },
-    {
-      "id": "remote-rasgulla",
-      "name": "Rasgulla",
-      "nameMarathi": "रसगुल्ला",
-      "category": "sweets",
-      "caloriesPerUnit": 120,
-      "proteinPerUnit": 3,
-      "fatPerUnit": 1,
-      "fiberPerUnit": 0,
-      "unit": "piece",
-      "unitWeight": 50,
-      "searchKeywords": ["rasgolla", "bengali sweet", "chhena"]
-    },
-    {
-      "id": "remote-kaju-katli",
-      "name": "Kaju Katli",
-      "nameMarathi": "काजू कतली",
-      "category": "sweets",
-      "caloriesPerUnit": 85,
-      "proteinPerUnit": 2,
-      "fatPerUnit": 4.5,
-      "fiberPerUnit": 0.3,
-      "unit": "piece",
-      "unitWeight": 15,
-      "searchKeywords": ["cashew barfi", "kaju barfi", "diwali sweet"]
+      "searchKeywords": [
+        "naral barfi",
+        "kopra barfi",
+        "coconut sweet"
+      ]
     },
     {
       "id": "remote-chocolate-brownie",
       "name": "Chocolate Brownie",
       "nameMarathi": "चॉकलेट ब्राउनी",
       "category": "sweets",
-      "caloriesPerUnit": 230,
-      "proteinPerUnit": 3,
-      "fatPerUnit": 12,
+      "caloriesPerUnit": 280,
+      "proteinPerUnit": 4,
+      "fatPerUnit": 17,
       "fiberPerUnit": 1.5,
       "unit": "piece",
       "unitWeight": 60,
-      "searchKeywords": ["brownie", "chocolate cake", "dessert"]
-    },
-    {
-      "id": "remote-pastry",
-      "name": "Pastry (Cream)",
-      "nameMarathi": "पेस्ट्री",
-      "category": "sweets",
-      "caloriesPerUnit": 300,
-      "proteinPerUnit": 4,
-      "fatPerUnit": 16,
-      "fiberPerUnit": 0.5,
-      "unit": "piece",
-      "unitWeight": 80,
-      "searchKeywords": ["cake", "birthday cake", "cream pastry", "bakery"]
-    },
-    {
-      "id": "remote-donut",
-      "name": "Donut (Glazed)",
-      "nameMarathi": "डोनट",
-      "category": "sweets",
-      "caloriesPerUnit": 250,
-      "proteinPerUnit": 3,
-      "fatPerUnit": 12,
-      "fiberPerUnit": 0.7,
-      "unit": "piece",
-      "unitWeight": 65,
-      "searchKeywords": ["doughnut", "dunkin", "mad over donuts"]
+      "searchKeywords": [
+        "brownie",
+        "chocolate cake",
+        "dessert"
+      ]
     },
     {
       "id": "remote-ice-cream",
@@ -429,72 +169,12 @@
       "fiberPerUnit": 0,
       "unit": "scoop",
       "unitWeight": 100,
-      "searchKeywords": ["icecream", "kulfi", "amul", "naturals"]
-    },
-    {
-      "id": "remote-nimbu-pani",
-      "name": "Nimbu Pani (Fresh Lime Water)",
-      "nameMarathi": "लिंबू पाणी",
-      "category": "beverages",
-      "caloriesPerUnit": 45,
-      "proteinPerUnit": 0,
-      "fatPerUnit": 0,
-      "fiberPerUnit": 0,
-      "unit": "glass",
-      "unitWeight": 250,
-      "searchKeywords": ["lemon water", "lime juice", "shikanji", "limbu sarbat"]
-    },
-    {
-      "id": "remote-sugarcane-juice",
-      "name": "Sugarcane Juice",
-      "nameMarathi": "उसाचा रस",
-      "category": "beverages",
-      "caloriesPerUnit": 180,
-      "proteinPerUnit": 0,
-      "fatPerUnit": 0,
-      "fiberPerUnit": 0,
-      "unit": "glass",
-      "unitWeight": 250,
-      "searchKeywords": ["ganne ka ras", "usacha ras", "sugar cane"]
-    },
-    {
-      "id": "remote-mango-shake",
-      "name": "Mango Milkshake",
-      "nameMarathi": "आंबा मिल्कशेक",
-      "category": "beverages",
-      "caloriesPerUnit": 210,
-      "proteinPerUnit": 5,
-      "fatPerUnit": 5,
-      "fiberPerUnit": 1,
-      "unit": "glass",
-      "unitWeight": 250,
-      "searchKeywords": ["amba shake", "mango shake", "aam shake"]
-    },
-    {
-      "id": "remote-masala-chai",
-      "name": "Masala Chai (with sugar)",
-      "nameMarathi": "मसाला चहा",
-      "category": "beverages",
-      "caloriesPerUnit": 100,
-      "proteinPerUnit": 2.5,
-      "fatPerUnit": 3,
-      "fiberPerUnit": 0,
-      "unit": "cup",
-      "unitWeight": 150,
-      "searchKeywords": ["masala tea", "cutting chai", "ginger tea"]
-    },
-    {
-      "id": "remote-filter-coffee",
-      "name": "Filter Coffee (South Indian)",
-      "nameMarathi": "फिल्टर कॉफी",
-      "category": "beverages",
-      "caloriesPerUnit": 90,
-      "proteinPerUnit": 2,
-      "fatPerUnit": 3,
-      "fiberPerUnit": 0,
-      "unit": "cup",
-      "unitWeight": 150,
-      "searchKeywords": ["kaapi", "south indian coffee", "decoction coffee"]
+      "searchKeywords": [
+        "icecream",
+        "kulfi",
+        "amul",
+        "naturals"
+      ]
     },
     {
       "id": "remote-kokum-sarbat",
@@ -507,7 +187,11 @@
       "fiberPerUnit": 0,
       "unit": "glass",
       "unitWeight": 250,
-      "searchKeywords": ["kokum juice", "sol kadhi drink", "amsul"]
+      "searchKeywords": [
+        "kokum juice",
+        "sol kadhi drink",
+        "amsul"
+      ]
     },
     {
       "id": "remote-aam-panna",
@@ -520,20 +204,11 @@
       "fiberPerUnit": 0.5,
       "unit": "glass",
       "unitWeight": 250,
-      "searchKeywords": ["kairi panha", "raw mango drink", "panna"]
-    },
-    {
-      "id": "remote-oreo-shake",
-      "name": "Oreo Milkshake",
-      "nameMarathi": "ओरिओ मिल्कशेक",
-      "category": "beverages",
-      "caloriesPerUnit": 350,
-      "proteinPerUnit": 8,
-      "fatPerUnit": 14,
-      "fiberPerUnit": 1,
-      "unit": "glass",
-      "unitWeight": 300,
-      "searchKeywords": ["oreo shake", "cookie shake", "thick shake"]
+      "searchKeywords": [
+        "kairi panha",
+        "raw mango drink",
+        "panna"
+      ]
     },
     {
       "id": "remote-soft-drink",
@@ -546,7 +221,15 @@
       "fiberPerUnit": 0,
       "unit": "glass",
       "unitWeight": 330,
-      "searchKeywords": ["coke", "pepsi", "thums up", "limca", "sprite", "fanta", "cola"]
+      "searchKeywords": [
+        "coke",
+        "pepsi",
+        "thums up",
+        "limca",
+        "sprite",
+        "fanta",
+        "cola"
+      ]
     },
     {
       "id": "remote-protein-shake",
@@ -559,46 +242,11 @@
       "fiberPerUnit": 1,
       "unit": "scoop",
       "unitWeight": 35,
-      "searchKeywords": ["whey protein", "gym shake", "powder"]
-    },
-    {
-      "id": "remote-dabeli",
-      "name": "Dabeli",
-      "nameMarathi": "दाबेली",
-      "category": "chaat",
-      "caloriesPerUnit": 220,
-      "proteinPerUnit": 4,
-      "fatPerUnit": 8,
-      "fiberPerUnit": 3,
-      "unit": "piece",
-      "unitWeight": 100,
-      "searchKeywords": ["kacchi dabeli", "kutchi dabeli", "street food"]
-    },
-    {
-      "id": "remote-bhel",
-      "name": "Bhel Puri",
-      "nameMarathi": "भेळ",
-      "category": "chaat",
-      "caloriesPerUnit": 180,
-      "proteinPerUnit": 4,
-      "fatPerUnit": 5,
-      "fiberPerUnit": 3,
-      "unit": "plate",
-      "unitWeight": 100,
-      "searchKeywords": ["bhelpuri", "bhel", "beach snack", "chaat"]
-    },
-    {
-      "id": "remote-pav-bhaji",
-      "name": "Pav Bhaji",
-      "nameMarathi": "पाव भाजी",
-      "category": "chaat",
-      "caloriesPerUnit": 400,
-      "proteinPerUnit": 10,
-      "fatPerUnit": 18,
-      "fiberPerUnit": 6,
-      "unit": "plate",
-      "unitWeight": 250,
-      "searchKeywords": ["pav bhaji", "pao bhaji", "mumbai street food"]
+      "searchKeywords": [
+        "whey protein",
+        "gym shake",
+        "powder"
+      ]
     },
     {
       "id": "remote-sev-usal",
@@ -611,46 +259,11 @@
       "fiberPerUnit": 6,
       "unit": "plate",
       "unitWeight": 200,
-      "searchKeywords": ["usal", "misal cousin", "nashik sev usal"]
-    },
-    {
-      "id": "remote-ragda-pattice",
-      "name": "Ragda Pattice",
-      "nameMarathi": "रगडा पॅटिस",
-      "category": "chaat",
-      "caloriesPerUnit": 290,
-      "proteinPerUnit": 8,
-      "fatPerUnit": 10,
-      "fiberPerUnit": 5,
-      "unit": "plate",
-      "unitWeight": 200,
-      "searchKeywords": ["ragda patties", "chaat", "aloo tikki chaat"]
-    },
-    {
-      "id": "remote-pani-puri",
-      "name": "Pani Puri / Golgappa",
-      "nameMarathi": "पाणी पुरी",
-      "category": "chaat",
-      "caloriesPerUnit": 180,
-      "proteinPerUnit": 3,
-      "fatPerUnit": 5,
-      "fiberPerUnit": 2,
-      "unit": "plate",
-      "unitWeight": 120,
-      "searchKeywords": ["golgappa", "puchka", "gupchup", "pani puri"]
-    },
-    {
-      "id": "remote-chole-bhature",
-      "name": "Chole Bhature",
-      "nameMarathi": "छोले भटुरे",
-      "category": "maincourse",
-      "caloriesPerUnit": 450,
-      "proteinPerUnit": 14,
-      "fatPerUnit": 18,
-      "fiberPerUnit": 6,
-      "unit": "plate",
-      "unitWeight": 250,
-      "searchKeywords": ["chana bhatura", "chhole", "punjabi"]
+      "searchKeywords": [
+        "usal",
+        "misal cousin",
+        "nashik sev usal"
+      ]
     },
     {
       "id": "remote-rajma-chawal",
@@ -663,33 +276,11 @@
       "fiberPerUnit": 8,
       "unit": "plate",
       "unitWeight": 300,
-      "searchKeywords": ["kidney beans rice", "rajma rice", "punjabi rajma"]
-    },
-    {
-      "id": "remote-dal-makhani",
-      "name": "Dal Makhani",
-      "nameMarathi": "दाल मखनी",
-      "category": "dal",
-      "caloriesPerUnit": 230,
-      "proteinPerUnit": 9,
-      "fatPerUnit": 12,
-      "fiberPerUnit": 5,
-      "unit": "bowl",
-      "unitWeight": 200,
-      "searchKeywords": ["maa ki dal", "black dal", "punjabi dal", "urad dal"]
-    },
-    {
-      "id": "remote-palak-paneer",
-      "name": "Palak Paneer",
-      "nameMarathi": "पालक पनीर",
-      "category": "maincourse",
-      "caloriesPerUnit": 260,
-      "proteinPerUnit": 14,
-      "fatPerUnit": 18,
-      "fiberPerUnit": 4,
-      "unit": "bowl",
-      "unitWeight": 200,
-      "searchKeywords": ["spinach paneer", "saag paneer", "palak panner"]
+      "searchKeywords": [
+        "kidney beans rice",
+        "rajma rice",
+        "punjabi rajma"
+      ]
     },
     {
       "id": "remote-malai-kofta",
@@ -702,111 +293,11 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["kofta curry", "paneer kofta", "creamy curry"]
-    },
-    {
-      "id": "remote-dal-tadka",
-      "name": "Dal Tadka (Yellow Dal)",
-      "nameMarathi": "तडका डाळ",
-      "category": "dal",
-      "caloriesPerUnit": 150,
-      "proteinPerUnit": 8,
-      "fatPerUnit": 5,
-      "fiberPerUnit": 4,
-      "unit": "bowl",
-      "unitWeight": 200,
-      "searchKeywords": ["toor dal", "arhar dal", "yellow lentils", "dal fry"]
-    },
-    {
-      "id": "remote-sambhar",
-      "name": "Sambhar",
-      "nameMarathi": "सांबार",
-      "category": "dal",
-      "caloriesPerUnit": 130,
-      "proteinPerUnit": 6,
-      "fatPerUnit": 3,
-      "fiberPerUnit": 5,
-      "unit": "bowl",
-      "unitWeight": 200,
-      "searchKeywords": ["sambar", "south indian dal", "idli sambar"]
-    },
-    {
-      "id": "remote-chicken-curry",
-      "name": "Chicken Curry (Home Style)",
-      "nameMarathi": "चिकन कालवण",
-      "category": "nonveg",
-      "caloriesPerUnit": 300,
-      "proteinPerUnit": 25,
-      "fatPerUnit": 18,
-      "fiberPerUnit": 2,
-      "unit": "bowl",
-      "unitWeight": 200,
-      "searchKeywords": ["kombdi rassa", "chicken rassa", "desi chicken"]
-    },
-    {
-      "id": "remote-mutton-rassa",
-      "name": "Mutton Rassa",
-      "nameMarathi": "मटण रस्सा",
-      "category": "nonveg",
-      "caloriesPerUnit": 380,
-      "proteinPerUnit": 26,
-      "fatPerUnit": 24,
-      "fiberPerUnit": 2,
-      "unit": "bowl",
-      "unitWeight": 200,
-      "searchKeywords": ["kolhapuri mutton", "mutton curry", "goat curry"]
-    },
-    {
-      "id": "remote-egg-curry",
-      "name": "Egg Curry",
-      "nameMarathi": "अंडा करी",
-      "category": "nonveg",
-      "caloriesPerUnit": 250,
-      "proteinPerUnit": 14,
-      "fatPerUnit": 16,
-      "fiberPerUnit": 2,
-      "unit": "bowl",
-      "unitWeight": 200,
-      "searchKeywords": ["anda curry", "anda masala", "egg masala"]
-    },
-    {
-      "id": "remote-paneer-butter-masala",
-      "name": "Paneer Butter Masala",
-      "nameMarathi": "पनीर बटर मसाला",
-      "category": "maincourse",
-      "caloriesPerUnit": 340,
-      "proteinPerUnit": 14,
-      "fatPerUnit": 26,
-      "fiberPerUnit": 2,
-      "unit": "bowl",
-      "unitWeight": 200,
-      "searchKeywords": ["paneer makhani", "butter paneer", "restaurant style"]
-    },
-    {
-      "id": "remote-naan-butter",
-      "name": "Butter Naan",
-      "nameMarathi": "बटर नान",
-      "category": "breads",
-      "caloriesPerUnit": 210,
-      "proteinPerUnit": 5,
-      "fatPerUnit": 8,
-      "fiberPerUnit": 1.5,
-      "unit": "piece",
-      "unitWeight": 70,
-      "searchKeywords": ["butter naan", "tandoori naan", "nan"]
-    },
-    {
-      "id": "remote-naan-garlic",
-      "name": "Garlic Naan",
-      "nameMarathi": "गार्लिक नान",
-      "category": "breads",
-      "caloriesPerUnit": 230,
-      "proteinPerUnit": 5.5,
-      "fatPerUnit": 9,
-      "fiberPerUnit": 1.5,
-      "unit": "piece",
-      "unitWeight": 75,
-      "searchKeywords": ["garlic bread naan", "lahsun naan", "nan"]
+      "searchKeywords": [
+        "kofta curry",
+        "paneer kofta",
+        "creamy curry"
+      ]
     },
     {
       "id": "remote-kulcha",
@@ -819,7 +310,11 @@
       "fiberPerUnit": 2,
       "unit": "piece",
       "unitWeight": 80,
-      "searchKeywords": ["amritsari kulcha", "paneer kulcha", "aloo kulcha"]
+      "searchKeywords": [
+        "amritsari kulcha",
+        "paneer kulcha",
+        "aloo kulcha"
+      ]
     },
     {
       "id": "remote-rumali-roti",
@@ -832,7 +327,11 @@
       "fiberPerUnit": 1,
       "unit": "piece",
       "unitWeight": 50,
-      "searchKeywords": ["roomali", "thin roti", "handkerchief roti"]
+      "searchKeywords": [
+        "roomali",
+        "thin roti",
+        "handkerchief roti"
+      ]
     },
     {
       "id": "remote-missi-roti",
@@ -845,20 +344,11 @@
       "fiberPerUnit": 2,
       "unit": "piece",
       "unitWeight": 50,
-      "searchKeywords": ["besan roti", "gram flour roti", "rajasthani"]
-    },
-    {
-      "id": "remote-banana-chips",
-      "name": "Banana Chips",
-      "nameMarathi": "केळ्याचे चिप्स",
-      "category": "snacks",
-      "caloriesPerUnit": 150,
-      "proteinPerUnit": 1,
-      "fatPerUnit": 8,
-      "fiberPerUnit": 2,
-      "unit": "bowl",
-      "unitWeight": 30,
-      "searchKeywords": ["kela chips", "plantain chips", "kerala chips"]
+      "searchKeywords": [
+        "besan roti",
+        "gram flour roti",
+        "rajasthani"
+      ]
     },
     {
       "id": "remote-murukku",
@@ -871,7 +361,11 @@
       "fiberPerUnit": 0.5,
       "unit": "piece",
       "unitWeight": 15,
-      "searchKeywords": ["chakli", "murukku", "diwali snack"]
+      "searchKeywords": [
+        "chakli",
+        "murukku",
+        "diwali snack"
+      ]
     },
     {
       "id": "remote-namkeen-mixture",
@@ -884,7 +378,12 @@
       "fiberPerUnit": 2,
       "unit": "bowl",
       "unitWeight": 30,
-      "searchKeywords": ["haldirams", "farsan", "chivda", "mixture"]
+      "searchKeywords": [
+        "haldirams",
+        "farsan",
+        "chivda",
+        "mixture"
+      ]
     },
     {
       "id": "remote-samosa-patti",
@@ -897,33 +396,11 @@
       "fiberPerUnit": 0.5,
       "unit": "piece",
       "unitWeight": 15,
-      "searchKeywords": ["cocktail samosa", "triangle samosa", "party snack"]
-    },
-    {
-      "id": "remote-biscuit-parle-g",
-      "name": "Parle-G Biscuit",
-      "nameMarathi": "पार्ले-जी बिस्कीट",
-      "category": "snacks",
-      "caloriesPerUnit": 30,
-      "proteinPerUnit": 0.5,
-      "fatPerUnit": 1,
-      "fiberPerUnit": 0.1,
-      "unit": "piece",
-      "unitWeight": 6,
-      "searchKeywords": ["glucose biscuit", "parle", "biscuit", "cookie"]
-    },
-    {
-      "id": "remote-cream-biscuit",
-      "name": "Cream Biscuit (Bourbon/Oreo)",
-      "nameMarathi": "क्रीम बिस्कीट",
-      "category": "snacks",
-      "caloriesPerUnit": 55,
-      "proteinPerUnit": 0.6,
-      "fatPerUnit": 2.5,
-      "fiberPerUnit": 0.3,
-      "unit": "piece",
-      "unitWeight": 12,
-      "searchKeywords": ["bourbon", "oreo", "hide and seek", "cream biscuit"]
+      "searchKeywords": [
+        "cocktail samosa",
+        "triangle samosa",
+        "party snack"
+      ]
     },
     {
       "id": "remote-bread-butter-jam",
@@ -936,46 +413,11 @@
       "fiberPerUnit": 1,
       "unit": "slice",
       "unitWeight": 50,
-      "searchKeywords": ["toast", "bread jam", "morning breakfast"]
-    },
-    {
-      "id": "remote-omelette",
-      "name": "Omelette (2 eggs)",
-      "nameMarathi": "ऑम्लेट",
-      "category": "nonveg",
-      "caloriesPerUnit": 190,
-      "proteinPerUnit": 13,
-      "fatPerUnit": 14,
-      "fiberPerUnit": 0.5,
-      "unit": "plate",
-      "unitWeight": 120,
-      "searchKeywords": ["masala omelette", "anda omelette", "egg omelette"]
-    },
-    {
-      "id": "remote-boiled-egg",
-      "name": "Boiled Egg",
-      "nameMarathi": "उकडलेले अंडे",
-      "category": "nonveg",
-      "caloriesPerUnit": 78,
-      "proteinPerUnit": 6.3,
-      "fatPerUnit": 5.3,
-      "fiberPerUnit": 0,
-      "unit": "piece",
-      "unitWeight": 50,
-      "searchKeywords": ["hard boiled egg", "anda", "egg white"]
-    },
-    {
-      "id": "remote-chicken-sandwich",
-      "name": "Chicken Sandwich",
-      "nameMarathi": "चिकन सँडविच",
-      "category": "nonveg",
-      "caloriesPerUnit": 310,
-      "proteinPerUnit": 18,
-      "fatPerUnit": 12,
-      "fiberPerUnit": 2,
-      "unit": "piece",
-      "unitWeight": 150,
-      "searchKeywords": ["club sandwich", "grilled sandwich"]
+      "searchKeywords": [
+        "toast",
+        "bread jam",
+        "morning breakfast"
+      ]
     },
     {
       "id": "remote-paneer-sandwich",
@@ -988,228 +430,10 @@
       "fiberPerUnit": 3,
       "unit": "piece",
       "unitWeight": 150,
-      "searchKeywords": ["paneer toast", "grilled paneer sandwich"]
-    },
-    {
-      "id": "remote-aloo-gobi",
-      "name": "Aloo Gobi",
-      "nameMarathi": "आलू गोबी",
-      "category": "vegetables",
-      "caloriesPerUnit": 150,
-      "proteinPerUnit": 4,
-      "fatPerUnit": 7,
-      "fiberPerUnit": 4,
-      "unit": "bowl",
-      "unitWeight": 150,
-      "searchKeywords": ["batata gobi", "potato cauliflower", "dry sabji"]
-    },
-    {
-      "id": "remote-bhindi-masala",
-      "name": "Bhindi Masala",
-      "nameMarathi": "भेंडी मसाला",
-      "category": "vegetables",
-      "caloriesPerUnit": 120,
-      "proteinPerUnit": 3,
-      "fatPerUnit": 7,
-      "fiberPerUnit": 4,
-      "unit": "bowl",
-      "unitWeight": 150,
-      "searchKeywords": ["okra", "ladyfinger", "bhendi"]
-    },
-    {
-      "id": "remote-baingan-bharta",
-      "name": "Baingan Bharta",
-      "nameMarathi": "वांग्याचे भरीत",
-      "category": "vegetables",
-      "caloriesPerUnit": 110,
-      "proteinPerUnit": 3,
-      "fatPerUnit": 6,
-      "fiberPerUnit": 5,
-      "unit": "bowl",
-      "unitWeight": 150,
-      "searchKeywords": ["vangyache bharit", "eggplant", "brinjal"]
-    },
-    {
-      "id": "remote-matar-paneer",
-      "name": "Matar Paneer",
-      "nameMarathi": "मटर पनीर",
-      "category": "maincourse",
-      "caloriesPerUnit": 270,
-      "proteinPerUnit": 13,
-      "fatPerUnit": 18,
-      "fiberPerUnit": 4,
-      "unit": "bowl",
-      "unitWeight": 200,
-      "searchKeywords": ["pea paneer", "mutter paneer", "vatana paneer"]
-    },
-    {
-      "id": "remote-aloo-matar",
-      "name": "Aloo Matar",
-      "nameMarathi": "आलू मटर",
-      "category": "vegetables",
-      "caloriesPerUnit": 160,
-      "proteinPerUnit": 5,
-      "fatPerUnit": 6,
-      "fiberPerUnit": 4,
-      "unit": "bowl",
-      "unitWeight": 150,
-      "searchKeywords": ["potato peas", "batata matar", "dry sabji"]
-    },
-    {
-      "id": "remote-gobi-manchurian",
-      "name": "Gobi Manchurian",
-      "nameMarathi": "गोबी मंच्युरियन",
-      "category": "chaat",
-      "caloriesPerUnit": 260,
-      "proteinPerUnit": 5,
-      "fatPerUnit": 14,
-      "fiberPerUnit": 3,
-      "unit": "plate",
-      "unitWeight": 150,
-      "searchKeywords": ["cauliflower manchurian", "gobi 65", "indo chinese"]
-    },
-    {
-      "id": "remote-chicken-65",
-      "name": "Chicken 65",
-      "nameMarathi": "चिकन ६५",
-      "category": "nonveg",
-      "caloriesPerUnit": 280,
-      "proteinPerUnit": 20,
-      "fatPerUnit": 16,
-      "fiberPerUnit": 1,
-      "unit": "plate",
-      "unitWeight": 150,
-      "searchKeywords": ["chicken starter", "crispy chicken", "fried chicken"]
-    },
-    {
-      "id": "remote-tandoori-chicken",
-      "name": "Tandoori Chicken (Half)",
-      "nameMarathi": "तंदूरी चिकन",
-      "category": "nonveg",
-      "caloriesPerUnit": 350,
-      "proteinPerUnit": 40,
-      "fatPerUnit": 16,
-      "fiberPerUnit": 1,
-      "unit": "serving",
-      "unitWeight": 250,
-      "searchKeywords": ["tandoori", "grilled chicken", "clay oven"]
-    },
-    {
-      "id": "remote-prawn-curry",
-      "name": "Prawn Curry (Kolambi Rassa)",
-      "nameMarathi": "कोळंबी रस्सा",
-      "category": "nonveg",
-      "caloriesPerUnit": 220,
-      "proteinPerUnit": 22,
-      "fatPerUnit": 10,
-      "fiberPerUnit": 2,
-      "unit": "bowl",
-      "unitWeight": 200,
-      "searchKeywords": ["shrimp curry", "kolambi", "jhinga curry", "prawns"]
-    },
-    {
-      "id": "remote-watermelon",
-      "name": "Watermelon",
-      "nameMarathi": "कलिंगड / टरबूज",
-      "category": "fruits",
-      "caloriesPerUnit": 30,
-      "proteinPerUnit": 0.6,
-      "fatPerUnit": 0.2,
-      "fiberPerUnit": 0.4,
-      "unit": "bowl",
-      "unitWeight": 100,
-      "searchKeywords": ["tarbuj", "kalingad", "summer fruit"]
-    },
-    {
-      "id": "remote-pineapple",
-      "name": "Pineapple",
-      "nameMarathi": "अननस",
-      "category": "fruits",
-      "caloriesPerUnit": 50,
-      "proteinPerUnit": 0.5,
-      "fatPerUnit": 0.1,
-      "fiberPerUnit": 1.4,
-      "unit": "bowl",
-      "unitWeight": 100,
-      "searchKeywords": ["ananas", "pineapple slices"]
-    },
-    {
-      "id": "remote-grapes",
-      "name": "Grapes",
-      "nameMarathi": "द्राक्षे",
-      "category": "fruits",
-      "caloriesPerUnit": 69,
-      "proteinPerUnit": 0.7,
-      "fatPerUnit": 0.2,
-      "fiberPerUnit": 0.9,
-      "unit": "bowl",
-      "unitWeight": 100,
-      "searchKeywords": ["draksha", "angoor", "green grapes"]
-    },
-    {
-      "id": "remote-orange",
-      "name": "Orange (Nagpur Santra)",
-      "nameMarathi": "संत्रा",
-      "category": "fruits",
-      "caloriesPerUnit": 47,
-      "proteinPerUnit": 0.9,
-      "fatPerUnit": 0.1,
-      "fiberPerUnit": 2.4,
-      "unit": "piece",
-      "unitWeight": 100,
-      "searchKeywords": ["santra", "mosambi", "citrus", "nagpuri santra"]
-    },
-    {
-      "id": "remote-pomegranate",
-      "name": "Pomegranate",
-      "nameMarathi": "डाळिंब",
-      "category": "fruits",
-      "caloriesPerUnit": 83,
-      "proteinPerUnit": 1.7,
-      "fatPerUnit": 1.2,
-      "fiberPerUnit": 4,
-      "unit": "bowl",
-      "unitWeight": 100,
-      "searchKeywords": ["dalimb", "anar", "anardana"]
-    },
-    {
-      "id": "remote-chickoo",
-      "name": "Chikoo / Sapota",
-      "nameMarathi": "चिकू",
-      "category": "fruits",
-      "caloriesPerUnit": 83,
-      "proteinPerUnit": 0.4,
-      "fatPerUnit": 1.1,
-      "fiberPerUnit": 5.3,
-      "unit": "piece",
-      "unitWeight": 100,
-      "searchKeywords": ["sapota", "chiku", "sapodilla"]
-    },
-    {
-      "id": "remote-custard-apple",
-      "name": "Custard Apple (Sitaphal)",
-      "nameMarathi": "सीताफळ",
-      "category": "fruits",
-      "caloriesPerUnit": 101,
-      "proteinPerUnit": 1.7,
-      "fatPerUnit": 0.6,
-      "fiberPerUnit": 2.4,
-      "unit": "piece",
-      "unitWeight": 100,
-      "searchKeywords": ["sitaphal", "sharifa", "sugar apple"]
-    },
-    {
-      "id": "remote-guava",
-      "name": "Guava (Peru)",
-      "nameMarathi": "पेरू",
-      "category": "fruits",
-      "caloriesPerUnit": 68,
-      "proteinPerUnit": 2.6,
-      "fatPerUnit": 1,
-      "fiberPerUnit": 5.4,
-      "unit": "piece",
-      "unitWeight": 100,
-      "searchKeywords": ["peru", "amrood", "jam fruit"]
+      "searchKeywords": [
+        "paneer toast",
+        "grilled paneer sandwich"
+      ]
     },
     {
       "id": "remote-sprout-salad",
@@ -1222,7 +446,12 @@
       "fiberPerUnit": 4,
       "unit": "bowl",
       "unitWeight": 100,
-      "searchKeywords": ["moong sprouts", "matki usal", "sprouted salad", "healthy"]
+      "searchKeywords": [
+        "moong sprouts",
+        "matki usal",
+        "sprouted salad",
+        "healthy"
+      ]
     },
     {
       "id": "remote-fruit-salad",
@@ -1235,7 +464,11 @@
       "fiberPerUnit": 2,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["mix fruit", "fruit chaat", "fruit bowl"]
+      "searchKeywords": [
+        "mix fruit",
+        "fruit chaat",
+        "fruit bowl"
+      ]
     },
     {
       "id": "remote-fruit-custard",
@@ -1248,20 +481,11 @@
       "fiberPerUnit": 1,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["custard", "fruit cream", "dessert"]
-    },
-    {
-      "id": "remote-tarri-poha",
-      "name": "Tarri Poha (Nagpur Style)",
-      "nameMarathi": "तर्री पोहे",
-      "category": "breakfast",
-      "caloriesPerUnit": 250,
-      "proteinPerUnit": 6,
-      "fatPerUnit": 8,
-      "fiberPerUnit": 3,
-      "unit": "plate",
-      "unitWeight": 200,
-      "searchKeywords": ["tarri poha", "nagpuri poha", "spicy poha", "nagpur breakfast"]
+      "searchKeywords": [
+        "custard",
+        "fruit cream",
+        "dessert"
+      ]
     },
     {
       "id": "remote-amboli",
@@ -1274,7 +498,12 @@
       "fiberPerUnit": 1,
       "unit": "piece",
       "unitWeight": 60,
-      "searchKeywords": ["amboli", "konkani crepe", "fermented dosa", "malvani amboli"]
+      "searchKeywords": [
+        "amboli",
+        "konkani crepe",
+        "fermented dosa",
+        "malvani amboli"
+      ]
     },
     {
       "id": "remote-ghavan",
@@ -1287,7 +516,12 @@
       "fiberPerUnit": 0.5,
       "unit": "piece",
       "unitWeight": 50,
-      "searchKeywords": ["ghavan", "ghavne", "tandalache ghavan", "rice crepe"]
+      "searchKeywords": [
+        "ghavan",
+        "ghavne",
+        "tandalache ghavan",
+        "rice crepe"
+      ]
     },
     {
       "id": "remote-aluvadi",
@@ -1300,7 +534,12 @@
       "fiberPerUnit": 3,
       "unit": "plate",
       "unitWeight": 100,
-      "searchKeywords": ["alu vadi", "patrode", "arbi rolls", "patra"]
+      "searchKeywords": [
+        "alu vadi",
+        "patrode",
+        "arbi rolls",
+        "patra"
+      ]
     },
     {
       "id": "remote-masala-papad",
@@ -1313,20 +552,12 @@
       "fiberPerUnit": 1,
       "unit": "piece",
       "unitWeight": 20,
-      "searchKeywords": ["papad", "papadum", "masala papad", "fried papad"]
-    },
-    {
-      "id": "remote-bharleli-mirchi",
-      "name": "Bharleli Mirchi (Stuffed Chili)",
-      "nameMarathi": "भरलेली मिरची",
-      "category": "snacks",
-      "caloriesPerUnit": 100,
-      "proteinPerUnit": 3,
-      "fatPerUnit": 5,
-      "fiberPerUnit": 2,
-      "unit": "plate",
-      "unitWeight": 100,
-      "searchKeywords": ["stuffed chili", "bharli mirchi", "stuffed mirchi", "besan mirchi"]
+      "searchKeywords": [
+        "papad",
+        "papadum",
+        "masala papad",
+        "fried papad"
+      ]
     },
     {
       "id": "remote-sabudana-papad",
@@ -1339,20 +570,11 @@
       "fiberPerUnit": 0.2,
       "unit": "piece",
       "unitWeight": 15,
-      "searchKeywords": ["sago papad", "upvas papad", "fasting papad"]
-    },
-    {
-      "id": "remote-bhadang",
-      "name": "Bhadang (Spicy Puffed Rice)",
-      "nameMarathi": "भडंग",
-      "category": "snacks",
-      "caloriesPerUnit": 150,
-      "proteinPerUnit": 3,
-      "fatPerUnit": 5,
-      "fiberPerUnit": 1,
-      "unit": "bowl",
-      "unitWeight": 50,
-      "searchKeywords": ["bhadang", "churmura", "murmura chivda", "kurmura"]
+      "searchKeywords": [
+        "sago papad",
+        "upvas papad",
+        "fasting papad"
+      ]
     },
     {
       "id": "remote-saoji-chicken",
@@ -1365,7 +587,12 @@
       "fiberPerUnit": 2,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["saoji", "savji chicken", "nagpur chicken", "spicy chicken"]
+      "searchKeywords": [
+        "saoji",
+        "savji chicken",
+        "nagpur chicken",
+        "spicy chicken"
+      ]
     },
     {
       "id": "remote-saoji-mutton",
@@ -1378,7 +605,12 @@
       "fiberPerUnit": 2,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["saoji mutton", "savji mutton", "nagpur mutton", "spicy mutton"]
+      "searchKeywords": [
+        "saoji mutton",
+        "savji mutton",
+        "nagpur mutton",
+        "spicy mutton"
+      ]
     },
     {
       "id": "remote-sukka-mutton",
@@ -1391,7 +623,12 @@
       "fiberPerUnit": 1.5,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["dry mutton", "sukka mutton", "kolhapuri mutton", "mutton fry"]
+      "searchKeywords": [
+        "dry mutton",
+        "sukka mutton",
+        "kolhapuri mutton",
+        "mutton fry"
+      ]
     },
     {
       "id": "remote-vangi-bhat",
@@ -1404,7 +641,12 @@
       "fiberPerUnit": 3,
       "unit": "plate",
       "unitWeight": 200,
-      "searchKeywords": ["vangi bhaat", "brinjal rice", "eggplant rice", "vangyache bhat"]
+      "searchKeywords": [
+        "vangi bhaat",
+        "brinjal rice",
+        "eggplant rice",
+        "vangyache bhat"
+      ]
     },
     {
       "id": "remote-narali-bhat",
@@ -1417,7 +659,12 @@
       "fiberPerUnit": 2,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["narali bhat", "coconut rice sweet", "narali purnima", "festival rice"]
+      "searchKeywords": [
+        "narali bhat",
+        "coconut rice sweet",
+        "narali purnima",
+        "festival rice"
+      ]
     },
     {
       "id": "remote-metkut-bhat",
@@ -1430,33 +677,12 @@
       "fiberPerUnit": 3,
       "unit": "plate",
       "unitWeight": 200,
-      "searchKeywords": ["metkut bhat", "metkut rice", "lentil powder rice", "dal powder"]
-    },
-    {
-      "id": "remote-valachi-usal",
-      "name": "Valachi Usal (Field Beans Curry)",
-      "nameMarathi": "वालाची उसळ",
-      "category": "dal",
-      "caloriesPerUnit": 180,
-      "proteinPerUnit": 10,
-      "fatPerUnit": 5,
-      "fiberPerUnit": 6,
-      "unit": "bowl",
-      "unitWeight": 200,
-      "searchKeywords": ["val usal", "field beans", "pavta usal", "vaal curry"]
-    },
-    {
-      "id": "remote-dalimbi-usal",
-      "name": "Dalimbi Usal (Val Dal Curry)",
-      "nameMarathi": "दालिंबी उसळ",
-      "category": "dal",
-      "caloriesPerUnit": 170,
-      "proteinPerUnit": 9,
-      "fatPerUnit": 4,
-      "fiberPerUnit": 5,
-      "unit": "bowl",
-      "unitWeight": 200,
-      "searchKeywords": ["dalimbi", "val dal usal", "split field beans", "dalimb usal"]
+      "searchKeywords": [
+        "metkut bhat",
+        "metkut rice",
+        "lentil powder rice",
+        "dal powder"
+      ]
     },
     {
       "id": "remote-kalya-vatanyachi-usal",
@@ -1469,7 +695,12 @@
       "fiberPerUnit": 6,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["black peas curry", "kala vatana", "dried peas usal", "ragda"]
+      "searchKeywords": [
+        "black peas curry",
+        "kala vatana",
+        "dried peas usal",
+        "ragda"
+      ]
     },
     {
       "id": "remote-shengole",
@@ -1482,7 +713,12 @@
       "fiberPerUnit": 4,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["shengole", "besan dumplings", "gram flour curry", "shengule"]
+      "searchKeywords": [
+        "shengole",
+        "besan dumplings",
+        "gram flour curry",
+        "shengule"
+      ]
     },
     {
       "id": "remote-bharli-shimla-mirchi",
@@ -1495,7 +731,12 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["stuffed capsicum", "bharli mirchi", "stuffed bell pepper", "shimla mirchi"]
+      "searchKeywords": [
+        "stuffed capsicum",
+        "bharli mirchi",
+        "stuffed bell pepper",
+        "shimla mirchi"
+      ]
     },
     {
       "id": "remote-kandyachi-bhaji",
@@ -1508,7 +749,12 @@
       "fiberPerUnit": 2,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["kanda bhaji sabzi", "onion vegetable", "pyaj sabzi", "dry kanda bhaji"]
+      "searchKeywords": [
+        "kanda bhaji sabzi",
+        "onion vegetable",
+        "pyaj sabzi",
+        "dry kanda bhaji"
+      ]
     },
     {
       "id": "remote-sukat-bhaji",
@@ -1521,7 +767,12 @@
       "fiberPerUnit": 1,
       "unit": "bowl",
       "unitWeight": 100,
-      "searchKeywords": ["sukat", "dried shrimp", "suki jawla", "kokan special"]
+      "searchKeywords": [
+        "sukat",
+        "dried shrimp",
+        "suki jawla",
+        "kokan special"
+      ]
     },
     {
       "id": "remote-kolambi-bhat",
@@ -1534,7 +785,12 @@
       "fiberPerUnit": 2,
       "unit": "plate",
       "unitWeight": 250,
-      "searchKeywords": ["prawn rice", "kolambi bhat", "shrimp pulao", "jhinga rice"]
+      "searchKeywords": [
+        "prawn rice",
+        "kolambi bhat",
+        "shrimp pulao",
+        "jhinga rice"
+      ]
     },
     {
       "id": "remote-sakhar-bhat",
@@ -1547,7 +803,12 @@
       "fiberPerUnit": 0.5,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["sakhar bhat", "sweet rice", "kesari bhat", "goad bhat"]
+      "searchKeywords": [
+        "sakhar bhat",
+        "sweet rice",
+        "kesari bhat",
+        "goad bhat"
+      ]
     },
     {
       "id": "remote-sheviyanchi-kheer",
@@ -1560,7 +821,12 @@
       "fiberPerUnit": 0.5,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["shevaya kheer", "seviyan kheer", "vermicelli kheer", "sevai"]
+      "searchKeywords": [
+        "shevaya kheer",
+        "seviyan kheer",
+        "vermicelli kheer",
+        "sevai"
+      ]
     },
     {
       "id": "remote-gavhachi-kheer",
@@ -1573,7 +839,12 @@
       "fiberPerUnit": 1,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["gavhachi kheer", "wheat kheer", "godhi payasa", "gehun kheer"]
+      "searchKeywords": [
+        "gavhachi kheer",
+        "wheat kheer",
+        "godhi payasa",
+        "gehun kheer"
+      ]
     },
     {
       "id": "remote-kelayacha-sheera",
@@ -1586,7 +857,12 @@
       "fiberPerUnit": 1,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["banana sheera", "kela sheera", "banana halwa", "kelayacha shira"]
+      "searchKeywords": [
+        "banana sheera",
+        "kela sheera",
+        "banana halwa",
+        "kelayacha shira"
+      ]
     },
     {
       "id": "remote-sandan",
@@ -1599,7 +875,12 @@
       "fiberPerUnit": 1,
       "unit": "piece",
       "unitWeight": 50,
-      "searchKeywords": ["sandan", "konkan sweet", "ratnagiri sweet", "sindhudurg"]
+      "searchKeywords": [
+        "sandan",
+        "konkan sweet",
+        "ratnagiri sweet",
+        "sindhudurg"
+      ]
     },
     {
       "id": "remote-piyush",
@@ -1612,7 +893,12 @@
       "fiberPerUnit": 0,
       "unit": "glass",
       "unitWeight": 200,
-      "searchKeywords": ["piyush", "shrikhand drink", "sweet buttermilk", "amrakhand drink"]
+      "searchKeywords": [
+        "piyush",
+        "shrikhand drink",
+        "sweet buttermilk",
+        "amrakhand drink"
+      ]
     },
     {
       "id": "remote-fresh-lime-soda",
@@ -1625,7 +911,12 @@
       "fiberPerUnit": 0,
       "unit": "glass",
       "unitWeight": 300,
-      "searchKeywords": ["lime soda", "nimbu soda", "sweet soda", "soda lime"]
+      "searchKeywords": [
+        "lime soda",
+        "nimbu soda",
+        "sweet soda",
+        "soda lime"
+      ]
     },
     {
       "id": "remote-bournvita-milk",
@@ -1638,7 +929,13 @@
       "fiberPerUnit": 0,
       "unit": "cup",
       "unitWeight": 200,
-      "searchKeywords": ["bournvita", "horlicks", "malt drink", "complan", "boost"]
+      "searchKeywords": [
+        "bournvita",
+        "horlicks",
+        "malt drink",
+        "complan",
+        "boost"
+      ]
     },
     {
       "id": "remote-rose-milk",
@@ -1651,7 +948,12 @@
       "fiberPerUnit": 0,
       "unit": "glass",
       "unitWeight": 250,
-      "searchKeywords": ["rose milk", "gulab sharbat", "rose flavored milk", "rose doodh"]
+      "searchKeywords": [
+        "rose milk",
+        "gulab sharbat",
+        "rose flavored milk",
+        "rose doodh"
+      ]
     },
     {
       "id": "remote-kesar-milk",
@@ -1664,7 +966,12 @@
       "fiberPerUnit": 0,
       "unit": "glass",
       "unitWeight": 200,
-      "searchKeywords": ["kesar doodh", "saffron milk", "kesar badam", "golden milk"]
+      "searchKeywords": [
+        "kesar doodh",
+        "saffron milk",
+        "kesar badam",
+        "golden milk"
+      ]
     },
     {
       "id": "remote-kahwa",
@@ -1677,7 +984,13 @@
       "fiberPerUnit": 0,
       "unit": "cup",
       "unitWeight": 150,
-      "searchKeywords": ["kahwa", "kashmiri tea", "kehwa", "noon chai", "green tea saffron"]
+      "searchKeywords": [
+        "kahwa",
+        "kashmiri tea",
+        "kehwa",
+        "noon chai",
+        "green tea saffron"
+      ]
     },
     {
       "id": "remote-energy-drink",
@@ -1690,7 +1003,13 @@
       "fiberPerUnit": 0,
       "unit": "can",
       "unitWeight": 250,
-      "searchKeywords": ["red bull", "monster", "sting", "energy drink", "caffeine"]
+      "searchKeywords": [
+        "red bull",
+        "monster",
+        "sting",
+        "energy drink",
+        "caffeine"
+      ]
     },
     {
       "id": "remote-gulkand-milkshake",
@@ -1703,7 +1022,12 @@
       "fiberPerUnit": 0.5,
       "unit": "glass",
       "unitWeight": 250,
-      "searchKeywords": ["gulkand shake", "rose petal shake", "gulkand milk", "cooling drink"]
+      "searchKeywords": [
+        "gulkand shake",
+        "rose petal shake",
+        "gulkand milk",
+        "cooling drink"
+      ]
     },
     {
       "id": "remote-amla-juice",
@@ -1716,7 +1040,13 @@
       "fiberPerUnit": 1,
       "unit": "glass",
       "unitWeight": 100,
-      "searchKeywords": ["amla juice", "gooseberry", "vitamin c drink", "awla", "immunity"]
+      "searchKeywords": [
+        "amla juice",
+        "gooseberry",
+        "vitamin c drink",
+        "awla",
+        "immunity"
+      ]
     },
     {
       "id": "remote-ginger-honey-lemon",
@@ -1729,7 +1059,13 @@
       "fiberPerUnit": 0,
       "unit": "cup",
       "unitWeight": 200,
-      "searchKeywords": ["ginger tea", "honey lemon", "adrak nimbu", "detox water", "immunity"]
+      "searchKeywords": [
+        "ginger tea",
+        "honey lemon",
+        "adrak nimbu",
+        "detox water",
+        "immunity"
+      ]
     },
     {
       "id": "remote-guava-juice",
@@ -1742,7 +1078,12 @@
       "fiberPerUnit": 3,
       "unit": "glass",
       "unitWeight": 250,
-      "searchKeywords": ["peru juice", "guava", "amrood juice", "peru ras"]
+      "searchKeywords": [
+        "peru juice",
+        "guava",
+        "amrood juice",
+        "peru ras"
+      ]
     },
     {
       "id": "remote-frappe",
@@ -1755,7 +1096,13 @@
       "fiberPerUnit": 0,
       "unit": "glass",
       "unitWeight": 350,
-      "searchKeywords": ["frappe", "frappuccino", "blended coffee", "starbucks", "cafe frappe"]
+      "searchKeywords": [
+        "frappe",
+        "frappuccino",
+        "blended coffee",
+        "starbucks",
+        "cafe frappe"
+      ]
     },
     {
       "id": "remote-matcha-latte",
@@ -1768,7 +1115,12 @@
       "fiberPerUnit": 0,
       "unit": "cup",
       "unitWeight": 200,
-      "searchKeywords": ["matcha", "green tea latte", "japanese tea", "matcha milk"]
+      "searchKeywords": [
+        "matcha",
+        "green tea latte",
+        "japanese tea",
+        "matcha milk"
+      ]
     },
     {
       "id": "remote-mango-smoothie",
@@ -1781,7 +1133,12 @@
       "fiberPerUnit": 2,
       "unit": "glass",
       "unitWeight": 300,
-      "searchKeywords": ["mango smoothie", "aam smoothie", "yogurt mango", "healthy shake"]
+      "searchKeywords": [
+        "mango smoothie",
+        "aam smoothie",
+        "yogurt mango",
+        "healthy shake"
+      ]
     },
     {
       "id": "remote-banana-smoothie",
@@ -1794,7 +1151,12 @@
       "fiberPerUnit": 3,
       "unit": "glass",
       "unitWeight": 300,
-      "searchKeywords": ["protein smoothie", "banana pb", "gym smoothie", "peanut butter shake"]
+      "searchKeywords": [
+        "protein smoothie",
+        "banana pb",
+        "gym smoothie",
+        "peanut butter shake"
+      ]
     },
     {
       "id": "remote-espresso",
@@ -1807,7 +1169,13 @@
       "fiberPerUnit": 0,
       "unit": "shot",
       "unitWeight": 30,
-      "searchKeywords": ["espresso", "shot", "doppio", "ristretto", "cafe"]
+      "searchKeywords": [
+        "espresso",
+        "shot",
+        "doppio",
+        "ristretto",
+        "cafe"
+      ]
     },
     {
       "id": "remote-chai-latte",
@@ -1820,7 +1188,12 @@
       "fiberPerUnit": 0,
       "unit": "cup",
       "unitWeight": 250,
-      "searchKeywords": ["chai latte", "spiced chai latte", "starbucks chai", "masala latte"]
+      "searchKeywords": [
+        "chai latte",
+        "spiced chai latte",
+        "starbucks chai",
+        "masala latte"
+      ]
     },
     {
       "id": "remote-aam-panna-soda",
@@ -1833,7 +1206,12 @@
       "fiberPerUnit": 0.5,
       "unit": "glass",
       "unitWeight": 300,
-      "searchKeywords": ["mango soda", "kairi soda", "raw mango soda", "summer drink"]
+      "searchKeywords": [
+        "mango soda",
+        "kairi soda",
+        "raw mango soda",
+        "summer drink"
+      ]
     },
     {
       "id": "remote-surmai-tawa-fry",
@@ -1846,7 +1224,13 @@
       "fiberPerUnit": 0,
       "unit": "piece",
       "unitWeight": 120,
-      "searchKeywords": ["surmai fry", "kingfish tawa", "seer fish fry", "tawa surmai", "surmai masala fry"]
+      "searchKeywords": [
+        "surmai fry",
+        "kingfish tawa",
+        "seer fish fry",
+        "tawa surmai",
+        "surmai masala fry"
+      ]
     },
     {
       "id": "remote-surmai-rava-fry",
@@ -1859,7 +1243,13 @@
       "fiberPerUnit": 0.5,
       "unit": "piece",
       "unitWeight": 130,
-      "searchKeywords": ["surmai rava fry", "kingfish rava", "crispy surmai", "semolina surmai", "surmai sooji"]
+      "searchKeywords": [
+        "surmai rava fry",
+        "kingfish rava",
+        "crispy surmai",
+        "semolina surmai",
+        "surmai sooji"
+      ]
     },
     {
       "id": "remote-pomfret-tawa-fry",
@@ -1872,7 +1262,12 @@
       "fiberPerUnit": 0,
       "unit": "piece",
       "unitWeight": 150,
-      "searchKeywords": ["paplet tawa fry", "tawa pomfret", "pomfret masala fry", "paplet masala"]
+      "searchKeywords": [
+        "paplet tawa fry",
+        "tawa pomfret",
+        "pomfret masala fry",
+        "paplet masala"
+      ]
     },
     {
       "id": "remote-pomfret-rava-fry",
@@ -1885,7 +1280,12 @@
       "fiberPerUnit": 0.5,
       "unit": "piece",
       "unitWeight": 160,
-      "searchKeywords": ["paplet rava fry", "crispy pomfret", "semolina pomfret", "paplet sooji fry"]
+      "searchKeywords": [
+        "paplet rava fry",
+        "crispy pomfret",
+        "semolina pomfret",
+        "paplet sooji fry"
+      ]
     },
     {
       "id": "remote-bangda-tawa-fry",
@@ -1898,7 +1298,11 @@
       "fiberPerUnit": 0,
       "unit": "piece",
       "unitWeight": 100,
-      "searchKeywords": ["bangda tawa", "mackerel tawa fry", "tawa bangda masala"]
+      "searchKeywords": [
+        "bangda tawa",
+        "mackerel tawa fry",
+        "tawa bangda masala"
+      ]
     },
     {
       "id": "remote-bangda-rava-fry",
@@ -1911,7 +1315,12 @@
       "fiberPerUnit": 0.5,
       "unit": "piece",
       "unitWeight": 110,
-      "searchKeywords": ["bangda rava", "mackerel rava fry", "crispy bangda", "semolina bangda"]
+      "searchKeywords": [
+        "bangda rava",
+        "mackerel rava fry",
+        "crispy bangda",
+        "semolina bangda"
+      ]
     },
     {
       "id": "remote-bombil-tawa-fry",
@@ -1924,7 +1333,11 @@
       "fiberPerUnit": 0,
       "unit": "serving",
       "unitWeight": 80,
-      "searchKeywords": ["bombil tawa", "bombay duck tawa fry", "tawa bombil masala"]
+      "searchKeywords": [
+        "bombil tawa",
+        "bombay duck tawa fry",
+        "tawa bombil masala"
+      ]
     },
     {
       "id": "remote-bombil-rava-fry",
@@ -1937,7 +1350,12 @@
       "fiberPerUnit": 0.5,
       "unit": "serving",
       "unitWeight": 90,
-      "searchKeywords": ["bombil rava", "crispy bombil", "bombay duck rava", "semolina bombil"]
+      "searchKeywords": [
+        "bombil rava",
+        "crispy bombil",
+        "bombay duck rava",
+        "semolina bombil"
+      ]
     },
     {
       "id": "remote-rawas-tawa-fry",
@@ -1950,7 +1368,11 @@
       "fiberPerUnit": 0,
       "unit": "piece",
       "unitWeight": 120,
-      "searchKeywords": ["rawas tawa", "indian salmon tawa fry", "tawa rawas masala"]
+      "searchKeywords": [
+        "rawas tawa",
+        "indian salmon tawa fry",
+        "tawa rawas masala"
+      ]
     },
     {
       "id": "remote-rawas-rava-fry",
@@ -1963,7 +1385,12 @@
       "fiberPerUnit": 0.5,
       "unit": "piece",
       "unitWeight": 130,
-      "searchKeywords": ["rawas rava", "crispy rawas", "semolina rawas", "indian salmon rava"]
+      "searchKeywords": [
+        "rawas rava",
+        "crispy rawas",
+        "semolina rawas",
+        "indian salmon rava"
+      ]
     },
     {
       "id": "remote-kolambi-tawa-fry",
@@ -1976,7 +1403,12 @@
       "fiberPerUnit": 0,
       "unit": "serving",
       "unitWeight": 100,
-      "searchKeywords": ["kolambi tawa", "prawn tawa fry", "tawa jhinga", "shrimp tawa"]
+      "searchKeywords": [
+        "kolambi tawa",
+        "prawn tawa fry",
+        "tawa jhinga",
+        "shrimp tawa"
+      ]
     },
     {
       "id": "remote-kolambi-rava-fry",
@@ -1989,7 +1421,12 @@
       "fiberPerUnit": 0.5,
       "unit": "serving",
       "unitWeight": 110,
-      "searchKeywords": ["kolambi rava", "prawn rava fry", "crispy prawns", "semolina kolambi"]
+      "searchKeywords": [
+        "kolambi rava",
+        "prawn rava fry",
+        "crispy prawns",
+        "semolina kolambi"
+      ]
     },
     {
       "id": "remote-halwa-fry",
@@ -2002,7 +1439,12 @@
       "fiberPerUnit": 0,
       "unit": "piece",
       "unitWeight": 100,
-      "searchKeywords": ["halwa fish", "ghol fry", "halwa tawa", "white fish fry"]
+      "searchKeywords": [
+        "halwa fish",
+        "ghol fry",
+        "halwa tawa",
+        "white fish fry"
+      ]
     },
     {
       "id": "remote-modha-fry",
@@ -2015,7 +1457,12 @@
       "fiberPerUnit": 0,
       "unit": "piece",
       "unitWeight": 120,
-      "searchKeywords": ["modha fry", "red snapper", "tambusa fry", "modha tawa"]
+      "searchKeywords": [
+        "modha fry",
+        "red snapper",
+        "tambusa fry",
+        "modha tawa"
+      ]
     },
     {
       "id": "remote-mandeli-fry",
@@ -2028,7 +1475,12 @@
       "fiberPerUnit": 0,
       "unit": "serving",
       "unitWeight": 80,
-      "searchKeywords": ["mandeli fry", "anchovy fry", "small fish fry", "tarli fry"]
+      "searchKeywords": [
+        "mandeli fry",
+        "anchovy fry",
+        "small fish fry",
+        "tarli fry"
+      ]
     },
     {
       "id": "remote-solya-fry",
@@ -2041,7 +1493,12 @@
       "fiberPerUnit": 0,
       "unit": "piece",
       "unitWeight": 100,
-      "searchKeywords": ["sole fish", "lepo fry", "flat fish fry", "solya tawa"]
+      "searchKeywords": [
+        "sole fish",
+        "lepo fry",
+        "flat fish fry",
+        "solya tawa"
+      ]
     },
     {
       "id": "remote-chicken-tawa-fry",
@@ -2054,7 +1511,12 @@
       "fiberPerUnit": 1,
       "unit": "plate",
       "unitWeight": 150,
-      "searchKeywords": ["tawa chicken", "chicken fry", "masala chicken fry", "dry chicken"]
+      "searchKeywords": [
+        "tawa chicken",
+        "chicken fry",
+        "masala chicken fry",
+        "dry chicken"
+      ]
     },
     {
       "id": "remote-prawn-koliwada",
@@ -2067,7 +1529,13 @@
       "fiberPerUnit": 1,
       "unit": "plate",
       "unitWeight": 120,
-      "searchKeywords": ["koliwada prawns", "fried prawns", "crispy kolambi", "mumbai prawns", "koliwada style"]
+      "searchKeywords": [
+        "koliwada prawns",
+        "fried prawns",
+        "crispy kolambi",
+        "mumbai prawns",
+        "koliwada style"
+      ]
     },
     {
       "id": "remote-fish-koliwada",
@@ -2080,7 +1548,12 @@
       "fiberPerUnit": 1,
       "unit": "plate",
       "unitWeight": 120,
-      "searchKeywords": ["koliwada fish", "crispy fish", "mumbai fish fry", "batter fried fish"]
+      "searchKeywords": [
+        "koliwada fish",
+        "crispy fish",
+        "mumbai fish fry",
+        "batter fried fish"
+      ]
     },
     {
       "id": "remote-chicken-koliwada",
@@ -2093,7 +1566,12 @@
       "fiberPerUnit": 1,
       "unit": "plate",
       "unitWeight": 150,
-      "searchKeywords": ["koliwada chicken", "batter fried chicken", "mumbai chicken", "crispy chicken"]
+      "searchKeywords": [
+        "koliwada chicken",
+        "batter fried chicken",
+        "mumbai chicken",
+        "crispy chicken"
+      ]
     },
     {
       "id": "remote-egg-fry-half",
@@ -2106,7 +1584,12 @@
       "fiberPerUnit": 0,
       "unit": "piece",
       "unitWeight": 55,
-      "searchKeywords": ["half fry egg", "sunny side up", "half anda fry", "single egg fry"]
+      "searchKeywords": [
+        "half fry egg",
+        "sunny side up",
+        "half anda fry",
+        "single egg fry"
+      ]
     },
     {
       "id": "remote-egg-fry-full",
@@ -2119,7 +1602,12 @@
       "fiberPerUnit": 0,
       "unit": "piece",
       "unitWeight": 55,
-      "searchKeywords": ["full fry egg", "double side egg", "over easy", "pura anda fry"]
+      "searchKeywords": [
+        "full fry egg",
+        "double side egg",
+        "over easy",
+        "pura anda fry"
+      ]
     },
     {
       "id": "remote-mutton-chops-fry",
@@ -2132,7 +1620,12 @@
       "fiberPerUnit": 0.5,
       "unit": "plate",
       "unitWeight": 150,
-      "searchKeywords": ["mutton chops", "lamb chop fry", "fried chops", "chop masala"]
+      "searchKeywords": [
+        "mutton chops",
+        "lamb chop fry",
+        "fried chops",
+        "chop masala"
+      ]
     },
     {
       "id": "remote-yippee-noodles",
@@ -2145,7 +1638,12 @@
       "fiberPerUnit": 2,
       "unit": "packet",
       "unitWeight": 70,
-      "searchKeywords": ["yippee", "sunfeast yippee", "instant noodles", "magic masala"]
+      "searchKeywords": [
+        "yippee",
+        "sunfeast yippee",
+        "instant noodles",
+        "magic masala"
+      ]
     },
     {
       "id": "remote-top-ramen",
@@ -2158,7 +1656,12 @@
       "fiberPerUnit": 1.5,
       "unit": "packet",
       "unitWeight": 70,
-      "searchKeywords": ["top ramen", "ramen noodles", "nissin", "curry noodles"]
+      "searchKeywords": [
+        "top ramen",
+        "ramen noodles",
+        "nissin",
+        "curry noodles"
+      ]
     },
     {
       "id": "remote-knorr-soupy",
@@ -2171,7 +1674,11 @@
       "fiberPerUnit": 1,
       "unit": "packet",
       "unitWeight": 60,
-      "searchKeywords": ["knorr soupy", "soupy noodles", "soup noodles"]
+      "searchKeywords": [
+        "knorr soupy",
+        "soupy noodles",
+        "soup noodles"
+      ]
     },
     {
       "id": "remote-patanjali-noodles",
@@ -2184,7 +1691,12 @@
       "fiberPerUnit": 3,
       "unit": "packet",
       "unitWeight": 70,
-      "searchKeywords": ["patanjali noodles", "atta noodles", "wheat noodles", "healthy noodles"]
+      "searchKeywords": [
+        "patanjali noodles",
+        "atta noodles",
+        "wheat noodles",
+        "healthy noodles"
+      ]
     },
     {
       "id": "remote-instant-pasta-masala",
@@ -2197,7 +1709,12 @@
       "fiberPerUnit": 2,
       "unit": "packet",
       "unitWeight": 70,
-      "searchKeywords": ["yippee pasta", "knorr pasta", "instant pasta", "masala pasta"]
+      "searchKeywords": [
+        "yippee pasta",
+        "knorr pasta",
+        "instant pasta",
+        "masala pasta"
+      ]
     },
     {
       "id": "remote-instant-poha-pack",
@@ -2210,7 +1727,12 @@
       "fiberPerUnit": 2,
       "unit": "packet",
       "unitWeight": 60,
-      "searchKeywords": ["mtr poha", "ready to eat poha", "instant poha", "haldiram poha"]
+      "searchKeywords": [
+        "mtr poha",
+        "ready to eat poha",
+        "instant poha",
+        "haldiram poha"
+      ]
     },
     {
       "id": "remote-instant-upma-pack",
@@ -2223,7 +1745,11 @@
       "fiberPerUnit": 2,
       "unit": "packet",
       "unitWeight": 60,
-      "searchKeywords": ["mtr upma", "ready to eat upma", "instant upma"]
+      "searchKeywords": [
+        "mtr upma",
+        "ready to eat upma",
+        "instant upma"
+      ]
     },
     {
       "id": "remote-cup-a-soup",
@@ -2236,7 +1762,12 @@
       "fiberPerUnit": 0.5,
       "unit": "cup",
       "unitWeight": 200,
-      "searchKeywords": ["cup a soup", "instant soup", "knorr soup", "maggi soup"]
+      "searchKeywords": [
+        "cup a soup",
+        "instant soup",
+        "knorr soup",
+        "maggi soup"
+      ]
     },
     {
       "id": "remote-ready-biryani",
@@ -2249,7 +1780,12 @@
       "fiberPerUnit": 2,
       "unit": "packet",
       "unitWeight": 250,
-      "searchKeywords": ["mtr biryani", "haldiram biryani", "ready meal", "packaged biryani"]
+      "searchKeywords": [
+        "mtr biryani",
+        "haldiram biryani",
+        "ready meal",
+        "packaged biryani"
+      ]
     },
     {
       "id": "remote-ready-dal-makhani",
@@ -2262,7 +1798,12 @@
       "fiberPerUnit": 4,
       "unit": "packet",
       "unitWeight": 300,
-      "searchKeywords": ["mtr dal makhani", "ready dal", "packaged dal", "instant dal"]
+      "searchKeywords": [
+        "mtr dal makhani",
+        "ready dal",
+        "packaged dal",
+        "instant dal"
+      ]
     },
     {
       "id": "remote-lays-classic",
@@ -2275,7 +1816,13 @@
       "fiberPerUnit": 2,
       "unit": "packet",
       "unitWeight": 52,
-      "searchKeywords": ["lays", "potato chips", "wafers", "classic salted", "lays magic masala"]
+      "searchKeywords": [
+        "lays",
+        "potato chips",
+        "wafers",
+        "classic salted",
+        "lays magic masala"
+      ]
     },
     {
       "id": "remote-kurkure",
@@ -2288,7 +1835,12 @@
       "fiberPerUnit": 2,
       "unit": "packet",
       "unitWeight": 50,
-      "searchKeywords": ["kurkure", "masala munch", "pepsico", "corn snack"]
+      "searchKeywords": [
+        "kurkure",
+        "masala munch",
+        "pepsico",
+        "corn snack"
+      ]
     },
     {
       "id": "remote-bingo-mad-angles",
@@ -2301,7 +1853,12 @@
       "fiberPerUnit": 1.5,
       "unit": "packet",
       "unitWeight": 45,
-      "searchKeywords": ["bingo", "mad angles", "triangle chips", "achari masti"]
+      "searchKeywords": [
+        "bingo",
+        "mad angles",
+        "triangle chips",
+        "achari masti"
+      ]
     },
     {
       "id": "remote-haldiram-bhujia",
@@ -2314,7 +1871,12 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 50,
-      "searchKeywords": ["haldiram bhujia", "bikaneri bhujia", "sev", "namkeen"]
+      "searchKeywords": [
+        "haldiram bhujia",
+        "bikaneri bhujia",
+        "sev",
+        "namkeen"
+      ]
     },
     {
       "id": "remote-appe",
@@ -2327,7 +1889,13 @@
       "fiberPerUnit": 1.5,
       "unit": "plate",
       "unitWeight": 100,
-      "searchKeywords": ["appe", "paddu", "paniyaram", "gunta ponganalu", "rice dumpling"]
+      "searchKeywords": [
+        "appe",
+        "paddu",
+        "paniyaram",
+        "gunta ponganalu",
+        "rice dumpling"
+      ]
     },
     {
       "id": "remote-appe-masala",
@@ -2340,7 +1908,12 @@
       "fiberPerUnit": 2,
       "unit": "plate",
       "unitWeight": 120,
-      "searchKeywords": ["masala appe", "stuffed paniyaram", "vegetable appe", "kuzhi paniyaram"]
+      "searchKeywords": [
+        "masala appe",
+        "stuffed paniyaram",
+        "vegetable appe",
+        "kuzhi paniyaram"
+      ]
     },
     {
       "id": "remote-appam",
@@ -2353,7 +1926,12 @@
       "fiberPerUnit": 0.5,
       "unit": "piece",
       "unitWeight": 50,
-      "searchKeywords": ["appam", "palappam", "kerala breakfast", "hoppers"]
+      "searchKeywords": [
+        "appam",
+        "palappam",
+        "kerala breakfast",
+        "hoppers"
+      ]
     },
     {
       "id": "remote-puttu",
@@ -2366,7 +1944,12 @@
       "fiberPerUnit": 2,
       "unit": "piece",
       "unitWeight": 100,
-      "searchKeywords": ["puttu", "kerala puttu", "rice puttu", "chiratta puttu"]
+      "searchKeywords": [
+        "puttu",
+        "kerala puttu",
+        "rice puttu",
+        "chiratta puttu"
+      ]
     },
     {
       "id": "remote-neer-dosa",
@@ -2379,7 +1962,12 @@
       "fiberPerUnit": 0.5,
       "unit": "piece",
       "unitWeight": 40,
-      "searchKeywords": ["neer dosa", "mangalore dosa", "thin rice crepe", "water dosa"]
+      "searchKeywords": [
+        "neer dosa",
+        "mangalore dosa",
+        "thin rice crepe",
+        "water dosa"
+      ]
     },
     {
       "id": "remote-veg-stew-appam",
@@ -2392,7 +1980,12 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["kerala stew", "coconut stew", "ishtu", "appam stew"]
+      "searchKeywords": [
+        "kerala stew",
+        "coconut stew",
+        "ishtu",
+        "appam stew"
+      ]
     },
     {
       "id": "remote-avial",
@@ -2405,7 +1998,13 @@
       "fiberPerUnit": 4,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["avial", "aviyal", "kerala sabzi", "onam", "coconut vegetable"]
+      "searchKeywords": [
+        "avial",
+        "aviyal",
+        "kerala sabzi",
+        "onam",
+        "coconut vegetable"
+      ]
     },
     {
       "id": "remote-rasam",
@@ -2418,7 +2017,12 @@
       "fiberPerUnit": 1,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["rasam", "pepper rasam", "tomato rasam", "south indian soup"]
+      "searchKeywords": [
+        "rasam",
+        "pepper rasam",
+        "tomato rasam",
+        "south indian soup"
+      ]
     },
     {
       "id": "remote-chitranna",
@@ -2431,7 +2035,12 @@
       "fiberPerUnit": 2,
       "unit": "plate",
       "unitWeight": 200,
-      "searchKeywords": ["chitranna", "lemon rice", "nimbe bath", "limboo bhat"]
+      "searchKeywords": [
+        "chitranna",
+        "lemon rice",
+        "nimbe bath",
+        "limboo bhat"
+      ]
     },
     {
       "id": "remote-curd-vada",
@@ -2444,7 +2053,12 @@
       "fiberPerUnit": 2,
       "unit": "plate",
       "unitWeight": 150,
-      "searchKeywords": ["dahi vada", "curd vada", "thayir vadai", "dahi bhalla"]
+      "searchKeywords": [
+        "dahi vada",
+        "curd vada",
+        "thayir vadai",
+        "dahi bhalla"
+      ]
     },
     {
       "id": "remote-hyderabadi-haleem",
@@ -2457,7 +2071,12 @@
       "fiberPerUnit": 4,
       "unit": "bowl",
       "unitWeight": 250,
-      "searchKeywords": ["haleem", "hyderabadi haleem", "ramzan special", "daleem"]
+      "searchKeywords": [
+        "haleem",
+        "hyderabadi haleem",
+        "ramzan special",
+        "daleem"
+      ]
     },
     {
       "id": "remote-thepla",
@@ -2470,7 +2089,12 @@
       "fiberPerUnit": 1.5,
       "unit": "piece",
       "unitWeight": 40,
-      "searchKeywords": ["thepla", "methi thepla", "gujarati roti", "travel food"]
+      "searchKeywords": [
+        "thepla",
+        "methi thepla",
+        "gujarati roti",
+        "travel food"
+      ]
     },
     {
       "id": "remote-handvo",
@@ -2483,7 +2107,12 @@
       "fiberPerUnit": 3,
       "unit": "piece",
       "unitWeight": 80,
-      "searchKeywords": ["handvo", "handwa", "gujarati cake", "savory lentil cake"]
+      "searchKeywords": [
+        "handvo",
+        "handwa",
+        "gujarati cake",
+        "savory lentil cake"
+      ]
     },
     {
       "id": "remote-undhiyu",
@@ -2496,7 +2125,12 @@
       "fiberPerUnit": 6,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["undhiyu", "oondhiyu", "gujarati sabzi", "uttarayan special"]
+      "searchKeywords": [
+        "undhiyu",
+        "oondhiyu",
+        "gujarati sabzi",
+        "uttarayan special"
+      ]
     },
     {
       "id": "remote-shrikhand-aamrakhand",
@@ -2509,7 +2143,12 @@
       "fiberPerUnit": 0.5,
       "unit": "bowl",
       "unitWeight": 100,
-      "searchKeywords": ["aamrakhand", "mango shrikhand", "amrakhand", "mango dessert"]
+      "searchKeywords": [
+        "aamrakhand",
+        "mango shrikhand",
+        "amrakhand",
+        "mango dessert"
+      ]
     },
     {
       "id": "remote-dal-baati-churma",
@@ -2522,7 +2161,13 @@
       "fiberPerUnit": 5,
       "unit": "plate",
       "unitWeight": 300,
-      "searchKeywords": ["dal baati", "churma", "rajasthani", "bati", "baafla"]
+      "searchKeywords": [
+        "dal baati",
+        "churma",
+        "rajasthani",
+        "bati",
+        "baafla"
+      ]
     },
     {
       "id": "remote-gatte-ki-sabzi",
@@ -2535,7 +2180,12 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["gatte", "besan gatte", "rajasthani curry", "gram flour dumpling"]
+      "searchKeywords": [
+        "gatte",
+        "besan gatte",
+        "rajasthani curry",
+        "gram flour dumpling"
+      ]
     },
     {
       "id": "remote-ker-sangri",
@@ -2548,7 +2198,12 @@
       "fiberPerUnit": 5,
       "unit": "bowl",
       "unitWeight": 100,
-      "searchKeywords": ["ker sangri", "desert beans", "rajasthani sabzi", "panchkuta"]
+      "searchKeywords": [
+        "ker sangri",
+        "desert beans",
+        "rajasthani sabzi",
+        "panchkuta"
+      ]
     },
     {
       "id": "remote-laal-maas",
@@ -2561,7 +2216,12 @@
       "fiberPerUnit": 2,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["laal maas", "red mutton", "rajasthani mutton", "mathania chili"]
+      "searchKeywords": [
+        "laal maas",
+        "red mutton",
+        "rajasthani mutton",
+        "mathania chili"
+      ]
     },
     {
       "id": "remote-ghevar",
@@ -2574,7 +2234,12 @@
       "fiberPerUnit": 0.5,
       "unit": "piece",
       "unitWeight": 100,
-      "searchKeywords": ["ghevar", "ghever", "rajasthani sweet", "teej sweet"]
+      "searchKeywords": [
+        "ghevar",
+        "ghever",
+        "rajasthani sweet",
+        "teej sweet"
+      ]
     },
     {
       "id": "remote-misi-roti",
@@ -2587,7 +2252,12 @@
       "fiberPerUnit": 2,
       "unit": "piece",
       "unitWeight": 50,
-      "searchKeywords": ["bajra roti", "bajre ki roti", "raab roti", "marwadi roti"]
+      "searchKeywords": [
+        "bajra roti",
+        "bajre ki roti",
+        "raab roti",
+        "marwadi roti"
+      ]
     },
     {
       "id": "remote-litti-chokha",
@@ -2600,7 +2270,12 @@
       "fiberPerUnit": 4,
       "unit": "plate",
       "unitWeight": 200,
-      "searchKeywords": ["litti chokha", "bihari litti", "sattu litti", "baked wheat ball"]
+      "searchKeywords": [
+        "litti chokha",
+        "bihari litti",
+        "sattu litti",
+        "baked wheat ball"
+      ]
     },
     {
       "id": "remote-chana-ghugni",
@@ -2613,7 +2288,12 @@
       "fiberPerUnit": 5,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["ghugni", "bengali ghugni", "chana ghugni", "kolkata street food"]
+      "searchKeywords": [
+        "ghugni",
+        "bengali ghugni",
+        "chana ghugni",
+        "kolkata street food"
+      ]
     },
     {
       "id": "remote-kathi-roll-egg",
@@ -2626,7 +2306,12 @@
       "fiberPerUnit": 2,
       "unit": "piece",
       "unitWeight": 150,
-      "searchKeywords": ["egg roll", "kathi roll", "kolkata roll", "egg frankie"]
+      "searchKeywords": [
+        "egg roll",
+        "kathi roll",
+        "kolkata roll",
+        "egg frankie"
+      ]
     },
     {
       "id": "remote-mishti-doi",
@@ -2639,7 +2324,12 @@
       "fiberPerUnit": 0,
       "unit": "bowl",
       "unitWeight": 100,
-      "searchKeywords": ["mishti doi", "nolen gur doi", "sweet yogurt", "bengali curd"]
+      "searchKeywords": [
+        "mishti doi",
+        "nolen gur doi",
+        "sweet yogurt",
+        "bengali curd"
+      ]
     },
     {
       "id": "remote-kosha-mangsho",
@@ -2652,7 +2342,12 @@
       "fiberPerUnit": 2,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["kosha mangsho", "bengali mutton", "slow cooked mutton", "durga puja"]
+      "searchKeywords": [
+        "kosha mangsho",
+        "bengali mutton",
+        "slow cooked mutton",
+        "durga puja"
+      ]
     },
     {
       "id": "remote-chettinad-chicken",
@@ -2665,7 +2360,12 @@
       "fiberPerUnit": 2,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["chettinad chicken", "tamil chicken", "spicy chicken", "pepper chicken"]
+      "searchKeywords": [
+        "chettinad chicken",
+        "tamil chicken",
+        "spicy chicken",
+        "pepper chicken"
+      ]
     },
     {
       "id": "remote-chicken-ghee-roast",
@@ -2678,7 +2378,12 @@
       "fiberPerUnit": 1,
       "unit": "plate",
       "unitWeight": 150,
-      "searchKeywords": ["ghee roast", "mangalore chicken", "bunt style", "ghee roast masala"]
+      "searchKeywords": [
+        "ghee roast",
+        "mangalore chicken",
+        "bunt style",
+        "ghee roast masala"
+      ]
     },
     {
       "id": "remote-malabar-parotta",
@@ -2691,7 +2396,12 @@
       "fiberPerUnit": 1,
       "unit": "piece",
       "unitWeight": 80,
-      "searchKeywords": ["malabar parotta", "kerala paratha", "porotta", "layered paratha"]
+      "searchKeywords": [
+        "malabar parotta",
+        "kerala paratha",
+        "porotta",
+        "layered paratha"
+      ]
     },
     {
       "id": "remote-egg-dosa",
@@ -2704,7 +2414,12 @@
       "fiberPerUnit": 1,
       "unit": "piece",
       "unitWeight": 120,
-      "searchKeywords": ["egg dosa", "anda dosa", "mutta dosa", "omelette dosa"]
+      "searchKeywords": [
+        "egg dosa",
+        "anda dosa",
+        "mutta dosa",
+        "omelette dosa"
+      ]
     },
     {
       "id": "remote-pongal",
@@ -2717,7 +2432,12 @@
       "fiberPerUnit": 2,
       "unit": "plate",
       "unitWeight": 200,
-      "searchKeywords": ["ven pongal", "khara pongal", "rice pongal", "tamil breakfast"]
+      "searchKeywords": [
+        "ven pongal",
+        "khara pongal",
+        "rice pongal",
+        "tamil breakfast"
+      ]
     },
     {
       "id": "remote-sweet-pongal",
@@ -2730,7 +2450,12 @@
       "fiberPerUnit": 1,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["sweet pongal", "sakkarai pongal", "chakkara pongal", "temple prasad"]
+      "searchKeywords": [
+        "sweet pongal",
+        "sakkarai pongal",
+        "chakkara pongal",
+        "temple prasad"
+      ]
     },
     {
       "id": "remote-chole-kulche",
@@ -2743,7 +2468,12 @@
       "fiberPerUnit": 5,
       "unit": "plate",
       "unitWeight": 250,
-      "searchKeywords": ["chole kulche", "delhi chole", "amritsari kulcha", "chana kulcha"]
+      "searchKeywords": [
+        "chole kulche",
+        "delhi chole",
+        "amritsari kulcha",
+        "chana kulcha"
+      ]
     },
     {
       "id": "remote-aloo-tikki-burger",
@@ -2756,7 +2486,12 @@
       "fiberPerUnit": 3,
       "unit": "piece",
       "unitWeight": 150,
-      "searchKeywords": ["aloo tikki burger", "mcaloo tikki", "mcdonalds", "veg burger"]
+      "searchKeywords": [
+        "aloo tikki burger",
+        "mcaloo tikki",
+        "mcdonalds",
+        "veg burger"
+      ]
     },
     {
       "id": "remote-mcchicken",
@@ -2769,7 +2504,13 @@
       "fiberPerUnit": 2,
       "unit": "piece",
       "unitWeight": 170,
-      "searchKeywords": ["mcchicken", "chicken burger", "mcdonalds", "kfc burger", "zinger"]
+      "searchKeywords": [
+        "mcchicken",
+        "chicken burger",
+        "mcdonalds",
+        "kfc burger",
+        "zinger"
+      ]
     },
     {
       "id": "remote-fried-chicken-piece",
@@ -2782,7 +2523,12 @@
       "fiberPerUnit": 0.5,
       "unit": "piece",
       "unitWeight": 100,
-      "searchKeywords": ["kfc chicken", "fried chicken", "bucket chicken", "crispy chicken"]
+      "searchKeywords": [
+        "kfc chicken",
+        "fried chicken",
+        "bucket chicken",
+        "crispy chicken"
+      ]
     },
     {
       "id": "remote-dominos-pizza-slice",
@@ -2795,7 +2541,12 @@
       "fiberPerUnit": 1.5,
       "unit": "slice",
       "unitWeight": 80,
-      "searchKeywords": ["dominos", "pizza hut", "cheese pizza", "veg pizza slice"]
+      "searchKeywords": [
+        "dominos",
+        "pizza hut",
+        "cheese pizza",
+        "veg pizza slice"
+      ]
     },
     {
       "id": "remote-subway-veg",
@@ -2808,7 +2559,12 @@
       "fiberPerUnit": 4,
       "unit": "piece",
       "unitWeight": 200,
-      "searchKeywords": ["subway", "veg sub", "veggie delight", "6 inch sub"]
+      "searchKeywords": [
+        "subway",
+        "veg sub",
+        "veggie delight",
+        "6 inch sub"
+      ]
     },
     {
       "id": "remote-subway-chicken",
@@ -2821,7 +2577,11 @@
       "fiberPerUnit": 3,
       "unit": "piece",
       "unitWeight": 220,
-      "searchKeywords": ["subway chicken", "chicken teriyaki", "6 inch sub"]
+      "searchKeywords": [
+        "subway chicken",
+        "chicken teriyaki",
+        "6 inch sub"
+      ]
     },
     {
       "id": "remote-peri-peri-fries",
@@ -2834,7 +2594,12 @@
       "fiberPerUnit": 3,
       "unit": "serving",
       "unitWeight": 150,
-      "searchKeywords": ["peri peri fries", "spicy fries", "masala fries", "seasoned fries"]
+      "searchKeywords": [
+        "peri peri fries",
+        "spicy fries",
+        "masala fries",
+        "seasoned fries"
+      ]
     },
     {
       "id": "remote-onion-rings",
@@ -2847,7 +2612,12 @@
       "fiberPerUnit": 2,
       "unit": "serving",
       "unitWeight": 100,
-      "searchKeywords": ["onion rings", "fried onion", "crispy rings", "batter fried"]
+      "searchKeywords": [
+        "onion rings",
+        "fried onion",
+        "crispy rings",
+        "batter fried"
+      ]
     },
     {
       "id": "remote-mozzarella-sticks",
@@ -2860,7 +2630,12 @@
       "fiberPerUnit": 1,
       "unit": "serving",
       "unitWeight": 100,
-      "searchKeywords": ["cheese sticks", "mozzarella sticks", "fried cheese", "appetizer"]
+      "searchKeywords": [
+        "cheese sticks",
+        "mozzarella sticks",
+        "fried cheese",
+        "appetizer"
+      ]
     },
     {
       "id": "remote-paneer-tikka",
@@ -2873,7 +2648,12 @@
       "fiberPerUnit": 2,
       "unit": "plate",
       "unitWeight": 150,
-      "searchKeywords": ["paneer tikka", "tandoori paneer", "grilled paneer", "starter"]
+      "searchKeywords": [
+        "paneer tikka",
+        "tandoori paneer",
+        "grilled paneer",
+        "starter"
+      ]
     },
     {
       "id": "remote-mushroom-tikka",
@@ -2886,7 +2666,11 @@
       "fiberPerUnit": 2,
       "unit": "plate",
       "unitWeight": 120,
-      "searchKeywords": ["mushroom tikka", "tandoori mushroom", "grilled mushroom"]
+      "searchKeywords": [
+        "mushroom tikka",
+        "tandoori mushroom",
+        "grilled mushroom"
+      ]
     },
     {
       "id": "remote-hara-bhara-kebab",
@@ -2899,7 +2683,12 @@
       "fiberPerUnit": 4,
       "unit": "plate",
       "unitWeight": 120,
-      "searchKeywords": ["hara bhara", "green kebab", "spinach kebab", "veg kebab"]
+      "searchKeywords": [
+        "hara bhara",
+        "green kebab",
+        "spinach kebab",
+        "veg kebab"
+      ]
     },
     {
       "id": "remote-seekh-kebab",
@@ -2912,7 +2701,12 @@
       "fiberPerUnit": 1,
       "unit": "plate",
       "unitWeight": 120,
-      "searchKeywords": ["seekh kebab", "mutton seekh", "minced kebab", "boti kebab"]
+      "searchKeywords": [
+        "seekh kebab",
+        "mutton seekh",
+        "minced kebab",
+        "boti kebab"
+      ]
     },
     {
       "id": "remote-galouti-kebab",
@@ -2925,7 +2719,12 @@
       "fiberPerUnit": 0.5,
       "unit": "plate",
       "unitWeight": 100,
-      "searchKeywords": ["galouti", "lucknowi kebab", "gilafi kebab", "awadhi kebab"]
+      "searchKeywords": [
+        "galouti",
+        "lucknowi kebab",
+        "gilafi kebab",
+        "awadhi kebab"
+      ]
     },
     {
       "id": "remote-reshmi-kebab",
@@ -2938,7 +2737,12 @@
       "fiberPerUnit": 0.5,
       "unit": "plate",
       "unitWeight": 120,
-      "searchKeywords": ["reshmi kebab", "cream kebab", "malai seekh", "chicken mince"]
+      "searchKeywords": [
+        "reshmi kebab",
+        "cream kebab",
+        "malai seekh",
+        "chicken mince"
+      ]
     },
     {
       "id": "remote-shami-kebab",
@@ -2951,7 +2755,12 @@
       "fiberPerUnit": 1,
       "unit": "piece",
       "unitWeight": 50,
-      "searchKeywords": ["shami kebab", "chana dal kebab", "mughlai kebab", "patty"]
+      "searchKeywords": [
+        "shami kebab",
+        "chana dal kebab",
+        "mughlai kebab",
+        "patty"
+      ]
     },
     {
       "id": "remote-chicken-nihari",
@@ -2964,7 +2773,12 @@
       "fiberPerUnit": 2,
       "unit": "bowl",
       "unitWeight": 250,
-      "searchKeywords": ["nihari", "nalli nihari", "delhi nihari", "slow cooked nahari"]
+      "searchKeywords": [
+        "nihari",
+        "nalli nihari",
+        "delhi nihari",
+        "slow cooked nahari"
+      ]
     },
     {
       "id": "remote-paya-soup",
@@ -2977,7 +2791,12 @@
       "fiberPerUnit": 1,
       "unit": "bowl",
       "unitWeight": 250,
-      "searchKeywords": ["paya soup", "goat trotters", "bone broth", "paya shorba"]
+      "searchKeywords": [
+        "paya soup",
+        "goat trotters",
+        "bone broth",
+        "paya shorba"
+      ]
     },
     {
       "id": "remote-butter-chicken-biryani",
@@ -2990,20 +2809,11 @@
       "fiberPerUnit": 2,
       "unit": "plate",
       "unitWeight": 250,
-      "searchKeywords": ["butter chicken biryani", "creamy biryani", "fusion biryani"]
-    },
-    {
-      "id": "remote-egg-biryani",
-      "name": "Egg Biryani (Anda Biryani)",
-      "nameMarathi": "अंडा बिर्याणी",
-      "category": "nonveg",
-      "caloriesPerUnit": 350,
-      "proteinPerUnit": 14,
-      "fatPerUnit": 12,
-      "fiberPerUnit": 2,
-      "unit": "plate",
-      "unitWeight": 250,
-      "searchKeywords": ["egg biryani", "anda biryani", "budget biryani"]
+      "searchKeywords": [
+        "butter chicken biryani",
+        "creamy biryani",
+        "fusion biryani"
+      ]
     },
     {
       "id": "remote-paneer-biryani-v2",
@@ -3016,7 +2826,11 @@
       "fiberPerUnit": 2,
       "unit": "plate",
       "unitWeight": 250,
-      "searchKeywords": ["paneer biryani", "paneer dum biryani", "veg dum biryani"]
+      "searchKeywords": [
+        "paneer biryani",
+        "paneer dum biryani",
+        "veg dum biryani"
+      ]
     },
     {
       "id": "remote-chicken-korma",
@@ -3029,7 +2843,12 @@
       "fiberPerUnit": 2,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["korma", "white chicken curry", "mughlai", "shahi korma"]
+      "searchKeywords": [
+        "korma",
+        "white chicken curry",
+        "mughlai",
+        "shahi korma"
+      ]
     },
     {
       "id": "remote-chicken-do-pyaza",
@@ -3042,7 +2861,11 @@
       "fiberPerUnit": 2,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["do pyaza", "onion chicken", "mughlai chicken"]
+      "searchKeywords": [
+        "do pyaza",
+        "onion chicken",
+        "mughlai chicken"
+      ]
     },
     {
       "id": "remote-egg-roll-street",
@@ -3055,7 +2878,12 @@
       "fiberPerUnit": 1,
       "unit": "piece",
       "unitWeight": 150,
-      "searchKeywords": ["egg roll", "anda roll", "street roll", "paratha roll"]
+      "searchKeywords": [
+        "egg roll",
+        "anda roll",
+        "street roll",
+        "paratha roll"
+      ]
     },
     {
       "id": "remote-schezwan-chicken-momos",
@@ -3068,7 +2896,12 @@
       "fiberPerUnit": 2,
       "unit": "plate",
       "unitWeight": 120,
-      "searchKeywords": ["schezwan momos", "fried chicken momos", "spicy momos", "jhol momos"]
+      "searchKeywords": [
+        "schezwan momos",
+        "fried chicken momos",
+        "spicy momos",
+        "jhol momos"
+      ]
     },
     {
       "id": "remote-dragon-chicken",
@@ -3081,7 +2914,11 @@
       "fiberPerUnit": 2,
       "unit": "plate",
       "unitWeight": 150,
-      "searchKeywords": ["dragon chicken", "indo chinese chicken", "spicy fried chicken"]
+      "searchKeywords": [
+        "dragon chicken",
+        "indo chinese chicken",
+        "spicy fried chicken"
+      ]
     },
     {
       "id": "remote-honey-chilli-potato",
@@ -3094,7 +2931,12 @@
       "fiberPerUnit": 2,
       "unit": "plate",
       "unitWeight": 120,
-      "searchKeywords": ["honey chilli potato", "crispy potato", "sweet spicy potato", "starter"]
+      "searchKeywords": [
+        "honey chilli potato",
+        "crispy potato",
+        "sweet spicy potato",
+        "starter"
+      ]
     },
     {
       "id": "remote-paneer-chilli-dry",
@@ -3107,20 +2949,11 @@
       "fiberPerUnit": 2,
       "unit": "plate",
       "unitWeight": 150,
-      "searchKeywords": ["paneer chilli", "dry paneer chilli", "indo chinese paneer"]
-    },
-    {
-      "id": "remote-egg-fried-rice",
-      "name": "Egg Fried Rice (Street Style)",
-      "nameMarathi": "एग फ्राईड राईस",
-      "category": "rice",
-      "caloriesPerUnit": 340,
-      "proteinPerUnit": 12,
-      "fatPerUnit": 12,
-      "fiberPerUnit": 2,
-      "unit": "plate",
-      "unitWeight": 250,
-      "searchKeywords": ["egg fried rice", "anda rice", "chinese egg rice"]
+      "searchKeywords": [
+        "paneer chilli",
+        "dry paneer chilli",
+        "indo chinese paneer"
+      ]
     },
     {
       "id": "remote-chicken-noodles-schezwan",
@@ -3133,7 +2966,11 @@
       "fiberPerUnit": 2,
       "unit": "plate",
       "unitWeight": 250,
-      "searchKeywords": ["schezwan chicken noodles", "spicy noodles", "chicken chowmein"]
+      "searchKeywords": [
+        "schezwan chicken noodles",
+        "spicy noodles",
+        "chicken chowmein"
+      ]
     },
     {
       "id": "remote-tandoori-paneer-pizza",
@@ -3146,7 +2983,12 @@
       "fiberPerUnit": 1.5,
       "unit": "slice",
       "unitWeight": 100,
-      "searchKeywords": ["paneer pizza", "tandoori pizza", "indian pizza", "dominos paneer"]
+      "searchKeywords": [
+        "paneer pizza",
+        "tandoori pizza",
+        "indian pizza",
+        "dominos paneer"
+      ]
     },
     {
       "id": "remote-chicken-wings",
@@ -3159,7 +3001,12 @@
       "fiberPerUnit": 0,
       "unit": "serving",
       "unitWeight": 150,
-      "searchKeywords": ["chicken wings", "buffalo wings", "hot wings", "bbq wings"]
+      "searchKeywords": [
+        "chicken wings",
+        "buffalo wings",
+        "hot wings",
+        "bbq wings"
+      ]
     },
     {
       "id": "remote-fish-finger",
@@ -3172,7 +3019,12 @@
       "fiberPerUnit": 1,
       "unit": "serving",
       "unitWeight": 100,
-      "searchKeywords": ["fish fingers", "fish sticks", "frozen fish", "crispy fish"]
+      "searchKeywords": [
+        "fish fingers",
+        "fish sticks",
+        "frozen fish",
+        "crispy fish"
+      ]
     },
     {
       "id": "remote-penne-arabiata",
@@ -3185,7 +3037,12 @@
       "fiberPerUnit": 3,
       "unit": "plate",
       "unitWeight": 250,
-      "searchKeywords": ["penne", "arrabbiata", "spicy pasta", "red sauce pasta"]
+      "searchKeywords": [
+        "penne",
+        "arrabbiata",
+        "spicy pasta",
+        "red sauce pasta"
+      ]
     },
     {
       "id": "remote-lasagna",
@@ -3198,7 +3055,12 @@
       "fiberPerUnit": 2,
       "unit": "serving",
       "unitWeight": 200,
-      "searchKeywords": ["lasagna", "lasagne", "baked pasta", "cheese lasagna"]
+      "searchKeywords": [
+        "lasagna",
+        "lasagne",
+        "baked pasta",
+        "cheese lasagna"
+      ]
     },
     {
       "id": "remote-pav-bhaji-jain",
@@ -3211,7 +3073,12 @@
       "fiberPerUnit": 5,
       "unit": "plate",
       "unitWeight": 250,
-      "searchKeywords": ["jain pav bhaji", "no onion garlic", "sattvic", "jain food"]
+      "searchKeywords": [
+        "jain pav bhaji",
+        "no onion garlic",
+        "sattvic",
+        "jain food"
+      ]
     },
     {
       "id": "remote-dosa-cheese",
@@ -3224,7 +3091,11 @@
       "fiberPerUnit": 1,
       "unit": "piece",
       "unitWeight": 150,
-      "searchKeywords": ["cheese dosa", "cheese masala dosa", "loaded dosa"]
+      "searchKeywords": [
+        "cheese dosa",
+        "cheese masala dosa",
+        "loaded dosa"
+      ]
     },
     {
       "id": "remote-paneer-dosa",
@@ -3237,7 +3108,11 @@
       "fiberPerUnit": 1.5,
       "unit": "piece",
       "unitWeight": 160,
-      "searchKeywords": ["paneer dosa", "stuffed dosa", "paneer masala dosa"]
+      "searchKeywords": [
+        "paneer dosa",
+        "stuffed dosa",
+        "paneer masala dosa"
+      ]
     },
     {
       "id": "remote-spring-dosa",
@@ -3250,7 +3125,12 @@
       "fiberPerUnit": 2,
       "unit": "piece",
       "unitWeight": 150,
-      "searchKeywords": ["spring dosa", "chinese dosa", "hakka dosa", "noodle dosa"]
+      "searchKeywords": [
+        "spring dosa",
+        "chinese dosa",
+        "hakka dosa",
+        "noodle dosa"
+      ]
     },
     {
       "id": "remote-ragi-dosa",
@@ -3263,7 +3143,12 @@
       "fiberPerUnit": 2,
       "unit": "piece",
       "unitWeight": 80,
-      "searchKeywords": ["ragi dosa", "nachni dosa", "finger millet dosa", "healthy dosa"]
+      "searchKeywords": [
+        "ragi dosa",
+        "nachni dosa",
+        "finger millet dosa",
+        "healthy dosa"
+      ]
     },
     {
       "id": "remote-jolada-roti",
@@ -3276,7 +3161,11 @@
       "fiberPerUnit": 2,
       "unit": "piece",
       "unitWeight": 50,
-      "searchKeywords": ["jolada roti", "karnataka bhakri", "jowar roti north karnataka"]
+      "searchKeywords": [
+        "jolada roti",
+        "karnataka bhakri",
+        "jowar roti north karnataka"
+      ]
     },
     {
       "id": "remote-chicken-sukka-mangalore",
@@ -3289,7 +3178,12 @@
       "fiberPerUnit": 2,
       "unit": "plate",
       "unitWeight": 150,
-      "searchKeywords": ["chicken sukka", "mangalore chicken", "dry coconut chicken", "kori rotti"]
+      "searchKeywords": [
+        "chicken sukka",
+        "mangalore chicken",
+        "dry coconut chicken",
+        "kori rotti"
+      ]
     },
     {
       "id": "remote-gongura-chicken",
@@ -3302,7 +3196,12 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["gongura chicken", "andhra chicken", "sorrel leaves chicken", "pulusu"]
+      "searchKeywords": [
+        "gongura chicken",
+        "andhra chicken",
+        "sorrel leaves chicken",
+        "pulusu"
+      ]
     },
     {
       "id": "remote-andhra-chicken-curry",
@@ -3315,7 +3214,12 @@
       "fiberPerUnit": 2,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["kodi kura", "andhra chicken", "spicy chicken curry", "natu kodi"]
+      "searchKeywords": [
+        "kodi kura",
+        "andhra chicken",
+        "spicy chicken curry",
+        "natu kodi"
+      ]
     },
     {
       "id": "remote-kori-rotti",
@@ -3328,7 +3232,12 @@
       "fiberPerUnit": 2,
       "unit": "plate",
       "unitWeight": 200,
-      "searchKeywords": ["kori rotti", "mangalore chicken", "rice wafer chicken", "tulu food"]
+      "searchKeywords": [
+        "kori rotti",
+        "mangalore chicken",
+        "rice wafer chicken",
+        "tulu food"
+      ]
     },
     {
       "id": "remote-kerala-egg-roast",
@@ -3341,7 +3250,12 @@
       "fiberPerUnit": 2,
       "unit": "plate",
       "unitWeight": 150,
-      "searchKeywords": ["egg roast", "mutta roast", "kerala egg curry", "nadan egg roast"]
+      "searchKeywords": [
+        "egg roast",
+        "mutta roast",
+        "kerala egg curry",
+        "nadan egg roast"
+      ]
     },
     {
       "id": "remote-biryani-65",
@@ -3354,7 +3268,12 @@
       "fiberPerUnit": 2,
       "unit": "plate",
       "unitWeight": 250,
-      "searchKeywords": ["65 biryani", "chicken 65 biryani", "spicy biryani", "fusion biryani"]
+      "searchKeywords": [
+        "65 biryani",
+        "chicken 65 biryani",
+        "spicy biryani",
+        "fusion biryani"
+      ]
     },
     {
       "id": "remote-masala-puri-chat",
@@ -3367,7 +3286,12 @@
       "fiberPerUnit": 4,
       "unit": "plate",
       "unitWeight": 150,
-      "searchKeywords": ["masala puri", "bangalore chaat", "karnataka chaat", "puri chat"]
+      "searchKeywords": [
+        "masala puri",
+        "bangalore chaat",
+        "karnataka chaat",
+        "puri chat"
+      ]
     },
     {
       "id": "remote-churros",
@@ -3380,7 +3304,12 @@
       "fiberPerUnit": 1,
       "unit": "serving",
       "unitWeight": 80,
-      "searchKeywords": ["churros", "chocolate churros", "spanish dessert", "fried dough"]
+      "searchKeywords": [
+        "churros",
+        "chocolate churros",
+        "spanish dessert",
+        "fried dough"
+      ]
     },
     {
       "id": "remote-pancake",
@@ -3393,7 +3322,12 @@
       "fiberPerUnit": 1,
       "unit": "serving",
       "unitWeight": 100,
-      "searchKeywords": ["pancake", "maple syrup", "flapjack", "american pancake"]
+      "searchKeywords": [
+        "pancake",
+        "maple syrup",
+        "flapjack",
+        "american pancake"
+      ]
     },
     {
       "id": "remote-croissant",
@@ -3406,7 +3340,12 @@
       "fiberPerUnit": 1,
       "unit": "piece",
       "unitWeight": 60,
-      "searchKeywords": ["croissant", "butter croissant", "french pastry", "bakery"]
+      "searchKeywords": [
+        "croissant",
+        "butter croissant",
+        "french pastry",
+        "bakery"
+      ]
     },
     {
       "id": "remote-bagel",
@@ -3419,7 +3358,11 @@
       "fiberPerUnit": 2,
       "unit": "piece",
       "unitWeight": 100,
-      "searchKeywords": ["bagel", "cream cheese bagel", "breakfast bagel"]
+      "searchKeywords": [
+        "bagel",
+        "cream cheese bagel",
+        "breakfast bagel"
+      ]
     },
     {
       "id": "remote-wrap-paneer",
@@ -3432,7 +3375,12 @@
       "fiberPerUnit": 3,
       "unit": "piece",
       "unitWeight": 200,
-      "searchKeywords": ["paneer wrap", "paneer burrito", "paneer roll", "tortilla wrap"]
+      "searchKeywords": [
+        "paneer wrap",
+        "paneer burrito",
+        "paneer roll",
+        "tortilla wrap"
+      ]
     },
     {
       "id": "remote-falafel-wrap",
@@ -3445,7 +3393,12 @@
       "fiberPerUnit": 5,
       "unit": "piece",
       "unitWeight": 200,
-      "searchKeywords": ["falafel", "falafel wrap", "chickpea wrap", "middle eastern"]
+      "searchKeywords": [
+        "falafel",
+        "falafel wrap",
+        "chickpea wrap",
+        "middle eastern"
+      ]
     },
     {
       "id": "remote-hummus",
@@ -3458,7 +3411,13 @@
       "fiberPerUnit": 4,
       "unit": "serving",
       "unitWeight": 100,
-      "searchKeywords": ["hummus", "humous", "chickpea dip", "pita bread", "lebanese"]
+      "searchKeywords": [
+        "hummus",
+        "humous",
+        "chickpea dip",
+        "pita bread",
+        "lebanese"
+      ]
     },
     {
       "id": "remote-oats-smoothie-bowl",
@@ -3471,7 +3430,12 @@
       "fiberPerUnit": 5,
       "unit": "bowl",
       "unitWeight": 250,
-      "searchKeywords": ["smoothie bowl", "oats bowl", "acai bowl", "healthy breakfast bowl"]
+      "searchKeywords": [
+        "smoothie bowl",
+        "oats bowl",
+        "acai bowl",
+        "healthy breakfast bowl"
+      ]
     },
     {
       "id": "remote-granola-bar",
@@ -3484,7 +3448,13 @@
       "fiberPerUnit": 3,
       "unit": "bar",
       "unitWeight": 40,
-      "searchKeywords": ["granola bar", "protein bar", "energy bar", "yoga bar", "ritebite"]
+      "searchKeywords": [
+        "granola bar",
+        "protein bar",
+        "energy bar",
+        "yoga bar",
+        "ritebite"
+      ]
     },
     {
       "id": "remote-chana-jor-garam-chaat",
@@ -3497,7 +3467,12 @@
       "fiberPerUnit": 5,
       "unit": "plate",
       "unitWeight": 120,
-      "searchKeywords": ["chana chaat", "kala chana chaat", "chickpea salad", "protein snack"]
+      "searchKeywords": [
+        "chana chaat",
+        "kala chana chaat",
+        "chickpea salad",
+        "protein snack"
+      ]
     },
     {
       "id": "remote-makhana-roasted",
@@ -3510,7 +3485,13 @@
       "fiberPerUnit": 2,
       "unit": "bowl",
       "unitWeight": 30,
-      "searchKeywords": ["roasted makhana", "fox nuts", "phool makhana", "diet snack", "healthy"]
+      "searchKeywords": [
+        "roasted makhana",
+        "fox nuts",
+        "phool makhana",
+        "diet snack",
+        "healthy"
+      ]
     },
     {
       "id": "remote-banana-walnut-bread",
@@ -3523,7 +3504,12 @@
       "fiberPerUnit": 2,
       "unit": "slice",
       "unitWeight": 80,
-      "searchKeywords": ["banana bread", "banana cake", "walnut cake", "cafe cake"]
+      "searchKeywords": [
+        "banana bread",
+        "banana cake",
+        "walnut cake",
+        "cafe cake"
+      ]
     },
     {
       "id": "remote-dahi-papdi-chaat",
@@ -3536,7 +3522,12 @@
       "fiberPerUnit": 2,
       "unit": "plate",
       "unitWeight": 150,
-      "searchKeywords": ["dahi papdi", "chaat", "delhi chaat", "sweet tangy chaat"]
+      "searchKeywords": [
+        "dahi papdi",
+        "chaat",
+        "delhi chaat",
+        "sweet tangy chaat"
+      ]
     },
     {
       "id": "remote-boiled-shenga",
@@ -3549,163 +3540,13 @@
       "fiberPerUnit": 2.5,
       "unit": "bowl",
       "unitWeight": 50,
-      "searchKeywords": ["boiled peanuts", "ushalalele sheng", "ubadleli shenga", "ubalele shengdane", "steamed groundnut"]
-    },
-    {
-      "id": "remote-ghevdyachi-bhaji",
-      "name": "Ghevdyachi Bhaji (Green Beans Dry)",
-      "nameMarathi": "घेवड्याची भाजी",
-      "category": "vegetables",
-      "caloriesPerUnit": 80,
-      "proteinPerUnit": 3,
-      "fatPerUnit": 3,
-      "fiberPerUnit": 4,
-      "unit": "bowl",
-      "unitWeight": 150,
-      "searchKeywords": ["ghevda bhaji", "french beans", "green beans sabzi", "ghevdyachi bhaji dry"]
-    },
-    {
-      "id": "remote-ghevda-dane-bhaji",
-      "name": "Ghevda Dane Bhaji (Beans Seeds Dry)",
-      "nameMarathi": "घेवडा दाणे भाजी",
-      "category": "vegetables",
-      "caloriesPerUnit": 120,
-      "proteinPerUnit": 6,
-      "fatPerUnit": 4,
-      "fiberPerUnit": 5,
-      "unit": "bowl",
-      "unitWeight": 150,
-      "searchKeywords": ["ghevda dane", "lima beans", "broad beans dry", "ghevda sheng dane"]
-    },
-    {
-      "id": "remote-ghevdyachi-amti",
-      "name": "Ghevdyachi Amti (Green Beans Curry)",
-      "nameMarathi": "घेवड्याची आमटी",
-      "category": "dal",
-      "caloriesPerUnit": 130,
-      "proteinPerUnit": 5,
-      "fatPerUnit": 5,
-      "fiberPerUnit": 4,
-      "unit": "bowl",
-      "unitWeight": 200,
-      "searchKeywords": ["ghevda amti", "ghevda curry", "green beans curry", "ghevdyachi aamti"]
-    },
-    {
-      "id": "remote-pavta-bhaji",
-      "name": "Pavta Bhaji (Broad Beans Dry)",
-      "nameMarathi": "पावटा भाजी",
-      "category": "vegetables",
-      "caloriesPerUnit": 110,
-      "proteinPerUnit": 6,
-      "fatPerUnit": 3,
-      "fiberPerUnit": 5,
-      "unit": "bowl",
-      "unitWeight": 150,
-      "searchKeywords": ["pavta bhaji", "pavte bhaji", "broad beans dry", "field beans sabzi"]
-    },
-    {
-      "id": "remote-pavta-amti",
-      "name": "Pavta Amti (Broad Beans Curry)",
-      "nameMarathi": "पावटा आमटी",
-      "category": "dal",
-      "caloriesPerUnit": 140,
-      "proteinPerUnit": 7,
-      "fatPerUnit": 5,
-      "fiberPerUnit": 5,
-      "unit": "bowl",
-      "unitWeight": 200,
-      "searchKeywords": ["pavta amti", "pavte amti", "broad bean curry", "pavta aamti"]
-    },
-    {
-      "id": "remote-pavta-batata-amti",
-      "name": "Pavta Batata Amti",
-      "nameMarathi": "पावटा बटाटा आमटी",
-      "category": "dal",
-      "caloriesPerUnit": 160,
-      "proteinPerUnit": 5,
-      "fatPerUnit": 5,
-      "fiberPerUnit": 4,
-      "unit": "bowl",
-      "unitWeight": 200,
-      "searchKeywords": ["pavta batata", "pavte batata amti", "broad beans potato curry"]
-    },
-    {
-      "id": "remote-pavta-usal",
-      "name": "Pavta Usal (Sprouted Broad Beans)",
-      "nameMarathi": "पावटा उसळ",
-      "category": "dal",
-      "caloriesPerUnit": 150,
-      "proteinPerUnit": 8,
-      "fatPerUnit": 4,
-      "fiberPerUnit": 6,
-      "unit": "bowl",
-      "unitWeight": 200,
-      "searchKeywords": ["pavta usal", "sprouted pavta", "pavte usal", "broad beans usal"]
-    },
-    {
-      "id": "remote-gavar-bhaji",
-      "name": "Gavar Bhaji (Cluster Beans)",
-      "nameMarathi": "गवार भाजी",
-      "category": "vegetables",
-      "caloriesPerUnit": 70,
-      "proteinPerUnit": 3,
-      "fatPerUnit": 3,
-      "fiberPerUnit": 5,
-      "unit": "bowl",
-      "unitWeight": 150,
-      "searchKeywords": ["gavar bhaji", "cluster beans", "gawar bhaji", "guvar bhaji", "gavariche fadinya"]
-    },
-    {
-      "id": "remote-gavar-batata-bhaji",
-      "name": "Gavar Batata Bhaji",
-      "nameMarathi": "गवार बटाटा भाजी",
-      "category": "vegetables",
-      "caloriesPerUnit": 100,
-      "proteinPerUnit": 3,
-      "fatPerUnit": 4,
-      "fiberPerUnit": 4,
-      "unit": "bowl",
-      "unitWeight": 150,
-      "searchKeywords": ["gavar batata", "cluster beans potato", "gawar aloo"]
-    },
-    {
-      "id": "remote-chavli-bhaji",
-      "name": "Chavli Bhaji (Long Beans Dry)",
-      "nameMarathi": "चवळी भाजी",
-      "category": "vegetables",
-      "caloriesPerUnit": 85,
-      "proteinPerUnit": 4,
-      "fatPerUnit": 3,
-      "fiberPerUnit": 4,
-      "unit": "bowl",
-      "unitWeight": 150,
-      "searchKeywords": ["chavli bhaji", "chawli bhaji", "long beans", "lobia bhaji"]
-    },
-    {
-      "id": "remote-chavli-usal",
-      "name": "Chavli Usal (Black Eyed Peas Sprouts)",
-      "nameMarathi": "चवळी उसळ",
-      "category": "dal",
-      "caloriesPerUnit": 150,
-      "proteinPerUnit": 8,
-      "fatPerUnit": 4,
-      "fiberPerUnit": 5,
-      "unit": "bowl",
-      "unitWeight": 200,
-      "searchKeywords": ["chavli usal", "chawli usal", "lobia usal", "black eyed peas sprout"]
-    },
-    {
-      "id": "remote-chavli-amti",
-      "name": "Chavli Amti (Cowpea Curry)",
-      "nameMarathi": "चवळी आमटी",
-      "category": "dal",
-      "caloriesPerUnit": 140,
-      "proteinPerUnit": 7,
-      "fatPerUnit": 4,
-      "fiberPerUnit": 5,
-      "unit": "bowl",
-      "unitWeight": 200,
-      "searchKeywords": ["chavli amti", "chawli amti", "cowpea curry", "lobia curry"]
+      "searchKeywords": [
+        "boiled peanuts",
+        "ushalalele sheng",
+        "ubadleli shenga",
+        "ubalele shengdane",
+        "steamed groundnut"
+      ]
     },
     {
       "id": "remote-matki-bhaji",
@@ -3718,7 +3559,12 @@
       "fiberPerUnit": 4,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["matki bhaji", "moth beans", "matki chi bhaji", "dry matki"]
+      "searchKeywords": [
+        "matki bhaji",
+        "moth beans",
+        "matki chi bhaji",
+        "dry matki"
+      ]
     },
     {
       "id": "remote-matki-amti",
@@ -3731,7 +3577,11 @@
       "fiberPerUnit": 5,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["matki amti", "moth bean curry", "matkichi amti"]
+      "searchKeywords": [
+        "matki amti",
+        "moth bean curry",
+        "matkichi amti"
+      ]
     },
     {
       "id": "remote-moong-usal",
@@ -3744,7 +3594,12 @@
       "fiberPerUnit": 5,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["moong usal", "mug usal", "green gram sprout", "hirvya mugachi usal"]
+      "searchKeywords": [
+        "moong usal",
+        "mug usal",
+        "green gram sprout",
+        "hirvya mugachi usal"
+      ]
     },
     {
       "id": "remote-moong-bhaji",
@@ -3757,7 +3612,12 @@
       "fiberPerUnit": 4,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["moong bhaji", "mug bhaji", "whole moong sabzi", "hirvya mugachi bhaji"]
+      "searchKeywords": [
+        "moong bhaji",
+        "mug bhaji",
+        "whole moong sabzi",
+        "hirvya mugachi bhaji"
+      ]
     },
     {
       "id": "remote-harbhara-usal",
@@ -3770,7 +3630,12 @@
       "fiberPerUnit": 6,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["harbhara usal", "chana usal", "chickpea sprout", "harbaryachi usal"]
+      "searchKeywords": [
+        "harbhara usal",
+        "chana usal",
+        "chickpea sprout",
+        "harbaryachi usal"
+      ]
     },
     {
       "id": "remote-harbhara-bhaji",
@@ -3783,7 +3648,11 @@
       "fiberPerUnit": 5,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["harbhara bhaji", "hirvya harbaryachi bhaji", "green chana sabzi"]
+      "searchKeywords": [
+        "harbhara bhaji",
+        "hirvya harbaryachi bhaji",
+        "green chana sabzi"
+      ]
     },
     {
       "id": "remote-udid-dal-amti",
@@ -3796,7 +3665,12 @@
       "fiberPerUnit": 4,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["udid amti", "urad dal amti", "black gram curry", "uddachi amti"]
+      "searchKeywords": [
+        "udid amti",
+        "urad dal amti",
+        "black gram curry",
+        "uddachi amti"
+      ]
     },
     {
       "id": "remote-masur-amti",
@@ -3809,7 +3683,12 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["masur amti", "masoor dal amti", "red lentil curry", "masurachi amti"]
+      "searchKeywords": [
+        "masur amti",
+        "masoor dal amti",
+        "red lentil curry",
+        "masurachi amti"
+      ]
     },
     {
       "id": "remote-kulith-amti",
@@ -3822,7 +3701,12 @@
       "fiberPerUnit": 5,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["kulith amti", "kulthi dal", "horse gram curry", "kulthachi amti"]
+      "searchKeywords": [
+        "kulith amti",
+        "kulthi dal",
+        "horse gram curry",
+        "kulthachi amti"
+      ]
     },
     {
       "id": "remote-kulith-usal",
@@ -3835,7 +3719,11 @@
       "fiberPerUnit": 5,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["kulith usal", "kulthi sprouts", "horse gram usal"]
+      "searchKeywords": [
+        "kulith usal",
+        "kulthi sprouts",
+        "horse gram usal"
+      ]
     },
     {
       "id": "remote-tur-dalichi-amti",
@@ -3848,7 +3736,12 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["tur amti", "toor dal amti", "arhar dal amti", "turichi amti"]
+      "searchKeywords": [
+        "tur amti",
+        "toor dal amti",
+        "arhar dal amti",
+        "turichi amti"
+      ]
     },
     {
       "id": "remote-pithla-bhaji",
@@ -3861,20 +3754,13 @@
       "fiberPerUnit": 2,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["pithla", "pithle", "besan kadhi", "gram flour curry", "pithlya"]
-    },
-    {
-      "id": "remote-zunka-bhaji",
-      "name": "Zunka (Dry Besan Bhaji)",
-      "nameMarathi": "झुणका",
-      "category": "vegetables",
-      "caloriesPerUnit": 160,
-      "proteinPerUnit": 7,
-      "fatPerUnit": 9,
-      "fiberPerUnit": 3,
-      "unit": "bowl",
-      "unitWeight": 150,
-      "searchKeywords": ["zunka", "jhunka", "dry pithla", "zunka bhakar", "besan bhaji"]
+      "searchKeywords": [
+        "pithla",
+        "pithle",
+        "besan kadhi",
+        "gram flour curry",
+        "pithlya"
+      ]
     },
     {
       "id": "remote-padwal-bhaji",
@@ -3887,7 +3773,12 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["padwal bhaji", "snake gourd", "chichinda", "padwalyachi bhaji"]
+      "searchKeywords": [
+        "padwal bhaji",
+        "snake gourd",
+        "chichinda",
+        "padwalyachi bhaji"
+      ]
     },
     {
       "id": "remote-bhopla-bhaji",
@@ -3900,20 +3791,12 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["bhopla bhaji", "pumpkin sabzi", "kaddu bhaji", "lal bhopla"]
-    },
-    {
-      "id": "remote-dudhi-bhopla-bhaji",
-      "name": "Dudhi Bhopla Bhaji (Bottle Gourd)",
-      "nameMarathi": "दुधी भोपळा भाजी",
-      "category": "vegetables",
-      "caloriesPerUnit": 60,
-      "proteinPerUnit": 1.5,
-      "fatPerUnit": 3,
-      "fiberPerUnit": 2,
-      "unit": "bowl",
-      "unitWeight": 150,
-      "searchKeywords": ["dudhi bhaji", "lauki bhaji", "bottle gourd", "dudhichi bhaji"]
+      "searchKeywords": [
+        "bhopla bhaji",
+        "pumpkin sabzi",
+        "kaddu bhaji",
+        "lal bhopla"
+      ]
     },
     {
       "id": "remote-suran-bhaji",
@@ -3926,7 +3809,13 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["suran bhaji", "elephant yam", "jimikand", "suranachi bhaji", "ole"]
+      "searchKeywords": [
+        "suran bhaji",
+        "elephant yam",
+        "jimikand",
+        "suranachi bhaji",
+        "ole"
+      ]
     },
     {
       "id": "remote-kand-bhaji",
@@ -3939,7 +3828,12 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["kand bhaji", "purple yam", "violet yam", "kandachi bhaji"]
+      "searchKeywords": [
+        "kand bhaji",
+        "purple yam",
+        "violet yam",
+        "kandachi bhaji"
+      ]
     },
     {
       "id": "remote-tondli-bhaji",
@@ -3952,7 +3846,13 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["tondli bhaji", "ivy gourd", "tindora", "tondlyachi bhaji", "kundru"]
+      "searchKeywords": [
+        "tondli bhaji",
+        "ivy gourd",
+        "tindora",
+        "tondlyachi bhaji",
+        "kundru"
+      ]
     },
     {
       "id": "remote-tondli-batata-bhaji",
@@ -3965,7 +3865,11 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["tondli batata", "ivy gourd potato", "tondli aloo"]
+      "searchKeywords": [
+        "tondli batata",
+        "ivy gourd potato",
+        "tondli aloo"
+      ]
     },
     {
       "id": "remote-kandyachi-paat-bhaji",
@@ -3978,7 +3882,12 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["kandyachi paat", "spring onion bhaji", "kanda paat", "hara pyaz bhaji"]
+      "searchKeywords": [
+        "kandyachi paat",
+        "spring onion bhaji",
+        "kanda paat",
+        "hara pyaz bhaji"
+      ]
     },
     {
       "id": "remote-methichi-bhaji",
@@ -3991,7 +3900,12 @@
       "fiberPerUnit": 4,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["methichi bhaji", "methi sabzi", "fenugreek leaves", "methi chi bhaji"]
+      "searchKeywords": [
+        "methichi bhaji",
+        "methi sabzi",
+        "fenugreek leaves",
+        "methi chi bhaji"
+      ]
     },
     {
       "id": "remote-methi-batata-bhaji",
@@ -4004,7 +3918,12 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["methi batata", "methi aloo", "fenugreek potato", "methi batatachi bhaji"]
+      "searchKeywords": [
+        "methi batata",
+        "methi aloo",
+        "fenugreek potato",
+        "methi batatachi bhaji"
+      ]
     },
     {
       "id": "remote-palakchi-bhaji",
@@ -4017,7 +3936,12 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["palakchi bhaji", "palak sabzi", "spinach dry", "palak bhaji"]
+      "searchKeywords": [
+        "palakchi bhaji",
+        "palak sabzi",
+        "spinach dry",
+        "palak bhaji"
+      ]
     },
     {
       "id": "remote-shepuchi-bhaji",
@@ -4030,7 +3954,12 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["shepuchi bhaji", "shepu bhaji", "dill sabzi", "suva bhaji"]
+      "searchKeywords": [
+        "shepuchi bhaji",
+        "shepu bhaji",
+        "dill sabzi",
+        "suva bhaji"
+      ]
     },
     {
       "id": "remote-ambadichi-bhaji",
@@ -4043,7 +3972,12 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["ambadichi bhaji", "ambadi bhaji", "gongura", "sorrel leaves"]
+      "searchKeywords": [
+        "ambadichi bhaji",
+        "ambadi bhaji",
+        "gongura",
+        "sorrel leaves"
+      ]
     },
     {
       "id": "remote-solachi-bhaji",
@@ -4056,7 +3990,12 @@
       "fiberPerUnit": 2,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["solachi bhaji", "sol bhaji", "kokum leaf", "amsul bhaji"]
+      "searchKeywords": [
+        "solachi bhaji",
+        "sol bhaji",
+        "kokum leaf",
+        "amsul bhaji"
+      ]
     },
     {
       "id": "remote-lal-mathachi-bhaji",
@@ -4069,7 +4008,13 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["lal math bhaji", "red amaranth", "laal saag", "mathachi bhaji", "tambdi bhaji"]
+      "searchKeywords": [
+        "lal math bhaji",
+        "red amaranth",
+        "laal saag",
+        "mathachi bhaji",
+        "tambdi bhaji"
+      ]
     },
     {
       "id": "remote-rajgira-bhaji",
@@ -4082,7 +4027,12 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["rajgira bhaji", "amaranth leaves", "cholai bhaji", "rajgirachi bhaji"]
+      "searchKeywords": [
+        "rajgira bhaji",
+        "amaranth leaves",
+        "cholai bhaji",
+        "rajgirachi bhaji"
+      ]
     },
     {
       "id": "remote-chakvat-bhaji",
@@ -4095,7 +4045,12 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["chakvat bhaji", "bathua bhaji", "chenopodium", "chakvat saag"]
+      "searchKeywords": [
+        "chakvat bhaji",
+        "bathua bhaji",
+        "chenopodium",
+        "chakvat saag"
+      ]
     },
     {
       "id": "remote-aluche-phatkya",
@@ -4108,7 +4063,12 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["aluche phatkya", "alu vadi bhaji", "colocasia curry", "arbi leaf curry"]
+      "searchKeywords": [
+        "aluche phatkya",
+        "alu vadi bhaji",
+        "colocasia curry",
+        "arbi leaf curry"
+      ]
     },
     {
       "id": "remote-aluche-fadinya",
@@ -4121,7 +4081,12 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["aluche fadinya", "arbi fry", "colocasia fry", "alu chi bhaji"]
+      "searchKeywords": [
+        "aluche fadinya",
+        "arbi fry",
+        "colocasia fry",
+        "alu chi bhaji"
+      ]
     },
     {
       "id": "remote-tomato-bhaji",
@@ -4134,7 +4099,12 @@
       "fiberPerUnit": 2,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["tomato bhaji", "tamatar bhaji", "tomato sabzi", "tomatochi bhaji"]
+      "searchKeywords": [
+        "tomato bhaji",
+        "tamatar bhaji",
+        "tomato sabzi",
+        "tomatochi bhaji"
+      ]
     },
     {
       "id": "remote-tomato-saar",
@@ -4147,7 +4117,12 @@
       "fiberPerUnit": 1,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["tomato saar", "tomato rasam", "tomatocha saar", "tamatar saar"]
+      "searchKeywords": [
+        "tomato saar",
+        "tomato rasam",
+        "tomatocha saar",
+        "tamatar saar"
+      ]
     },
     {
       "id": "remote-kokamcha-saar",
@@ -4160,7 +4135,12 @@
       "fiberPerUnit": 1,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["kokam saar", "kokum rasam", "amsul saar", "sol kadhi saar"]
+      "searchKeywords": [
+        "kokam saar",
+        "kokum rasam",
+        "amsul saar",
+        "sol kadhi saar"
+      ]
     },
     {
       "id": "remote-vangyache-bharit",
@@ -4173,33 +4153,12 @@
       "fiberPerUnit": 4,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["vangyache bharit", "baingan bharta", "brinjal mash", "bharit"]
-    },
-    {
-      "id": "remote-bharli-vangi-gravy",
-      "name": "Bharli Vangi (Stuffed Brinjal Gravy)",
-      "nameMarathi": "भरली वांगी",
-      "category": "vegetables",
-      "caloriesPerUnit": 120,
-      "proteinPerUnit": 3,
-      "fatPerUnit": 6,
-      "fiberPerUnit": 4,
-      "unit": "bowl",
-      "unitWeight": 150,
-      "searchKeywords": ["bharli vangi", "stuffed brinjal", "masala vangi", "bharleli vangi"]
-    },
-    {
-      "id": "remote-dodka-bhaji-dry",
-      "name": "Dodka Bhaji (Ridge Gourd Dry)",
-      "nameMarathi": "दोडका भाजी",
-      "category": "vegetables",
-      "caloriesPerUnit": 55,
-      "proteinPerUnit": 2,
-      "fatPerUnit": 3,
-      "fiberPerUnit": 3,
-      "unit": "bowl",
-      "unitWeight": 150,
-      "searchKeywords": ["dodka bhaji", "turai bhaji", "ridge gourd dry", "dodkyachi bhaji"]
+      "searchKeywords": [
+        "vangyache bharit",
+        "baingan bharta",
+        "brinjal mash",
+        "bharit"
+      ]
     },
     {
       "id": "remote-ghosali-bhaji",
@@ -4212,7 +4171,13 @@
       "fiberPerUnit": 2,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["ghosali bhaji", "sponge gourd", "torai", "ghosalyachi bhaji", "gilki"]
+      "searchKeywords": [
+        "ghosali bhaji",
+        "sponge gourd",
+        "torai",
+        "ghosalyachi bhaji",
+        "gilki"
+      ]
     },
     {
       "id": "remote-karlyachi-bhaji",
@@ -4225,33 +4190,12 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["karlyachi bhaji", "karela bhaji", "bitter gourd fry", "karle bhaji"]
-    },
-    {
-      "id": "remote-shevgyachi-sheng-bhaji",
-      "name": "Shevgyachi Sheng Bhaji (Drumstick)",
-      "nameMarathi": "शेवग्याची शेंग भाजी",
-      "category": "vegetables",
-      "caloriesPerUnit": 65,
-      "proteinPerUnit": 2,
-      "fatPerUnit": 2,
-      "fiberPerUnit": 3,
-      "unit": "bowl",
-      "unitWeight": 150,
-      "searchKeywords": ["shevga bhaji", "drumstick sabzi", "moringa", "sahjan bhaji", "shevgyachi sheng"]
-    },
-    {
-      "id": "remote-shevgyachya-shengachi-amti",
-      "name": "Shevgyachya Shengachi Amti (Drumstick Curry)",
-      "nameMarathi": "शेवग्याच्या शेंगाची आमटी",
-      "category": "dal",
-      "caloriesPerUnit": 100,
-      "proteinPerUnit": 3,
-      "fatPerUnit": 4,
-      "fiberPerUnit": 3,
-      "unit": "bowl",
-      "unitWeight": 200,
-      "searchKeywords": ["shevga amti", "drumstick curry", "sahjan amti", "shevgyachi amti"]
+      "searchKeywords": [
+        "karlyachi bhaji",
+        "karela bhaji",
+        "bitter gourd fry",
+        "karle bhaji"
+      ]
     },
     {
       "id": "remote-tendli-batata-bhaji",
@@ -4264,7 +4208,11 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["tendli batata", "tendli aloo", "tindora potato"]
+      "searchKeywords": [
+        "tendli batata",
+        "tendli aloo",
+        "tindora potato"
+      ]
     },
     {
       "id": "remote-batata-rassa",
@@ -4277,20 +4225,12 @@
       "fiberPerUnit": 2,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["batata rassa", "aloo gravy", "potato curry", "batatyacha rassa"]
-    },
-    {
-      "id": "remote-batata-kaap-fry",
-      "name": "Batata Kaap (Potato Slices Fry)",
-      "nameMarathi": "बटाटा काप",
-      "category": "snacks",
-      "caloriesPerUnit": 150,
-      "proteinPerUnit": 2,
-      "fatPerUnit": 8,
-      "fiberPerUnit": 2,
-      "unit": "plate",
-      "unitWeight": 100,
-      "searchKeywords": ["batata kaap", "aloo fry", "potato chips home", "batatyache kaap"]
+      "searchKeywords": [
+        "batata rassa",
+        "aloo gravy",
+        "potato curry",
+        "batatyacha rassa"
+      ]
     },
     {
       "id": "remote-flower-bhaji",
@@ -4303,7 +4243,12 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["flower bhaji", "gobi bhaji dry", "cauliflower sabzi", "phulkobi bhaji"]
+      "searchKeywords": [
+        "flower bhaji",
+        "gobi bhaji dry",
+        "cauliflower sabzi",
+        "phulkobi bhaji"
+      ]
     },
     {
       "id": "remote-kobi-batata-bhaji",
@@ -4316,7 +4261,12 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["kobi batata", "cabbage potato", "band gobi aloo", "kobichi bhaji"]
+      "searchKeywords": [
+        "kobi batata",
+        "cabbage potato",
+        "band gobi aloo",
+        "kobichi bhaji"
+      ]
     },
     {
       "id": "remote-simla-mirchi-bhaji",
@@ -4329,7 +4279,12 @@
       "fiberPerUnit": 2,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["simla mirchi", "capsicum bhaji", "bell pepper sabzi", "shimla mirchi"]
+      "searchKeywords": [
+        "simla mirchi",
+        "capsicum bhaji",
+        "bell pepper sabzi",
+        "shimla mirchi"
+      ]
     },
     {
       "id": "remote-bhendi-fry",
@@ -4342,7 +4297,12 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 120,
-      "searchKeywords": ["bhendi fry", "kurkurit bhendi", "crispy okra", "bhindi fry"]
+      "searchKeywords": [
+        "bhendi fry",
+        "kurkurit bhendi",
+        "crispy okra",
+        "bhindi fry"
+      ]
     },
     {
       "id": "remote-gajar-matar-bhaji",
@@ -4355,7 +4315,12 @@
       "fiberPerUnit": 4,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["gajar matar", "carrot peas", "gajar vatana", "gajar matarchi bhaji"]
+      "searchKeywords": [
+        "gajar matar",
+        "carrot peas",
+        "gajar vatana",
+        "gajar matarchi bhaji"
+      ]
     },
     {
       "id": "remote-mixed-sprouts-usal",
@@ -4368,7 +4333,12 @@
       "fiberPerUnit": 6,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["mixed sprout usal", "mix usal", "moong matki usal", "missal sprout"]
+      "searchKeywords": [
+        "mixed sprout usal",
+        "mix usal",
+        "moong matki usal",
+        "missal sprout"
+      ]
     },
     {
       "id": "remote-matki-chi-usal",
@@ -4381,20 +4351,12 @@
       "fiberPerUnit": 5,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["matki chi usal", "matkichi usal", "moth sprouts", "matki sprout curry"]
-    },
-    {
-      "id": "remote-mugachi-usal",
-      "name": "Mugachi Usal (Green Gram Curry)",
-      "nameMarathi": "मुगाची उसळ",
-      "category": "dal",
-      "caloriesPerUnit": 135,
-      "proteinPerUnit": 8,
-      "fatPerUnit": 3,
-      "fiberPerUnit": 5,
-      "unit": "bowl",
-      "unitWeight": 200,
-      "searchKeywords": ["mugachi usal", "moong ki dal sprout", "mug usal", "hirvya mugachi"]
+      "searchKeywords": [
+        "matki chi usal",
+        "matkichi usal",
+        "moth sprouts",
+        "matki sprout curry"
+      ]
     },
     {
       "id": "remote-vatanyachi-amti",
@@ -4407,20 +4369,12 @@
       "fiberPerUnit": 5,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["vatanyachi amti", "matar amti", "green peas curry", "vatana amti"]
-    },
-    {
-      "id": "remote-aluchi-bhaji",
-      "name": "Aluchi Bhaji (Colocasia Root)",
-      "nameMarathi": "अळूची भाजी",
-      "category": "vegetables",
-      "caloriesPerUnit": 100,
-      "proteinPerUnit": 2,
-      "fatPerUnit": 4,
-      "fiberPerUnit": 3,
-      "unit": "bowl",
-      "unitWeight": 150,
-      "searchKeywords": ["aluchi bhaji", "arbi bhaji", "colocasia root", "alu bhaji"]
+      "searchKeywords": [
+        "vatanyachi amti",
+        "matar amti",
+        "green peas curry",
+        "vatana amti"
+      ]
     },
     {
       "id": "remote-ratalyachi-bhaji",
@@ -4433,20 +4387,12 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["ratalyachi bhaji", "shakarkand bhaji", "sweet potato sabzi", "ratalu bhaji"]
-    },
-    {
-      "id": "remote-kadhi",
-      "name": "Kadhi (Yogurt Curry)",
-      "nameMarathi": "कढी",
-      "category": "dal",
-      "caloriesPerUnit": 120,
-      "proteinPerUnit": 4,
-      "fatPerUnit": 6,
-      "fiberPerUnit": 1,
-      "unit": "bowl",
-      "unitWeight": 200,
-      "searchKeywords": ["kadhi", "dahi kadhi", "yogurt curry", "besan kadhi", "kadhi pakoda"]
+      "searchKeywords": [
+        "ratalyachi bhaji",
+        "shakarkand bhaji",
+        "sweet potato sabzi",
+        "ratalu bhaji"
+      ]
     },
     {
       "id": "remote-kadhi-bhaat",
@@ -4459,20 +4405,12 @@
       "fiberPerUnit": 2,
       "unit": "plate",
       "unitWeight": 300,
-      "searchKeywords": ["kadhi bhaat", "kadhi chawal", "kadhi rice", "kadhi bhat"]
-    },
-    {
-      "id": "remote-koshimbir-kakdi",
-      "name": "Koshimbir Kakdi (Cucumber Salad)",
-      "nameMarathi": "कोशिंबीर काकडी",
-      "category": "vegetables",
-      "caloriesPerUnit": 35,
-      "proteinPerUnit": 1,
-      "fatPerUnit": 1,
-      "fiberPerUnit": 1,
-      "unit": "bowl",
-      "unitWeight": 100,
-      "searchKeywords": ["koshimbir", "kakdi koshimbir", "cucumber raita", "salad"]
+      "searchKeywords": [
+        "kadhi bhaat",
+        "kadhi chawal",
+        "kadhi rice",
+        "kadhi bhat"
+      ]
     },
     {
       "id": "remote-loncha-mirchi",
@@ -4485,7 +4423,12 @@
       "fiberPerUnit": 1,
       "unit": "tablespoon",
       "unitWeight": 15,
-      "searchKeywords": ["mirchi loncha", "green chili pickle", "hari mirch achar", "mirchiche lonche"]
+      "searchKeywords": [
+        "mirchi loncha",
+        "green chili pickle",
+        "hari mirch achar",
+        "mirchiche lonche"
+      ]
     },
     {
       "id": "remote-methamba-loncha",
@@ -4498,7 +4441,12 @@
       "fiberPerUnit": 1,
       "unit": "tablespoon",
       "unitWeight": 15,
-      "searchKeywords": ["methamba", "methi amba loncha", "fenugreek mango pickle", "methamba lonche"]
+      "searchKeywords": [
+        "methamba",
+        "methi amba loncha",
+        "fenugreek mango pickle",
+        "methamba lonche"
+      ]
     },
     {
       "id": "remote-kaanda-loncha",
@@ -4511,7 +4459,12 @@
       "fiberPerUnit": 0.5,
       "unit": "tablespoon",
       "unitWeight": 15,
-      "searchKeywords": ["kaanda loncha", "onion pickle", "pyaz achar", "kandyache lonche"]
+      "searchKeywords": [
+        "kaanda loncha",
+        "onion pickle",
+        "pyaz achar",
+        "kandyache lonche"
+      ]
     },
     {
       "id": "remote-lasun-loncha",
@@ -4524,7 +4477,12 @@
       "fiberPerUnit": 0.5,
       "unit": "tablespoon",
       "unitWeight": 15,
-      "searchKeywords": ["lasun loncha", "garlic pickle", "lahsun achar", "lasnyache lonche"]
+      "searchKeywords": [
+        "lasun loncha",
+        "garlic pickle",
+        "lahsun achar",
+        "lasnyache lonche"
+      ]
     },
     {
       "id": "remote-gulachi-amti",
@@ -4537,7 +4495,13 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["gulachi amti", "gul amti", "jaggery dal", "god amti", "sweet amti"]
+      "searchKeywords": [
+        "gulachi amti",
+        "gul amti",
+        "jaggery dal",
+        "god amti",
+        "sweet amti"
+      ]
     },
     {
       "id": "remote-dalimbi-amti",
@@ -4550,20 +4514,11 @@
       "fiberPerUnit": 4,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["dalimbi amti", "val dalichi amti", "split field bean curry"]
-    },
-    {
-      "id": "remote-ghevda-sheng-bhaji",
-      "name": "Ghevda Sheng Bhaji (Green Bean Pods)",
-      "nameMarathi": "घेवडा शेंग भाजी",
-      "category": "vegetables",
-      "caloriesPerUnit": 75,
-      "proteinPerUnit": 3,
-      "fatPerUnit": 3,
-      "fiberPerUnit": 4,
-      "unit": "bowl",
-      "unitWeight": 150,
-      "searchKeywords": ["ghevda sheng", "green bean pods", "sem ki phalli", "ghevdyachya shengi"]
+      "searchKeywords": [
+        "dalimbi amti",
+        "val dalichi amti",
+        "split field bean curry"
+      ]
     },
     {
       "id": "remote-vaalachi-bhaji",
@@ -4576,7 +4531,12 @@
       "fiberPerUnit": 5,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["valachi bhaji", "val bhaji", "field beans dry", "sem bhaji"]
+      "searchKeywords": [
+        "valachi bhaji",
+        "val bhaji",
+        "field beans dry",
+        "sem bhaji"
+      ]
     },
     {
       "id": "remote-vaal-dalichi-amti",
@@ -4589,7 +4549,11 @@
       "fiberPerUnit": 4,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["val dalichi amti", "val dal curry", "field bean dal"]
+      "searchKeywords": [
+        "val dalichi amti",
+        "val dal curry",
+        "field bean dal"
+      ]
     },
     {
       "id": "remote-kala-vatana-amti",
@@ -4602,7 +4566,12 @@
       "fiberPerUnit": 5,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["kala vatana amti", "black peas curry", "dried peas", "kalyachi amti"]
+      "searchKeywords": [
+        "kala vatana amti",
+        "black peas curry",
+        "dried peas",
+        "kalyachi amti"
+      ]
     },
     {
       "id": "remote-chanyachi-bhaji",
@@ -4615,7 +4584,12 @@
       "fiberPerUnit": 5,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["chanyachi bhaji", "chane bhaji", "chana sabzi", "dry chickpea"]
+      "searchKeywords": [
+        "chanyachi bhaji",
+        "chane bhaji",
+        "chana sabzi",
+        "dry chickpea"
+      ]
     },
     {
       "id": "remote-tikhat-batata-bhaji",
@@ -4628,7 +4602,12 @@
       "fiberPerUnit": 2,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["tikhat batata", "spicy aloo", "masala batata", "batata chi bhaji"]
+      "searchKeywords": [
+        "tikhat batata",
+        "spicy aloo",
+        "masala batata",
+        "batata chi bhaji"
+      ]
     },
     {
       "id": "remote-bharli-bhendi",
@@ -4641,7 +4620,12 @@
       "fiberPerUnit": 4,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["bharli bhendi", "stuffed okra", "bharli bhindi", "masala bhendi"]
+      "searchKeywords": [
+        "bharli bhendi",
+        "stuffed okra",
+        "bharli bhindi",
+        "masala bhendi"
+      ]
     },
     {
       "id": "remote-bharli-karli",
@@ -4654,7 +4638,12 @@
       "fiberPerUnit": 4,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["bharli karli", "stuffed karela", "bharli bitter gourd", "masala karle"]
+      "searchKeywords": [
+        "bharli karli",
+        "stuffed karela",
+        "bharli bitter gourd",
+        "masala karle"
+      ]
     },
     {
       "id": "remote-bharli-dodka",
@@ -4667,7 +4656,12 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["bharli dodka", "stuffed turai", "stuffed ridge gourd", "bharli turai"]
+      "searchKeywords": [
+        "bharli dodka",
+        "stuffed turai",
+        "stuffed ridge gourd",
+        "bharli turai"
+      ]
     },
     {
       "id": "remote-undhiyu-bhaji",
@@ -4680,20 +4674,12 @@
       "fiberPerUnit": 5,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["undhiyu", "oondhiyu", "mixed veg", "winter special"]
-    },
-    {
-      "id": "remote-varan-bhat",
-      "name": "Varan Bhat (Dal Rice)",
-      "nameMarathi": "वरण भात",
-      "category": "rice",
-      "caloriesPerUnit": 320,
-      "proteinPerUnit": 10,
-      "fatPerUnit": 6,
-      "fiberPerUnit": 3,
-      "unit": "plate",
-      "unitWeight": 350,
-      "searchKeywords": ["varan bhat", "dal chawal", "dal rice", "varan bhaat"]
+      "searchKeywords": [
+        "undhiyu",
+        "oondhiyu",
+        "mixed veg",
+        "winter special"
+      ]
     },
     {
       "id": "remote-phodnicha-bhat",
@@ -4706,20 +4692,12 @@
       "fiberPerUnit": 1,
       "unit": "plate",
       "unitWeight": 200,
-      "searchKeywords": ["phodnicha bhat", "tadka rice", "tempered rice", "phodnicha bhaat"]
-    },
-    {
-      "id": "remote-masale-bhat",
-      "name": "Masale Bhat (Spiced Rice)",
-      "nameMarathi": "मसाले भात",
-      "category": "rice",
-      "caloriesPerUnit": 300,
-      "proteinPerUnit": 7,
-      "fatPerUnit": 10,
-      "fiberPerUnit": 2,
-      "unit": "plate",
-      "unitWeight": 250,
-      "searchKeywords": ["masale bhat", "masala rice", "spiced rice", "masala bhaat", "masale bhaat"]
+      "searchKeywords": [
+        "phodnicha bhat",
+        "tadka rice",
+        "tempered rice",
+        "phodnicha bhaat"
+      ]
     },
     {
       "id": "remote-bhogichi-bhaji",
@@ -4732,20 +4710,12 @@
       "fiberPerUnit": 4,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["bhogi bhaji", "harvest mixed veg", "bhogichi bhaji", "sankrant bhaji"]
-    },
-    {
-      "id": "remote-kothimbir-vadi",
-      "name": "Kothimbir Vadi (Coriander Fritters)",
-      "nameMarathi": "कोथिंबीर वडी",
-      "category": "snacks",
-      "caloriesPerUnit": 45,
-      "proteinPerUnit": 2,
-      "fatPerUnit": 2,
-      "fiberPerUnit": 1,
-      "unit": "piece",
-      "unitWeight": 25,
-      "searchKeywords": ["kothimbir vadi", "coriander cake", "kothimbir wadi", "besan vadi"]
+      "searchKeywords": [
+        "bhogi bhaji",
+        "harvest mixed veg",
+        "bhogichi bhaji",
+        "sankrant bhaji"
+      ]
     },
     {
       "id": "remote-batatyachi-chaat",
@@ -4758,20 +4728,12 @@
       "fiberPerUnit": 2,
       "unit": "plate",
       "unitWeight": 120,
-      "searchKeywords": ["batatyachi chaat", "aloo chaat", "potato snack", "batata chaat"]
-    },
-    {
-      "id": "remote-kakdichi-koshimbir",
-      "name": "Kakdichi Koshimbir (Cucumber Salad)",
-      "nameMarathi": "काकडीची कोशिंबीर",
-      "category": "vegetables",
-      "caloriesPerUnit": 40,
-      "proteinPerUnit": 2,
-      "fatPerUnit": 2,
-      "fiberPerUnit": 1,
-      "unit": "bowl",
-      "unitWeight": 100,
-      "searchKeywords": ["kakdichi koshimbir", "cucumber raita", "kakdi salad", "koshimbir"]
+      "searchKeywords": [
+        "batatyachi chaat",
+        "aloo chaat",
+        "potato snack",
+        "batata chaat"
+      ]
     },
     {
       "id": "remote-dalichi-patal-bhaji",
@@ -4784,7 +4746,12 @@
       "fiberPerUnit": 2,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["dalichi patal bhaji", "patal bhaji", "thin dal", "runny dal"]
+      "searchKeywords": [
+        "dalichi patal bhaji",
+        "patal bhaji",
+        "thin dal",
+        "runny dal"
+      ]
     },
     {
       "id": "remote-valache-birde",
@@ -4797,7 +4764,12 @@
       "fiberPerUnit": 5,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["valache birde", "val birde", "field bean stew", "birde"]
+      "searchKeywords": [
+        "valache birde",
+        "val birde",
+        "field bean stew",
+        "birde"
+      ]
     },
     {
       "id": "remote-kanda-batata-poha",
@@ -4810,46 +4782,12 @@
       "fiberPerUnit": 2,
       "unit": "plate",
       "unitWeight": 200,
-      "searchKeywords": ["kanda batata poha", "pohe", "flattened rice", "indori poha"]
-    },
-    {
-      "id": "remote-sabudana-khichdi",
-      "name": "Sabudana Khichdi",
-      "nameMarathi": "साबुदाणा खिचडी",
-      "category": "breakfast",
-      "caloriesPerUnit": 300,
-      "proteinPerUnit": 5,
-      "fatPerUnit": 12,
-      "fiberPerUnit": 1,
-      "unit": "plate",
-      "unitWeight": 200,
-      "searchKeywords": ["sabudana khichdi", "sago khichdi", "upvas khichdi", "fasting food"]
-    },
-    {
-      "id": "remote-sabudana-vada",
-      "name": "Sabudana Vada",
-      "nameMarathi": "साबुदाणा वडा",
-      "category": "snacks",
-      "caloriesPerUnit": 120,
-      "proteinPerUnit": 2,
-      "fatPerUnit": 6,
-      "fiberPerUnit": 1,
-      "unit": "piece",
-      "unitWeight": 50,
-      "searchKeywords": ["sabudana vada", "sago fritters", "upvas vada", "fasting vada"]
-    },
-    {
-      "id": "remote-thalipeeth",
-      "name": "Thalipeeth (Multi-Grain Flat Bread)",
-      "nameMarathi": "थालीपीठ",
-      "category": "breakfast",
-      "caloriesPerUnit": 200,
-      "proteinPerUnit": 6,
-      "fatPerUnit": 8,
-      "fiberPerUnit": 3,
-      "unit": "piece",
-      "unitWeight": 80,
-      "searchKeywords": ["thalipeeth", "bhajani thalipeeth", "multi grain roti", "thalipit"]
+      "searchKeywords": [
+        "kanda batata poha",
+        "pohe",
+        "flattened rice",
+        "indori poha"
+      ]
     },
     {
       "id": "remote-bhajanichi-thalipeeth",
@@ -4862,7 +4800,11 @@
       "fiberPerUnit": 3,
       "unit": "piece",
       "unitWeight": 80,
-      "searchKeywords": ["bhajani thalipeeth", "multi flour", "traditional thalipeeth"]
+      "searchKeywords": [
+        "bhajani thalipeeth",
+        "multi flour",
+        "traditional thalipeeth"
+      ]
     },
     {
       "id": "remote-pandhra-varan",
@@ -4875,7 +4817,12 @@
       "fiberPerUnit": 2,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["pandhra varan", "plain varan", "toor dal", "sadhe varan"]
+      "searchKeywords": [
+        "pandhra varan",
+        "plain varan",
+        "toor dal",
+        "sadhe varan"
+      ]
     },
     {
       "id": "remote-amti-varan",
@@ -4888,7 +4835,12 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["amti varan", "spiced dal", "tikhat varan", "masala varan"]
+      "searchKeywords": [
+        "amti varan",
+        "spiced dal",
+        "tikhat varan",
+        "masala varan"
+      ]
     },
     {
       "id": "remote-dal-khichadi",
@@ -4901,46 +4853,12 @@
       "fiberPerUnit": 3,
       "unit": "plate",
       "unitWeight": 250,
-      "searchKeywords": ["dal khichadi", "khichdi", "dal rice mix", "moong dal khichdi"]
-    },
-    {
-      "id": "remote-sheera",
-      "name": "Sheera (Rava Halwa)",
-      "nameMarathi": "शिरा",
-      "category": "sweets",
-      "caloriesPerUnit": 250,
-      "proteinPerUnit": 4,
-      "fatPerUnit": 10,
-      "fiberPerUnit": 1,
-      "unit": "bowl",
-      "unitWeight": 150,
-      "searchKeywords": ["sheera", "rava sheera", "sooji halwa", "suji sheera", "shira"]
-    },
-    {
-      "id": "remote-upma",
-      "name": "Upma",
-      "nameMarathi": "उपमा",
-      "category": "breakfast",
-      "caloriesPerUnit": 220,
-      "proteinPerUnit": 5,
-      "fatPerUnit": 7,
-      "fiberPerUnit": 2,
-      "unit": "plate",
-      "unitWeight": 200,
-      "searchKeywords": ["upma", "rava upma", "sooji upma", "uppittu"]
-    },
-    {
-      "id": "remote-kanda-bhaji-pakoda",
-      "name": "Kanda Bhaji (Onion Pakoda)",
-      "nameMarathi": "कांदा भजी",
-      "category": "snacks",
-      "caloriesPerUnit": 50,
-      "proteinPerUnit": 1,
-      "fatPerUnit": 3,
-      "fiberPerUnit": 0.5,
-      "unit": "piece",
-      "unitWeight": 25,
-      "searchKeywords": ["kanda bhaji", "onion pakora", "kanda bhajiya", "pyaz pakoda"]
+      "searchKeywords": [
+        "dal khichadi",
+        "khichdi",
+        "dal rice mix",
+        "moong dal khichdi"
+      ]
     },
     {
       "id": "remote-mirchi-bhaji-pakoda",
@@ -4953,7 +4871,12 @@
       "fiberPerUnit": 1,
       "unit": "piece",
       "unitWeight": 30,
-      "searchKeywords": ["mirchi bhaji", "mirchi pakoda", "chili fritter", "bajji"]
+      "searchKeywords": [
+        "mirchi bhaji",
+        "mirchi pakoda",
+        "chili fritter",
+        "bajji"
+      ]
     },
     {
       "id": "remote-batata-bhaji-pakoda",
@@ -4966,20 +4889,12 @@
       "fiberPerUnit": 1,
       "unit": "piece",
       "unitWeight": 30,
-      "searchKeywords": ["batata bhaji pakoda", "aloo pakora", "potato fritter", "batatya bhajya"]
-    },
-    {
-      "id": "remote-usal-pav",
-      "name": "Usal Pav (Sprouted Moth Pav)",
-      "nameMarathi": "उसळ पाव",
-      "category": "snacks",
-      "caloriesPerUnit": 300,
-      "proteinPerUnit": 10,
-      "fatPerUnit": 8,
-      "fiberPerUnit": 5,
-      "unit": "plate",
-      "unitWeight": 250,
-      "searchKeywords": ["usal pav", "matki usal pav", "sprouted curry pav"]
+      "searchKeywords": [
+        "batata bhaji pakoda",
+        "aloo pakora",
+        "potato fritter",
+        "batatya bhajya"
+      ]
     },
     {
       "id": "remote-bharli-tondli",
@@ -4992,7 +4907,12 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["bharli tondli", "stuffed tindora", "masala tondli", "bharli tendli"]
+      "searchKeywords": [
+        "bharli tondli",
+        "stuffed tindora",
+        "masala tondli",
+        "bharli tendli"
+      ]
     },
     {
       "id": "remote-matkichi-bhaji-coconut",
@@ -5005,7 +4925,11 @@
       "fiberPerUnit": 4,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["matkichi bhaji naral", "moth beans coconut", "matki coconut"]
+      "searchKeywords": [
+        "matkichi bhaji naral",
+        "moth beans coconut",
+        "matki coconut"
+      ]
     },
     {
       "id": "remote-danyachi-amti",
@@ -5018,7 +4942,11 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["danyachi amti", "peanut amti", "danyachi aamti"]
+      "searchKeywords": [
+        "danyachi amti",
+        "peanut amti",
+        "danyachi aamti"
+      ]
     },
     {
       "id": "remote-masoor-dalichi-amti",
@@ -5031,7 +4959,12 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["masoor amti", "masur dal amti", "masoorachi amti", "red lentil amti"]
+      "searchKeywords": [
+        "masoor amti",
+        "masur dal amti",
+        "masoorachi amti",
+        "red lentil amti"
+      ]
     },
     {
       "id": "remote-amla-fruit",
@@ -5044,7 +4977,14 @@
       "fiberPerUnit": 3.4,
       "unit": "piece",
       "unitWeight": 44,
-      "searchKeywords": ["amla", "awla", "gooseberry", "aavla", "nellikai", "indian gooseberry"]
+      "searchKeywords": [
+        "amla",
+        "awla",
+        "gooseberry",
+        "aavla",
+        "nellikai",
+        "indian gooseberry"
+      ]
     },
     {
       "id": "remote-lemon",
@@ -5057,7 +4997,13 @@
       "fiberPerUnit": 0,
       "unit": "piece",
       "unitWeight": 60,
-      "searchKeywords": ["limbu", "nimbu", "lemon", "lime", "kagdi limbu"]
+      "searchKeywords": [
+        "limbu",
+        "nimbu",
+        "lemon",
+        "lime",
+        "kagdi limbu"
+      ]
     },
     {
       "id": "remote-mug-bhaji",
@@ -5070,7 +5016,16 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["mug bhaji", "mugachi bhaji", "mug chi bhaji", "moong bhaji", "moongachi bhaji", "hirvya mugachi bhaji", "green gram sabzi", "moong ki sabzi"]
+      "searchKeywords": [
+        "mug bhaji",
+        "mugachi bhaji",
+        "mug chi bhaji",
+        "moong bhaji",
+        "moongachi bhaji",
+        "hirvya mugachi bhaji",
+        "green gram sabzi",
+        "moong ki sabzi"
+      ]
     },
     {
       "id": "remote-matkichi-usal",
@@ -5083,7 +5038,13 @@
       "fiberPerUnit": 4,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["matkichi usal", "matki usal", "moth bean sprouts", "matki chi usal", "matkiche usal"]
+      "searchKeywords": [
+        "matkichi usal",
+        "matki usal",
+        "moth bean sprouts",
+        "matki chi usal",
+        "matkiche usal"
+      ]
     },
     {
       "id": "remote-chavlichi-bhaji",
@@ -5096,7 +5057,13 @@
       "fiberPerUnit": 3,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["chavlichi bhaji", "chavli chi bhaji", "lobia patta", "black eyed pea leaves", "chawli paat bhaji"]
+      "searchKeywords": [
+        "chavlichi bhaji",
+        "chavli chi bhaji",
+        "lobia patta",
+        "black eyed pea leaves",
+        "chawli paat bhaji"
+      ]
     },
     {
       "id": "remote-vaalachi-usal",
@@ -5109,33 +5076,14 @@
       "fiberPerUnit": 5,
       "unit": "bowl",
       "unitWeight": 200,
-      "searchKeywords": ["vaalachi usal", "val usal", "field beans curry", "val chi usal", "pavta usal", "broad beans curry"]
-    },
-    {
-      "id": "remote-almond-raw",
-      "name": "Almonds (Raw)",
-      "nameMarathi": "बदाम",
-      "category": "snacks",
-      "caloriesPerUnit": 7,
-      "proteinPerUnit": 0.3,
-      "fatPerUnit": 0.6,
-      "fiberPerUnit": 0.2,
-      "unit": "piece",
-      "unitWeight": 1.2,
-      "searchKeywords": ["badam", "almond", "raw badam", "soaked badam", "bhijalele badam"]
-    },
-    {
-      "id": "remote-cashew-raw",
-      "name": "Cashews (Raw)",
-      "nameMarathi": "काजू",
-      "category": "snacks",
-      "caloriesPerUnit": 9,
-      "proteinPerUnit": 0.3,
-      "fatPerUnit": 0.7,
-      "fiberPerUnit": 0.1,
-      "unit": "piece",
-      "unitWeight": 1.5,
-      "searchKeywords": ["kaju", "cashew", "raw kaju", "cashew nut"]
+      "searchKeywords": [
+        "vaalachi usal",
+        "val usal",
+        "field beans curry",
+        "val chi usal",
+        "pavta usal",
+        "broad beans curry"
+      ]
     },
     {
       "id": "remote-dry-dates",
@@ -5148,7 +5096,13 @@
       "fiberPerUnit": 0.9,
       "unit": "piece",
       "unitWeight": 10,
-      "searchKeywords": ["kharik", "dry dates", "sukhe khajur", "khajoor", "chuara"]
+      "searchKeywords": [
+        "kharik",
+        "dry dates",
+        "sukhe khajur",
+        "khajoor",
+        "chuara"
+      ]
     },
     {
       "id": "remote-sugar-white",
@@ -5161,7 +5115,13 @@
       "fiberPerUnit": 0,
       "unit": "tsp",
       "unitWeight": 4,
-      "searchKeywords": ["sakhar", "cheeni", "chini", "white sugar", "table sugar"]
+      "searchKeywords": [
+        "sakhar",
+        "cheeni",
+        "chini",
+        "white sugar",
+        "table sugar"
+      ]
     },
     {
       "id": "remote-sugar-brown",
@@ -5174,7 +5134,11 @@
       "fiberPerUnit": 0,
       "unit": "tsp",
       "unitWeight": 4,
-      "searchKeywords": ["brown sugar", "khadisakhar", "raw sugar"]
+      "searchKeywords": [
+        "brown sugar",
+        "khadisakhar",
+        "raw sugar"
+      ]
     },
     {
       "id": "remote-jaggery",
@@ -5187,7 +5151,13 @@
       "fiberPerUnit": 0,
       "unit": "piece",
       "unitWeight": 10,
-      "searchKeywords": ["gul", "gud", "bella", "organic jaggery", "unrefined sugar"]
+      "searchKeywords": [
+        "gul",
+        "gud",
+        "bella",
+        "organic jaggery",
+        "unrefined sugar"
+      ]
     },
     {
       "id": "remote-jaggery-liquid",
@@ -5200,20 +5170,13 @@
       "fiberPerUnit": 0,
       "unit": "tsp",
       "unitWeight": 8,
-      "searchKeywords": ["kakvi", "liquid gul", "molasses", "chikki syrup", "gulachi kakvi"]
-    },
-    {
-      "id": "remote-honey",
-      "name": "Honey (Madh)",
-      "nameMarathi": "मध",
-      "category": "chutneys",
-      "caloriesPerUnit": 21,
-      "proteinPerUnit": 0,
-      "fatPerUnit": 0,
-      "fiberPerUnit": 0,
-      "unit": "tsp",
-      "unitWeight": 7,
-      "searchKeywords": ["madh", "shahad", "natural honey", "raw honey", "dabur honey"]
+      "searchKeywords": [
+        "kakvi",
+        "liquid gul",
+        "molasses",
+        "chikki syrup",
+        "gulachi kakvi"
+      ]
     },
     {
       "id": "remote-mishri",
@@ -5226,7 +5189,13 @@
       "fiberPerUnit": 0,
       "unit": "piece",
       "unitWeight": 4,
-      "searchKeywords": ["khadisakhar", "rock candy", "mishri", "dana sugar", "dhaga mishri"]
+      "searchKeywords": [
+        "khadisakhar",
+        "rock candy",
+        "mishri",
+        "dana sugar",
+        "dhaga mishri"
+      ]
     },
     {
       "id": "remote-ketchup",
@@ -5239,7 +5208,13 @@
       "fiberPerUnit": 0,
       "unit": "tbsp",
       "unitWeight": 15,
-      "searchKeywords": ["ketchup", "tomato sauce", "kissan", "maggi sauce", "heinz"]
+      "searchKeywords": [
+        "ketchup",
+        "tomato sauce",
+        "kissan",
+        "maggi sauce",
+        "heinz"
+      ]
     },
     {
       "id": "remote-mayo",
@@ -5252,7 +5227,13 @@
       "fiberPerUnit": 0,
       "unit": "tbsp",
       "unitWeight": 14,
-      "searchKeywords": ["mayo", "mayonnaise", "funfoods", "egg mayo", "sandwich spread"]
+      "searchKeywords": [
+        "mayo",
+        "mayonnaise",
+        "funfoods",
+        "egg mayo",
+        "sandwich spread"
+      ]
     },
     {
       "id": "remote-mustard-sauce",
@@ -5265,7 +5246,12 @@
       "fiberPerUnit": 0,
       "unit": "tsp",
       "unitWeight": 5,
-      "searchKeywords": ["mustard", "yellow mustard", "kasundi", "mohari sauce"]
+      "searchKeywords": [
+        "mustard",
+        "yellow mustard",
+        "kasundi",
+        "mohari sauce"
+      ]
     },
     {
       "id": "remote-soy-sauce",
@@ -5278,7 +5264,12 @@
       "fiberPerUnit": 0,
       "unit": "tbsp",
       "unitWeight": 15,
-      "searchKeywords": ["soy sauce", "soya sauce", "chinese sauce", "ching's"]
+      "searchKeywords": [
+        "soy sauce",
+        "soya sauce",
+        "chinese sauce",
+        "ching's"
+      ]
     },
     {
       "id": "remote-schezwan-sauce",
@@ -5291,7 +5282,12 @@
       "fiberPerUnit": 0,
       "unit": "tbsp",
       "unitWeight": 15,
-      "searchKeywords": ["schezwan chutney", "chings schezwan", "red chili sauce", "chinese chutney"]
+      "searchKeywords": [
+        "schezwan chutney",
+        "chings schezwan",
+        "red chili sauce",
+        "chinese chutney"
+      ]
     },
     {
       "id": "remote-hot-sauce",
@@ -5304,7 +5300,13 @@
       "fiberPerUnit": 0,
       "unit": "tsp",
       "unitWeight": 5,
-      "searchKeywords": ["hot sauce", "tabasco", "sriracha", "chili sauce", "red chili sauce"]
+      "searchKeywords": [
+        "hot sauce",
+        "tabasco",
+        "sriracha",
+        "chili sauce",
+        "red chili sauce"
+      ]
     },
     {
       "id": "remote-vinegar",
@@ -5317,7 +5319,12 @@
       "fiberPerUnit": 0,
       "unit": "tbsp",
       "unitWeight": 15,
-      "searchKeywords": ["vinegar", "sirka", "white vinegar", "apple cider vinegar"]
+      "searchKeywords": [
+        "vinegar",
+        "sirka",
+        "white vinegar",
+        "apple cider vinegar"
+      ]
     },
     {
       "id": "remote-cooking-oil",
@@ -5330,20 +5337,14 @@
       "fiberPerUnit": 0,
       "unit": "tsp",
       "unitWeight": 4.5,
-      "searchKeywords": ["tel", "refined oil", "sunflower oil", "soybean oil", "groundnut oil", "shengdana tel"]
-    },
-    {
-      "id": "remote-coconut-oil",
-      "name": "Coconut Oil",
-      "nameMarathi": "खोबरेल तेल",
-      "category": "chutneys",
-      "caloriesPerUnit": 40,
-      "proteinPerUnit": 0,
-      "fatPerUnit": 4.5,
-      "fiberPerUnit": 0,
-      "unit": "tsp",
-      "unitWeight": 4.5,
-      "searchKeywords": ["khobrel tel", "naral tel", "coconut oil", "virgin coconut oil"]
+      "searchKeywords": [
+        "tel",
+        "refined oil",
+        "sunflower oil",
+        "soybean oil",
+        "groundnut oil",
+        "shengdana tel"
+      ]
     },
     {
       "id": "remote-olive-oil",
@@ -5356,7 +5357,11 @@
       "fiberPerUnit": 0,
       "unit": "tsp",
       "unitWeight": 4.5,
-      "searchKeywords": ["olive oil", "jaitun tel", "extra virgin olive oil"]
+      "searchKeywords": [
+        "olive oil",
+        "jaitun tel",
+        "extra virgin olive oil"
+      ]
     },
     {
       "id": "remote-sesame-oil",
@@ -5369,7 +5374,12 @@
       "fiberPerUnit": 0,
       "unit": "tsp",
       "unitWeight": 4.5,
-      "searchKeywords": ["til tel", "gingelly oil", "sesame oil", "tilache tel"]
+      "searchKeywords": [
+        "til tel",
+        "gingelly oil",
+        "sesame oil",
+        "tilache tel"
+      ]
     },
     {
       "id": "remote-lemon-wedge",
@@ -5382,7 +5392,12 @@
       "fiberPerUnit": 0.1,
       "unit": "piece",
       "unitWeight": 8,
-      "searchKeywords": ["limbu", "nimbu", "lemon slice", "limbachi fod"]
+      "searchKeywords": [
+        "limbu",
+        "nimbu",
+        "lemon slice",
+        "limbachi fod"
+      ]
     },
     {
       "id": "remote-green-chili",
@@ -5395,7 +5410,12 @@
       "fiberPerUnit": 0.2,
       "unit": "piece",
       "unitWeight": 5,
-      "searchKeywords": ["hirvi mirchi", "hari mirch", "green chilli", "raw mirchi"]
+      "searchKeywords": [
+        "hirvi mirchi",
+        "hari mirch",
+        "green chilli",
+        "raw mirchi"
+      ]
     },
     {
       "id": "remote-ginger-raw",
@@ -5408,7 +5428,12 @@
       "fiberPerUnit": 0.1,
       "unit": "piece",
       "unitWeight": 3,
-      "searchKeywords": ["aale", "adrak", "ginger slice", "sunth"]
+      "searchKeywords": [
+        "aale",
+        "adrak",
+        "ginger slice",
+        "sunth"
+      ]
     },
     {
       "id": "remote-garlic-raw",
@@ -5421,7 +5446,13 @@
       "fiberPerUnit": 0.1,
       "unit": "piece",
       "unitWeight": 3,
-      "searchKeywords": ["lasun", "lehsun", "garlic", "lahsun", "raw lasun"]
+      "searchKeywords": [
+        "lasun",
+        "lehsun",
+        "garlic",
+        "lahsun",
+        "raw lasun"
+      ]
     },
     {
       "id": "remote-coriander-leaves",
@@ -5434,7 +5465,12 @@
       "fiberPerUnit": 0.3,
       "unit": "tbsp",
       "unitWeight": 5,
-      "searchKeywords": ["kothimbir", "dhania patta", "cilantro", "fresh coriander"]
+      "searchKeywords": [
+        "kothimbir",
+        "dhania patta",
+        "cilantro",
+        "fresh coriander"
+      ]
     },
     {
       "id": "remote-mint-leaves",
@@ -5447,7 +5483,12 @@
       "fiberPerUnit": 0.1,
       "unit": "tbsp",
       "unitWeight": 3,
-      "searchKeywords": ["pudina", "phudina", "mint patta", "fresh mint"]
+      "searchKeywords": [
+        "pudina",
+        "phudina",
+        "mint patta",
+        "fresh mint"
+      ]
     },
     {
       "id": "remote-curry-leaves-fresh",
@@ -5460,7 +5501,12 @@
       "fiberPerUnit": 0.1,
       "unit": "piece",
       "unitWeight": 1,
-      "searchKeywords": ["kadipatta", "kadi patta", "curry patta", "meetha neem"]
+      "searchKeywords": [
+        "kadipatta",
+        "kadi patta",
+        "curry patta",
+        "meetha neem"
+      ]
     },
     {
       "id": "remote-haldi-powder",
@@ -5473,7 +5519,13 @@
       "fiberPerUnit": 0.5,
       "unit": "tsp",
       "unitWeight": 3,
-      "searchKeywords": ["halad", "haldi", "turmeric", "haladi", "halad pud"]
+      "searchKeywords": [
+        "halad",
+        "haldi",
+        "turmeric",
+        "haladi",
+        "halad pud"
+      ]
     },
     {
       "id": "remote-tikhaat",
@@ -5486,7 +5538,13 @@
       "fiberPerUnit": 0.8,
       "unit": "tsp",
       "unitWeight": 3,
-      "searchKeywords": ["tikhat", "lal mirchi powder", "red chili", "mirchi pud", "kashimiri tikhat"]
+      "searchKeywords": [
+        "tikhat",
+        "lal mirchi powder",
+        "red chili",
+        "mirchi pud",
+        "kashimiri tikhat"
+      ]
     },
     {
       "id": "remote-garam-masala",
@@ -5499,7 +5557,12 @@
       "fiberPerUnit": 0.5,
       "unit": "tsp",
       "unitWeight": 3,
-      "searchKeywords": ["garam masala", "goda masala", "kala masala", "spice mix"]
+      "searchKeywords": [
+        "garam masala",
+        "goda masala",
+        "kala masala",
+        "spice mix"
+      ]
     },
     {
       "id": "remote-kala-masala",
@@ -5512,7 +5575,12 @@
       "fiberPerUnit": 0.5,
       "unit": "tsp",
       "unitWeight": 3,
-      "searchKeywords": ["kala masala", "maharashtrian masala", "black spice", "malvani masala"]
+      "searchKeywords": [
+        "kala masala",
+        "maharashtrian masala",
+        "black spice",
+        "malvani masala"
+      ]
     },
     {
       "id": "remote-goda-masala",
@@ -5525,7 +5593,12 @@
       "fiberPerUnit": 0.4,
       "unit": "tsp",
       "unitWeight": 3,
-      "searchKeywords": ["goda masala", "sweet masala", "kanda lasun masala", "puneri masala"]
+      "searchKeywords": [
+        "goda masala",
+        "sweet masala",
+        "kanda lasun masala",
+        "puneri masala"
+      ]
     },
     {
       "id": "remote-dhania-jeera",
@@ -5538,7 +5611,12 @@
       "fiberPerUnit": 0.4,
       "unit": "tsp",
       "unitWeight": 3,
-      "searchKeywords": ["dhane jire", "dhaniya jeera", "coriander cumin powder", "dhane jire pud"]
+      "searchKeywords": [
+        "dhane jire",
+        "dhaniya jeera",
+        "coriander cumin powder",
+        "dhane jire pud"
+      ]
     },
     {
       "id": "remote-amchur",
@@ -5551,7 +5629,12 @@
       "fiberPerUnit": 0.3,
       "unit": "tsp",
       "unitWeight": 2,
-      "searchKeywords": ["amchur", "aamchur", "dry mango powder", "khatta masala"]
+      "searchKeywords": [
+        "amchur",
+        "aamchur",
+        "dry mango powder",
+        "khatta masala"
+      ]
     },
     {
       "id": "remote-hing",
@@ -5564,7 +5647,13 @@
       "fiberPerUnit": 0,
       "unit": "pinch",
       "unitWeight": 0.5,
-      "searchKeywords": ["hing", "heeng", "asafoetida", "vandevi hing", "kayam hing"]
+      "searchKeywords": [
+        "hing",
+        "heeng",
+        "asafoetida",
+        "vandevi hing",
+        "kayam hing"
+      ]
     },
     {
       "id": "remote-ajwain",
@@ -5577,7 +5666,13 @@
       "fiberPerUnit": 0.3,
       "unit": "tsp",
       "unitWeight": 2,
-      "searchKeywords": ["ova", "owaa", "ajwain", "carom", "bishops weed"]
+      "searchKeywords": [
+        "ova",
+        "owaa",
+        "ajwain",
+        "carom",
+        "bishops weed"
+      ]
     },
     {
       "id": "remote-saunf",
@@ -5590,7 +5685,13 @@
       "fiberPerUnit": 0.4,
       "unit": "tsp",
       "unitWeight": 2,
-      "searchKeywords": ["badishep", "fennel", "saunf", "moti saunf", "mouth freshener"]
+      "searchKeywords": [
+        "badishep",
+        "fennel",
+        "saunf",
+        "moti saunf",
+        "mouth freshener"
+      ]
     },
     {
       "id": "remote-mukhwas",
@@ -5603,7 +5704,14 @@
       "fiberPerUnit": 0.2,
       "unit": "tsp",
       "unitWeight": 4,
-      "searchKeywords": ["mukhwas", "mukhvas", "saunf supari", "pan masala", "sweet saunf", "sugar coated saunf"]
+      "searchKeywords": [
+        "mukhwas",
+        "mukhvas",
+        "saunf supari",
+        "pan masala",
+        "sweet saunf",
+        "sugar coated saunf"
+      ]
     },
     {
       "id": "remote-supari",
@@ -5616,7 +5724,12 @@
       "fiberPerUnit": 0.2,
       "unit": "piece",
       "unitWeight": 3,
-      "searchKeywords": ["supari", "betel nut", "sweet supari", "pass pass"]
+      "searchKeywords": [
+        "supari",
+        "betel nut",
+        "sweet supari",
+        "pass pass"
+      ]
     },
     {
       "id": "remote-kokum",
@@ -5629,7 +5742,13 @@
       "fiberPerUnit": 0.1,
       "unit": "piece",
       "unitWeight": 3,
-      "searchKeywords": ["kokum", "amsul", "amsol", "ratamba", "kokam"]
+      "searchKeywords": [
+        "kokum",
+        "amsul",
+        "amsol",
+        "ratamba",
+        "kokam"
+      ]
     },
     {
       "id": "remote-tamarind-paste",
@@ -5642,7 +5761,13 @@
       "fiberPerUnit": 0.3,
       "unit": "tsp",
       "unitWeight": 5,
-      "searchKeywords": ["chinch", "imli", "tamarind", "chinchecha kol", "khatta"]
+      "searchKeywords": [
+        "chinch",
+        "imli",
+        "tamarind",
+        "chinchecha kol",
+        "khatta"
+      ]
     },
     {
       "id": "remote-salt",
@@ -5655,7 +5780,14 @@
       "fiberPerUnit": 0,
       "unit": "tsp",
       "unitWeight": 6,
-      "searchKeywords": ["meeth", "namak", "salt", "tata salt", "rock salt", "sendha namak"]
+      "searchKeywords": [
+        "meeth",
+        "namak",
+        "salt",
+        "tata salt",
+        "rock salt",
+        "sendha namak"
+      ]
     },
     {
       "id": "remote-black-salt",
@@ -5668,7 +5800,13 @@
       "fiberPerUnit": 0,
       "unit": "tsp",
       "unitWeight": 5,
-      "searchKeywords": ["sanchal", "kala namak", "black salt", "saindhav meeth", "chat masala salt"]
+      "searchKeywords": [
+        "sanchal",
+        "kala namak",
+        "black salt",
+        "saindhav meeth",
+        "chat masala salt"
+      ]
     },
     {
       "id": "remote-chat-masala",
@@ -5681,20 +5819,12 @@
       "fiberPerUnit": 0.1,
       "unit": "tsp",
       "unitWeight": 3,
-      "searchKeywords": ["chaat masala", "chat masala", "fruit masala", "sprinkle masala"]
-    },
-    {
-      "id": "remote-peanut-butter",
-      "name": "Peanut Butter",
-      "nameMarathi": "पीनट बटर",
-      "category": "chutneys",
-      "caloriesPerUnit": 94,
-      "proteinPerUnit": 4,
-      "fatPerUnit": 8,
-      "fiberPerUnit": 0.6,
-      "unit": "tbsp",
-      "unitWeight": 16,
-      "searchKeywords": ["peanut butter", "pb", "myfitness", "sundrop", "creamy peanut butter"]
+      "searchKeywords": [
+        "chaat masala",
+        "chat masala",
+        "fruit masala",
+        "sprinkle masala"
+      ]
     },
     {
       "id": "remote-nutella",
@@ -5707,7 +5837,12 @@
       "fiberPerUnit": 0.3,
       "unit": "tbsp",
       "unitWeight": 15,
-      "searchKeywords": ["nutella", "chocolate spread", "hazelnut spread", "hersheys"]
+      "searchKeywords": [
+        "nutella",
+        "chocolate spread",
+        "hazelnut spread",
+        "hersheys"
+      ]
     },
     {
       "id": "remote-boondi-plain",
@@ -5720,7 +5855,13 @@
       "fiberPerUnit": 0.5,
       "unit": "cup",
       "unitWeight": 20,
-      "searchKeywords": ["boondi", "bundi", "plain boondi", "besan boondi", "raita boondi"]
+      "searchKeywords": [
+        "boondi",
+        "bundi",
+        "plain boondi",
+        "besan boondi",
+        "raita boondi"
+      ]
     },
     {
       "id": "remote-boondi-masala",
@@ -5733,7 +5874,12 @@
       "fiberPerUnit": 0.5,
       "unit": "cup",
       "unitWeight": 20,
-      "searchKeywords": ["masala boondi", "tikhat bundi", "spicy boondi", "haldiram boondi"]
+      "searchKeywords": [
+        "masala boondi",
+        "tikhat bundi",
+        "spicy boondi",
+        "haldiram boondi"
+      ]
     },
     {
       "id": "remote-dry-coconut",
@@ -5746,7 +5892,13 @@
       "fiberPerUnit": 0.5,
       "unit": "piece",
       "unitWeight": 5,
-      "searchKeywords": ["khobra", "sukha nariyal", "copra", "dry coconut", "suke khobre"]
+      "searchKeywords": [
+        "khobra",
+        "sukha nariyal",
+        "copra",
+        "dry coconut",
+        "suke khobre"
+      ]
     },
     {
       "id": "remote-fresh-coconut-slice",
@@ -5759,7 +5911,13 @@
       "fiberPerUnit": 0.3,
       "unit": "piece",
       "unitWeight": 10,
-      "searchKeywords": ["ole khobre", "taza nariyal", "naral", "fresh coconut", "coconut piece"]
+      "searchKeywords": [
+        "ole khobre",
+        "taza nariyal",
+        "naral",
+        "fresh coconut",
+        "coconut piece"
+      ]
     },
     {
       "id": "remote-papad-roasted",
@@ -5772,7 +5930,13 @@
       "fiberPerUnit": 0.7,
       "unit": "piece",
       "unitWeight": 15,
-      "searchKeywords": ["papad", "bhajlela papad", "roasted papad", "lijjat papad", "urad papad"]
+      "searchKeywords": [
+        "papad",
+        "bhajlela papad",
+        "roasted papad",
+        "lijjat papad",
+        "urad papad"
+      ]
     },
     {
       "id": "remote-papad-fried",
@@ -5785,7 +5949,12 @@
       "fiberPerUnit": 0.5,
       "unit": "piece",
       "unitWeight": 15,
-      "searchKeywords": ["tallela papad", "fried papad", "crispy papad", "deep fried papad"]
+      "searchKeywords": [
+        "tallela papad",
+        "fried papad",
+        "crispy papad",
+        "deep fried papad"
+      ]
     },
     {
       "id": "remote-sandgi-mirchi",
@@ -5798,7 +5967,13 @@
       "fiberPerUnit": 0.3,
       "unit": "piece",
       "unitWeight": 5,
-      "searchKeywords": ["sandgi mirchi", "sandge mirchi", "dry chili fry", "kurkurit mirchi", "maharashtrian mirchi"]
+      "searchKeywords": [
+        "sandgi mirchi",
+        "sandge mirchi",
+        "dry chili fry",
+        "kurkurit mirchi",
+        "maharashtrian mirchi"
+      ]
     },
     {
       "id": "remote-mixed-pickle",
@@ -5811,7 +5986,12 @@
       "fiberPerUnit": 0.2,
       "unit": "tsp",
       "unitWeight": 10,
-      "searchKeywords": ["mixed pickle", "mixed lonche", "aachar", "pravin pickle"]
+      "searchKeywords": [
+        "mixed pickle",
+        "mixed lonche",
+        "aachar",
+        "pravin pickle"
+      ]
     },
     {
       "id": "remote-karonda-pickle",
@@ -5824,7 +6004,11 @@
       "fiberPerUnit": 0.2,
       "unit": "tsp",
       "unitWeight": 10,
-      "searchKeywords": ["karvand lonche", "karonda pickle", "wild berry pickle"]
+      "searchKeywords": [
+        "karvand lonche",
+        "karonda pickle",
+        "wild berry pickle"
+      ]
     },
     {
       "id": "remote-amla-pickle",
@@ -5837,7 +6021,12 @@
       "fiberPerUnit": 0.3,
       "unit": "tsp",
       "unitWeight": 10,
-      "searchKeywords": ["awala lonche", "amla achar", "gooseberry pickle", "awla pickle"]
+      "searchKeywords": [
+        "awala lonche",
+        "amla achar",
+        "gooseberry pickle",
+        "awla pickle"
+      ]
     },
     {
       "id": "remote-murabba-amla",
@@ -5850,7 +6039,13 @@
       "fiberPerUnit": 0.3,
       "unit": "piece",
       "unitWeight": 15,
-      "searchKeywords": ["amla murabba", "awla murabba", "gooseberry candy", "gulkand amla", "awala murabba"]
+      "searchKeywords": [
+        "amla murabba",
+        "awla murabba",
+        "gooseberry candy",
+        "gulkand amla",
+        "awala murabba"
+      ]
     },
     {
       "id": "remote-amba-dal-lonche",
@@ -5863,7 +6058,11 @@
       "fiberPerUnit": 0.3,
       "unit": "tsp",
       "unitWeight": 10,
-      "searchKeywords": ["amba dal lonche", "dal mango pickle", "kairi dal pickle"]
+      "searchKeywords": [
+        "amba dal lonche",
+        "dal mango pickle",
+        "kairi dal pickle"
+      ]
     },
     {
       "id": "remote-gor-keri",
@@ -5876,7 +6075,13 @@
       "fiberPerUnit": 0.2,
       "unit": "tsp",
       "unitWeight": 10,
-      "searchKeywords": ["gor keri", "god kairi", "sweet mango pickle", "gujarati pickle", "chunda"]
+      "searchKeywords": [
+        "gor keri",
+        "god kairi",
+        "sweet mango pickle",
+        "gujarati pickle",
+        "chunda"
+      ]
     },
     {
       "id": "remote-gulkand",
@@ -5889,20 +6094,12 @@
       "fiberPerUnit": 0,
       "unit": "tsp",
       "unitWeight": 8,
-      "searchKeywords": ["gulkand", "gulab jam", "rose petal preserve", "meetha pan filling"]
-    },
-    {
-      "id": "remote-sol-kadhi",
-      "name": "Sol Kadhi (Kokum Coconut Milk)",
-      "nameMarathi": "सोल कढी",
-      "category": "beverages",
-      "caloriesPerUnit": 60,
-      "proteinPerUnit": 0.5,
-      "fatPerUnit": 3,
-      "fiberPerUnit": 0,
-      "unit": "bowl",
-      "unitWeight": 150,
-      "searchKeywords": ["sol kadhi", "solkadhi", "kokum milk", "narali sol kadhi", "konkan kadhi"]
+      "searchKeywords": [
+        "gulkand",
+        "gulab jam",
+        "rose petal preserve",
+        "meetha pan filling"
+      ]
     },
     {
       "id": "remote-tikhat-meeth",
@@ -5915,7 +6112,13 @@
       "fiberPerUnit": 0.1,
       "unit": "tsp",
       "unitWeight": 3,
-      "searchKeywords": ["tikhat meeth", "fruit dip", "guava salt", "peru masala", "chili salt sugar"]
+      "searchKeywords": [
+        "tikhat meeth",
+        "fruit dip",
+        "guava salt",
+        "peru masala",
+        "chili salt sugar"
+      ]
     },
     {
       "id": "remote-phodnicha-bhat-mix",
@@ -5928,7 +6131,12 @@
       "fiberPerUnit": 0.3,
       "unit": "tsp",
       "unitWeight": 3,
-      "searchKeywords": ["phodnicha masala", "tadka masala", "tempering mix", "phodni pud"]
+      "searchKeywords": [
+        "phodnicha masala",
+        "tadka masala",
+        "tempering mix",
+        "phodni pud"
+      ]
     },
     {
       "id": "remote-metkut",
@@ -5941,7 +6149,13 @@
       "fiberPerUnit": 0.5,
       "unit": "tsp",
       "unitWeight": 5,
-      "searchKeywords": ["metkut", "metkoot", "dal pudi", "lentil powder", "bhat metkut"]
+      "searchKeywords": [
+        "metkut",
+        "metkoot",
+        "dal pudi",
+        "lentil powder",
+        "bhat metkut"
+      ]
     },
     {
       "id": "remote-chutney-pudi",
@@ -5954,7 +6168,13 @@
       "fiberPerUnit": 0.4,
       "unit": "tsp",
       "unitWeight": 5,
-      "searchKeywords": ["chutney pudi", "chatni pud", "dry chutney powder", "gun powder", "milagai podi"]
+      "searchKeywords": [
+        "chutney pudi",
+        "chatni pud",
+        "dry chutney powder",
+        "gun powder",
+        "milagai podi"
+      ]
     },
     {
       "id": "remote-dahi-extra",
@@ -5967,20 +6187,12 @@
       "fiberPerUnit": 0,
       "unit": "bowl",
       "unitWeight": 75,
-      "searchKeywords": ["wati dahi", "side curd", "extra dahi", "plain yogurt side"]
-    },
-    {
-      "id": "remote-shrikhand-side",
-      "name": "Shrikhand (Side)",
-      "nameMarathi": "श्रीखंड",
-      "category": "dairy",
-      "caloriesPerUnit": 120,
-      "proteinPerUnit": 3,
-      "fatPerUnit": 4,
-      "fiberPerUnit": 0,
-      "unit": "bowl",
-      "unitWeight": 60,
-      "searchKeywords": ["shrikhand", "amul shrikhand", "matho", "sweet yogurt", "elaichi shrikhand"]
+      "searchKeywords": [
+        "wati dahi",
+        "side curd",
+        "extra dahi",
+        "plain yogurt side"
+      ]
     },
     {
       "id": "remote-amti-extra",
@@ -5993,7 +6205,12 @@
       "fiberPerUnit": 1,
       "unit": "bowl",
       "unitWeight": 100,
-      "searchKeywords": ["wati varan", "extra dal", "side amti", "toor dal side"]
+      "searchKeywords": [
+        "wati varan",
+        "extra dal",
+        "side amti",
+        "toor dal side"
+      ]
     },
     {
       "id": "remote-ghee-extra",
@@ -6006,7 +6223,13 @@
       "fiberPerUnit": 0,
       "unit": "tsp",
       "unitWeight": 5,
-      "searchKeywords": ["varun tup", "extra ghee", "ghee drizzle", "top ghee", "bhat varun tup"]
+      "searchKeywords": [
+        "varun tup",
+        "extra ghee",
+        "ghee drizzle",
+        "top ghee",
+        "bhat varun tup"
+      ]
     },
     {
       "id": "remote-tadka-oil",
@@ -6019,7 +6242,14 @@
       "fiberPerUnit": 0,
       "unit": "tsp",
       "unitWeight": 5,
-      "searchKeywords": ["phodni", "tadka", "tempering", "chaunk", "baghaar", "fodni"]
+      "searchKeywords": [
+        "phodni",
+        "tadka",
+        "tempering",
+        "chaunk",
+        "baghaar",
+        "fodni"
+      ]
     },
     {
       "id": "remote-loni-white",
@@ -6032,7 +6262,13 @@
       "fiberPerUnit": 0,
       "unit": "tsp",
       "unitWeight": 5,
-      "searchKeywords": ["loni", "white butter", "makhan", "home butter", "taza loni"]
+      "searchKeywords": [
+        "loni",
+        "white butter",
+        "makhan",
+        "home butter",
+        "taza loni"
+      ]
     },
     {
       "id": "remote-condensed-milk",
@@ -6045,7 +6281,12 @@
       "fiberPerUnit": 0,
       "unit": "tbsp",
       "unitWeight": 15,
-      "searchKeywords": ["milkmaid", "condensed milk", "sweetened milk", "mithai ke liye"]
+      "searchKeywords": [
+        "milkmaid",
+        "condensed milk",
+        "sweetened milk",
+        "mithai ke liye"
+      ]
     },
     {
       "id": "remote-khoya",
@@ -6058,7 +6299,13 @@
       "fiberPerUnit": 0,
       "unit": "tbsp",
       "unitWeight": 15,
-      "searchKeywords": ["khoya", "mawa", "khava", "mava", "reduced milk solids"]
+      "searchKeywords": [
+        "khoya",
+        "mawa",
+        "khava",
+        "mava",
+        "reduced milk solids"
+      ]
     },
     {
       "id": "remote-milk-powder",
@@ -6071,7 +6318,12 @@
       "fiberPerUnit": 0,
       "unit": "tsp",
       "unitWeight": 5,
-      "searchKeywords": ["dudh powder", "milk powder", "everyday milk powder", "skimmed milk powder"]
+      "searchKeywords": [
+        "dudh powder",
+        "milk powder",
+        "everyday milk powder",
+        "skimmed milk powder"
+      ]
     },
     {
       "id": "remote-basundi-side",
@@ -6084,7 +6336,13 @@
       "fiberPerUnit": 0,
       "unit": "bowl",
       "unitWeight": 100,
-      "searchKeywords": ["basundi", "rabdi", "rabri", "malai dessert", "thick milk sweet"]
+      "searchKeywords": [
+        "basundi",
+        "rabdi",
+        "rabri",
+        "malai dessert",
+        "thick milk sweet"
+      ]
     },
     {
       "id": "remote-toop-bhat",
@@ -6097,7 +6355,13 @@
       "fiberPerUnit": 0.5,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["tup bhat", "toop bhat", "ghee rice", "nei sadam", "tupachi bhat"]
+      "searchKeywords": [
+        "tup bhat",
+        "toop bhat",
+        "ghee rice",
+        "nei sadam",
+        "tupachi bhat"
+      ]
     },
     {
       "id": "remote-dahi-bhat",
@@ -6110,7 +6374,12 @@
       "fiberPerUnit": 0.2,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["dahi bhat", "curd rice side", "thayir sadam side", "mosaranna side"]
+      "searchKeywords": [
+        "dahi bhat",
+        "curd rice side",
+        "thayir sadam side",
+        "mosaranna side"
+      ]
     },
     {
       "id": "remote-limbu-bhat",
@@ -6123,7 +6392,12 @@
       "fiberPerUnit": 0.3,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["limbu bhat", "lemon rice", "limboo bhat", "nimbe bhat"]
+      "searchKeywords": [
+        "limbu bhat",
+        "lemon rice",
+        "limboo bhat",
+        "nimbe bhat"
+      ]
     },
     {
       "id": "remote-masala-bhat",
@@ -6136,20 +6410,12 @@
       "fiberPerUnit": 0.5,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["masala bhat", "spiced rice", "masale bhat", "maharashtrian masala rice"]
-    },
-    {
-      "id": "remote-tomato-saar",
-      "name": "Tomato Saar",
-      "nameMarathi": "टोमॅटो सार",
-      "category": "dal",
-      "caloriesPerUnit": 50,
-      "proteinPerUnit": 1,
-      "fatPerUnit": 2,
-      "fiberPerUnit": 0.5,
-      "unit": "bowl",
-      "unitWeight": 150,
-      "searchKeywords": ["tomato saar", "tomato rasam", "tamatar saar", "tomato soup maharashtrian"]
+      "searchKeywords": [
+        "masala bhat",
+        "spiced rice",
+        "masale bhat",
+        "maharashtrian masala rice"
+      ]
     },
     {
       "id": "remote-kokum-saar",
@@ -6162,59 +6428,12 @@
       "fiberPerUnit": 0.3,
       "unit": "bowl",
       "unitWeight": 150,
-      "searchKeywords": ["kokum saar", "amsul saar", "kokam sar", "sour kokum soup"]
-    },
-    {
-      "id": "remote-peanut-ladoo",
-      "name": "Peanut Ladoo (Shengdana Ladoo)",
-      "nameMarathi": "शेंगदाणा लाडू",
-      "category": "sweets",
-      "caloriesPerUnit": 85,
-      "proteinPerUnit": 2.5,
-      "fatPerUnit": 5,
-      "fiberPerUnit": 0.5,
-      "unit": "piece",
-      "unitWeight": 20,
-      "searchKeywords": ["shengdana ladoo", "peanut laddu", "singdana ladva", "gudachi vadi"]
-    },
-    {
-      "id": "remote-til-ladoo",
-      "name": "Til Ladoo (Sesame Ladoo)",
-      "nameMarathi": "तिळाचे लाडू",
-      "category": "sweets",
-      "caloriesPerUnit": 70,
-      "proteinPerUnit": 1.5,
-      "fatPerUnit": 4,
-      "fiberPerUnit": 0.5,
-      "unit": "piece",
-      "unitWeight": 15,
-      "searchKeywords": ["til ladoo", "tilache ladoo", "sesame ball", "makar sankranti ladoo"]
-    },
-    {
-      "id": "remote-rava-ladoo",
-      "name": "Rava Ladoo",
-      "nameMarathi": "रवा लाडू",
-      "category": "sweets",
-      "caloriesPerUnit": 75,
-      "proteinPerUnit": 1,
-      "fatPerUnit": 4,
-      "fiberPerUnit": 0.2,
-      "unit": "piece",
-      "unitWeight": 20,
-      "searchKeywords": ["rava ladoo", "sooji laddu", "suji ladoo", "semolina ladoo"]
-    },
-    {
-      "id": "remote-besan-ladoo",
-      "name": "Besan Ladoo",
-      "nameMarathi": "बेसन लाडू",
-      "category": "sweets",
-      "caloriesPerUnit": 90,
-      "proteinPerUnit": 2,
-      "fatPerUnit": 5,
-      "fiberPerUnit": 0.3,
-      "unit": "piece",
-      "unitWeight": 20,
-      "searchKeywords": ["besan ladoo", "besanache ladoo", "gram flour laddu", "diwali ladoo"]
+      "searchKeywords": [
+        "kokum saar",
+        "amsul saar",
+        "kokam sar",
+        "sour kokum soup"
+      ]
     },
     {
       "id": "remote-coconut-ladoo",
@@ -6227,7 +6446,356 @@
       "fiberPerUnit": 0.5,
       "unit": "piece",
       "unitWeight": 15,
-      "searchKeywords": ["naral ladoo", "coconut laddu", "nariyal ladoo", "khobryache ladoo"]
+      "searchKeywords": [
+        "naral ladoo",
+        "coconut laddu",
+        "nariyal ladoo",
+        "khobryache ladoo"
+      ]
+    },
+    {
+      "id": "remote-macadamia-nuts",
+      "name": "Macadamia Nuts",
+      "nameMarathi": "मॅकॅडेमिया नट्स",
+      "category": "snacks",
+      "caloriesPerUnit": 108,
+      "proteinPerUnit": 1,
+      "fatPerUnit": 11,
+      "fiberPerUnit": 1,
+      "unit": "serving (10 pcs)",
+      "unitWeight": 15,
+      "searchKeywords": [
+        "macadamia",
+        "mac nut",
+        "australian nut"
+      ]
+    },
+    {
+      "id": "remote-brazil-nuts",
+      "name": "Brazil Nuts",
+      "nameMarathi": "ब्राझील नट्स",
+      "category": "snacks",
+      "caloriesPerUnit": 100,
+      "proteinPerUnit": 2,
+      "fatPerUnit": 9,
+      "fiberPerUnit": 1,
+      "unit": "serving (5 pcs)",
+      "unitWeight": 15,
+      "searchKeywords": [
+        "brazil nut",
+        "para nut"
+      ]
+    },
+    {
+      "id": "remote-pecans",
+      "name": "Pecans",
+      "nameMarathi": "पेकान",
+      "category": "snacks",
+      "caloriesPerUnit": 104,
+      "proteinPerUnit": 1,
+      "fatPerUnit": 11,
+      "fiberPerUnit": 1,
+      "unit": "serving (10 halves)",
+      "unitWeight": 15,
+      "searchKeywords": [
+        "pecan nut",
+        "pekan"
+      ]
+    },
+    {
+      "id": "remote-pine-nuts",
+      "name": "Pine Nuts (Chilgoza)",
+      "nameMarathi": "चिलगोझा",
+      "category": "snacks",
+      "caloriesPerUnit": 101,
+      "proteinPerUnit": 2,
+      "fatPerUnit": 10,
+      "fiberPerUnit": 1,
+      "unit": "tablespoon",
+      "unitWeight": 15,
+      "searchKeywords": [
+        "chilgoza",
+        "pine nut",
+        "pinon",
+        "neoза"
+      ]
+    },
+    {
+      "id": "remote-hazelnuts",
+      "name": "Hazelnuts (Filberts)",
+      "nameMarathi": "हेझलनट",
+      "category": "snacks",
+      "caloriesPerUnit": 96,
+      "proteinPerUnit": 2,
+      "fatPerUnit": 8,
+      "fiberPerUnit": 1,
+      "unit": "serving (10 pcs)",
+      "unitWeight": 15,
+      "searchKeywords": [
+        "hazelnut",
+        "filbert",
+        "cobnut"
+      ]
+    },
+    {
+      "id": "remote-sesame-seeds",
+      "name": "Sesame Seeds (Til)",
+      "nameMarathi": "तीळ",
+      "category": "snacks",
+      "caloriesPerUnit": 52,
+      "proteinPerUnit": 2,
+      "fatPerUnit": 4,
+      "fiberPerUnit": 1,
+      "unit": "teaspoon",
+      "unitWeight": 9,
+      "searchKeywords": [
+        "til",
+        "sesame",
+        "gingelly",
+        "ellu"
+      ]
+    },
+    {
+      "id": "remote-dried-apricots",
+      "name": "Dried Apricots",
+      "nameMarathi": "सुकी जर्दाळू",
+      "category": "snacks",
+      "caloriesPerUnit": 72,
+      "proteinPerUnit": 1,
+      "fatPerUnit": 0,
+      "fiberPerUnit": 2,
+      "unit": "serving (5 pcs)",
+      "unitWeight": 30,
+      "searchKeywords": [
+        "dried apricot",
+        "sukhi jardalu",
+        "khurmani"
+      ]
+    },
+    {
+      "id": "remote-dried-cranberries",
+      "name": "Dried Cranberries",
+      "nameMarathi": "सुकी क्रॅनबेरी",
+      "category": "snacks",
+      "caloriesPerUnit": 92,
+      "proteinPerUnit": 0,
+      "fatPerUnit": 0,
+      "fiberPerUnit": 2,
+      "unit": "serving",
+      "unitWeight": 30,
+      "searchKeywords": [
+        "craisin",
+        "dried cranberry",
+        "cranberry"
+      ]
+    },
+    {
+      "id": "remote-prunes",
+      "name": "Prunes (Dried Plums)",
+      "nameMarathi": "सुक्या आलुबुखार",
+      "category": "snacks",
+      "caloriesPerUnit": 72,
+      "proteinPerUnit": 1,
+      "fatPerUnit": 0,
+      "fiberPerUnit": 2,
+      "unit": "serving (5 pcs)",
+      "unitWeight": 30,
+      "searchKeywords": [
+        "prune",
+        "dried plum",
+        "alu bukhara",
+        "aloo bukhara"
+      ]
+    },
+    {
+      "id": "remote-blueberry-muffin",
+      "name": "Blueberry Muffin",
+      "nameMarathi": "ब्लूबेरी मफिन",
+      "category": "sweets",
+      "caloriesPerUnit": 285,
+      "proteinPerUnit": 7,
+      "fatPerUnit": 11,
+      "fiberPerUnit": 0,
+      "unit": "piece",
+      "unitWeight": 100,
+      "searchKeywords": [
+        "blueberry muffin",
+        "berry muffin",
+        "muffin"
+      ]
+    },
+    {
+      "id": "remote-chocolate-muffin",
+      "name": "Chocolate Muffin",
+      "nameMarathi": "चॉकलेट मफिन",
+      "category": "sweets",
+      "caloriesPerUnit": 340,
+      "proteinPerUnit": 4,
+      "fatPerUnit": 20,
+      "fiberPerUnit": 0,
+      "unit": "piece",
+      "unitWeight": 70,
+      "searchKeywords": [
+        "choco muffin",
+        "chocolate muffin",
+        "double chocolate muffin"
+      ]
+    },
+    {
+      "id": "remote-apple-pie",
+      "name": "Apple Pie (Slice)",
+      "nameMarathi": "ॲपल पाय",
+      "category": "sweets",
+      "caloriesPerUnit": 296,
+      "proteinPerUnit": 3,
+      "fatPerUnit": 14,
+      "fiberPerUnit": 0,
+      "unit": "slice",
+      "unitWeight": 112,
+      "searchKeywords": [
+        "apple pie",
+        "fruit pie",
+        "pie slice"
+      ]
+    },
+    {
+      "id": "remote-pound-cake",
+      "name": "Pound Cake",
+      "nameMarathi": "पाउंड केक",
+      "category": "sweets",
+      "caloriesPerUnit": 285,
+      "proteinPerUnit": 3,
+      "fatPerUnit": 13,
+      "fiberPerUnit": 0,
+      "unit": "slice",
+      "unitWeight": 80,
+      "searchKeywords": [
+        "pound cake",
+        "butter cake",
+        "plain cake",
+        "tea cake"
+      ]
+    },
+    {
+      "id": "remote-carrot-cake",
+      "name": "Carrot Cake (with Cream Cheese Frosting)",
+      "nameMarathi": "कॅरट केक",
+      "category": "sweets",
+      "caloriesPerUnit": 356,
+      "proteinPerUnit": 4,
+      "fatPerUnit": 16,
+      "fiberPerUnit": 0,
+      "unit": "slice",
+      "unitWeight": 100,
+      "searchKeywords": [
+        "carrot cake",
+        "gajar cake",
+        "cream cheese cake"
+      ]
+    },
+    {
+      "id": "remote-chocolate-pudding",
+      "name": "Chocolate Pudding",
+      "nameMarathi": "चॉकलेट पुडिंग",
+      "category": "sweets",
+      "caloriesPerUnit": 213,
+      "proteinPerUnit": 3,
+      "fatPerUnit": 7,
+      "fiberPerUnit": 0,
+      "unit": "bowl",
+      "unitWeight": 150,
+      "searchKeywords": [
+        "chocolate pudding",
+        "choco pudding",
+        "dessert pudding"
+      ]
+    },
+    {
+      "id": "remote-cream-puff",
+      "name": "Cream Puff / Eclair",
+      "nameMarathi": "क्रीम पफ / एक्लेअर",
+      "category": "sweets",
+      "caloriesPerUnit": 252,
+      "proteinPerUnit": 6,
+      "fatPerUnit": 18,
+      "fiberPerUnit": 1,
+      "unit": "piece",
+      "unitWeight": 70,
+      "searchKeywords": [
+        "cream puff",
+        "eclair",
+        "choux pastry",
+        "profiterole"
+      ]
+    },
+    {
+      "id": "remote-cinnamon-roll",
+      "name": "Cinnamon Roll",
+      "nameMarathi": "सिनेमन रोल",
+      "category": "sweets",
+      "caloriesPerUnit": 320,
+      "proteinPerUnit": 4,
+      "fatPerUnit": 15,
+      "fiberPerUnit": 0,
+      "unit": "piece",
+      "unitWeight": 90,
+      "searchKeywords": [
+        "cinnamon roll",
+        "cinnamon bun",
+        "zimtschnecke",
+        "cinnabon"
+      ]
+    },
+    {
+      "id": "remote-pumpkin-pie",
+      "name": "Pumpkin Pie (Slice)",
+      "nameMarathi": "पंपकिन पाय",
+      "category": "sweets",
+      "caloriesPerUnit": 265,
+      "proteinPerUnit": 6,
+      "fatPerUnit": 12,
+      "fiberPerUnit": 0,
+      "unit": "slice",
+      "unitWeight": 130,
+      "searchKeywords": [
+        "pumpkin pie",
+        "bhopla pie"
+      ]
+    },
+    {
+      "id": "remote-coconut-macaroon",
+      "name": "Coconut Macaroon",
+      "nameMarathi": "कोकोनट मॅकरून",
+      "category": "sweets",
+      "caloriesPerUnit": 97,
+      "proteinPerUnit": 1,
+      "fatPerUnit": 5,
+      "fiberPerUnit": 1,
+      "unit": "piece",
+      "unitWeight": 21,
+      "searchKeywords": [
+        "coconut macaroon",
+        "macaroon",
+        "nariyal cookie"
+      ]
+    },
+    {
+      "id": "remote-butter-cookie",
+      "name": "Butter Cookie",
+      "nameMarathi": "बटर कुकी",
+      "category": "snacks",
+      "caloriesPerUnit": 71,
+      "proteinPerUnit": 1,
+      "fatPerUnit": 4,
+      "fiberPerUnit": 0,
+      "unit": "piece",
+      "unitWeight": 15,
+      "searchKeywords": [
+        "butter cookie",
+        "shortbread",
+        "danish cookie",
+        "nankhatai"
+      ]
     }
   ]
 }

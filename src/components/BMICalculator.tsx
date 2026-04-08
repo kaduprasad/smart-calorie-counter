@@ -185,7 +185,7 @@ export const BMICalculator: React.FC<BMICalculatorProps> = ({ onDataUpdate }) =>
                   value={heightInput}
                   onChangeText={setHeightInput}
                   allowDecimal={true}
-                  maxDecimalPlaces={1}
+                  maxDecimalPlaces={2}
                   placeholder="170"
                   placeholderTextColor="#9CA3AF"
                 />
@@ -221,7 +221,7 @@ export const BMICalculator: React.FC<BMICalculatorProps> = ({ onDataUpdate }) =>
                 value={inchesInput}
                 onChangeText={setInchesInput}
                 allowDecimal={true}
-                maxDecimalPlaces={1}
+                maxDecimalPlaces={2}
                 placeholder="8"
                 placeholderTextColor="#9CA3AF"
               />
@@ -259,7 +259,7 @@ export const BMICalculator: React.FC<BMICalculatorProps> = ({ onDataUpdate }) =>
               value={weightInput}
               onChangeText={setWeightInput}
               allowDecimal={true}
-              maxDecimalPlaces={1}
+              maxDecimalPlaces={2}
               placeholder="70"
               placeholderTextColor="#9CA3AF"
             />

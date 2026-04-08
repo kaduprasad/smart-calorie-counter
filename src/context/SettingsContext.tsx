@@ -9,9 +9,11 @@ import { DEFAULT_SETTINGS, DEFAULT_MACRO_TARGETS } from '../common/constants';
 interface SettingsContextType {
   settings: AppSettings;
   macroTargets: MacroTargets;
+  gender: 'male' | 'female' | undefined;
   updateSettings: (settings: AppSettings) => Promise<void>;
   loadSettings: () => Promise<AppSettings>;
   loadMacroTargets: () => Promise<void>;
+  setGender: (gender: 'male' | 'female') => void;
 }
 
 const SettingsContext = createContext<SettingsContextType | undefined>(undefined);
@@ -21,6 +23,16 @@ let cachedSettings: AppSettings | null = null;
 export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [settings, setSettings] = useState<AppSettings>(cachedSettings || DEFAULT_SETTINGS);
   const [macroTargets, setMacroTargets] = useState<MacroTargets>(DEFAULT_MACRO_TARGETS);
+  const [gender, setGenderState] = useState<'male' | 'female' | undefined>();
+
+  // Load gender on mount
+  React.useEffect(() => {
+    getUserData().then(data => setGenderState(data.gender));
+  }, []);
+
+  const setGender = useCallback((g: 'male' | 'female') => {
+    setGenderState(g);
+  }, []);
 
   const loadSettings = useCallback(async (): Promise<AppSettings> => {
     const appSettings = await getSettings();
@@ -46,9 +58,11 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       value={{
         settings,
         macroTargets,
+        gender,
         updateSettings,
         loadSettings,
         loadMacroTargets,
+        setGender,
       }}
     >
       {children}

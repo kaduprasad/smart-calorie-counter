@@ -3,6 +3,36 @@ import { COLORS } from '../../../common/colors';
 import { FONT_SIZE } from '../../../common/typography';
 
 export const accountStyles = StyleSheet.create({
+  container: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 16,
+    padding: 16,
+    marginHorizontal: 16,
+    marginVertical: 8,
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+    gap: 12,
+  },
+  iconContainer: {
+    width: 44,
+    height: 44,
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#1F2937',
+  },
+  subtitle: {
+    fontSize: 13,
+    color: '#6B7280',
+    marginTop: 2,
+  },
   profileRow: {
     flexDirection: 'row',
     alignItems: 'center',

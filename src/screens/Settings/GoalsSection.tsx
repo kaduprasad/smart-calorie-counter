@@ -81,7 +81,7 @@ export const GoalsSection: React.FC<GoalsSectionProps> = ({ settings, updateSett
               value={weightGoal}
               onChangeText={setWeightGoal}
               allowDecimal={true}
-              maxDecimalPlaces={1}
+              maxDecimalPlaces={2}
               placeholder="70"
             />
             <Text style={styles.goalCardUnit}>kg</Text>

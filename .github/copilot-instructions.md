@@ -94,6 +94,24 @@ interface FoodItem {
 - Calorie/macro values should be realistic per-serving (not per 100g unless the unit is grams)
 - File must remain valid JSON — validate after edits
 
+### Calorie Audit (USDA Verification)
+
+When asked to **recheck, audit, or verify calories** for fruits, raw vegetables, or basic ingredients:
+
+1. **Run the USDA fetch script** to get latest per-100g values:
+   ```bash
+   npm run fetch:usda              # All categories (fruits + vegetables + ingredients)
+   npm run fetch:usda -- --fruits   # Only fruits
+   npm run fetch:usda -- --vegetables
+   npm run fetch:usda -- --ingredients
+   npm run fetch:usda -- --query "food name"  # Single item lookup
+   ```
+2. **Output file:** `data/usda-nutrition.json` — contains per-100g calories, protein, fat, carbs, fiber, sugar, calcium, iron, vitamin C from USDA FoodData Central (Foundation + SR Legacy).
+3. **Compare** the USDA per-100g values against `foods.ts` (multiply by `unitWeight / 100`) and `ingredients.ts` (direct per-100g comparison).
+4. **Only update items where the difference exceeds 10%** and the USDA match is correct (check `usdaDescription` field — skip if it matched a wrong food).
+5. **Do NOT compare cooked dishes** (bhajis, curries) against raw USDA values — cooking with oil/spices changes calorie count significantly.
+6. **Script location:** `scripts/fetch-usda-nutrition.js` — reads API key from `.env` (`EXPO_PUBLIC_USDA_API_KEY`). Add new foods to the `FRUITS`, `VEGETABLES`, or `BASIC_INGREDIENTS` arrays in the script.
+
 ## Constants
 
 All configuration constants live in `src/common/constants.ts`. This includes:

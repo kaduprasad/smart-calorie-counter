@@ -157,9 +157,9 @@ export const INGREDIENTS: Ingredient[] = [
   { id: 'dates', name: 'Dates (Kharik)', nameLocal: 'खारीक', category: 'fruits', caloriesPer100g: 282, proteinPer100g: 2.5, fatPer100g: 0.4, fiberPer100g: 8, commonMeasure: '1 piece', measureGrams: 8 },
   { id: 'raisins', name: 'Raisins (Kishmish)', nameLocal: 'मनुके', category: 'fruits', caloriesPer100g: 299, proteinPer100g: 3.1, fatPer100g: 0.5, fiberPer100g: 3.7, commonMeasure: '1 tbsp', measureGrams: 10 },
   { id: 'amla', name: 'Amla (Gooseberry)', nameLocal: 'आवळा', category: 'fruits', caloriesPer100g: 24, proteinPer100g: 0.3, fatPer100g: 0.2, fiberPer100g: 7.8, commonMeasure: '1 piece', measureGrams: 44 },
-  { id: 'sapota', name: 'Sapota (Chikoo)', nameLocal: 'चिक्कू', category: 'fruits', caloriesPer100g: 73, proteinPer100g: 0.9, fatPer100g: 1.3, fiberPer100g: 9.6, commonMeasure: '1 medium', measureGrams: 120 },
-  { id: 'guava', name: 'Guava', nameLocal: 'पेरू', category: 'fruits', caloriesPer100g: 32, proteinPer100g: 1.4, fatPer100g: 0.3, fiberPer100g: 8.6, commonMeasure: '1 medium', measureGrams: 165 },
-  { id: 'pomegranate', name: 'Pomegranate', nameLocal: 'डाळिंब', category: 'fruits', caloriesPer100g: 55, proteinPer100g: 1.3, fatPer100g: 0.2, fiberPer100g: 2.8, commonMeasure: '1 cup arils', measureGrams: 175 },
+  { id: 'sapota', name: 'Sapota (Chikoo)', nameLocal: 'चिक्कू', category: 'fruits', caloriesPer100g: 83, proteinPer100g: 0.4, fatPer100g: 1.1, fiberPer100g: 5.3, commonMeasure: '1 medium', measureGrams: 120 },
+  { id: 'guava', name: 'Guava', nameLocal: 'पेरू', category: 'fruits', caloriesPer100g: 68, proteinPer100g: 2.6, fatPer100g: 1, fiberPer100g: 5.4, commonMeasure: '1 medium', measureGrams: 165 },
+  { id: 'pomegranate', name: 'Pomegranate', nameLocal: 'डाळिंब', category: 'fruits', caloriesPer100g: 83, proteinPer100g: 1.7, fatPer100g: 1.2, fiberPer100g: 4, commonMeasure: '1 cup arils', measureGrams: 175 },
 
   // ── Nuts & Seeds ──
   { id: 'cashew', name: 'Cashew', nameLocal: 'काजू', category: 'nuts_seeds', caloriesPer100g: 553, proteinPer100g: 18, fatPer100g: 44, fiberPer100g: 3.3, commonMeasure: '10 pieces', measureGrams: 15 },
@@ -175,7 +175,7 @@ export const INGREDIENTS: Ingredient[] = [
   { id: 'groundnut', name: 'Groundnut (Peanut)', nameLocal: 'शेंगदाणे', category: 'nuts_seeds', caloriesPer100g: 567, proteinPer100g: 26, fatPer100g: 49, fiberPer100g: 8.5, commonMeasure: '1 cup', measureGrams: 30 },
 
   // ── Meat & Fish ──
-  { id: 'chicken-breast', name: 'Chicken Breast', nameLocal: 'चिकन ब्रेस्ट', category: 'meat_fish', caloriesPer100g: 165, proteinPer100g: 31, fatPer100g: 3.6, fiberPer100g: 0, commonMeasure: '1 piece', measureGrams: 120 },
+  { id: 'chicken-breast', name: 'Chicken Breast', nameLocal: 'चिकन ब्रेस्ट', category: 'meat_fish', caloriesPer100g: 120, proteinPer100g: 22.5, fatPer100g: 2.6, fiberPer100g: 0, commonMeasure: '1 piece', measureGrams: 120 },
   { id: 'chicken-thigh', name: 'Chicken Thigh', category: 'meat_fish', caloriesPer100g: 209, proteinPer100g: 26, fatPer100g: 11, fiberPer100g: 0, commonMeasure: '1 piece', measureGrams: 85 },
   { id: 'chicken-whole', name: 'Chicken (Whole, with skin)', nameLocal: 'चिकन', category: 'meat_fish', caloriesPer100g: 239, proteinPer100g: 27, fatPer100g: 14, fiberPer100g: 0, commonMeasure: '100g', measureGrams: 100 },
   { id: 'mutton', name: 'Mutton (Goat)', nameLocal: 'मटण', category: 'meat_fish', caloriesPer100g: 143, proteinPer100g: 27, fatPer100g: 3.0, fiberPer100g: 0, commonMeasure: '100g', measureGrams: 100 },
