@@ -58,7 +58,8 @@
           "speechRecognitionPermission": "Allow Smart Calorie Tracker to use speech recognition for voice food input."
         }
       ],
-      "@react-native-google-signin/google-signin"
+      "@react-native-google-signin/google-signin",
+      "expo-sqlite"
     ],
     "extra": {
       "eas": {
