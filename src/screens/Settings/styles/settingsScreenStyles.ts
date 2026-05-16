@@ -374,4 +374,15 @@ export const styles = StyleSheet.create({
     color: '#999999',
     textAlign: 'center',
   },
+  disclaimer: {
+    fontSize: 11,
+    color: '#999999',
+    textAlign: 'center',
+    marginTop: 12,
+    paddingTop: 12,
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopColor: '#E0E0E0',
+    lineHeight: 16,
+    fontStyle: 'italic',
+  },
 });

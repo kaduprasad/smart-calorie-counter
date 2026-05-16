@@ -44,6 +44,12 @@ export const AboutSection: React.FC = () => {
           ))}
         </View>
         <Text style={styles.version}>Version 1.0.0</Text>
+        <Text style={styles.disclaimer}>
+          Disclaimer: Nutritional values are approximate and may vary based on
+          preparation methods, portion sizes, and ingredient brands. This app is
+          intended for general tracking purposes only and should not be used as a
+          substitute for professional dietary or medical advice.
+        </Text>
       </View>
     </View>
   );
