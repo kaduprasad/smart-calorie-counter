@@ -1,6 +1,6 @@
 {
-  "version": 4,
-  "lastUpdated": "2026-04-07",
+  "version": 5,
+  "lastUpdated": "2026-05-17",
   "foods": [
     {
       "id": "remote-cheese-toast",
@@ -1252,24 +1252,6 @@
       ]
     },
     {
-      "id": "remote-pomfret-tawa-fry",
-      "name": "Pomfret Tawa Fry",
-      "nameMarathi": "पापलेट तवा फ्राय",
-      "category": "nonveg",
-      "caloriesPerUnit": 240,
-      "proteinPerUnit": 19,
-      "fatPerUnit": 12,
-      "fiberPerUnit": 0,
-      "unit": "piece",
-      "unitWeight": 150,
-      "searchKeywords": [
-        "paplet tawa fry",
-        "tawa pomfret",
-        "pomfret masala fry",
-        "paplet masala"
-      ]
-    },
-    {
       "id": "remote-pomfret-rava-fry",
       "name": "Pomfret Rava Fry",
       "nameMarathi": "पापलेट रवा फ्राय",
@@ -1285,23 +1267,6 @@
         "crispy pomfret",
         "semolina pomfret",
         "paplet sooji fry"
-      ]
-    },
-    {
-      "id": "remote-bangda-tawa-fry",
-      "name": "Bangda Tawa Fry (Mackerel)",
-      "nameMarathi": "बांगडा तवा फ्राय",
-      "category": "nonveg",
-      "caloriesPerUnit": 190,
-      "proteinPerUnit": 17,
-      "fatPerUnit": 12,
-      "fiberPerUnit": 0,
-      "unit": "piece",
-      "unitWeight": 100,
-      "searchKeywords": [
-        "bangda tawa",
-        "mackerel tawa fry",
-        "tawa bangda masala"
       ]
     },
     {
@@ -1323,23 +1288,6 @@
       ]
     },
     {
-      "id": "remote-bombil-tawa-fry",
-      "name": "Bombil Tawa Fry (Bombay Duck)",
-      "nameMarathi": "बोंबिल तवा फ्राय",
-      "category": "nonveg",
-      "caloriesPerUnit": 140,
-      "proteinPerUnit": 13,
-      "fatPerUnit": 9,
-      "fiberPerUnit": 0,
-      "unit": "serving",
-      "unitWeight": 80,
-      "searchKeywords": [
-        "bombil tawa",
-        "bombay duck tawa fry",
-        "tawa bombil masala"
-      ]
-    },
-    {
       "id": "remote-bombil-rava-fry",
       "name": "Bombil Rava Fry (Bombay Duck)",
       "nameMarathi": "बोंबिल रवा फ्राय",
@@ -1355,23 +1303,6 @@
         "crispy bombil",
         "bombay duck rava",
         "semolina bombil"
-      ]
-    },
-    {
-      "id": "remote-rawas-tawa-fry",
-      "name": "Rawas Tawa Fry (Indian Salmon)",
-      "nameMarathi": "रावस तवा फ्राय",
-      "category": "nonveg",
-      "caloriesPerUnit": 210,
-      "proteinPerUnit": 19,
-      "fatPerUnit": 11,
-      "fiberPerUnit": 0,
-      "unit": "piece",
-      "unitWeight": 120,
-      "searchKeywords": [
-        "rawas tawa",
-        "indian salmon tawa fry",
-        "tawa rawas masala"
       ]
     },
     {
@@ -2939,23 +2870,6 @@
       ]
     },
     {
-      "id": "remote-paneer-chilli-dry",
-      "name": "Paneer Chilli (Dry)",
-      "nameMarathi": "पनीर चिली (ड्राय)",
-      "category": "snacks",
-      "caloriesPerUnit": 290,
-      "proteinPerUnit": 14,
-      "fatPerUnit": 20,
-      "fiberPerUnit": 2,
-      "unit": "plate",
-      "unitWeight": 150,
-      "searchKeywords": [
-        "paneer chilli",
-        "dry paneer chilli",
-        "indo chinese paneer"
-      ]
-    },
-    {
       "id": "remote-chicken-noodles-schezwan",
       "name": "Schezwan Chicken Noodles",
       "nameMarathi": "शेझवान चिकन नूडल्स",
@@ -3673,24 +3587,6 @@
       ]
     },
     {
-      "id": "remote-masur-amti",
-      "name": "Masur Amti (Red Lentil Curry)",
-      "nameMarathi": "मसूर आमटी",
-      "category": "dal",
-      "caloriesPerUnit": 130,
-      "proteinPerUnit": 7,
-      "fatPerUnit": 4,
-      "fiberPerUnit": 3,
-      "unit": "bowl",
-      "unitWeight": 200,
-      "searchKeywords": [
-        "masur amti",
-        "masoor dal amti",
-        "red lentil curry",
-        "masurachi amti"
-      ]
-    },
-    {
       "id": "remote-kulith-amti",
       "name": "Kulith Amti (Horse Gram Curry)",
       "nameMarathi": "कुळीथ आमटी",
@@ -4143,24 +4039,6 @@
       ]
     },
     {
-      "id": "remote-vangyache-bharit",
-      "name": "Vangyache Bharit (Roasted Brinjal)",
-      "nameMarathi": "वांग्याचे भरीत",
-      "category": "vegetables",
-      "caloriesPerUnit": 90,
-      "proteinPerUnit": 2,
-      "fatPerUnit": 5,
-      "fiberPerUnit": 4,
-      "unit": "bowl",
-      "unitWeight": 150,
-      "searchKeywords": [
-        "vangyache bharit",
-        "baingan bharta",
-        "brinjal mash",
-        "bharit"
-      ]
-    },
-    {
       "id": "remote-ghosali-bhaji",
       "name": "Ghosali Bhaji (Sponge Gourd)",
       "nameMarathi": "घोसाळी भाजी",
@@ -4177,24 +4055,6 @@
         "torai",
         "ghosalyachi bhaji",
         "gilki"
-      ]
-    },
-    {
-      "id": "remote-karlyachi-bhaji",
-      "name": "Karlyachi Bhaji (Bitter Gourd Dry)",
-      "nameMarathi": "कारल्याची भाजी",
-      "category": "vegetables",
-      "caloriesPerUnit": 65,
-      "proteinPerUnit": 2,
-      "fatPerUnit": 3,
-      "fiberPerUnit": 3,
-      "unit": "bowl",
-      "unitWeight": 150,
-      "searchKeywords": [
-        "karlyachi bhaji",
-        "karela bhaji",
-        "bitter gourd fry",
-        "karle bhaji"
       ]
     },
     {
@@ -4338,24 +4198,6 @@
         "mix usal",
         "moong matki usal",
         "missal sprout"
-      ]
-    },
-    {
-      "id": "remote-matki-chi-usal",
-      "name": "Matki Chi Usal (Moth Bean Sprouts)",
-      "nameMarathi": "मटकीची उसळ",
-      "category": "dal",
-      "caloriesPerUnit": 145,
-      "proteinPerUnit": 8,
-      "fatPerUnit": 4,
-      "fiberPerUnit": 5,
-      "unit": "bowl",
-      "unitWeight": 200,
-      "searchKeywords": [
-        "matki chi usal",
-        "matkichi usal",
-        "moth sprouts",
-        "matki sprout curry"
       ]
     },
     {
@@ -4772,24 +4614,6 @@
       ]
     },
     {
-      "id": "remote-kanda-batata-poha",
-      "name": "Kanda Batata Poha",
-      "nameMarathi": "कांदा बटाटा पोहे",
-      "category": "breakfast",
-      "caloriesPerUnit": 250,
-      "proteinPerUnit": 5,
-      "fatPerUnit": 7,
-      "fiberPerUnit": 2,
-      "unit": "plate",
-      "unitWeight": 200,
-      "searchKeywords": [
-        "kanda batata poha",
-        "pohe",
-        "flattened rice",
-        "indori poha"
-      ]
-    },
-    {
       "id": "remote-bhajanichi-thalipeeth",
       "name": "Bhajanichi Thalipeeth",
       "nameMarathi": "भाजणीची थालीपीठ",
@@ -4804,24 +4628,6 @@
         "bhajani thalipeeth",
         "multi flour",
         "traditional thalipeeth"
-      ]
-    },
-    {
-      "id": "remote-pandhra-varan",
-      "name": "Pandhra Varan (Plain Toor Dal)",
-      "nameMarathi": "पांढरे वरण",
-      "category": "dal",
-      "caloriesPerUnit": 120,
-      "proteinPerUnit": 7,
-      "fatPerUnit": 3,
-      "fiberPerUnit": 2,
-      "unit": "bowl",
-      "unitWeight": 200,
-      "searchKeywords": [
-        "pandhra varan",
-        "plain varan",
-        "toor dal",
-        "sadhe varan"
       ]
     },
     {
@@ -6418,42 +6224,6 @@
       ]
     },
     {
-      "id": "remote-kokum-saar",
-      "name": "Kokum Saar (Amsul Saar)",
-      "nameMarathi": "कोकम सार",
-      "category": "dal",
-      "caloriesPerUnit": 35,
-      "proteinPerUnit": 0.5,
-      "fatPerUnit": 1.5,
-      "fiberPerUnit": 0.3,
-      "unit": "bowl",
-      "unitWeight": 150,
-      "searchKeywords": [
-        "kokum saar",
-        "amsul saar",
-        "kokam sar",
-        "sour kokum soup"
-      ]
-    },
-    {
-      "id": "remote-coconut-ladoo",
-      "name": "Coconut Ladoo (Naral Ladoo)",
-      "nameMarathi": "नारळ लाडू",
-      "category": "sweets",
-      "caloriesPerUnit": 65,
-      "proteinPerUnit": 0.8,
-      "fatPerUnit": 4,
-      "fiberPerUnit": 0.5,
-      "unit": "piece",
-      "unitWeight": 15,
-      "searchKeywords": [
-        "naral ladoo",
-        "coconut laddu",
-        "nariyal ladoo",
-        "khobryache ladoo"
-      ]
-    },
-    {
       "id": "remote-macadamia-nuts",
       "name": "Macadamia Nuts",
       "nameMarathi": "मॅकॅडेमिया नट्स",
@@ -6795,6 +6565,152 @@
         "shortbread",
         "danish cookie",
         "nankhatai"
+      ]
+    },
+    {
+      "id": "remote-raw-mango",
+      "name": "Raw Mango (Kairi)",
+      "nameMarathi": "कैरी",
+      "category": "fruits",
+      "caloriesPerUnit": 50,
+      "proteinPerUnit": 0.5,
+      "fatPerUnit": 0.3,
+      "fiberPerUnit": 1.8,
+      "unit": "piece",
+      "unitWeight": 100,
+      "searchKeywords": [
+        "kairi",
+        "raw mango",
+        "kachha aam",
+        "green mango",
+        "कैरी"
+      ]
+    },
+    {
+      "id": "remote-raw-banana",
+      "name": "Raw Banana (Green / Cooking)",
+      "nameMarathi": "कच्चे केळे",
+      "category": "fruits",
+      "caloriesPerUnit": 80,
+      "proteinPerUnit": 1,
+      "fatPerUnit": 0.3,
+      "fiberPerUnit": 2.5,
+      "unit": "piece",
+      "unitWeight": 100,
+      "searchKeywords": [
+        "raw banana",
+        "kachha kela",
+        "green banana",
+        "cooking banana",
+        "कच्चे केळे"
+      ]
+    },
+    {
+      "id": "remote-raw-jackfruit",
+      "name": "Raw Jackfruit (Green)",
+      "nameMarathi": "कच्चा फणस",
+      "category": "fruits",
+      "caloriesPerUnit": 55,
+      "proteinPerUnit": 1,
+      "fatPerUnit": 0.3,
+      "fiberPerUnit": 2,
+      "unit": "bowl",
+      "unitWeight": 100,
+      "searchKeywords": [
+        "raw jackfruit",
+        "green jackfruit",
+        "kachha kathal",
+        "कच्चा फणस"
+      ]
+    },
+    {
+      "id": "remote-tadgola",
+      "name": "Tadgola (Ice Apple / Palm Fruit)",
+      "nameMarathi": "ताडगोळा",
+      "category": "fruits",
+      "caloriesPerUnit": 40,
+      "proteinPerUnit": 0.7,
+      "fatPerUnit": 0.1,
+      "fiberPerUnit": 1,
+      "unit": "piece",
+      "unitWeight": 50,
+      "searchKeywords": [
+        "tadgola",
+        "ice apple",
+        "palm fruit",
+        "nungu",
+        "ताडगोळा"
+      ]
+    },
+    {
+      "id": "remote-kiwi",
+      "name": "Kiwi Fruit",
+      "nameMarathi": "किवी",
+      "category": "fruits",
+      "caloriesPerUnit": 42,
+      "proteinPerUnit": 0.8,
+      "fatPerUnit": 0.4,
+      "fiberPerUnit": 2.1,
+      "unit": "piece",
+      "unitWeight": 70,
+      "searchKeywords": [
+        "kiwi",
+        "kiwifruit",
+        "किवी"
+      ]
+    },
+    {
+      "id": "remote-dragonfruit",
+      "name": "Dragon Fruit (Pitaya)",
+      "nameMarathi": "ड्रॅगन फ्रूट",
+      "category": "fruits",
+      "caloriesPerUnit": 60,
+      "proteinPerUnit": 1.2,
+      "fatPerUnit": 0.4,
+      "fiberPerUnit": 3,
+      "unit": "piece",
+      "unitWeight": 100,
+      "searchKeywords": [
+        "dragon fruit",
+        "pitaya",
+        "kamalam",
+        "ड्रॅगन फ्रूट"
+      ]
+    },
+    {
+      "id": "remote-sitaphal",
+      "name": "Sitaphal (Sugar Apple)",
+      "nameMarathi": "सीताफळ",
+      "category": "fruits",
+      "caloriesPerUnit": 95,
+      "proteinPerUnit": 1.6,
+      "fatPerUnit": 0.3,
+      "fiberPerUnit": 4.4,
+      "unit": "piece",
+      "unitWeight": 100,
+      "searchKeywords": [
+        "sitaphal",
+        "sugar apple",
+        "sharifa",
+        "सीताफळ"
+      ]
+    },
+    {
+      "id": "remote-kairi-panna",
+      "name": "Kairi Panna (Raw Mango Drink)",
+      "nameMarathi": "कैरी पन्हा",
+      "category": "beverages",
+      "caloriesPerUnit": 90,
+      "proteinPerUnit": 0.3,
+      "fatPerUnit": 0.1,
+      "fiberPerUnit": 0.5,
+      "unit": "glass",
+      "unitWeight": 200,
+      "searchKeywords": [
+        "kairi panna",
+        "aam panna",
+        "raw mango drink",
+        "कैरी पन्हा"
       ]
     }
   ]

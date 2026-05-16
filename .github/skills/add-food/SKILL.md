@@ -117,3 +117,6 @@ If a match exists, confirm with user before proceeding.
 - [ ] `searchKeywords` has 3-5 variations (Hindi, Marathi, English, common misspellings)
 - [ ] Calorie values are per-unit (not per 100g)
 - [ ] JSON is valid (for remote-foods.json)
+- [ ] Regenerate food index: `npm run index:foods`
+- [ ] Update `src/screens/Settings/AboutSection.tsx` — food count in features list (currently "1030+ Indian & international food items" and "370+ remote food database")
+- [ ] Update `README.md` — food count if mentioned in features section

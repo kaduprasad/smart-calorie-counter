@@ -21,6 +21,7 @@ Detailed procedures live in separate files to reduce context overhead:
 | Task | File |
 |------|------|
 | Adding food items | `.github/skills/add-food/SKILL.md` |
+| Auditing food calories | `.github/skills/audit-food/SKILL.md` |
 | Creating components | `.github/skills/create-component/SKILL.md` |
 | Creating screens | `.github/skills/create-screen/SKILL.md` |
 | Style conventions | `.github/instructions/styles.instructions.md` |
@@ -99,10 +100,18 @@ Three sources merged: `allFoods = [...maharashtrianFoods, ...remoteFoods, ...cus
 ## Calorie Audit (USDA)
 
 ```bash
-npm run fetch:usda                     # All categories
+npm run fetch:usda                     # Fetch USDA reference data
 npm run fetch:usda -- --query "name"   # Single item lookup
+npm run audit:calories                 # Audit all foods against USDA (15% threshold)
+npm run audit:calories -- --threshold 10 --output report  # Stricter, save report
+npm run index:foods                    # Regenerate compact food index
 ```
-Output: `data/usda-nutrition.json`. Only update items where difference >10%. Never compare cooked dishes against raw USDA values.
+
+- `data/usda-nutrition.json` — USDA per-100g reference data
+- `data/food-index.json` — compact index for fast Copilot lookups (auto-generated, gitignored)
+- `data/audit-report.json` — audit results (auto-generated, gitignored)
+
+**Rules:** Only update items where difference >10%. Never compare cooked dishes against raw USDA values. See `audit-food` skill for full procedure.
 
 ## Online Food Search
 

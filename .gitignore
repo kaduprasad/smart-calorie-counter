@@ -37,6 +37,10 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
+# generated data (re-create with npm run index:foods / audit:calories)
+data/food-index.json
+data/audit-report.json
+
 # generated native folders
 /ios
 /android

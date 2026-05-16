@@ -8,6 +8,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "fetch:usda": "node scripts/fetch-usda-nutrition.js",
+    "audit:calories": "node scripts/audit-food-calories.js",
+    "index:foods": "node scripts/generate-food-index.js",
     "scrape:recipes": "node scripts/scrape-recipes-marathi.js",
     "foods": "node scripts/manage-foods.js"
   },

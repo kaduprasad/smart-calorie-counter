@@ -18,11 +18,12 @@ export const AboutSection: React.FC = () => {
         </View>
         <Text style={styles.aboutDescription}>
           Track your daily food intake with a comprehensive database of Indian dishes
-          including Maharashtrian, Konkani, Vidarbha, and North Indian cuisines.
+          specializing in Maharashtrian foods.
         </Text>
         <View style={styles.features}>
           {[
-            '1020+ Indian food items',
+            '1030+ Indian & international food items',
+            '370+ remote food database (auto-updated)',
             '16 food categories',
             'USDA online food search with macros',
             'Recipe builder from 120+ ingredients',
@@ -32,6 +33,7 @@ export const AboutSection: React.FC = () => {
             'Voice input for food logging',
             'Weight tracking with charts',
             'Custom dish creation',
+            'First-time onboarding setup',
             'History & statistics',
             'Daily reminders',
           ].map((feature) => (
