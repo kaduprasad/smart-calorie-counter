@@ -393,7 +393,7 @@ export const ExerciseInput = forwardRef<ExerciseInputRef, ExerciseInputProps>(({
             >
               <Ionicons name="close" size={24} color="#666666" />
             </TouchableOpacity>
-            <ScrollView showsVerticalScrollIndicator={false}>
+            <ScrollView showsVerticalScrollIndicator={true} persistentScrollbar={true}>
               {/* Modal Header with Multi-Select Toggle */}
               <View style={styles.modalHeader}>
                 <Text style={styles.modalTitle}>

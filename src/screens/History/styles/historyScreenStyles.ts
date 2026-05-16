@@ -37,7 +37,8 @@ export const styles = StyleSheet.create({
   },
   weeklySection: {
     backgroundColor: '#FFFFFF',
-    margin: 16,
+    marginHorizontal: 10,
+    marginVertical: 16,
     padding: 16,
     paddingBottom: 20,
     borderRadius: 16,
@@ -111,7 +112,7 @@ export const styles = StyleSheet.create({
   },
   statsRow: {
     flexDirection: 'row',
-    paddingHorizontal: 16,
+    paddingHorizontal: 10,
     gap: 8,
     marginBottom: 16,
   },

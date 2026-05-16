@@ -22,3 +22,4 @@ export { UpdateChecker } from './UpdateChecker';
 export { FormField } from './FormField';
 export { InputTextField } from './InputTextField';
 export { RecipeBuilder } from './RecipeBuilder';
+export { OnboardingModal } from './OnboardingModal';

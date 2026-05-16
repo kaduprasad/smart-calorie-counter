@@ -16,7 +16,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useSettings } from '../../context/SettingsContext';
 import { useLog } from '../../context/LogContext';
-import { CalorieSummary, FoodLogItem, QuantitySelector, WeightInput, ExerciseInput } from '../../components';
+import { CalorieSummary, FoodLogItem, QuantitySelector, WeightInput, ExerciseInput, OnboardingModal } from '../../components';
 import type { ExerciseInputRef } from '../../components';
 import { formatDate, getTodayDate, getLocalDateString, getExerciseEntries } from '../../services/storage';
 import { FoodLogEntry, FoodItem } from '../../types';
@@ -49,6 +49,10 @@ export const HomeScreen: React.FC = () => {
   const fabAnim = useRef(new Animated.Value(0)).current;
   const exerciseRef = useRef<ExerciseInputRef>(null);
   const scrollRef = useRef<ScrollView>(null);
+
+  const handleOnboardingComplete = useCallback(() => {
+    refreshData();
+  }, [refreshData]);
 
   const toggleFab = useCallback(() => {
     const toValue = fabOpen ? 0 : 1;
@@ -230,65 +234,64 @@ export const HomeScreen: React.FC = () => {
         </View>
       </ScrollView>
 
-      {/* FAB Overlay */}
-      {fabOpen && (
-        <Pressable
-          style={styles.fabOverlay}
-          onPress={closeFab}
-        />
-      )}
+      {/* FAB Area: overlay + mini-FABs in one container for reliable touch handling */}
+      <View style={styles.fabContainer} pointerEvents="box-none">
+        {/* FAB Overlay */}
+        {fabOpen && (
+          <Pressable
+            style={styles.fabOverlay}
+            onPress={closeFab}
+          />
+        )}
 
-      {/* Add Food mini-FAB */}
-      <Animated.View
-        style={[
-          styles.miniFab,
-          {
-            transform: [
-              { translateY: fabAnim.interpolate({ inputRange: [0, 1], outputRange: [0, -130] }) },
-              { scale: fabAnim },
-            ],
-            opacity: fabAnim,
-          },
-        ]}
-        pointerEvents={fabOpen ? 'auto' : 'none'}
-      >
-        <TouchableOpacity
-          style={styles.miniFabButton}
-          onPress={() => {
-            closeFab();
-            navigation.navigate('AddFood');
-          }}
+        {/* Add Food mini-FAB */}
+        <Animated.View
+          style={[
+            styles.miniFab,
+            styles.miniFabFood,
+            {
+              transform: [{ scale: fabAnim }],
+              opacity: fabAnim,
+            },
+          ]}
+          pointerEvents={fabOpen ? 'auto' : 'none'}
         >
-          <Ionicons name="restaurant" size={20} color="#FFFFFF" />
-        </TouchableOpacity>
-        <Animated.Text style={[styles.miniFabLabel, { opacity: fabAnim }]}>Add Food</Animated.Text>
-      </Animated.View>
+          <TouchableOpacity
+            style={styles.miniFabButton}
+            onPress={() => {
+              closeFab();
+              navigation.navigate('AddFood');
+            }}
+          >
+            <Ionicons name="restaurant" size={20} color="#FFFFFF" />
+          </TouchableOpacity>
+          <Animated.Text style={[styles.miniFabLabel, { opacity: fabAnim }]}>Add Food</Animated.Text>
+        </Animated.View>
 
-      {/* Add Exercise mini-FAB */}
-      <Animated.View
-        style={[
-          styles.miniFab,
-          {
-            transform: [
-              { translateY: fabAnim.interpolate({ inputRange: [0, 1], outputRange: [0, -70] }) },
-              { scale: fabAnim },
-            ],
-            opacity: fabAnim,
-          },
-        ]}
-        pointerEvents={fabOpen ? 'auto' : 'none'}
-      >
-        <TouchableOpacity
-          style={[styles.miniFabButton, { backgroundColor: '#60A5FA' }]}
-          onPress={() => {
-            closeFab();
-            exerciseRef.current?.openModal();
-          }}
+        {/* Add Exercise mini-FAB */}
+        <Animated.View
+          style={[
+            styles.miniFab,
+            styles.miniFabExercise,
+            {
+              transform: [{ scale: fabAnim }],
+              opacity: fabAnim,
+            },
+          ]}
+          pointerEvents={fabOpen ? 'auto' : 'none'}
         >
-          <MaterialCommunityIcons name="run-fast" size={20} color="#FFFFFF" />
-        </TouchableOpacity>
-        <Animated.Text style={[styles.miniFabLabel, { opacity: fabAnim }]}>Exercise</Animated.Text>
-      </Animated.View>
+          <TouchableOpacity
+            style={[styles.miniFabButton, { backgroundColor: '#60A5FA' }]}
+            onPress={() => {
+              closeFab();
+              exerciseRef.current?.openModal();
+            }}
+          >
+            <MaterialCommunityIcons name="run-fast" size={20} color="#FFFFFF" />
+          </TouchableOpacity>
+          <Animated.Text style={[styles.miniFabLabel, { opacity: fabAnim }]}>Exercise</Animated.Text>
+        </Animated.View>
+      </View>
 
       {/* Main FAB */}
       <TouchableOpacity
@@ -316,6 +319,8 @@ export const HomeScreen: React.FC = () => {
           onConfirm={handleUpdateQuantity}
         />
       )}
+
+      <OnboardingModal onComplete={handleOnboardingComplete} />
     </SafeAreaView>
   );
 };

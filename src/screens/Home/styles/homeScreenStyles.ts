@@ -112,20 +112,26 @@ export const styles = StyleSheet.create({
     elevation: 8,
     zIndex: 12,
   },
+  fabContainer: {
+    ...StyleSheet.absoluteFillObject,
+    zIndex: 10,
+  } as any,
   fabOverlay: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: 'rgba(0,0,0,0.3)',
-    zIndex: 10,
   } as any,
   miniFab: {
     position: 'absolute',
-    bottom: 30,
     right: 28,
     flexDirection: 'row',
     alignItems: 'center',
-    zIndex: 15,
-    elevation: 15,
   } as any,
+  miniFabFood: {
+    bottom: 160,
+  },
+  miniFabExercise: {
+    bottom: 100,
+  },
   miniFabButton: {
     width: 48,
     height: 48,

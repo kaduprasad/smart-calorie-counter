@@ -38,14 +38,16 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: COLORS.purpleMedium,
+    backgroundColor: COLORS.purpleLight,
     padding: 14,
     borderRadius: 12,
+    borderWidth: 1,
+    borderColor: COLORS.purpleBorder,
   },
   createButtonText: {
     fontSize: 14,
     fontWeight: "600",
-    color: "#FFFFFF",
+    color: COLORS.purple,
   },
   recipeButton: {
     flexDirection: "row",

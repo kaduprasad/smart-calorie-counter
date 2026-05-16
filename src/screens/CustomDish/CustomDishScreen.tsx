@@ -143,7 +143,7 @@ export const CustomDishScreen: React.FC = () => {
               style={styles.createButton}
               onPress={() => setShowForm(true)}
             >
-              <Ionicons name="add-circle" size={22} color="#FFFFFF" style={{ marginRight: 8 }} />
+              <Ionicons name="add-circle" size={22} color={COLORS.purple} style={{ marginRight: 8 }} />
               <Text style={styles.createButtonText}>Quick Create</Text>
             </TouchableOpacity>
 

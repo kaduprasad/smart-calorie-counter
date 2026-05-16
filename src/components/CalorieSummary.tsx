@@ -78,7 +78,10 @@ export const CalorieSummary: React.FC<CalorieSummaryProps> = ({
 
     const listenerId = animProgress.addListener(({ value }) => {
       setAnimatedFillPercent(value);
-      setAnimatedNetCal(Math.round((value / 100) * maxDisplayedCal));
+      // Interpolate from 0 to actual netCalories (not maxDisplayedCal)
+      // so the counter shows the real value even when gauge is capped
+      const progress = fillPercentage > 0 ? value / fillPercentage : 0;
+      setAnimatedNetCal(Math.round(progress * netCalories));
     });
 
     Animated.timing(animProgress, {
