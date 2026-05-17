@@ -11,7 +11,8 @@ const fs = require('fs');
 const path = require('path');
 
 // ── Load Excel audit data ───────────────────────────────────────────────
-const wb = XLSX.readFile(path.join(__dirname, '../src/data/first_500_foods_calorie_audit 2.xlsx'));
+const excelFile = process.argv[2] || path.join(__dirname, '../src/data/first_500_foods_calorie_audit 2.xlsx');
+const wb = XLSX.readFile(excelFile);
 const ws = wb.Sheets[wb.SheetNames[0]];
 const auditData = XLSX.utils.sheet_to_json(ws);
 
